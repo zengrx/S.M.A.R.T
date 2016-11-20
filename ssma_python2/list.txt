@@ -1,0 +1,4 @@
+1. move the project to python2
+2. use pyqt4 create application ui
+3. write some api
+4. write some mannal
