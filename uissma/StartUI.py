@@ -6,11 +6,14 @@ from SSMA_UI import Ui_MainWindow
 
 class MainWindow(QtGui.QMainWindow):
     def __init__(self, parent=None):
-	QtGui.QWidget.__init__(self, parent)
-	self.ui = Ui_MainWindow()
-    	self.ui.setupUi(self)
+        QtGui.QWidget.__init__(self, parent)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
 
+        QtCore.QObject.connect(self.ui.pushButton, QtCore.SIGNAL("clicked()"), self.testFunc);
 
+    def testFunc(self):
+        print "work"
 
 if __name__ == "__main__":
 
