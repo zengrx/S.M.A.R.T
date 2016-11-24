@@ -230,11 +230,11 @@ class PEScanner:
         good_sectoins = ['.data', '.text', '.code', '.reloc', '.idata', '.edata', '.rdata', '.bss', '.rsrc']
         number_of_section = self.pe.FILE_HEADER.NumberOfSections
         if number_of_section < 1 or number_of_section > 9:
-            print(colors.RED + "[SUSPICIOUS NUMBER OF SECTIONS] - {}".format(number_of_section) + colors.RESET)
+            print colors.RED + "[SUSPICIOUS NUMBER OF SECTIONS] - {}".format(number_of_section) + colors.RESET
         else:
-            print("Number of Sections:", number_of_section)
-        print()
-        print("{} {} {} {} {}".format(*"Section VirtualAddress VirtualSize SizeofRawData Entropy".split()))
+            print "Number of Sections:", number_of_section
+        print ""
+        print "{} {} {} {} {}".format(*"Section VirtualAddress VirtualSize SizeofRawData Entropy".split())
         h_l_entropy = False
         suspicious_size_of_raw_data = False
         virtual_size = []
@@ -261,16 +261,16 @@ class PEScanner:
                                                      section.SizeOfRawData,
                                                      entropy if not for_section else colors.LIGHT_RED + str(
                                                          entropy) + colors.RESET))
-        print()
+        print ""
         if virtual_size:
             for n, m in virtual_size:
                 print(colors.RED + 'SUSPICIOUS size of the section "{}" when stored in memory - {}'.format(n,
                                                                                                            m) + colors.RESET)
-            print()
+            print ""
         if h_l_entropy:
             print(
                 colors.RED + "Very high or very low entropy means that file/section is compressed or encrypted since truly random data is not common." + colors.RESET)
-            print()
+            print ""
         if suspicious_size_of_raw_data:
             print(colors.RED + "Suspicious size of the raw data - 0\n" + colors.RESET)
         bad_sections = [bad for bad in section_names if bad not in good_sectoins]
@@ -278,7 +278,7 @@ class PEScanner:
             print colors.RED + "SUSPICIOUS section names: " + colors.RESET,
             for n in bad_sections:
                 print n,
-            print()
+            print ""
 
     def check_file_header(self):
         continue_message = False
@@ -295,16 +295,16 @@ class PEScanner:
                   "This indicates that the file does not contain base relocations and must therefore be loaded at its preferred base address.\nFlag has the effect of disabling Address Space Layout Randomization(ASPR) for the process.")]
         if any(tr[1] for tr in flags):
             continue_message = True
-            print(colors.LIGHT_RED + "Suspicious flags in the characteristics of the PE file: " + colors.RESET)
+            print colors.LIGHT_RED + "Suspicious flags in the characteristics of the PE file: " + colors.RESET
             for n in flags:
                 if n[1]:
-                    print(colors.RED + n[0] + colors.RESET + " flag is set - {}".format(n[2]))
-            print()
+                    print colors.RED + n[0] + colors.RESET + " flag is set - {}".format(n[2])
+            print ""
         if continue_message:
-            print("================================================================================")
+            print "================================================================================"
             if raw_input("Continue? [Y/n] ") is 'n':
                 exit()
-            print()
+            print ""
 
 
 def file_info(filename):
