@@ -47,119 +47,118 @@ if __name__ == '__main__':
         pe = PEScanner(filename=args.filename)
         print(colors.BOLD + colors.YELLOW + "File Details: " + colors.RESET)
         for n in pe.file_info():
-            print('\t', n)
-        print()
-        print("================================================================================")
+            print "\t", n
+        print ""
+        print "================================================================================"
         if raw_input("Continue? [Y/n] ") is 'n':
             exit()
-        print()
+        print ""
         pe.sections_analysis()
-        print("================================================================================")
+        print "================================================================================"
         if raw_input("Continue? [Y/n] ") is 'n':
             exit()
-        print()
+        print ""
         pe.check_file_header()
         check_date_result = pe.check_date()
         if check_date_result:
-            print(check_date_result)
-            print()
-            print("================================================================================")
+            print check_date_result
+            print ""
+            print "================================================================================"
             if raw_input("Continue? [Y/n] ") is 'n':
                 exit()
-            print()
+            print ""
         check_imports_result = pe.check_imports()
         if check_imports_result:
-            print(
+            print( 
                 colors.BOLD + colors.YELLOW + "This file contains a list of Windows functions commonly used by malware.\nFor more information use the Microsoft documentation.\n" + colors.RESET)
 
             for n in check_imports_result:
                 n = n.split("^")
-                print('\t' + colors.LIGHT_RED + n[0] + colors.RESET + " - " + n[1])
-            print()
-            print("================================================================================")
+                print "\t" + colors.LIGHT_RED + n[0] + colors.RESET + " - " + n[1]
+            print ""
+            print "================================================================================"
             if raw_input("Continue? [Y/n] ") is 'n':
                 exit()
-            print()
+            print ""
     else:
-        print(colors.BOLD + colors.YELLOW + "File Details: " + colors.RESET)
+        print colors.BOLD + colors.YELLOW + "File Details: " + colors.RESET
         for n in file_info(args.filename):
-            print('\t', n)
-        print()
-        print("================================================================================")
+            print "\t", n
+        print ""
+        print "================================================================================"
         if raw_input("Continue? [Y/n] ") is 'n':
             exit()
-        print()
+        print ""
     if args.api_key and internet_connection:
         virus_check = virustotal(args.filename, args.api_key)
         if virus_check[0] == "scan_result":
-            print(colors.BOLD + colors.YELLOW + "Virustotal:" + colors.RESET)
+            print colors.BOLD + colors.YELLOW + "Virustotal:" + colors.RESET
             for n in virus_check[1]:
                 n = n.split("^")
-                print('\t' + colors.CYAN + n[0] + colors.RESET + "-" + colors.LIGHT_RED + n[1] + colors.RESET)
-            print()
-            print("================================================================================")
+                print "\t" + colors.CYAN + n[0] + colors.RESET + "-" + colors.LIGHT_RED + n[1] + colors.RESET
+            print ""
+            print "================================================================================"
             if raw_input("Continue? [Y/n] ") is 'n':
                 exit()
-            print()
+            print ""
         elif virus_check[0] == "permalink":
             if virus_check[1]:
-                print(colors.LIGHT_BLUE + "Your file is being analysed." + colors.RESET)
-                print(colors.BOLD + "VirusTotal link: " + colors.RESET, virus_check[1][0])
-                print()
-                print("================================================================================")
+                print colors.LIGHT_BLUE + "Your file is being analysed." + colors.RESET
+                print colors.BOLD + "VirusTotal link: " + colors.RESET, virus_check[1][0]
+                print ""
+                print "================================================================================"
                 if raw_input("Continue? [Y/n] ") is 'n':
                     exit()
-                print()
+                print ""
         elif not internet_connection:
-            print(colors.RED + "No internet connection" + colors.RESET)
-            print("================================================================================")
+            print colors.RED + "No internet connection" + colors.RESET
+            print "================================================================================"
             if raw_input("Continue? [Y/n] ") is 'n':
                 exit()
-            print()
+            print ""
         else:
             pass
 
     strings = get_strings(filename=args.filename).get_result()
     if strings[0]:
-        print(colors.BOLD + colors.YELLOW + "Possible domains in strings of the file: " + colors.RESET)
+        print colors.BOLD + colors.YELLOW + "Possible domains in strings of the file: " + colors.RESET
         mal_domains = ransomware_and_malware_domain_check(list(strings[0]))
         for n in mal_domains[0]:
-            print('\t', n)
-        print()
+            print "\t", n
+        print ""
         if mal_domains[1]:
-            print("\t" + colors.RED + "Abuse.ch's Ransomware Domain Blocklist: " + colors.RESET)
+            print "\t" + colors.RED + "Abuse.ch's Ransomware Domain Blocklist: " + colors.RESET
             for n in mal_domains[1]:
-                print('\t', n)
+                print "\t", n
             print()
         if mal_domains[2]:
-            print(
-                "\t" + colors.RED + "A list of domains that are known to be used to propagate malware by http://www.malwaredomains.com/" + colors.RESET)
+            print "\t", colors.RED + "A list of domains that are known to be used to propagate malware by http://www.malwaredomains.com/" + colors.RESET
             for n in mal_domains[2]:
-                print('\t', n)
-            print()
-        print()
-        print("================================================================================")
+                print "\t", n
+            print ""
+        print ""
+        print "================================================================================"
         if raw_input("Continue? [Y/n] ") is 'n':
             exit()
-        print()
+        print ""
     if strings[1]:
-        print(colors.BOLD + colors.YELLOW + "Possible IP addresses in strings of the file: " + colors.RESET)
+        print colors.BOLD + colors.YELLOW + "Possible IP addresses in strings of the file: " + colors.RESET
         for n in strings[1]:
-            print('\t', n)
-        print()
-        print("================================================================================")
+            print "\t", n
+        print ""
+        print "================================================================================"
         if raw_input("Continue? [Y/n] ") is 'n':
             exit()
-        print()
+        print ""
     if strings[2]:
-        print(colors.BOLD + colors.YELLOW + "Possible E-Mail addresses in strings of the file:" + colors.RESET)
+        print colors.BOLD + colors.YELLOW + "Possible E-Mail addresses in strings of the file:" + colors.RESET
         for n in strings[2]:
-            print('\t', n)
-        print()
-        print("================================================================================")
+            print "\t", n
+        print ""
+        print "================================================================================"
         if raw_input("Continue? [Y/n] ") is 'n':
             exit()
-        print()
+        print ""
     if filetype == 'application/x-dosexec' or args.document:
         print(
             colors.BOLD + colors.YELLOW + "Scan file using Yara-rules.\nWith Yara rules you can create a \"description\" of malware families to detect new samples.\n" + colors.BOLD + colors.CYAN + "\tFor more information: https://virustotal.github.io/yara/\n" + colors.RESET)
@@ -168,9 +167,9 @@ if __name__ == '__main__':
         if not os.path.exists("rules_compiled"):
             os.mkdir("rules_compiled")
         if not os.listdir("rules"):
-            print(colors.BOLD + colors.CYAN + "Downloading Yara-rules... \n" + colors.RESET)
+            print colors.BOLD + colors.CYAN + "Downloading Yara-rules..." + "\n" + colors.RESET
             download_yara_rules_git()
-            print()
+            print ""
         else:
             if raw_input(
                                             colors.BOLD + colors.GREEN + "Would you like to ReDownload Yara-Rules? [y/N] " + colors.RESET) is 'y':
@@ -180,7 +179,7 @@ if __name__ == '__main__':
                     shutil.rmtree("rules_compiled")
                     os.mkdir("rules_compiled")
                 download_yara_rules_git()
-                print()
+                print ""
         if filetype == 'application/x-dosexec':
             malicious_software = is_malware(filename=args.filename)
             if malicious_software:
@@ -188,28 +187,28 @@ if __name__ == '__main__':
                     colors.BOLD + colors.YELLOW + "These Yara rules specialised on the identification of well-known malware.\nResult: " + colors.RESET)
                 for n in malicious_software:
                     try:
-                        print("\t {} - {}".format(n, n.meta['description']))
+                        print "\t", "{} - {}".format(n, n.meta['description'])
                     except:
-                        print('\t', n)
-                print()
-                print("================================================================================")
+                        print "\t", n
+                print ""
+                print "================================================================================"
                 if raw_input("Continue? [Y/n] ") is 'n':
                     exit()
-                print()
+                print ""
             packed = is_file_packed(filename=args.filename)
             if packed:
                 print(
                     colors.BOLD + colors.YELLOW + "These Yara Rules aimed to detect well-known sofware packers, that can be used by malware to hide itself.\nResult: " + colors.RESET)
                 for n in packed:
                     try:
-                        print("\t {} - {}".format(n, n.meta['description']))
+                        print "\t", "{} - {}".format(n, n.meta['description'])
                     except:
-                        print('\t', n)
-                print()
-                print("================================================================================")
+                        print "\t", n
+                print ""
+                print "================================================================================"
                 if raw_input("Continue? [Y/n] ") is 'n':
                     exit()
-                print()
+                print ""
             crypto = check_crypto(filename=args.filename)
             if crypto:
                 print(
@@ -217,28 +216,28 @@ if __name__ == '__main__':
                 print(colors.YELLOW + "Detected cryptographic algorithms: " + colors.RESET)
                 for n in crypto:
                     try:
-                        print("\t {} - {}".format(n, n.meta['description']))
+                        print "\t", "{} - {}".format(n, n.meta['description'])
                     except:
-                        print('\t', n)
-                print()
-                print("================================================================================")
+                        print "\t", n
+                print ""
+                print "================================================================================"
                 if raw_input("Continue? [Y/n] ") is 'n':
                     exit()
-                print()
+                print ""
             anti_vm = is_antidb_antivm(filename=args.filename)
             if anti_vm:
                 print(
                     colors.BOLD + colors.YELLOW + "These Yara Rules aimed to detect anti-debug and anti-virtualization techniques used by malware to evade automated analysis.\nResult: " + colors.RESET)
                 for n in anti_vm:
                     try:
-                        print("\t {} - {}".format(n, n.meta['description']))
+                        print "\t", "{} - {}".format(n, n.meta['description'])
                     except:
-                        print('\t', n)
-                print()
-                print("================================================================================")
+                        print "\t", n
+                print ""
+                print "================================================================================"
                 if raw_input("Continue? [Y/n] ") is 'n':
                     exit()
-                print()
+                print ""
 
         if args.document:
             document_result = is_malicious_document(filename=args.filename)
@@ -247,15 +246,15 @@ if __name__ == '__main__':
             if document_result:
                 for n in document_result:
                     try:
-                        print("\t {} - {}".format(n, n.meta['description']))
+                        print "\t", "{} - {}".format(n, n.meta['description'])
                     except:
-                        print('\t', n)
-                print("================================================================================")
+                        print "\t", n
+                print "================================================================================"
                 if raw_input("Continue? [Y/n] ") is 'n':
                     exit()
-                print()
+                print ""
             else:
-                print(colors.BOLD + "\tNothing found" + colors.RESET)
-                print("================================================================================")
+                print colors.BOLD + "\t" + "Nothing found" + colors.RESET
+                print "================================================================================"
                 exit()
-    print(colors.YELLOW + "Ups... " + colors.CYAN + "That's alllllllllllllll :)" + colors.RESET + "\n")
+    print colors.YELLOW + "Ups... " + colors.CYAN + "That's alllllllllllllll :)" + colors.RESET + "\n"
