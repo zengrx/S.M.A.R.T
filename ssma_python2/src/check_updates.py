@@ -6,9 +6,11 @@ def check_internet_connection():
     try:
         host = socket.gethostbyname("www.google.com")
         s = socket.create_connection((host, 80), 2)
+        print "internet ok"
         return True
     except:
         pass
+        print "internet err"
     return False
 
 

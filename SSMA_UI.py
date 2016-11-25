@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'SSMA.ui'
 #
-# Created: Wed Nov 23 17:29:44 2016
+# Created: Thu Nov 24 14:33:56 2016
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(682, 542)
+        MainWindow.resize(481, 588)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
@@ -95,7 +95,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "页", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "页", None))
-        self.groupBox_3.setTitle(_translate("MainWindow", "啦啦啦啦啦", None))
+        self.groupBox_3.setTitle(_translate("MainWindow", "xxxx", None))
 
 
 if __name__ == "__main__":
