@@ -7,7 +7,7 @@ import argparse
 import magic
 import shutil
 
-sys.path.append("../ssma_python2")
+sys.path.append("../python2_ssma")
 from src import colors
 from src.blacklisted_domain_ip import ransomware_and_malware_domain_check
 from src.check import is_malware, is_file_packed, check_crypto, is_antidb_antivm, is_malicious_document
@@ -27,12 +27,8 @@ class MainWindow(QtGui.QMainWindow):
     def testFunc(self):
         #filename = QtGui.QFileDialog.getExistingDirectory(self, "sf", QtCore.QDir.currentPath()) #for path select
         filename = QtGui.QFileDialog.getOpenFileName(self, "select file", "./", "All Files (*)") #for file select
-        filename = str(filename)
         print filename
         self.showMessage(filename, False)
-        #filename = os.path.realpath(filename)
-        filetype = magic.from_file(filename, mime=True)
-        self.showMessage(filetype, False)
 
     def showMessage(self, msg, showtime = True):
         self.ui.textEdit.append(msg)
@@ -45,7 +41,4 @@ if __name__ == "__main__":
     
     myapp.show()
     
-    #check internet
-    internet_connection = check_internet_connection()
-
     sys.exit(app.exec_())
