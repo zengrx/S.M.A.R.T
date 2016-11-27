@@ -22,7 +22,7 @@ class MainWindow(QtGui.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        QtCore.QObject.connect(self.ui.pushButton, QtCore.SIGNAL("clicked()"), self.testFunc);
+        QtCore.QObject.connect(self.ui.pushButton, QtCore.SIGNAL("clicked()"), self.testFunc)
 
     def testFunc(self):
         #filename = QtGui.QFileDialog.getExistingDirectory(self, "sf", QtCore.QDir.currentPath()) #for path select
