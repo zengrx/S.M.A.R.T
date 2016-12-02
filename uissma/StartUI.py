@@ -25,6 +25,8 @@ class MainWindow(QtGui.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.sysname = "" #write a init function
+
         QtCore.QObject.connect(self.ui.pushButton, QtCore.SIGNAL("clicked()"), self.testFunc);
 
     def testFunc(self):
@@ -58,5 +60,10 @@ if __name__ == "__main__":
     
     #check internet
     internet_connection = check_internet_connection()
+    system = os.name
+    if ("nt" == system):
+        print "windows"
+    if ("posix" == system):
+        print "Linux/Unix"
 
     sys.exit(app.exec_())
