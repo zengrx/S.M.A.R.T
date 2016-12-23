@@ -19,3 +19,4 @@ pip install python-magic
 python代码里使用Magic时 指明magic信息文件，否则会报错
       m = Magic(magic_file="C:\GnuWin32\share\misc", mime=False)  
       file_type = m.from_file(file_path)  
+- 12月22日更新64位python2.7版本magic模块使用，win7下已验证
