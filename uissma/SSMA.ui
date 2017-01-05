@@ -74,18 +74,33 @@
          </widget>
          <widget class="QWidget" name="tab_2">
           <attribute name="title">
-           <string>Tab 2</string>
+           <string>PE文件信息</string>
           </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QListWidget" name="listWidget_2"/>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="tab_3">
           <attribute name="title">
-           <string>页</string>
+           <string>可疑API</string>
           </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <widget class="QListWidget" name="listWidget_3"/>
+           </item>
+          </layout>
          </widget>
          <widget class="QWidget" name="tab_4">
           <attribute name="title">
-           <string>页</string>
+           <string>其他</string>
           </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <widget class="QListWidget" name="listWidget_4"/>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>

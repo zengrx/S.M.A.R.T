@@ -2,8 +2,7 @@
 
 # Form implementation generated from reading ui file 'SSMA.ui'
 #
-# Created: Fri Nov 25 16:57:26 2016
-#      by: PyQt4 UI code generator 4.10.4
+# Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -65,12 +64,27 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName(_fromUtf8("tab_2"))
+        self.horizontalLayout_5 = QtGui.QHBoxLayout(self.tab_2)
+        self.horizontalLayout_5.setObjectName(_fromUtf8("horizontalLayout_5"))
+        self.listWidget_2 = QtGui.QListWidget(self.tab_2)
+        self.listWidget_2.setObjectName(_fromUtf8("listWidget_2"))
+        self.horizontalLayout_5.addWidget(self.listWidget_2)
         self.tabWidget.addTab(self.tab_2, _fromUtf8(""))
         self.tab_3 = QtGui.QWidget()
         self.tab_3.setObjectName(_fromUtf8("tab_3"))
+        self.horizontalLayout_6 = QtGui.QHBoxLayout(self.tab_3)
+        self.horizontalLayout_6.setObjectName(_fromUtf8("horizontalLayout_6"))
+        self.listWidget_3 = QtGui.QListWidget(self.tab_3)
+        self.listWidget_3.setObjectName(_fromUtf8("listWidget_3"))
+        self.horizontalLayout_6.addWidget(self.listWidget_3)
         self.tabWidget.addTab(self.tab_3, _fromUtf8(""))
         self.tab_4 = QtGui.QWidget()
         self.tab_4.setObjectName(_fromUtf8("tab_4"))
+        self.horizontalLayout_7 = QtGui.QHBoxLayout(self.tab_4)
+        self.horizontalLayout_7.setObjectName(_fromUtf8("horizontalLayout_7"))
+        self.listWidget_4 = QtGui.QListWidget(self.tab_4)
+        self.listWidget_4.setObjectName(_fromUtf8("listWidget_4"))
+        self.horizontalLayout_7.addWidget(self.listWidget_4)
         self.tabWidget.addTab(self.tab_4, _fromUtf8(""))
         self.verticalLayout_2.addWidget(self.tabWidget)
         self.verticalLayout.addWidget(self.groupBox_2)
@@ -97,9 +111,9 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "选择文件", None))
         self.groupBox_2.setTitle(_translate("MainWindow", "信息显示", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "文件信息", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "页", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "页", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "PE文件信息", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "可疑API", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "其他", None))
         self.groupBox_3.setTitle(_translate("MainWindow", "xxxx", None))
 
 
