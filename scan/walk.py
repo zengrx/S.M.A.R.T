@@ -12,4 +12,4 @@ def iterateFIles(dir):
     #return result
     return i
 
-print iterateFIles('E:\\test')
+print iterateFIles('E:\\git')

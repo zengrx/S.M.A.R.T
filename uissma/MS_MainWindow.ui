@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>769</width>
-    <height>562</height>
+    <width>850</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -36,22 +36,19 @@
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout">
                <item>
-                <spacer name="horizontalSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>扫描起始：</string>
                  </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
+                </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_3">
+                <widget class="QLineEdit" name="lineEdit"/>
+               </item>
+               <item>
+                <widget class="QPushButton" name="PB_SelectFolder">
                  <property name="text">
-                  <string>PushButton</string>
+                  <string>选择文件夹</string>
                  </property>
                 </widget>
                </item>
@@ -69,9 +66,29 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_2">
+                <widget class="QPushButton" name="PB_ScanType">
                  <property name="text">
-                  <string>PushButton</string>
+                  <string>扫描类型</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="PB_Pause">
+                 <property name="text">
+                  <string>暂  停</string>
                  </property>
                 </widget>
                </item>
@@ -89,9 +106,9 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton">
+                <widget class="QPushButton" name="PB_End">
                  <property name="text">
-                  <string>PushButton</string>
+                  <string>结  束</string>
                  </property>
                 </widget>
                </item>
@@ -109,13 +126,16 @@
                 </spacer>
                </item>
               </layout>
-              <zorder>pushButton</zorder>
-              <zorder>pushButton_2</zorder>
-              <zorder>pushButton_3</zorder>
-              <zorder>horizontalSpacer</zorder>
+              <zorder>PB_End</zorder>
+              <zorder>PB_Pause</zorder>
+              <zorder>PB_SelectFolder</zorder>
               <zorder>horizontalSpacer_2</zorder>
               <zorder>horizontalSpacer_3</zorder>
               <zorder>horizontalSpacer_7</zorder>
+              <zorder>lineEdit</zorder>
+              <zorder>label</zorder>
+              <zorder>PB_ScanType</zorder>
+              <zorder>horizontalSpacer</zorder>
              </widget>
             </item>
             <item>
@@ -126,6 +146,57 @@
                 <height>220</height>
                </size>
               </property>
+              <property name="rowCount">
+               <number>0</number>
+              </property>
+              <property name="columnCount">
+               <number>9</number>
+              </property>
+              <column>
+               <property name="text">
+                <string>Name</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Path</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Size</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Type</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Magicliteral</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>MD5</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>SHA256</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Detection</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>AnalysisDate</string>
+               </property>
+              </column>
              </widget>
             </item>
             <item>
@@ -237,8 +308,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>769</width>
-     <height>31</height>
+     <width>850</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
