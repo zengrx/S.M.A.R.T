@@ -19,9 +19,11 @@ class MainWindow(QtGui.QMainWindow):
         self.table = self.ui.tableWidget
         self.table.horizontalHeader().setResizeMode(QtGui.QHeaderView.Stretch)
 
-        self.folder = ''
-        self.dir = ''
-        self.table = self.ui.tableWidget
+        self.folder   = ''
+        self.dir      = ''
+        self.dirsnum  = 0
+        self.filenum  = 0
+        self.table    = self.ui.tableWidget
         self.rowindex = 0
 
         QtCore.QObject.connect(self.ui.PB_SelectFolder, QtCore.SIGNAL("clicked()"), self.selectFolder)
@@ -43,36 +45,31 @@ class MainWindow(QtGui.QMainWindow):
 
     def recvInitSingal(self, index, msg):
         if 1 == index:
-            print "folders number is: " + msg
+            self.dirsnum = msg
+            print "folders number is: " + self.dirsnum
         if 2 == index:
-            print "files number is: " + msg
+            self.filenum = msg
+            print "files number is: " + self.filenum
         if 3 == index:
+            scanlist = msg
+            # 测试实时更新statusbar信息
+            # for i in range(int(self.filenum)):
+            #     filename = scanlist[i]
+            #     statusmsg = "now scanning " + filename + " file"
+            #     self.ui.statusbar.showMessage(statusmsg)
+
+            # 测试更新tablewdiget
+            if str(len(scanlist)) == self.filenum:
+                print "ok"
+            print msg
+            # statusmsg = 'now scanning ' + msg + ' file'
+            # self.statusBar().showMessage(statusmsg)
             self.rowindex = self.rowindex + 1
             i = self.rowindex
-            print i
+            # print i
             self.table.setRowCount(i)
+            # 或者用insertRow
             self.table.setItem(i - 1, 0, QtGui.QTableWidgetItem(msg))
-
-
-    # def iterateFiles(self):
-    #     self.dir = os.path.join(str(self.folder).decode('utf-8'))
-    #     print self.dir
-    #     assert os.path.isdir(self.dir), "make sure this is a path"
-    #     result = [] # test print all files
-    #     i = 0 # number of files
-    #     j = 0 # number of dirs
-    #     for root, dirs, files in os.walk(self.dir, topdown=True):
-    #         for di in dirs:
-    #             j = j + 1
-    #             print os.path.join(root, di)
-            
-    #         for fl in files:
-    #             #result.append(os.path.join(root, fl))
-    #             i = i + 1
-    #             print os.path.join(root, fl)
-
-    #     print "dirs: ",  j
-    #     print "files: ", i
 
 
 if __name__ == "__main__":

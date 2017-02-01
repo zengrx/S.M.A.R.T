@@ -28,17 +28,17 @@ class checkFolder(QtCore.QThread):
         for root, dirs, files in os.walk(self.dir, topdown=True):
             for di in dirs:
                 j = j + 1
-                print os.path.join(root, di)
+                # print os.path.join(root, di)
             
             for fl in files:
                 result.append(os.path.join(root, fl))
-                time.sleep(3)
+                # time.sleep(3)
                 self.numberSignal.emit(3, str(fl))
                 i = i + 1
-                print os.path.join(root, fl)
+                # print os.path.join(root, fl)
 
         print "(origin)dirs: ",  j
         print "(origin)files: ", i
         self.numberSignal.emit(1, str(j))  # dirs
         self.numberSignal.emit(2, str(i))  # files
-        #self.valueSignal.emit(3, result) # filename
+        # self.valueSignal.emit(3, result) # filename
