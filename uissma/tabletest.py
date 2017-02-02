@@ -7,14 +7,14 @@ reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
 '''
-假设每个文件查询时间为10秒，设置分离主线程和查询线程的框架
+扫描init线程
 '''
-class checkFolder(QtCore.QThread):
+class CheckFolder(QtCore.QThread):
     numberSignal = QtCore.pyqtSignal(int, str)
     valueSignal  = QtCore.pyqtSignal(int, list)
 
     def __init__(self, cdir, parent=None):
-        super(checkFolder, self).__init__(parent)
+        super(CheckFolder, self).__init__(parent)
         self.dir = str(cdir)
 
     #重写的run方法
@@ -33,12 +33,31 @@ class checkFolder(QtCore.QThread):
             for fl in files:
                 result.append(os.path.join(root, fl))
                 # time.sleep(3)
-                self.numberSignal.emit(3, str(fl))
+                # self.numberSignal.emit(3, str(fl))
                 i = i + 1
                 # print os.path.join(root, fl)
 
         print "(origin)dirs: ",  j
         print "(origin)files: ", i
+        # 发送初始化信息
         self.numberSignal.emit(1, str(j))  # dirs
         self.numberSignal.emit(2, str(i))  # files
-        # self.valueSignal.emit(3, result) # filename
+        self.valueSignal.emit(3, result) # filename
+
+'''
+扫描操作线程
+'''
+class ScanFile(QtCore.QThread):
+    fileSignal = QtCore.pyqtSignal(int, str)
+
+    def __init__(self, filelist, parent=None):
+        super(ScanFile, self).__init__(parent)
+        self.filelist = filelist
+        self.filename = ''
+
+    def run(self):
+        import random
+        for i in range(len(self.filelist)):
+            self.filename = self.filelist[i]
+            time.sleep(random.uniform(0, 3)) # 模拟耗时
+            self.fileSignal.emit(i+1, self.filename)
