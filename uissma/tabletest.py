@@ -15,7 +15,7 @@ class CheckFolder(QtCore.QThread):
 
     def __init__(self, cdir, parent=None):
         super(CheckFolder, self).__init__(parent)
-        self.dir = str(cdir)
+        self.dir = str(cdir).decode('utf-8')
 
     #重写的run方法
     def run(self):

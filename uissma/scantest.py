@@ -44,6 +44,7 @@ class MainWindow(QtGui.QMainWindow):
             self.ui.lineEdit.setText(self.folder)
 
     def startScan(self):
+        self.ui.progressBar.reset()
         self.ui.statusbar.showMessage("init...")
         print "lll" + str(self.folder).decode('utf-8')
         if self.folder != '':
@@ -104,7 +105,7 @@ class MainWindow(QtGui.QMainWindow):
         # print i
         self.table.setRowCount(i)
         # 或者用insertRow
-        p, f = os.path.split(str(msg)) # 分割文件路径与文件名
+        p, f = os.path.split(str(msg).decode('utf-8')) # 分割文件路径与文件名
         self.table.setItem(i - 1, 0, QtGui.QTableWidgetItem(f))
         self.table.setItem(i - 1, 1, QtGui.QTableWidgetItem(p))
 
