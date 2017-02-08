@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtGui, QtCore
+from PyQt4 import QtGui, QtCore, Qt
 from MS_MainWindow import Ui_MainWindow
 import sys, os, shutil
 from tabletest import CheckFolder, ScanFile
@@ -17,8 +17,16 @@ class MainWindow(QtGui.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
+        # 设置tablewdiget属性
+        # 自动适配header宽度，效果不好后期改适配最后一列
+        # 设置不可编辑 设置每次选中一行
         self.table = self.ui.tableWidget
-        self.table.horizontalHeader().setResizeMode(QtGui.QHeaderView.Stretch)
+        # self.table.horizontalHeader().setResizeMode(QtGui.QHeaderView.Stretch)
+        self.table.horizontalHeader().setStretchLastSection(True)
+        self.table.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
+        self.table.setContextMenuPolicy(Qt.Qt.CustomContextMenu)
+        # 右键菜单信号槽
+        self.table.customContextMenuRequested.connect(self.generateMenu)
 
         self.folder   = ''
         self.dir      = ''
@@ -66,32 +74,21 @@ class MainWindow(QtGui.QMainWindow):
         if 3 == index:
             scanlist = msg
             # 扫描线程准备工作 第一版 发列表
+            # 下一版可以考虑不发文件名list
             self.scanThread = ScanFile(scanlist)
             self.scanThread.fileSignal.connect(self.updateScanInfo) # 连到更新函数中
             self.scanThread.start()
 
 
-            # for i in range(int(self.filenum)):
-            #     filename = scanlist[i]
-                
-
-            # # 测试更新tablewdiget
-            # if str(len(scanlist)) == self.filenum:
-            #     print "ok"
-            #     showmsg = "folders: " + self.dirsnum + ", files: " + self.filenum
-            #     self.ui.statusbar.showMessage(showmsg)
-            # print msg
-            # # statusmsg = 'now scanning ' + msg + ' file'
-            # # self.statusBar().showMessage(statusmsg)
-            # self.rowindex = self.rowindex + 1
-            # i = self.rowindex
-            # # print i
-            # self.table.setRowCount(i)
-            # # 或者用insertRow
-            # self.table.setItem(i - 1, 0, QtGui.QTableWidgetItem(msg))
-
     # 暂时将statusbar和tablewidget信息集中在这里
     # 验证后再分离功能
+    # 可对应添加scanfile信号发射的参数
+    # @msg:文件绝对路径，将分割为文件名+路径
+    # @文件类型
+    # @文件日期
+    # @文件大小
+    # @文件MD5
+    # @文件SHA
     def updateScanInfo(self, num, msg):
         showmsg = 'recv result from file: ' + msg
         self.ui.statusbar.showMessage(showmsg)
@@ -114,6 +111,28 @@ class MainWindow(QtGui.QMainWindow):
 
     def updateTableMsg(self):
         pass
+
+    # 右键菜单生成函数
+    def generateMenu(self,pos):
+        print pos
+        row_num = -1
+        for i in self.table.selectionModel().selection().indexes():
+            row_num = i.row()
+        menu = QtGui.QMenu()
+        item1 = menu.addAction(u"选项一")
+        item2 = menu.addAction(u"选项二")
+        item3 = menu.addAction(u"选项三" )
+        action = menu.exec_(self.table.mapToGlobal(pos))
+        if action == item1:
+            print u'您选了选项一，当前行文字内容是：',self.table.item(row_num,1).text()
+
+        elif action == item2:
+            print u'您选了选项二，当前行文字内容是：',self.table.item(row_num,1).text()
+
+        elif action == item3:
+            print u'您选了选项三，当前行文字内容是：',self.table.item(row_num,1).text()
+        else:
+            return
 
 
 if __name__ == "__main__":

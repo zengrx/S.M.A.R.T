@@ -59,5 +59,7 @@ class ScanFile(QtCore.QThread):
         import random
         for i in range(len(self.filelist)):
             self.filename = self.filelist[i]
-            time.sleep(random.uniform(0, 3)) # 模拟耗时
+            time.sleep(random.uniform(0, 1)) # 模拟耗时
+            # 添加获取文件基本信息函数后
+            # 此处可以发送多个参数
             self.fileSignal.emit(i+1, self.filename)
