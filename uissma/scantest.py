@@ -115,21 +115,19 @@ class MainWindow(QtGui.QMainWindow):
     # 右键菜单生成函数
     def generateMenu(self,pos):
         print pos
-        row_num = -1
+        row_num = -1 # 右键操作列索引
         for i in self.table.selectionModel().selection().indexes():
             row_num = i.row()
         menu = QtGui.QMenu()
-        # markmenu = QtGui.QMenu()
-        item1 = menu.addAction(u"详细信息")
-        item2 = menu.addAction(u"文件分析")
-        item3 = menu.addAction(u"生成图像")
-        item4 = menu.addAction(u"删除文件")
-        item5 = menu.addAction(u"打开文件位置")
-        markmenu = menu.addMenu(u"用户标记")
+        item1 = menu.addAction(QtGui.QIcon(".\icons\detail_icon.png"), u"详细信息") # (u"详细信息")
+        item2 = menu.addAction(QtGui.QIcon(".\icons\Fanalyz_icon.png"), u"文件分析")
+        item3 = menu.addAction(QtGui.QIcon(".\icons\img_icon.png"), u"生成图像")
+        item4 = menu.addAction(QtGui.QIcon(".\icons\delete_icon.png"), u"删除文件")
+        item5 = menu.addAction(QtGui.QIcon(".\icons\locate_icon.png"), u"打开文件位置")
+        markmenu = menu.addMenu(QtGui.QIcon(".\icons\usermark_icon.png"), u"用户标记")
         markmenu.addAction(u"已分析")
         markmenu.addAction(u"仍在分析")
         markmenu.addAction(u"3")
-        # item6 = menu.addAction(u"用户标记")
         action = menu.exec_(self.table.mapToGlobal(pos))
         if action == item1:
             print u'您选了选项一，当前行文字内容是：',self.table.item(row_num,1).text()
