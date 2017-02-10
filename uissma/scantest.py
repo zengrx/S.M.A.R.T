@@ -4,6 +4,7 @@ from PyQt4 import QtGui, QtCore, Qt
 from MS_MainWindow import Ui_MainWindow
 import sys, os, shutil
 from tabletest import CheckFolder, ScanFile
+from checkthread.StartUI import MainWindow as detailwindow
 
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
@@ -34,6 +35,8 @@ class MainWindow(QtGui.QMainWindow):
         self.filenum  = 0
         self.table    = self.ui.tableWidget
         self.rowindex = 0
+
+        self.detailwindow = detailwindow()
 
         QtCore.QObject.connect(self.ui.PB_SelectFolder, QtCore.SIGNAL("clicked()"), self.selectFolder)
         QtCore.QObject.connect(self.ui.PB_ScanType, QtCore.SIGNAL("clicked()"), self.startScan)
@@ -121,22 +124,28 @@ class MainWindow(QtGui.QMainWindow):
         menu = QtGui.QMenu()
         item1 = menu.addAction(QtGui.QIcon(".\icons\detail_icon.png"), u"详细信息") # (u"详细信息")
         item2 = menu.addAction(QtGui.QIcon(".\icons\Fanalyz_icon.png"), u"文件分析")
-        item3 = menu.addAction(QtGui.QIcon(".\icons\img_icon.png"), u"生成图像")
+        item3 = menu.addAction(QtGui.QIcon(".\icons\img_icon.png"), u"二进制图像")
         item4 = menu.addAction(QtGui.QIcon(".\icons\delete_icon.png"), u"删除文件")
         item5 = menu.addAction(QtGui.QIcon(".\icons\locate_icon.png"), u"打开文件位置")
         markmenu = menu.addMenu(QtGui.QIcon(".\icons\usermark_icon.png"), u"用户标记")
-        markmenu.addAction(u"已分析")
-        markmenu.addAction(u"仍在分析")
-        markmenu.addAction(u"3")
+        item6 = markmenu.addAction(u"分析完成")
+        item7 = markmenu.addAction(u"仍需分析")
+        item8 = markmenu.addAction(u"3")
         action = menu.exec_(self.table.mapToGlobal(pos))
         if action == item1:
             print u'您选了选项一，当前行文字内容是：',self.table.item(row_num,1).text()
+            filedetail = self.detailwindow
+            filedetail.show()
 
         elif action == item2:
             print u'您选了选项二，当前行文字内容是：',self.table.item(row_num,1).text()
 
         elif action == item3:
             print u'您选了选项三，当前行文字内容是：',self.table.item(row_num,1).text()
+        
+        elif action == item7:
+            print "item777"
+
         else:
             return
 

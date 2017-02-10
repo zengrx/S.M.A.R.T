@@ -4,7 +4,9 @@ from PyQt4 import QtCore, QtGui
 import time, sys, os
 import magic
 
-sys.path.append("../../ssma_python2")
+# 如果单独执行改为sys.path.append("../../ssma_python2")
+# 如果从scantest执行使用../ssma_python2
+sys.path.append("../ssma_python2")
 from src import colors
 from src.check_file import PEScanner, file_info
 from src.blacklisted_domain_ip import ransomware_and_malware_domain_check
