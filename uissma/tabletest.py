@@ -2,6 +2,7 @@
 
 from PyQt4 import QtCore, QtGui
 import time, sys, os
+import magic, hashlib
 
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
@@ -48,12 +49,26 @@ class CheckFolder(QtCore.QThread):
 扫描操作线程
 '''
 class ScanFile(QtCore.QThread):
-    fileSignal = QtCore.pyqtSignal(int, str)
+    fileSignal = QtCore.pyqtSignal(int, str, list)
 
     def __init__(self, filelist, parent=None):
         super(ScanFile, self).__init__(parent)
         self.filelist = filelist
         self.filename = ''
+
+    '''
+    获取文件类型，日期，大小，md5，SHA256等基本信息
+    '''
+    def fileInfo(self, filename):
+        info = []
+        print filename
+        with open(filename, 'rb') as f:
+            cfile = f.read()
+            info.append(os.path.getsize(filename))
+            file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
+            info.append(file_magic.from_file(filename))
+            info.append(hashlib.md5(cfile).hexdigest())
+        return info
 
     def run(self):
         import random
@@ -62,4 +77,9 @@ class ScanFile(QtCore.QThread):
             time.sleep(random.uniform(0, 1)) # 模拟耗时
             # 添加获取文件基本信息函数后
             # 此处可以发送多个参数
-            self.fileSignal.emit(i+1, self.filename)
+            try:
+                infos = self.fileInfo(str(self.filename).encode('cp936'))
+            except:
+                print "error"
+            self.fileSignal.emit(i+1, self.filename, infos)
+            

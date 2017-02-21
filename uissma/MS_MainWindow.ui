@@ -125,7 +125,7 @@
                     <widget class="QCheckBox" name="checkBox_11">
                      <property name="maximumSize">
                       <size>
-                       <width>60</width>
+                       <width>70</width>
                        <height>15</height>
                       </size>
                      </property>
@@ -138,7 +138,7 @@
                     <widget class="QCheckBox" name="checkBox_7">
                      <property name="maximumSize">
                       <size>
-                       <width>70</width>
+                       <width>75</width>
                        <height>15</height>
                       </size>
                      </property>
@@ -177,7 +177,7 @@
                     <widget class="QCheckBox" name="checkBox_10">
                      <property name="maximumSize">
                       <size>
-                       <width>105</width>
+                       <width>120</width>
                        <height>15</height>
                       </size>
                      </property>
@@ -190,7 +190,7 @@
                     <widget class="QCheckBox" name="checkBox_2">
                      <property name="maximumSize">
                       <size>
-                       <width>90</width>
+                       <width>100</width>
                        <height>15</height>
                       </size>
                      </property>
@@ -235,7 +235,7 @@
                     <widget class="QCheckBox" name="checkBox_3">
                      <property name="maximumSize">
                       <size>
-                       <width>60</width>
+                       <width>70</width>
                        <height>15</height>
                       </size>
                      </property>
@@ -261,7 +261,7 @@
                     <widget class="QCheckBox" name="checkBox_6">
                      <property name="maximumSize">
                       <size>
-                       <width>70</width>
+                       <width>80</width>
                        <height>15</height>
                       </size>
                      </property>
@@ -274,7 +274,7 @@
                     <widget class="QCheckBox" name="checkBox_4">
                      <property name="maximumSize">
                       <size>
-                       <width>60</width>
+                       <width>70</width>
                        <height>15</height>
                       </size>
                      </property>
@@ -287,7 +287,7 @@
                     <widget class="QCheckBox" name="checkBox_13">
                      <property name="maximumSize">
                       <size>
-                       <width>65</width>
+                       <width>80</width>
                        <height>15</height>
                       </size>
                      </property>
@@ -300,7 +300,7 @@
                     <widget class="QCheckBox" name="checkBox_12">
                      <property name="maximumSize">
                       <size>
-                       <width>70</width>
+                       <width>80</width>
                        <height>15</height>
                       </size>
                      </property>
@@ -313,7 +313,7 @@
                     <widget class="QCheckBox" name="checkBox_5">
                      <property name="maximumSize">
                       <size>
-                       <width>85</width>
+                       <width>100</width>
                        <height>15</height>
                       </size>
                      </property>
@@ -572,7 +572,7 @@
                <number>0</number>
               </property>
               <property name="columnCount">
-               <number>9</number>
+               <number>7</number>
               </property>
               <column>
                <property name="text">
@@ -596,11 +596,6 @@
               </column>
               <column>
                <property name="text">
-                <string>Magicliteral</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
                 <string>Detection</string>
                </property>
               </column>
@@ -612,11 +607,6 @@
               <column>
                <property name="text">
                 <string>MD5</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>SHA256</string>
                </property>
               </column>
              </widget>

@@ -92,7 +92,7 @@ class MainWindow(QtGui.QMainWindow):
     # @文件大小
     # @文件MD5
     # @文件SHA
-    def updateScanInfo(self, num, msg):
+    def updateScanInfo(self, num, msg, msg2):
         showmsg = 'recv result from file: ' + msg
         self.ui.statusbar.showMessage(showmsg)
         # 更新进度条 最大值和当前值放在一起
@@ -105,9 +105,15 @@ class MainWindow(QtGui.QMainWindow):
         # print i
         self.table.setRowCount(i)
         # 或者用insertRow
-        p, f = os.path.split(str(msg).decode('utf-8')) # 分割文件路径与文件名
+        fsize = str(msg2[0]).decode('utf-8')
+        ftype = str(msg2[1]).decode('utf-8')
+        fMD5  = str(msg2[2]).decode('utf-8')
+        p, f  = os.path.split(str(msg).decode('utf-8')) # 分割文件路径与文件名
         self.table.setItem(i - 1, 0, QtGui.QTableWidgetItem(f))
         self.table.setItem(i - 1, 1, QtGui.QTableWidgetItem(p))
+        self.table.setItem(i - 1, 2, QtGui.QTableWidgetItem(fsize))
+        self.table.setItem(i - 1, 3, QtGui.QTableWidgetItem(ftype))
+        self.table.setItem(i - 1, 6, QtGui.QTableWidgetItem(fMD5))
 
     def updateStatusBar(self):
         pass
@@ -131,6 +137,7 @@ class MainWindow(QtGui.QMainWindow):
         item6 = markmenu.addAction(u"分析完成")
         item7 = markmenu.addAction(u"仍需分析")
         item8 = markmenu.addAction(u"3")
+        item9 = menu.addAction(QtGui.QIcon(".\icons\upload_icon.png"), u"上传样本")
         action = menu.exec_(self.table.mapToGlobal(pos))
         if action == item1:
             print u'您选了选项一，当前行文字内容是：',self.table.item(row_num,1).text()
