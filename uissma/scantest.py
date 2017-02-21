@@ -111,7 +111,10 @@ class MainWindow(QtGui.QMainWindow):
         p, f  = os.path.split(str(msg).decode('utf-8')) # 分割文件路径与文件名
         self.table.setItem(i - 1, 0, QtGui.QTableWidgetItem(f))
         self.table.setItem(i - 1, 1, QtGui.QTableWidgetItem(p))
-        self.table.setItem(i - 1, 2, QtGui.QTableWidgetItem(fsize))
+        sizeitem = QtGui.QTableWidgetItem(fsize+"  ")
+        # 设置单元内容对齐方式
+        sizeitem.setTextAlignment(Qt.Qt.AlignRight|Qt.Qt.AlignVCenter)
+        self.table.setItem(i - 1, 2, sizeitem)
         self.table.setItem(i - 1, 3, QtGui.QTableWidgetItem(ftype))
         self.table.setItem(i - 1, 6, QtGui.QTableWidgetItem(fMD5))
 

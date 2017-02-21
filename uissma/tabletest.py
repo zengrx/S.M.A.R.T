@@ -59,9 +59,8 @@ class ScanFile(QtCore.QThread):
     '''
     获取文件类型，日期，大小，md5，SHA256等基本信息
     '''
-    def fileInfo(self, filename):
+    def getFileInfo(self, filename):
         info = []
-        print filename
         with open(filename, 'rb') as f:
             cfile = f.read()
             info.append(os.path.getsize(filename))
@@ -74,11 +73,11 @@ class ScanFile(QtCore.QThread):
         import random
         for i in range(len(self.filelist)):
             self.filename = self.filelist[i]
-            time.sleep(random.uniform(0, 1)) # 模拟耗时
+            time.sleep(random.uniform(0, 0.5)) # 模拟耗时
             # 添加获取文件基本信息函数后
             # 此处可以发送多个参数
             try:
-                infos = self.fileInfo(str(self.filename).encode('cp936'))
+                infos = self.getFileInfo(str(self.filename).encode('cp936'))
             except:
                 print "error"
             self.fileSignal.emit(i+1, self.filename, infos)
