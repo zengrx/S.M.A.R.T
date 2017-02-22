@@ -1,14 +1,13 @@
-import os
+import os, sys
 import yara
 
-
 def is_file_packed(filename):
-    if not os.path.exists("rules_compiled/Packers"):
-        os.mkdir("rules_compiled/Packers")
-    for n in os.listdir("rules/Packers"):
-        rule = yara.compile("rules/Packers/" + n)
-        rule.save("rules_compiled/Packers/" + n)
-        rule = yara.load("rules_compiled/Packers/" + n)
+    if not os.path.exists("../ssma_python2/rules_compiled/Packers"):
+        os.mkdir("../ssma_python2/rules_compiled/Packers")
+    for n in os.listdir("../ssma_python2/rules/Packers"):
+        rule = yara.compile("../ssma_python2/rules/Packers/" + n)
+        rule.save("../ssma_python2/rules_compiled/Packers/" + n)
+        rule = yara.load("../ssma_python2/rules_compiled/Packers/" + n)
         m = rule.match(filename)
         if m:
             return m
@@ -51,14 +50,14 @@ def check_crypto(filename):
 
 
 def is_malware(filename):
-    if not os.path.exists("rules_compiled/malware"):
-        os.mkdir("rules_compiled/malware")
-    for n in os.listdir("rules/malware/"):
-        if not os.path.isdir("./" + n):
+    if not os.path.exists("../ssma_python2/rules_compiled/malware"):
+        os.mkdir("../ssma_python2/rules_compiled/malware")
+    for n in os.listdir("../ssma_python2/rules/malware/"):
+        if not os.path.isdir("../ssma_python2/" + n):
             try:
-                rule = yara.compile("rules/malware/" + n)
-                rule.save("rules_compiled/malware/" + n)
-                rule = yara.load("rules_compiled/malware/" + n)
+                rule = yara.compile("../ssma_python2/rules/malware/" + n)
+                rule.save("../ssma_python2/rules_compiled/malware/" + n)
+                rule = yara.load("../ssma_python2/rules_compiled/malware/" + n)
                 m = rule.match(filename)
                 if m:
                     return m

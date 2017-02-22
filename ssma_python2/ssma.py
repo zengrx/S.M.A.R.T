@@ -42,8 +42,13 @@ if __name__ == '__main__':
     py_file_location = os.path.dirname(__file__)
     if py_file_location:
         os.chdir(py_file_location)
-    filetype = magic.from_file(args.filename, mime=True)
-    if filetype == 'application/x-dosexec':
+    file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
+    print args.filename
+    filetype = file_magic.from_file(args.filename)
+    #filetype = magic.from_file(args.filename, mime=True)
+    #if filetype == 'application/x-dosexec':
+    tmp = "PE32 executable (GUI) Intel 80386, for MS Windows"
+    if filetype == tmp:
         pe = PEScanner(filename=args.filename)
         print(colors.BOLD + colors.YELLOW + "File Details: " + colors.RESET)
         for n in pe.file_info():
@@ -159,7 +164,7 @@ if __name__ == '__main__':
         if raw_input("Continue? [Y/n] ") is 'n':
             exit()
         print ""
-    if filetype == 'application/x-dosexec' or args.document:
+    if filetype == tmp or args.document:#'application/x-dosexec' or args.document:
         print(
             colors.BOLD + colors.YELLOW + "Scan file using Yara-rules.\nWith Yara rules you can create a \"description\" of malware families to detect new samples.\n" + colors.BOLD + colors.CYAN + "\tFor more information: https://virustotal.github.io/yara/\n" + colors.RESET)
         if not os.path.exists("rules"):
@@ -180,7 +185,7 @@ if __name__ == '__main__':
                     os.mkdir("rules_compiled")
                 download_yara_rules_git()
                 print ""
-        if filetype == 'application/x-dosexec':
+        if filetype == tmp:#'application/x-dosexec':
             malicious_software = is_malware(filename=args.filename)
             if malicious_software:
                 print(

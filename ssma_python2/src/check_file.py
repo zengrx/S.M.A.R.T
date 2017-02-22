@@ -192,10 +192,14 @@ class PEScanner:
         info = []
         low_high_entropy = self.pe_entropy < 1 or self.pe_entropy > 7
         with open(self.filename, 'rb') as f:
+            filename = str(self.filename).encode('cp936')
             file = f.read()
-            info.append("File: {}".format(self.filename))
+            info.append("File: {}".format(filename))
             info.append("Size: {} bytes".format(os.path.getsize(self.filename)))
-            info.append("Type: {}".format(magic.from_file(self.filename, mime=True)))
+            #info.append("Type: {}".format(magic.from_file(self.filename, mime=True)))
+            file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
+            m_filename = str(self.filename).encode('cp936')
+            info.append("Type: {}".format(file_magic.from_file(filename)))
             info.append("MD5:  {}".format(hashlib.md5(file).hexdigest()))
             info.append("SHA1: {}".format(hashlib.sha1(file).hexdigest()))
             if ssdeep_r:
@@ -239,6 +243,8 @@ class PEScanner:
         suspicious_size_of_raw_data = False
         virtual_size = []
         section_names = []
+        peinfo_list = []
+        peinfo_list.append(number_of_section)
         for section in self.pe.sections:
             sec_name = section.Name.strip(b"\x00").decode(errors='ignore')
             section_names.append(sec_name)
@@ -261,6 +267,13 @@ class PEScanner:
                                                      section.SizeOfRawData,
                                                      entropy if not for_section else colors.LIGHT_RED + str(
                                                          entropy) + colors.RESET))
+            peinfo_list.append(section.Name.strip(b"\x00").decode(errors='ignore'))
+            peinfo_list.append(hex(section.VirtualAddress))
+            peinfo_list.append(section.Misc_VirtualSize)
+            peinfo_list.append(section.SizeOfRawData)
+            peinfo_list.append(str(entropy))
+
+        #print number_of_section, peinfo_list
         print ""
         if virtual_size:
             for n, m in virtual_size:
@@ -279,6 +292,7 @@ class PEScanner:
             for n in bad_sections:
                 print n,
             print ""
+        return peinfo_list
 
     def check_file_header(self):
         continue_message = False
@@ -313,7 +327,9 @@ def file_info(filename):
         file = f.read()
         info.append("File: {}".format(filename))
         info.append("Size: {} bytes".format(os.path.getsize(filename)))
-        info.append("Type: {}".format(magic.from_file(filename, mime=True)))
+        #info.append("Type: {}".format(magic.from_file(filename, mime=True)))
+        file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
+        info.append("Type: {}".format(file_magic.from_file(filename)))
         info.append("MD5:  {}".format(hashlib.md5(file).hexdigest()))
         info.append("SHA1: {}".format(hashlib.sha1(file).hexdigest()))
         if ssdeep_r:
