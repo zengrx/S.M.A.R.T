@@ -89,7 +89,7 @@ class MainWindow(QtGui.QMainWindow):
         else:
             showmsg = u"选择：" + self.folder
             self.ui.statusbar.showMessage(showmsg)
-            self.ui.lineEdit.setText(self.folder)
+            self.ui.lineEditScanStart.setText(self.folder)
 
     def startScan(self):
         self.ui.progressBar.reset()

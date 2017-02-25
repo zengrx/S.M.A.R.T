@@ -97,6 +97,8 @@ class ScanFile(QtCore.QThread):
             self.checkPackThread.valueSignal.connect(self.recvYaraResult)
             self.checkMalwThread.start()
             self.checkPackThread.start()
+            self.checkMalwThread.wait()
+            self.checkPackThread.wait()
 
     # 获取yara检测结果
     def recvYaraResult(self):
@@ -112,7 +114,7 @@ class ScanFile(QtCore.QThread):
             try:
                 self.infos = self.getFileInfo(str(self.filename).encode('cp936'))
             except:
-                print "error"
+                print str(i) + " error"
             self.filetype = self.infos[1]
             self.filesize = self.infos[0]
             if int(self.filesize) < 100*1024*1024:
