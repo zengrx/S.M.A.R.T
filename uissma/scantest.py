@@ -43,6 +43,7 @@ class MainWindow(QtGui.QMainWindow):
         self.table.horizontalHeader().setStretchLastSection(True)
         self.table.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.table.setContextMenuPolicy(Qt.Qt.CustomContextMenu)
+        
         # 右键菜单信号槽
         self.table.customContextMenuRequested.connect(self.generateMenu)
 
@@ -55,24 +56,27 @@ class MainWindow(QtGui.QMainWindow):
 
         self.detailwindow = detailwindow()
 
+        # 按钮事件信号槽
         QtCore.QObject.connect(self.ui.PB_SelectFolder, QtCore.SIGNAL("clicked()"), self.selectFolder)
         QtCore.QObject.connect(self.ui.PB_Start, QtCore.SIGNAL("clicked()"), self.startScan)
+        
         # checkbox信号槽
-        QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
-        QtCore.QObject.connect(self.cbtall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
-        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
-        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
-        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
-        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
-        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
-        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
-        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
-        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
-        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
-        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
-        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        # 使用lambda表达式
+        self.cbrall.clicked.connect(lambda: self.checkBoxEvent(0))
+        self.cbtall.clicked.connect(lambda: self.checkBoxEvent(1))
+        self.cbryara.clicked.connect(lambda: self.checkBoxEvent(2))
+        self.cbrclam.clicked.connect(lambda: self.checkBoxEvent(3)) 
+        self.cbrpeid.clicked.connect(lambda: self.checkBoxEvent(4))
+        self.cbrself.clicked.connect(lambda: self.checkBoxEvent(5))
+        self.cbrwl.clicked.connect(lambda: self.checkBoxEvent(6))
+        self.cbtpe.clicked.connect(lambda: self.checkBoxEvent(7))
+        self.cbtofs.clicked.connect(lambda: self.checkBoxEvent(8))
+        self.cbtsh.clicked.connect(lambda: self.checkBoxEvent(9))
+        self.cbtzip.clicked.connect(lambda: self.checkBoxEvent(10))
+        self.cbtmda.clicked.connect(lambda: self.checkBoxEvent(11))
+        self.cbtasm.clicked.connect(lambda: self.checkBoxEvent(12))
 
-
+        # 连接线程操作的信号槽
         self.scanemit.connect(self.recvInitSingal)
         self.anailzemit.connect(self.updateScanInfo)
 
@@ -157,25 +161,49 @@ class MainWindow(QtGui.QMainWindow):
     def updateTableMsg(self):
         pass
 
-    def checkBoxEvent(self):
-        if self.cbrall.isChecked():
-            print "all rules selected"
-            self.cbryara.setCheckState(Qt.Qt.Checked)
-            self.cbrclam.setCheckState(Qt.Qt.Checked)
-            self.cbrpeid.setCheckState(Qt.Qt.Checked)
-            self.cbrself.setCheckState(Qt.Qt.Checked)
-            self.cbrwl.setCheckState(Qt.Qt.Checked)
-        if self.cbtall.isChecked():
-            print "all type selected"
-            self.cbtpe.setCheckState(Qt.Qt.Checked)
-            self.cbtofs.setCheckState(Qt.Qt.Checked)
-            self.cbtsh.setCheckState(Qt.Qt.Checked)
-            self.cbtzip.setCheckState(Qt.Qt.Checked)
-            self.cbtmda.setCheckState(Qt.Qt.Checked)
-            self.cbtasm.setCheckState(Qt.Qt.Checked)
+    # checkbox事件
+    # @flag: 标记全选与其他
+    def checkBoxEvent(self, flag):
+        print flag
+        if flag == 0: # 对应rule全选操作
+            if self.cbrall.isChecked():
+                print "all rules selected"
+                self.cbryara.setCheckState(Qt.Qt.Checked)
+                self.cbrclam.setCheckState(Qt.Qt.Checked)
+                self.cbrpeid.setCheckState(Qt.Qt.Checked)
+                self.cbrself.setCheckState(Qt.Qt.Checked)
+                self.cbrwl.setCheckState(Qt.Qt.Checked)
+            else:
+                self.cbryara.setCheckState(Qt.Qt.Unchecked)
+                self.cbrclam.setCheckState(Qt.Qt.Unchecked)
+                self.cbrpeid.setCheckState(Qt.Qt.Unchecked)
+                self.cbrself.setCheckState(Qt.Qt.Unchecked)
+                self.cbrwl.setCheckState(Qt.Qt.Unchecked)
+        elif flag == 1: # 对应type全选操作
+            if self.cbtall.isChecked():
+                print "all type selected"
+                self.cbtpe.setCheckState(Qt.Qt.Checked)
+                self.cbtofs.setCheckState(Qt.Qt.Checked)
+                self.cbtsh.setCheckState(Qt.Qt.Checked)
+                self.cbtzip.setCheckState(Qt.Qt.Checked)
+                self.cbtmda.setCheckState(Qt.Qt.Checked)
+                self.cbtasm.setCheckState(Qt.Qt.Checked)
+            else:
+                self.cbtpe.setCheckState(Qt.Qt.Unchecked)
+                self.cbtofs.setCheckState(Qt.Qt.Unchecked)
+                self.cbtsh.setCheckState(Qt.Qt.Unchecked)
+                self.cbtzip.setCheckState(Qt.Qt.Unchecked)
+                self.cbtmda.setCheckState(Qt.Qt.Unchecked)
+                self.cbtasm.setCheckState(Qt.Qt.Unchecked)
+        else:
+            if self.cbrall.isChecked() or self.cbtall.isChecked():
+                if flag < 7:
+                    self.cbrall.setCheckState(Qt.Qt.Unchecked)
+                else:
+                    self.cbtall.setCheckState(Qt.Qt.Unchecked)
 
     # 右键菜单生成函数
-    def generateMenu(self,pos):
+    def generateMenu(self, pos):
         print pos
         row_num = -1 # 右键操作列索引
         for i in self.table.selectionModel().selection().indexes():
