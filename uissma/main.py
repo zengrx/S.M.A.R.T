@@ -3,7 +3,7 @@
 from PyQt4 import QtGui, QtCore, Qt
 from MS_MainWindow import Ui_MainWindow
 import sys, os, shutil
-from tabletest import CheckFolder, ScanFile
+from control import CheckFolder, ScanFile
 from checkthread.StartUI import MainWindow as detailwindow
 
 reload(sys)
@@ -154,6 +154,7 @@ class MainWindow(QtGui.QMainWindow):
         self.table.setItem(i - 1, 2, sizeitem)
         self.table.setItem(i - 1, 3, QtGui.QTableWidgetItem(ftype))
         self.table.setItem(i - 1, 6, QtGui.QTableWidgetItem(fMD5))
+        # self.table.setItem(i - 1, 4, QtGui.QTableWidgetItem(str(msg3)))
 
     def updateStatusBar(self):
         pass

@@ -69,6 +69,7 @@ class ScanFile(QtCore.QThread):
         self.filetype = '' # 文件类型
         self.filesize = '' # 文件大小
         self.infos    = [] # baseinfo列表
+        self.detect   = [] # 检测结论
 
     '''
     获取文件类型，日期，大小，md5等基本信息
@@ -84,7 +85,7 @@ class ScanFile(QtCore.QThread):
         return info
 
     # 开始yara检测线程
-    def startYaraThread(self, filename, filetype):
+    def startYaraThread(self, filename, filetype, index):
         # return
         filename = filename.encode('cp936')
         typepe   = 'PE32'
@@ -93,7 +94,7 @@ class ScanFile(QtCore.QThread):
             # 链接checkpacker线程
             self.checkMalwThread = CheckMalware(filename)
             self.checkMalwThread.valueSignal.connect(self.recvYaraResult)
-            self.checkPackThread = CheckPacker(filename)
+            self.checkPackThread = CheckPacker(filename, index)
             self.checkPackThread.valueSignal.connect(self.recvYaraResult)
             self.checkMalwThread.start()
             self.checkPackThread.start()
@@ -101,8 +102,10 @@ class ScanFile(QtCore.QThread):
             self.checkPackThread.wait()
 
     # 获取yara检测结果
-    def recvYaraResult(self):
+    # 在该接收函数中应该处理汇总的信息
+    def recvYaraResult(self, msg):
         print "get result from yarathread"
+        return msg
 
     def run(self):
         import random
@@ -118,6 +121,6 @@ class ScanFile(QtCore.QThread):
             self.filetype = self.infos[1]
             self.filesize = self.infos[0]
             if int(self.filesize) < 100*1024*1024:
-                self.startYaraThread(self.filename, self.filetype)
+                self.detect = self.startYaraThread(self.filename, self.filetype, i)
             self.fileSignal.emit(i+1, self.filename, self.infos)
             

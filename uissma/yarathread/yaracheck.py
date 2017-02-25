@@ -3,6 +3,7 @@
 import sys, os
 import yara
 from PyQt4 import QtCore, QtGui
+import sqlite3
 
 sys.path.append("../ssma_python2")
 from src import colors
@@ -21,11 +22,13 @@ class CheckPacker(QtCore.QThread):
     numberSignal = QtCore.pyqtSignal(int, str)
     valueSignal  = QtCore.pyqtSignal(list)
 
-    def __init__(self, filename, parent=None):
+    def __init__(self, filename, index, parent=None):
         super(CheckPacker, self).__init__(parent)
         self.filename = filename
+        self.index    = index
     
     def run(self):
+        print self.index
         pkdresult = is_file_packed(self.filename)
         result = []
         if pkdresult:
@@ -38,8 +41,18 @@ class CheckPacker(QtCore.QThread):
                 except:
                     print n
                 # 最终直接输出评估结果，数据库里存详细内容
-                result.append(n)
-            self.valueSignal.emit(result)
+            # self.valueSignal.emit(pkdresult)
+
+            # 搞事情--数据库
+            try:
+		        sqlite_conn = sqlite3.connect("E:\\git\\MalwareScan_local\\db\\yarainfo.db")
+            except sqlite3.Error, e:
+                print "sqlite connect failed", "\n", e.args[0]	
+            sqlite_cursor = sqlite_conn.cursor()
+            sqlite_cursor.execute("insert into yara_result (id, name, yararule) values(?, ?, ?)", (self.index, self.filename, str(pkdresult)))
+            sqlite_conn.commit()
+            sqlite_conn.close()
+            print "write data success"
         else:
             print "no match"
 
@@ -61,7 +74,6 @@ class CheckMalware(QtCore.QThread):
                     print "{} - {}".format(n, n.meta['description'])
                 except:
                     print n
-                result.append(n)
-            self.valueSignal.emit(result)
+            # self.valueSignal.emit(malresult)
         else:
             print "no match"
