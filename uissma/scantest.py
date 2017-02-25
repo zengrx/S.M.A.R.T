@@ -18,6 +18,23 @@ class MainWindow(QtGui.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
+        # checkBox对象
+        # 扫描规则部分
+        self.cbrall  = self.ui.CBRuleAll    # 规则全选
+        self.cbryara = self.ui.CBRuleYara   # yara规则
+        self.cbrclam = self.ui.CBRuleClamav # clamav
+        self.cbrpeid = self.ui.CBRulePEiD   # PEiD规则
+        self.cbrself = self.ui.CBRuleSelf   # 自定义规则
+        self.cbrwl   = self.ui.CBRuleWL     # 白名单
+        # 文件类型部分
+        self.cbtall  = self.ui.CBTypeAll    # 类型全选
+        self.cbtpe   = self.ui.CBTypePE     # PE类型
+        self.cbtofs  = self.ui.CBTypeOffice # office类型
+        self.cbtsh   = self.ui.CBTypeShell  # 脚本类型
+        self.cbtzip  = self.ui.CBTypeZip    # 压缩包
+        self.cbtmda  = self.ui.CBTypeMedia  # 多媒体
+        self.cbtasm  = self.ui.CBTypeAsm    # asm文件
+
         # 设置tablewdiget属性
         # 自动适配header宽度，效果不好后期改适配最后一列
         # 设置不可编辑 设置每次选中一行
@@ -39,7 +56,23 @@ class MainWindow(QtGui.QMainWindow):
         self.detailwindow = detailwindow()
 
         QtCore.QObject.connect(self.ui.PB_SelectFolder, QtCore.SIGNAL("clicked()"), self.selectFolder)
-        QtCore.QObject.connect(self.ui.PB_ScanType, QtCore.SIGNAL("clicked()"), self.startScan)
+        QtCore.QObject.connect(self.ui.PB_Start, QtCore.SIGNAL("clicked()"), self.startScan)
+        # checkbox信号槽
+        QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        QtCore.QObject.connect(self.cbtall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+        # QtCore.QObject.connect(self.cbrall, QtCore.SIGNAL("clicked()"), self.checkBoxEvent)
+
+
         self.scanemit.connect(self.recvInitSingal)
         self.anailzemit.connect(self.updateScanInfo)
 
@@ -123,6 +156,23 @@ class MainWindow(QtGui.QMainWindow):
 
     def updateTableMsg(self):
         pass
+
+    def checkBoxEvent(self):
+        if self.cbrall.isChecked():
+            print "all rules selected"
+            self.cbryara.setCheckState(Qt.Qt.Checked)
+            self.cbrclam.setCheckState(Qt.Qt.Checked)
+            self.cbrpeid.setCheckState(Qt.Qt.Checked)
+            self.cbrself.setCheckState(Qt.Qt.Checked)
+            self.cbrwl.setCheckState(Qt.Qt.Checked)
+        if self.cbtall.isChecked():
+            print "all type selected"
+            self.cbtpe.setCheckState(Qt.Qt.Checked)
+            self.cbtofs.setCheckState(Qt.Qt.Checked)
+            self.cbtsh.setCheckState(Qt.Qt.Checked)
+            self.cbtzip.setCheckState(Qt.Qt.Checked)
+            self.cbtmda.setCheckState(Qt.Qt.Checked)
+            self.cbtasm.setCheckState(Qt.Qt.Checked)
 
     # 右键菜单生成函数
     def generateMenu(self,pos):

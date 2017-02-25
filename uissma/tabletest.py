@@ -3,6 +3,17 @@
 from PyQt4 import QtCore, QtGui
 import time, sys, os
 import magic, hashlib
+from yarathread.yaracheck import CheckPacker, CheckMalware
+
+sys.path.append("../ssma_python2")
+from src import colors
+from src.check_file import PEScanner, file_info
+from src.blacklisted_domain_ip import ransomware_and_malware_domain_check
+from src.check import is_malware, is_file_packed, check_crypto, is_antidb_antivm, is_malicious_document
+from src.check_file import PEScanner, file_info
+from src.check_updates import check_internet_connection, download_yara_rules_git
+from src.check_virustotal import virustotal
+from src.file_strings import get_strings
 
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
@@ -53,11 +64,14 @@ class ScanFile(QtCore.QThread):
 
     def __init__(self, filelist, parent=None):
         super(ScanFile, self).__init__(parent)
-        self.filelist = filelist
-        self.filename = ''
+        self.filelist = filelist # 从UI线程传回来的文件名列表
+        self.filename = '' # 文件名
+        self.filetype = '' # 文件类型
+        self.filesize = '' # 文件大小
+        self.infos    = [] # baseinfo列表
 
     '''
-    获取文件类型，日期，大小，md5，SHA256等基本信息
+    获取文件类型，日期，大小，md5等基本信息
     '''
     def getFileInfo(self, filename):
         info = []
@@ -69,16 +83,39 @@ class ScanFile(QtCore.QThread):
             info.append(hashlib.md5(cfile).hexdigest())
         return info
 
+    # 开始yara检测线程
+    def startYaraThread(self, filename, filetype):
+        # return
+        filename = filename.encode('cp936')
+        typepe   = 'PE32'
+        if typepe in filetype:
+            print "---------PE----------"
+            # 链接checkpacker线程
+            self.checkMalwThread = CheckMalware(filename)
+            self.checkMalwThread.valueSignal.connect(self.recvYaraResult)
+            self.checkPackThread = CheckPacker(filename)
+            self.checkPackThread.valueSignal.connect(self.recvYaraResult)
+            self.checkMalwThread.start()
+            self.checkPackThread.start()
+
+    # 获取yara检测结果
+    def recvYaraResult(self):
+        print "get result from yarathread"
+
     def run(self):
         import random
         for i in range(len(self.filelist)):
             self.filename = self.filelist[i]
-            time.sleep(random.uniform(0, 0.5)) # 模拟耗时
+            # time.sleep(random.uniform(0, 0.5)) # 模拟耗时
             # 添加获取文件基本信息函数后
             # 此处可以发送多个参数
             try:
-                infos = self.getFileInfo(str(self.filename).encode('cp936'))
+                self.infos = self.getFileInfo(str(self.filename).encode('cp936'))
             except:
                 print "error"
-            self.fileSignal.emit(i+1, self.filename, infos)
+            self.filetype = self.infos[1]
+            self.filesize = self.infos[0]
+            if int(self.filesize) < 100*1024*1024:
+                self.startYaraThread(self.filename, self.filetype)
+            self.fileSignal.emit(i+1, self.filename, self.infos)
             
