@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4 import QtGui, QtCore, Qt
-from MS_MainWindow import Ui_MainWindow
+from UILib.MS_MainWindow import Ui_MainWindow
 import sys, os, shutil
 from control import CheckFolder, ScanFile
-from checkthread.StartUI import MainWindow as detailwindow
+from fileinfothread.StartUI import MainWindow as detailwindow
 
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
@@ -35,6 +35,9 @@ class MainWindow(QtGui.QMainWindow):
         self.cbtmda  = self.ui.CBTypeMedia  # 多媒体
         self.cbtasm  = self.ui.CBTypeAsm    # asm文件
 
+        # 下拉菜单
+        self.cbbox = self.ui.comboBox
+
         # 设置tablewdiget属性
         # 自动适配header宽度，效果不好后期改适配最后一列
         # 设置不可编辑 设置每次选中一行
@@ -47,12 +50,16 @@ class MainWindow(QtGui.QMainWindow):
         # 右键菜单信号槽
         self.table.customContextMenuRequested.connect(self.generateMenu)
 
-        self.folder   = ''
-        self.dir      = ''
+        self.scanflag = 0  # 扫描策略flag
+        self.folder   = '' # 选取文件夹路径
+        self.files    = [] # 最终选取的文件名列表
+        # self.dir      = ''
         self.dirsnum  = 0
         self.filenum  = 0
         self.table    = self.ui.tableWidget
         self.rowindex = 0
+        self.rulelist = ['2', '3', '4', '5', '6']
+        self.typelist = ['7', '8', '9', '10', '11', '12']
 
         self.detailwindow = detailwindow()
 
@@ -61,7 +68,7 @@ class MainWindow(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.PB_Start, QtCore.SIGNAL("clicked()"), self.startScan)
         
         # checkbox信号槽
-        # 使用lambda表达式
+        # 使用lambda表达式自定义参数
         self.cbrall.clicked.connect(lambda: self.checkBoxEvent(0))
         self.cbtall.clicked.connect(lambda: self.checkBoxEvent(1))
         self.cbryara.clicked.connect(lambda: self.checkBoxEvent(2))
@@ -80,28 +87,81 @@ class MainWindow(QtGui.QMainWindow):
         self.scanemit.connect(self.recvInitSingal)
         self.anailzemit.connect(self.updateScanInfo)
 
-    #假设以扫描类型作为开始扫描动作测试
-    #需要实现在功能函数线程中而非UI线程
+    '''
+    选择文件按钮事件响应函数
+    设置扫描文件或扫描文件夹
+    # 假设以扫描类型作为开始扫描动作测试
+    # 需要实现在功能函数线程中而非UI线程
+    '''
     def selectFolder(self):
-        self.folder = QtGui.QFileDialog.getExistingDirectory(self, u"选择文件夹", "e:\\")#QtCore.QDir.currentPath())
-        if self.folder == '':
-            self.ui.statusbar.showMessage(u"操作取消")
+        if 0 == self.cbbox.currentIndex():
+            self.scanflag = 0
+            self.folder = QtGui.QFileDialog.getExistingDirectory(self, u"选择文件夹", "e:\\")#QtCore.QDir.currentPath())
+            if self.folder == '':
+                self.ui.statusbar.showMessage(u"操作取消")
+            else:
+                showmsg = u"选择：" + self.folder
+                self.ui.statusbar.showMessage(showmsg)
+                self.ui.lineEditScanStart.setText(self.folder)
+        elif 1 == self.cbbox.currentIndex():
+            self.scanflag = 1
+            # 清空列表
+            self.files[:] = []
+            getlist = list(QtGui.QFileDialog.getOpenFileNames(self, u"选择文件", "e:\\"))
+            if getlist:
+                for i in getlist:
+                    i = str(i).decode('utf-8')
+                    self.files.append(i)
+                showmsg = u"已选择待扫描文件"
+                self.ui.statusbar.showMessage(showmsg)
+                self.ui.lineEditScanStart.setText(showmsg)
+            else:
+                self.ui.statusbar.showMessage(u"操作取消")
         else:
-            showmsg = u"选择：" + self.folder
-            self.ui.statusbar.showMessage(showmsg)
-            self.ui.lineEditScanStart.setText(self.folder)
-
+            pass
+            
+    '''
+    扫描器起始
+    需要添加类似的调度函数
+    '''
     def startScan(self):
         self.ui.progressBar.reset()
         self.ui.statusbar.showMessage("init...")
-        print "lll" + str(self.folder).decode('utf-8')
-        if self.folder != '':
-            self.folderThread = CheckFolder(self.folder)
-            # two signals connect one slot
-            self.folderThread.numberSignal.connect(self.recvInitSingal)
-            self.folderThread.valueSignal.connect(self.recvInitSingal)
-            #执行run方法
-            self.folderThread.start()
+        if 0 == self.scanflag:
+            print "start: " + str(self.folder).decode('utf-8')
+            if self.folder != '':
+                # 应用扫描策略
+                self.prevScanPrepare()
+                self.folderThread = CheckFolder(self.folder)
+                # two signals connect one slot
+                self.folderThread.numberSignal.connect(self.recvInitSingal)
+                self.folderThread.valueSignal.connect(self.recvInitSingal)
+                #执行run方法
+                self.folderThread.start()
+        elif 1 == self.scanflag:
+            if self.files:
+                self.filenum = len(self.files)
+                # 直接连接control中的scanfile线程
+                self.scanThread = ScanFile(self.files)
+                self.scanThread.fileSignal.connect(self.updateScanInfo) # 连到更新函数中
+                self.scanThread.start()
+        else:
+            pass
+    
+    '''
+    扫描前准备函数
+    负责获取所有设置并统一设置调度
+    返回调度结果
+    '''
+    def prevScanPrepare(self):
+        policy = self.getScanPolicy()
+        if not any(set(policy) & set(self.typelist)):
+            self.ui.statusbar.showMessage(u"请至少选择一种类型文件")
+        # if "set([])" == str(set(policy) & set(self.rulelist)):
+        #     self.ui.statusbar.showMessage(u"不使用拓展规则")
+        rulepolicy = list(set(policy) & set(self.rulelist))
+        typepolicy = list(set(policy) & set(self.typelist))
+        
 
     def recvInitSingal(self, index, msg):
         if 1 == index:
@@ -119,16 +179,16 @@ class MainWindow(QtGui.QMainWindow):
             self.scanThread.fileSignal.connect(self.updateScanInfo) # 连到更新函数中
             self.scanThread.start()
 
-
-    # 暂时将statusbar和tablewidget信息集中在这里
-    # 验证后再分离功能
-    # 可对应添加scanfile信号发射的参数
-    # @msg:文件绝对路径，将分割为文件名+路径
-    # @文件类型
-    # @文件日期
-    # @文件大小
-    # @文件MD5
-    # @文件SHA
+    '''
+    暂时将statusbar和tablewidget信息集中在这里
+    验证后再分离功能
+    可对应添加scanfile信号发射的参数
+    @msg:文件绝对路径，将分割为文件名+路径
+    @文件类型
+    @文件日期
+    @文件大小
+    @文件MD5
+    '''
     def updateScanInfo(self, num, msg, msg2):
         showmsg = 'recv result from file: ' + msg
         self.ui.statusbar.showMessage(showmsg)
@@ -162,10 +222,11 @@ class MainWindow(QtGui.QMainWindow):
     def updateTableMsg(self):
         pass
 
-    # checkbox事件
-    # @flag: 标记全选与其他
+    '''
+    checkbox事件
+    @flag: 标记全选与其他
+    '''
     def checkBoxEvent(self, flag):
-        print flag
         if flag == 0: # 对应rule全选操作
             if self.cbrall.isChecked():
                 print "all rules selected"
@@ -202,24 +263,68 @@ class MainWindow(QtGui.QMainWindow):
                     self.cbrall.setCheckState(Qt.Qt.Unchecked)
                 else:
                     self.cbtall.setCheckState(Qt.Qt.Unchecked)
-
-    # 右键菜单生成函数
+        policy = self.getScanPolicy()
+        if set(self.rulelist).issubset(set(policy)):
+            self.cbrall.setCheckState(Qt.Qt.Checked)
+        if set(self.typelist).issubset(set(policy)):
+            self.cbtall.setCheckState(Qt.Qt.Checked)
+    
+    '''
+    获取数据库设置及扫描文件类型策略
+    判断checkbox勾选情况
+    默认使用内置规则检测pe文件
+    return policy列表
+    '''
+    def getScanPolicy(self):
+        policy = []
+        if self.cbrall.isChecked():
+            policy.append("0")
+        if self.cbtall.isChecked():
+            policy.append("1")
+        if self.cbryara.isChecked():
+            policy.append("2")
+        if self.cbrclam.isChecked():
+            policy.append("3")
+        if self.cbrpeid.isChecked():
+            policy.append("4")
+        if self.cbrself.isChecked():
+            policy.append("5")
+        if self.cbrwl.isChecked():
+            policy.append("6")
+        if self.cbtpe.isChecked():
+            policy.append("7")
+        if self.cbtofs.isChecked():
+            policy.append("8")
+        if self.cbtsh.isChecked():
+            policy.append("9")
+        if self.cbtzip.isChecked():
+            policy.append("10")
+        if self.cbtmda.isChecked():
+            policy.append("11")
+        if self.cbtasm.isChecked():
+            policy.append("12")
+        return policy
+    
+    '''
+    右键菜单生成函数
+    仍需完善策略
+    '''
     def generateMenu(self, pos):
         print pos
         row_num = -1 # 右键操作列索引
         for i in self.table.selectionModel().selection().indexes():
             row_num = i.row()
         menu = QtGui.QMenu()
-        item1 = menu.addAction(QtGui.QIcon(".\icons\detail_icon.png"), u"详细信息") # (u"详细信息")
-        item2 = menu.addAction(QtGui.QIcon(".\icons\Fanalyz_icon.png"), u"文件分析")
-        item3 = menu.addAction(QtGui.QIcon(".\icons\img_icon.png"), u"二进制图像")
-        item4 = menu.addAction(QtGui.QIcon(".\icons\delete_icon.png"), u"删除文件")
-        item5 = menu.addAction(QtGui.QIcon(".\icons\locate_icon.png"), u"打开文件位置")
-        markmenu = menu.addMenu(QtGui.QIcon(".\icons\usermark_icon.png"), u"用户标记")
+        item1 = menu.addAction(QtGui.QIcon(".\UILib\icons\detail_icon.png"), u"详细信息") # (u"详细信息")
+        item2 = menu.addAction(QtGui.QIcon(".\UILib\icons\Fanalyz_icon.png"), u"文件分析")
+        item3 = menu.addAction(QtGui.QIcon(".\UILib\icons\img_icon.png"), u"二进制图像")
+        item4 = menu.addAction(QtGui.QIcon(".\UILib\icons\delete_icon.png"), u"删除文件")
+        item5 = menu.addAction(QtGui.QIcon(".\UILib\icons\locate_icon.png"), u"打开文件位置")
+        markmenu = menu.addMenu(QtGui.QIcon(".\UILib\icons\usermark_icon.png"), u"用户标记")
         item6 = markmenu.addAction(u"分析完成")
         item7 = markmenu.addAction(u"仍需分析")
         item8 = markmenu.addAction(u"3")
-        item9 = menu.addAction(QtGui.QIcon(".\icons\upload_icon.png"), u"上传样本")
+        item9 = menu.addAction(QtGui.QIcon(".\UILib\icons\upload_icon.png"), u"上传样本")
         action = menu.exec_(self.table.mapToGlobal(pos))
         if action == item1:
             print u'您选了选项一，当前行文字内容是：',self.table.item(row_num,1).text()
