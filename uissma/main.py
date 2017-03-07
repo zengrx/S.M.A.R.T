@@ -60,6 +60,8 @@ class MainWindow(QtGui.QMainWindow):
         self.rowindex = 0
         self.rulelist = ['2', '3', '4', '5', '6']
         self.typelist = ['7', '8', '9', '10', '11', '12']
+        self.rule     = [] # 发送至control的扫描规则
+        self.type     = [] # 发送至control的文件类型
 
         self.detailwindow = detailwindow()
 
@@ -122,36 +124,39 @@ class MainWindow(QtGui.QMainWindow):
             
     '''
     扫描器起始
+    调度扫描文件夹与扫描文件
+    扫描文件时不受filetype选择影响
     需要添加类似的调度函数
     '''
     def startScan(self):
         self.ui.progressBar.reset()
         self.ui.statusbar.showMessage("init...")
-        if 0 == self.scanflag:
+        # 应用扫描策略
+        self.rule, self.type = self.prevScanPrepare()
+        if 0 == self.scanflag: # 选择文件夹
             print "start: " + str(self.folder).decode('utf-8')
             if self.folder != '':
-                # 应用扫描策略
-                self.prevScanPrepare()
-                self.folderThread = CheckFolder(self.folder)
+                # send folder and filetype to fliter
+                self.folderThread = CheckFolder(self.folder, self.type)
                 # two signals connect one slot
                 self.folderThread.numberSignal.connect(self.recvInitSingal)
                 self.folderThread.valueSignal.connect(self.recvInitSingal)
                 #执行run方法
                 self.folderThread.start()
-        elif 1 == self.scanflag:
+        elif 1 == self.scanflag: # 选择文件
             if self.files:
                 self.filenum = len(self.files)
                 # 直接连接control中的scanfile线程
-                self.scanThread = ScanFile(self.files)
-                self.scanThread.fileSignal.connect(self.updateScanInfo) # 连到更新函数中
-                self.scanThread.start()
+                self.filesThread = ScanFile(self.files, self.rule)
+                self.filesThread.fileSignal.connect(self.updateScanInfo) # 连到更新函数中
+                self.filesThread.start()
         else:
             pass
     
     '''
     扫描前准备函数
     负责获取所有设置并统一设置调度
-    返回调度结果
+    返回调度结果rule[]与type[]
     '''
     def prevScanPrepare(self):
         policy = self.getScanPolicy()
@@ -161,7 +166,7 @@ class MainWindow(QtGui.QMainWindow):
         #     self.ui.statusbar.showMessage(u"不使用拓展规则")
         rulepolicy = list(set(policy) & set(self.rulelist))
         typepolicy = list(set(policy) & set(self.typelist))
-        
+        return rulepolicy, typepolicy
 
     def recvInitSingal(self, index, msg):
         if 1 == index:
@@ -175,7 +180,8 @@ class MainWindow(QtGui.QMainWindow):
             scanlist = msg
             # 扫描线程准备工作 第一版 发列表
             # 下一版可以考虑不发文件名list
-            self.scanThread = ScanFile(scanlist)
+            # 3.2日配合多文件选择使用，暂不修改
+            self.scanThread = ScanFile(scanlist, self.rule)
             self.scanThread.fileSignal.connect(self.updateScanInfo) # 连到更新函数中
             self.scanThread.start()
 

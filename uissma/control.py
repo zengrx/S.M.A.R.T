@@ -25,14 +25,60 @@ class CheckFolder(QtCore.QThread):
     numberSignal = QtCore.pyqtSignal(int, str)
     valueSignal  = QtCore.pyqtSignal(int, list)
 
-    def __init__(self, cdir, parent=None):
+    def __init__(self, cdir, ctype, parent=None):
         super(CheckFolder, self).__init__(parent)
-        self.dir = str(cdir).decode('utf-8')
+        self.dir      = str(cdir).decode('utf-8')
+        self.type     = ctype
+        self.filename = ""
 
+    '''
+    选择main中传入的文件类型或后缀
+    filename: 文件绝对路径
+    返回
+    need all types of file to create the typevalue list
+    '''
+    def chooseFileType(self, filename):
+        # typedict = {
+        #     7: "pe32", 8: "", 9: "text", 10: "archive data", 11: "", 12: "data"
+        # }
+        typevalue = [] # 储存文件类型字符串
+        if '7' in self.type: # PE文件
+            typevalue.append("PE32")
+        if '8' in self.type: # office/pdf文档等
+            typevalue.append("Microsoft")
+            typevalue.append("Document File")
+            typevalue.append("PDF")
+        if '9' in self.type: # 脚本/文本文件
+            typevalue.append("text")
+            typevalue.append("script")
+            typevalue.append("html")
+        if '10' in self.type: # 压缩包
+            typevalue.append("achive data")
+            typevalue.append("gzip")
+        if '11' in self.type: # 多媒体文件
+            typevalue.append("Media")
+            typevalue.append("Matroska")
+            typevalue.append("Audio")
+            typevalue.append("image")
+        if '12' in self.type: # .asm后缀
+            typevalue.append(".asm")
+        file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
+        fmagic = file_magic.from_file(str(filename).encode('cp936'))
+        extension = os.path.splitext(filename)[1]
+        # 匹配文件类型或后缀名
+        flag = 0
+        # 全选情况
+        if set(self.type) == set(['7', '8', '9', '10', '11', '12']):
+            return 1
+        for x in typevalue:
+            if x in fmagic or x in extension:
+                flag += 1
+        return flag
+            
     #重写的run方法
     def run(self):
         #self.dir = os.path.join(str(self.folder).decode('utf-8'))
-        print self.dir
+        print self.dir, self.type
         assert os.path.isdir(self.dir), "make sure this is a path"
         result = [] # test print all files
         i = 0 # number of files
@@ -43,11 +89,13 @@ class CheckFolder(QtCore.QThread):
                 # print os.path.join(root, di)
             
             for fl in files:
-                result.append(os.path.join(root, fl))
-                # time.sleep(3)
-                # self.numberSignal.emit(3, str(fl))
-                i = i + 1
                 # print os.path.join(root, fl)
+                self.filename = os.path.join(root, fl)
+                if self.chooseFileType(self.filename) > 0:
+                    result.append(self.filename)
+                    # time.sleep(3)
+                    # self.numberSignal.emit(3, str(fl))
+                    i = i + 1
 
         print "(origin)dirs: ",  j
         print "(origin)files: ", i
@@ -62,14 +110,21 @@ class CheckFolder(QtCore.QThread):
 class ScanFile(QtCore.QThread):
     fileSignal = QtCore.pyqtSignal(int, str, list)
 
-    def __init__(self, filelist, parent=None):
+    def __init__(self, filelist, scanrule, parent=None):
         super(ScanFile, self).__init__(parent)
-        self.filelist = filelist # 从UI线程传回来的文件名列表
+        self.filelist = filelist # 从UI线程传回的文件名列表
+        self.scanrule = scanrule # 从UI线程传回的扫描规则策略
         self.filename = '' # 文件名
         self.filetype = '' # 文件类型
         self.filesize = '' # 文件大小
         self.infos    = [] # baseinfo列表
         self.detect   = [] # 检测结论
+        # flags
+        self.yaraflag = 0
+        self.clamflag = 0
+        self.PEiDflag = 0
+        self.selfflag = 0
+        self.whitflag = 0
 
     '''
     获取文件类型，日期，大小，md5等基本信息
@@ -83,6 +138,30 @@ class ScanFile(QtCore.QThread):
             info.append(file_magic.from_file(filename))
             info.append(hashlib.md5(cfile).hexdigest())
         return info
+
+    '''
+    应用main中设置的规则进行扫描调度
+    默认用系统自带分析 不加载其他规则如yara或反病毒数据库
+    '''
+    def chooseScanRule(self, rules):
+        print rules
+        if not any(set(rules)):
+            print u"使用内置规则"
+        if '2' in rules:
+            print u"使用yara规则"
+            self.yaraflag = 1
+        if '3' in rules:
+            print u"使用clamav"
+            self.clamflag = 1
+        if '4' in rules:
+            print u"使用PEiD规则"
+            self.PEiDflag = 1
+        if '5' in rules:
+            print u"使用自定义规则"
+            self.selfflag = 1
+        if '6' in rules:
+            print u"启用白名单"
+            self.whitflag = 1
 
     # 开始yara检测线程
     def startYaraThread(self, filename, filetype, index):
@@ -108,7 +187,8 @@ class ScanFile(QtCore.QThread):
         return msg
 
     def run(self):
-        import random
+        # import random
+        self.chooseScanRule(self.scanrule)
         for i in range(len(self.filelist)):
             self.filename = self.filelist[i]
             # time.sleep(random.uniform(0, 0.5)) # 模拟耗时
@@ -120,7 +200,10 @@ class ScanFile(QtCore.QThread):
                 print str(i) + " error"
             self.filetype = self.infos[1]
             self.filesize = self.infos[0]
+            # file size should less than 100M
             if int(self.filesize) < 100*1024*1024:
-                self.detect = self.startYaraThread(self.filename, self.filetype, i)
+                # use yara rule
+                if 1 == self.yaraflag:
+                    self.detect = self.startYaraThread(self.filename, self.filetype, i)
             self.fileSignal.emit(i+1, self.filename, self.infos)
             

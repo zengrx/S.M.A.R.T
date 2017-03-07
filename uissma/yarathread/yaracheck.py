@@ -44,15 +44,15 @@ class CheckPacker(QtCore.QThread):
             # self.valueSignal.emit(pkdresult)
 
             # 搞事情--数据库
-            try:
-		        sqlite_conn = sqlite3.connect("E:\\git\\MalwareScan_local\\db\\yarainfo.db")
-            except sqlite3.Error, e:
-                print "sqlite connect failed", "\n", e.args[0]	
-            sqlite_cursor = sqlite_conn.cursor()
-            sqlite_cursor.execute("insert into yara_result (id, name, yararule) values(?, ?, ?)", (self.index, self.filename, str(pkdresult)))
-            sqlite_conn.commit()
-            sqlite_conn.close()
-            print "write data success"
+            # try:
+		    #     sqlite_conn = sqlite3.connect("E:\\git\\MalwareScan_local\\db\\yarainfo.db")
+            # except sqlite3.Error, e:
+            #     print "sqlite connect failed", "\n", e.args[0]	
+            # sqlite_cursor = sqlite_conn.cursor()
+            # sqlite_cursor.execute("insert into yara_result (id, name, yararule) values(?, ?, ?)", (self.index, self.filename, str(pkdresult)))
+            # sqlite_conn.commit()
+            # sqlite_conn.close()
+            # print "write data success"
         else:
             print "no match"
 
