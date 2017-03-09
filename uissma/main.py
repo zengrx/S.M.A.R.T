@@ -316,6 +316,9 @@ class MainWindow(QtGui.QMainWindow):
     仍需完善策略
     '''
     def generateMenu(self, pos):
+        currentindex = self.table.currentIndex().row()
+        if currentindex < 0:
+            return
         print pos
         row_num = -1 # 右键操作列索引
         for i in self.table.selectionModel().selection().indexes():

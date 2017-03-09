@@ -29,7 +29,7 @@ def dataEntropy(data):
         return 0.0
     arr = array.array('L', [0] * 256)
     for i in data:
-        arr = [i if isinstance(i, int) else ord(i)] += 1
+        arr[i if isinstance(i, int) else ord(i)] += 1
     entropy = 0
     for i in arr:
         if i:
@@ -188,6 +188,7 @@ class PEFileAnalize:
                     for a in self.alerts:
                         if n.startswith(a):
                             ret2.append("{}^{}".format(n, self.alerts.get(a)))
+        return ret2
 
     '''
     检查pe文件节信息
@@ -204,10 +205,10 @@ class PEFileAnalize:
         goodsection  = ['.data', '.text', '.code', '.reloc', '.idata', '.edata', '.rdata', '.bss', '.rsrc']
         # 获取文件节个数
         numofsection = self.pe.FILE_HEADER.NumberOfSections
-        if numofsecs < 1 or numofsecs > 9:
+        if numofsection < 1 or numofsection > 9:
             print "suspicious number os sections"
         else:
-            print "number of sections: ", numofsecs
+            print "number of sections: ", numofsection
         pefileinfos.append(numofsection)
         for section in self.pe.sections:
             secname = section.Name.strip(b"\x00").decode(errors='ignore')
@@ -229,7 +230,55 @@ class PEFileAnalize:
             pefileinfos.append(section.Misc_VirtualSize)
             pefileinfos.append(section.SizeOfRawData)
             pefileinfos.append(str(entropy))
+
+        if virtualSize:
+            for n, m in virtualSize:
+                print 'SUSPICIOUS size of the section "{}" when stored in memory - {}'.format(n, m)
+        if entropyflag:
+            print "very high or very low entropy means that file or section is compressed or encrypted since truly data is not common."
+        if datasizeflag:
+            print "suspicious size of the raw data: 0"
+        badsections = [bad for bad in sectionName if bad not in goodsection]
+        if badsections:
+            print "suspicious section names:"
+            for n in badsections:
+                print n,
+            print ""
         return pefileinfos
 
     def checkFileHeader(self):
-        pass
+        debugflag      = False # 包含调试信息
+        suspiciousflag = False # 可疑标志
+        if self.pe.FILE_HEADER.PointerToSymbolTable > 0:
+            debugflag = True
+            
+        flags = [("BYTES_REVERSED_LO", self.pe.FILE_HEADER.IMAGE_FILE_BYTES_REVERSED_LO,
+                  "Little endian: LSB precedes MSB in memory, deprecated and should be zero."),
+                 ("BYTES_REVERSED_HI", self.pe.FILE_HEADER.IMAGE_FILE_BYTES_REVERSED_HI,
+                  "Big endian: MSB precedes LSB in memory, deprecated and should be zero."),
+                 ("RELOCS_STRIPPED", self.pe.FILE_HEADER.IMAGE_FILE_RELOCS_STRIPPED,
+                  "This indicates that the file does not contain base relocations and must therefore be loaded at its preferred base address.\nFlag has the effect of disabling Address Space Layout Randomization(ASPR) for the process.")]
+        if any(tr[1] for tr in flags):
+            sussuspiciousflag = True
+            for n in flags:
+                if n[1]:
+                    print n[0] + "flag is set - {}".format(n[2])
+
+class DefaultAnalyze(QtCore.QThread):
+    numberSignal = QtCore.pyqtSignal(int, str)
+    valueSignal  = QtCore.pyqtSignal(list)
+
+    def __init__(self, filename, index, parent=None):
+        super(DefaultAnalyze, self).__init__(parent)
+        self.filename = filename
+
+    def test(self):
+        peAnalize = PEFileAnalize(self.filename)
+        print peAnalize.checkFileDate()
+        print peAnalize.checkFileHeader()
+        print peAnalize.checkFileImports()
+        print peAnalize.checkFileSections()
+
+    def run(self):
+        print "run function in defaultanalyze class"
+        self.test()

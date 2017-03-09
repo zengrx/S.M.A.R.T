@@ -1,4 +1,6 @@
-.vscode
 *.pyc
 rules/
 rules_compiled/
+*.yar
+*.yara
+*.cvd

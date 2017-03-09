@@ -3,7 +3,9 @@
 from PyQt4 import QtCore, QtGui
 import time, sys, os
 import magic, hashlib
-from yarathread.yaracheck import CheckPacker, CheckMalware
+from checkrulethread.yaracheck import CheckPacker, CheckMalware
+from checkrulethread.clamav.clamav import CheckClamav
+from checkrulethread.fileanalyze import DefaultAnalyze
 
 sys.path.append("../ssma_python2")
 from src import colors
@@ -163,11 +165,24 @@ class ScanFile(QtCore.QThread):
             print u"启用白名单"
             self.whitflag = 1
 
+    def startDefaultThread(self, filename, filetype, index):
+        filename = filename.encode('cp936')
+        typepe = 'PE32'
+        if typepe in filetype:
+            self.checkdefault = DefaultAnalyze(filename, index)
+            self.checkdefault.valueSignal.connect(self.recvDefaultResult)
+            self.checkdefault.start()
+            self.checkdefault.wait()
+
+    def recvDefaultResult(self):
+        print "get default result"
+
     # 开始yara检测线程
     def startYaraThread(self, filename, filetype, index):
         # return
         filename = filename.encode('cp936')
-        typepe   = 'PE32'
+        typepe   = 'PE32' # PE文件
+        typesh   = 'text' # 文本&脚本文件
         if typepe in filetype:
             print "---------PE----------"
             # 链接checkpacker线程
@@ -186,6 +201,21 @@ class ScanFile(QtCore.QThread):
         print "get result from yarathread"
         return msg
 
+    '''
+    使用clamav数据库规则检测
+    主要用于对已知病毒文件检测
+    '''
+    def startClamThread(self, filename, index):
+        print "use clamav signature"
+        filename = filename.encode('cp936')
+        self.checkClamThread = CheckClamav(filename)
+        self.checkClamThread.valueSignal.connect(self.recvClamResult)
+        self.checkClamThread.start()
+        self.checkClamThread.wait()
+
+    def recvClamResult(self, msg):
+        pass
+
     def run(self):
         # import random
         self.chooseScanRule(self.scanrule)
@@ -202,8 +232,14 @@ class ScanFile(QtCore.QThread):
             self.filesize = self.infos[0]
             # file size should less than 100M
             if int(self.filesize) < 100*1024*1024:
+                # use default function
+                self.dection = self.startDefaultThread(self.filename, self.filetype, i)
                 # use yara rule
                 if 1 == self.yaraflag:
                     self.detect = self.startYaraThread(self.filename, self.filetype, i)
+                # 直接使用生成的clamav全部规则
+                # 后期计划拆分针对不同类型文件的规则
+                if 1 == self.clamflag: 
+                    self.detect = self.startClamThread(self.filename, i)
             self.fileSignal.emit(i+1, self.filename, self.infos)
             
