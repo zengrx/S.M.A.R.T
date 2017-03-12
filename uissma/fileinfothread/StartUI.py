@@ -21,10 +21,15 @@ class MainWindow(QtGui.QMainWindow):
         self.filetype = "PE32 executable (GUI) Intel 80386, for MS Windows"
         self.sysname  = "" #write a init function
 
-        QtCore.QObject.connect(self.ui.pushButton, QtCore.SIGNAL("clicked()"), self.showBaseInfo)
+        # QtCore.QObject.connect(self.ui.pushButton, QtCore.SIGNAL("clicked()"), self.showBaseInfo)
         #test for one emit connect many functions
         self.peemit.connect(self.showPEFileInfo)
         self.peemit.connect(self.anotherThreadRecv)
+
+    def getFileName(self, filename):
+        self.filename = filename
+        print "get filename from main ui"
+        self.showBaseInfo()
 
     '''
     This function use for show file base infomation
@@ -32,7 +37,7 @@ class MainWindow(QtGui.QMainWindow):
     '''
     def showBaseInfo(self):
         #filename = QtGui.QFileDialog.getExistingDirectory(self, "sf", QtCore.QDir.currentPath()) #for path select
-        self.filename = QtGui.QFileDialog.getOpenFileName(self, "select file", "./", "All Files (*)") #for file select
+        # self.filename = QtGui.QFileDialog.getOpenFileName(self, "select file", "./", "All Files (*)") #for file select
         if self.filename:
             self.cfThread = checkFileThread(self.filename)
             self.cfThread.finishSignal.connect(self.checkFileEnd)

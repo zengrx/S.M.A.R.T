@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+'''
+    S.M.A.R.T.
+    Static Malware Analysis and Report Tool
+    author: Zeng RuoXing
+
+'''
+
 from PyQt4 import QtGui, QtCore, Qt
 from UILib.MS_MainWindow import Ui_MainWindow
 import sys, os, shutil
@@ -10,8 +17,8 @@ reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
 class MainWindow(QtGui.QMainWindow):
-    scanemit = QtCore.pyqtSignal(str)
-    anailzemit = QtCore.pyqtSignal(str) # 开始分析文件信号
+    # scanemit = QtCore.pyqtSignal(str)
+    # anailzemit = QtCore.pyqtSignal(str) # 开始分析文件信号
 
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
@@ -40,10 +47,11 @@ class MainWindow(QtGui.QMainWindow):
 
         # 设置tablewdiget属性
         # 自动适配header宽度，效果不好后期改适配最后一列
+        # setStretchLastSection已在ui文件中设置 
         # 设置不可编辑 设置每次选中一行
         self.table = self.ui.tableWidget
         # self.table.horizontalHeader().setResizeMode(QtGui.QHeaderView.Stretch)
-        self.table.horizontalHeader().setStretchLastSection(True)
+        # self.table.horizontalHeader().setStretchLastSection(True)
         self.table.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.table.setContextMenuPolicy(Qt.Qt.CustomContextMenu)
         
@@ -68,6 +76,7 @@ class MainWindow(QtGui.QMainWindow):
         # 按钮事件信号槽
         QtCore.QObject.connect(self.ui.PB_SelectFolder, QtCore.SIGNAL("clicked()"), self.selectFolder)
         QtCore.QObject.connect(self.ui.PB_Start, QtCore.SIGNAL("clicked()"), self.startScan)
+        QtCore.QObject.connect(self.ui.PB_Clear, QtCore.SIGNAL("clicked()"), self.clearTableWidget)
         
         # checkbox信号槽
         # 使用lambda表达式自定义参数
@@ -86,8 +95,8 @@ class MainWindow(QtGui.QMainWindow):
         self.cbtasm.clicked.connect(lambda: self.checkBoxEvent(12))
 
         # 连接线程操作的信号槽
-        self.scanemit.connect(self.recvInitSingal)
-        self.anailzemit.connect(self.updateScanInfo)
+        # self.scanemit.connect(self.recvInitSingal)
+        # self.anailzemit.connect(self.updateScanInfo)
 
     '''
     选择文件按钮事件响应函数
@@ -130,7 +139,11 @@ class MainWindow(QtGui.QMainWindow):
     '''
     def startScan(self):
         self.ui.progressBar.reset()
-        self.ui.statusbar.showMessage("init...")
+        self.ui.statusbar.showMessage(u"正在初始化...")
+        # 设置左右滑动效果
+        # 进度条最大最小值都为0
+        self.ui.progressBar.setMaximum(0)
+        self.ui.progressBar.setValue(0)
         # 应用扫描策略
         self.rule, self.type = self.prevScanPrepare()
         if 0 == self.scanflag: # 选择文件夹
@@ -168,6 +181,14 @@ class MainWindow(QtGui.QMainWindow):
         typepolicy = list(set(policy) & set(self.typelist))
         return rulepolicy, typepolicy
 
+    '''
+    接收startScan连接的子进程checkFolder返回内容
+    @index:区分信息索引
+    1-子文件夹个数
+    2-文件个数
+    3-文件名列表
+    @msg:具体内容
+    '''
     def recvInitSingal(self, index, msg):
         if 1 == index:
             self.dirsnum = msg
@@ -180,7 +201,7 @@ class MainWindow(QtGui.QMainWindow):
             scanlist = msg
             # 扫描线程准备工作 第一版 发列表
             # 下一版可以考虑不发文件名list
-            # 3.2日配合多文件选择使用，暂不修改
+            # 3月2日更新配合多文件选择使用，暂不修改
             self.scanThread = ScanFile(scanlist, self.rule)
             self.scanThread.fileSignal.connect(self.updateScanInfo) # 连到更新函数中
             self.scanThread.start()
@@ -219,7 +240,7 @@ class MainWindow(QtGui.QMainWindow):
         sizeitem.setTextAlignment(Qt.Qt.AlignRight|Qt.Qt.AlignVCenter)
         self.table.setItem(i - 1, 2, sizeitem)
         self.table.setItem(i - 1, 3, QtGui.QTableWidgetItem(ftype))
-        self.table.setItem(i - 1, 6, QtGui.QTableWidgetItem(fMD5))
+        self.table.setItem(i - 1, 7, QtGui.QTableWidgetItem(fMD5))
         # self.table.setItem(i - 1, 4, QtGui.QTableWidgetItem(str(msg3)))
 
     def updateStatusBar(self):
@@ -233,36 +254,24 @@ class MainWindow(QtGui.QMainWindow):
     @flag: 标记全选与其他
     '''
     def checkBoxEvent(self, flag):
+        ruleslist = [self.cbryara, self.cbrclam, self.cbrpeid, self.cbrself, self.cbrwl]
+        typeslist = [self.cbtpe, self.cbtofs, self.cbtsh, self.cbtzip, self.cbtmda, self.cbtasm]
         if flag == 0: # 对应rule全选操作
             if self.cbrall.isChecked():
                 print "all rules selected"
-                self.cbryara.setCheckState(Qt.Qt.Checked)
-                self.cbrclam.setCheckState(Qt.Qt.Checked)
-                self.cbrpeid.setCheckState(Qt.Qt.Checked)
-                self.cbrself.setCheckState(Qt.Qt.Checked)
-                self.cbrwl.setCheckState(Qt.Qt.Checked)
+                for i in ruleslist:
+                    i.setCheckState(Qt.Qt.Checked)
             else:
-                self.cbryara.setCheckState(Qt.Qt.Unchecked)
-                self.cbrclam.setCheckState(Qt.Qt.Unchecked)
-                self.cbrpeid.setCheckState(Qt.Qt.Unchecked)
-                self.cbrself.setCheckState(Qt.Qt.Unchecked)
-                self.cbrwl.setCheckState(Qt.Qt.Unchecked)
+                for i in ruleslist:
+                    i.setCheckState(Qt.Qt.Unchecked)
         elif flag == 1: # 对应type全选操作
             if self.cbtall.isChecked():
                 print "all type selected"
-                self.cbtpe.setCheckState(Qt.Qt.Checked)
-                self.cbtofs.setCheckState(Qt.Qt.Checked)
-                self.cbtsh.setCheckState(Qt.Qt.Checked)
-                self.cbtzip.setCheckState(Qt.Qt.Checked)
-                self.cbtmda.setCheckState(Qt.Qt.Checked)
-                self.cbtasm.setCheckState(Qt.Qt.Checked)
+                for i in typeslist:
+                    i.setCheckState(Qt.Qt.Checked)
             else:
-                self.cbtpe.setCheckState(Qt.Qt.Unchecked)
-                self.cbtofs.setCheckState(Qt.Qt.Unchecked)
-                self.cbtsh.setCheckState(Qt.Qt.Unchecked)
-                self.cbtzip.setCheckState(Qt.Qt.Unchecked)
-                self.cbtmda.setCheckState(Qt.Qt.Unchecked)
-                self.cbtasm.setCheckState(Qt.Qt.Unchecked)
+                for i in typeslist:
+                    i.setCheckState(Qt.Qt.Unchecked)
         else:
             if self.cbrall.isChecked() or self.cbtall.isChecked():
                 if flag < 7:
@@ -316,13 +325,18 @@ class MainWindow(QtGui.QMainWindow):
     仍需完善策略
     '''
     def generateMenu(self, pos):
-        currentindex = self.table.currentIndex().row()
-        if currentindex < 0:
-            return
+        # 未选中元素时无法使用右键菜单
+        # currentrow = self.table.currentRow()
+        # print currentrow
+        # if currentrow < 0:
+        #     return
         print pos
         row_num = -1 # 右键操作列索引
         for i in self.table.selectionModel().selection().indexes():
             row_num = i.row()
+        print row_num
+        if row_num < 0:
+            return
         menu = QtGui.QMenu()
         item1 = menu.addAction(QtGui.QIcon(".\UILib\icons\detail_icon.png"), u"详细信息") # (u"详细信息")
         item2 = menu.addAction(QtGui.QIcon(".\UILib\icons\Fanalyz_icon.png"), u"文件分析")
@@ -336,15 +350,20 @@ class MainWindow(QtGui.QMainWindow):
         item9 = menu.addAction(QtGui.QIcon(".\UILib\icons\upload_icon.png"), u"上传样本")
         action = menu.exec_(self.table.mapToGlobal(pos))
         if action == item1:
-            print u'您选了选项一，当前行文字内容是：',self.table.item(row_num,1).text()
+            print u'您选了选项一，当前行文字内容是：',self.table.item(row_num,0).text()
+            fname = self.table.item(row_num, 0).text()
+            fpath = self.table.item(row_num, 1).text()
+            ffull = os.path.join(str(fpath), str(fname))
+            print ffull
             filedetail = self.detailwindow
+            filedetail.getFileName(ffull)
             filedetail.show()
 
         elif action == item2:
-            print u'您选了选项二，当前行文字内容是：',self.table.item(row_num,1).text()
+            print u'您选了选项二，当前行文字内容是：',self.table.item(row_num,0).text()
 
         elif action == item3:
-            print u'您选了选项三，当前行文字内容是：',self.table.item(row_num,1).text()
+            print u'您选了选项三，当前行文字内容是：',self.table.item(row_num,0).text()
         
         elif action == item7:
             print "item777"
@@ -352,11 +371,24 @@ class MainWindow(QtGui.QMainWindow):
         else:
             return
 
+    '''
+    清空tablewidget内容
+    '''
+    def clearTableWidget(self):
+        print self.table.rowCount()
+        print "clear tablewidget"
+        self.table.setRowCount(0)
+        self.table.clearContents()
+        self.rowindex = 0 # 让新元素从第一行开始
+
 
 if __name__ == "__main__":
 
     app = QtGui.QApplication(sys.argv)
     myapp = MainWindow()
+    icon = QtGui.QIcon()
+    icon.addPixmap(QtGui.QPixmap(".\UILib\icons\main_icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+    myapp.setWindowIcon(icon)
     myapp.show()
 
     sys.exit(app.exec_())

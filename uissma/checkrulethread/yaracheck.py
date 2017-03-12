@@ -77,3 +77,24 @@ class CheckMalware(QtCore.QThread):
             # self.valueSignal.emit(malresult)
         else:
             print "no match"
+
+class CheckCrypto(QtCore.QThread):
+    numberSignal = QtCore.pyqtSignal(int, str)
+    valueSignal  = QtCore.pyqtSignal(list)
+
+    def __init__(self, filename, parent=None):
+        super(CheckCrypto, self).__init__(parent)
+        self.filename = filename
+
+    def run(self):
+        cptresult = check_crypto(self.filename)
+        result = []
+        if cptresult:
+            print "get crypto!"
+            for n in cptresult:
+                try:
+                    print "{} - {}".format(n, n.meta['description'])
+                except:
+                    print n
+        else:
+            print "no match"

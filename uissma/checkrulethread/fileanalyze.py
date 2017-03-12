@@ -198,7 +198,7 @@ class PEFileAnalize:
         entropyflag  = False
         datasizeflag = False
         # 储存变量的list
-        virtualSize   = []
+        virtualSize  = []
         sectionName  = []
         pefileinfos  = []
         # 认可的节名称

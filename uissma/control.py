@@ -3,7 +3,7 @@
 from PyQt4 import QtCore, QtGui
 import time, sys, os
 import magic, hashlib
-from checkrulethread.yaracheck import CheckPacker, CheckMalware
+from checkrulethread.yaracheck import CheckPacker, CheckMalware, CheckCrypto
 from checkrulethread.clamav.clamav import CheckClamav
 from checkrulethread.fileanalyze import DefaultAnalyze
 
@@ -62,6 +62,7 @@ class CheckFolder(QtCore.QThread):
             typevalue.append("Matroska")
             typevalue.append("Audio")
             typevalue.append("image")
+            typevalue.append("MPEG")
         if '12' in self.type: # .asm后缀
             typevalue.append(".asm")
         file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
@@ -194,6 +195,12 @@ class ScanFile(QtCore.QThread):
             self.checkPackThread.start()
             self.checkMalwThread.wait()
             self.checkPackThread.wait()
+        if typesh in filetype: # 检测加密特征
+            print "---------SH----------"
+            self.checkCrypThread = CheckCrypto(filename)
+            self.checkCrypThread.valueSignal.connect(self.recvYaraResult)
+            self.checkCrypThread.start()
+            self.checkCrypThread.wait()
 
     # 获取yara检测结果
     # 在该接收函数中应该处理汇总的信息
@@ -233,7 +240,7 @@ class ScanFile(QtCore.QThread):
             # file size should less than 100M
             if int(self.filesize) < 100*1024*1024:
                 # use default function
-                self.dection = self.startDefaultThread(self.filename, self.filetype, i)
+                # self.dection = self.startDefaultThread(self.filename, self.filetype, i)
                 # use yara rule
                 if 1 == self.yaraflag:
                     self.detect = self.startYaraThread(self.filename, self.filetype, i)
