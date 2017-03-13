@@ -30,7 +30,7 @@ class MainWindow(QtGui.QMainWindow):
         self.cbrall  = self.ui.CBRuleAll    # 规则全选
         self.cbryara = self.ui.CBRuleYara   # yara规则
         self.cbrclam = self.ui.CBRuleClamav # clamav
-        self.cbrpeid = self.ui.CBRulePEiD   # PEiD规则
+        self.cbrpack = self.ui.CBRulePack   # 文件查壳
         self.cbrself = self.ui.CBRuleSelf   # 自定义规则
         self.cbrwl   = self.ui.CBRuleWL     # 白名单
         # 文件类型部分
@@ -84,7 +84,7 @@ class MainWindow(QtGui.QMainWindow):
         self.cbtall.clicked.connect(lambda: self.checkBoxEvent(1))
         self.cbryara.clicked.connect(lambda: self.checkBoxEvent(2))
         self.cbrclam.clicked.connect(lambda: self.checkBoxEvent(3)) 
-        self.cbrpeid.clicked.connect(lambda: self.checkBoxEvent(4))
+        self.cbrpack.clicked.connect(lambda: self.checkBoxEvent(4))
         self.cbrself.clicked.connect(lambda: self.checkBoxEvent(5))
         self.cbrwl.clicked.connect(lambda: self.checkBoxEvent(6))
         self.cbtpe.clicked.connect(lambda: self.checkBoxEvent(7))
@@ -193,12 +193,15 @@ class MainWindow(QtGui.QMainWindow):
         if 1 == index:
             self.dirsnum = msg
             print "folders number is: " + self.dirsnum
-            self.ui.progressBar.setMaximum(int(self.filenum))
         if 2 == index:
             self.filenum = msg
             print "files number is: " + self.filenum
         if 3 == index:
             scanlist = msg
+            if 0 == int(self.filenum):
+                self.ui.statusbar.showMessage(u"未检索到符合条件的文件，扫描结束")
+                self.ui.progressBar.setMaximum(1)
+                self.ui.progressBar.setValue(1)
             # 扫描线程准备工作 第一版 发列表
             # 下一版可以考虑不发文件名list
             # 3月2日更新配合多文件选择使用，暂不修改
@@ -254,7 +257,7 @@ class MainWindow(QtGui.QMainWindow):
     @flag: 标记全选与其他
     '''
     def checkBoxEvent(self, flag):
-        ruleslist = [self.cbryara, self.cbrclam, self.cbrpeid, self.cbrself, self.cbrwl]
+        ruleslist = [self.cbryara, self.cbrclam, self.cbrpack, self.cbrself, self.cbrwl]
         typeslist = [self.cbtpe, self.cbtofs, self.cbtsh, self.cbtzip, self.cbtmda, self.cbtasm]
         if flag == 0: # 对应rule全选操作
             if self.cbrall.isChecked():
@@ -300,7 +303,7 @@ class MainWindow(QtGui.QMainWindow):
             policy.append("2")
         if self.cbrclam.isChecked():
             policy.append("3")
-        if self.cbrpeid.isChecked():
+        if self.cbrpack.isChecked():
             policy.append("4")
         if self.cbrself.isChecked():
             policy.append("5")
@@ -365,6 +368,19 @@ class MainWindow(QtGui.QMainWindow):
         elif action == item3:
             print u'您选了选项三，当前行文字内容是：',self.table.item(row_num,0).text()
         
+        elif action == item5:
+            print u"打开文件所在位置"
+            fname = self.table.item(row_num, 0).text()
+            fpath = self.table.item(row_num, 1).text()
+            ffull = os.path.join(str(fpath), str(fname))
+            # 仅打开文件夹
+            # os.startfile(fpath)
+            # 打开文件-慎重
+            # os.startfile(ffull)
+            # 打开文件夹并定位到文件
+            estr = 'explorer /select,' + str(ffull)
+            os.system(estr)
+
         elif action == item7:
             print "item777"
 
@@ -380,6 +396,8 @@ class MainWindow(QtGui.QMainWindow):
         self.table.setRowCount(0)
         self.table.clearContents()
         self.rowindex = 0 # 让新元素从第一行开始
+        self.ui.progressBar.setValue(0) # 进度条回0
+        self.ui.statusbar.showMessage(u"已清空显示列表内容")
 
 
 if __name__ == "__main__":

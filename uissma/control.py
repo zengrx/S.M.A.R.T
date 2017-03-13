@@ -125,7 +125,7 @@ class ScanFile(QtCore.QThread):
         # flags
         self.yaraflag = 0
         self.clamflag = 0
-        self.PEiDflag = 0
+        self.Packflag = 0
         self.selfflag = 0
         self.whitflag = 0
 
@@ -157,8 +157,8 @@ class ScanFile(QtCore.QThread):
             print u"使用clamav"
             self.clamflag = 1
         if '4' in rules:
-            print u"使用PEiD规则"
-            self.PEiDflag = 1
+            print u"使用文件查壳"
+            self.Packflag = 1
         if '5' in rules:
             print u"使用自定义规则"
             self.selfflag = 1
@@ -189,12 +189,8 @@ class ScanFile(QtCore.QThread):
             # 链接checkpacker线程
             self.checkMalwThread = CheckMalware(filename)
             self.checkMalwThread.valueSignal.connect(self.recvYaraResult)
-            self.checkPackThread = CheckPacker(filename, index)
-            self.checkPackThread.valueSignal.connect(self.recvYaraResult)
             self.checkMalwThread.start()
-            self.checkPackThread.start()
             self.checkMalwThread.wait()
-            self.checkPackThread.wait()
         if typesh in filetype: # 检测加密特征
             print "---------SH----------"
             self.checkCrypThread = CheckCrypto(filename)
@@ -223,6 +219,14 @@ class ScanFile(QtCore.QThread):
     def recvClamResult(self, msg):
         pass
 
+    def startPackThread(self, filename, index):
+        print "start check pack"
+        filename = filename.encode('cp936')
+        self.checkPackThread = CheckPacker(filename, index)
+        self.checkPackThread.valueSignal.connect(self.recvYaraResult)
+        self.checkPackThread.start()
+        self.checkPackThread.wait()
+
     def run(self):
         # import random
         self.chooseScanRule(self.scanrule)
@@ -248,5 +252,7 @@ class ScanFile(QtCore.QThread):
                 # 后期计划拆分针对不同类型文件的规则
                 if 1 == self.clamflag: 
                     self.detect = self.startClamThread(self.filename, i)
+                if 1 == self.Packflag:
+                    self.detect = self.startPackThread(self.filename, i)
             self.fileSignal.emit(i+1, self.filename, self.infos)
             
