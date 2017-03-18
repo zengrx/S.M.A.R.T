@@ -754,61 +754,61 @@
     <property name="title">
      <string>管理</string>
     </property>
-    <addaction name="action"/>
+    <addaction name="AC_Check"/>
     <addaction name="separator"/>
-    <addaction name="action_2"/>
+    <addaction name="AC_Setting"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
      <string>文件</string>
     </property>
-    <addaction name="action_3"/>
-    <addaction name="action_8"/>
+    <addaction name="AC_Loadcfg"/>
+    <addaction name="AC_OutLog"/>
    </widget>
    <widget class="QMenu" name="menu_4">
     <property name="title">
      <string>帮助</string>
     </property>
-    <addaction name="action_4"/>
-    <addaction name="action_5"/>
-    <addaction name="action_6"/>
+    <addaction name="AC_Info"/>
+    <addaction name="AC_About"/>
+    <addaction name="AC_Author"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
    <addaction name="menu_4"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action">
+  <action name="AC_Check">
    <property name="text">
     <string>检查配置</string>
    </property>
   </action>
-  <action name="action_2">
+  <action name="AC_Setting">
    <property name="text">
     <string>软件设置</string>
    </property>
   </action>
-  <action name="action_3">
+  <action name="AC_Loadcfg">
    <property name="text">
     <string>读取配置</string>
    </property>
   </action>
-  <action name="action_4">
+  <action name="AC_Info">
    <property name="text">
     <string>版本信息</string>
    </property>
   </action>
-  <action name="action_5">
+  <action name="AC_About">
    <property name="text">
     <string>关于软件</string>
    </property>
   </action>
-  <action name="action_6">
+  <action name="AC_Author">
    <property name="text">
     <string>联系作者</string>
    </property>
   </action>
-  <action name="action_8">
+  <action name="AC_OutLog">
    <property name="text">
     <string>导出日志</string>
    </property>

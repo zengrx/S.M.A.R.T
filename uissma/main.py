@@ -12,6 +12,8 @@ from UILib.MS_MainWindow import Ui_MainWindow
 import sys, os, shutil
 from control import CheckFolder, ScanFile
 from fileinfothread.StartUI import MainWindow as detailwindow
+from menuset.uploadfile import Dialog as UploadDialog
+from menuset.setting import Dialog as SetDialog
 
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
@@ -58,6 +60,29 @@ class MainWindow(QtGui.QMainWindow):
         # 右键菜单信号槽
         self.table.customContextMenuRequested.connect(self.generateMenu)
 
+        # 菜单栏控件-索引字典
+        self.menubardict = {
+            self.ui.AC_Check   : 0, # 检查配置 
+            self.ui.AC_Setting : 1, # 软件设置
+            self.ui.AC_Loadcfg : 2, # 读取配置
+            self.ui.AC_OutLog  : 3, # 导出日志
+            self.ui.AC_Info    : 4, # 版本信息
+            self.ui.AC_About   : 5, # 关于软件
+            self.ui.AC_Author  : 6  # 联系作者
+        }
+
+        # 菜单栏信号槽
+        # for key, value in self.menubardict.items():
+        #     print key, value
+        #     key.triggered.connect(lambda: self.menuBarOperate(value))
+        self.ui.AC_Check.triggered.connect(lambda: self.menuBarOperate(0))
+        self.ui.AC_Setting.triggered.connect(lambda: self.menuBarOperate(1))
+        self.ui.AC_Loadcfg.triggered.connect(lambda: self.menuBarOperate(2))
+        self.ui.AC_OutLog.triggered.connect(lambda: self.menuBarOperate(3))
+        self.ui.AC_Info.triggered.connect(lambda: self.menuBarOperate(4))
+        self.ui.AC_About.triggered.connect(lambda: self.menuBarOperate(5))
+        self.ui.AC_Author.triggered.connect(lambda: self.menuBarOperate(6))
+        
         self.scanflag = 0  # 扫描策略flag
         self.folder   = '' # 选取文件夹路径
         self.files    = [] # 最终选取的文件名列表
@@ -71,7 +96,10 @@ class MainWindow(QtGui.QMainWindow):
         self.rule     = [] # 发送至control的扫描规则
         self.type     = [] # 发送至control的文件类型
 
+        # 其他窗口对象实例
         self.detailwindow = detailwindow()
+        self.uploadDialog = UploadDialog()
+        self.setdialog    = SetDialog()
 
         # 按钮事件信号槽
         QtCore.QObject.connect(self.ui.PB_SelectFolder, QtCore.SIGNAL("clicked()"), self.selectFolder)
@@ -322,7 +350,19 @@ class MainWindow(QtGui.QMainWindow):
         if self.cbtasm.isChecked():
             policy.append("12")
         return policy
-    
+
+    '''
+    菜单栏点击事件响应函数
+    '''
+    def menuBarOperate(self, index):
+        print index
+        dialog = self.setdialog
+        dialog.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(".\UILib\icons\setting_icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        dialog.setWindowIcon(icon)
+        dialog.show()
+        
     '''
     右键菜单生成函数
     仍需完善策略
@@ -352,14 +392,18 @@ class MainWindow(QtGui.QMainWindow):
         item8 = markmenu.addAction(u"3")
         item9 = menu.addAction(QtGui.QIcon(".\UILib\icons\upload_icon.png"), u"上传样本")
         action = menu.exec_(self.table.mapToGlobal(pos))
+        fname = self.table.item(row_num, 0).text()
+        fpath = self.table.item(row_num, 1).text()
+        ffull = os.path.join(str(fpath), str(fname)) # 文件绝对路径
         if action == item1:
             print u'您选了选项一，当前行文字内容是：',self.table.item(row_num,0).text()
-            fname = self.table.item(row_num, 0).text()
-            fpath = self.table.item(row_num, 1).text()
-            ffull = os.path.join(str(fpath), str(fname))
             print ffull
             filedetail = self.detailwindow
             filedetail.getFileName(ffull)
+            filedetail.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap(".\UILib\icons\detail_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            filedetail.setWindowIcon(icon)
             filedetail.show()
 
         elif action == item2:
@@ -381,8 +425,14 @@ class MainWindow(QtGui.QMainWindow):
             estr = 'explorer /select,' + str(ffull)
             os.system(estr)
 
-        elif action == item7:
-            print "item777"
+        elif action == item9:
+            dialog = self.uploadDialog
+            dialog.getFilename(ffull)
+            dialog.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap(".\UILib\icons\upload_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            dialog.setWindowIcon(icon)
+            dialog.show()
 
         else:
             return
