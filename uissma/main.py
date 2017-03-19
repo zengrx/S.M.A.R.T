@@ -95,6 +95,7 @@ class MainWindow(QtGui.QMainWindow):
         self.typelist = ['7', '8', '9', '10', '11', '12']
         self.rule     = [] # 发送至control的扫描规则
         self.type     = [] # 发送至control的文件类型
+        self.flist    = [] # uploadfile判断更新滑动窗口
 
         # 其他窗口对象实例
         self.detailwindow = detailwindow()
@@ -395,6 +396,10 @@ class MainWindow(QtGui.QMainWindow):
         fname = self.table.item(row_num, 0).text()
         fpath = self.table.item(row_num, 1).text()
         ffull = os.path.join(str(fpath), str(fname)) # 文件绝对路径
+        fmd5  = self.table.item(row_num, 7).text()
+        flist = self.flist # 文件名列表
+        flist.append(fmd5)
+        print flist
         if action == item1:
             print u'您选了选项一，当前行文字内容是：',self.table.item(row_num,0).text()
             print ffull
@@ -426,8 +431,16 @@ class MainWindow(QtGui.QMainWindow):
             os.system(estr)
 
         elif action == item9:
+            # 在没有数据库的情况下
+            # 如果前后两次打开同一个文件，那么不清空内容
+            # 否则执行clear方法
             dialog = self.uploadDialog
             dialog.getFilename(ffull)
+            if len(flist) == 2:
+                if flist[0] != flist[1]:
+                    dialog.clearFileData()
+                del flist[0]
+            print flist
             dialog.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
             icon = QtGui.QIcon()
             icon.addPixmap(QtGui.QPixmap(".\UILib\icons\upload_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)

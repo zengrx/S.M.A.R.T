@@ -1,12 +1,15 @@
 #coding=utf-8
 
+import sys, os
 import socket
 import hashlib
 import virus_total_apis
 from PyQt4 import QtCore, QtGui, Qt
+sys.path.append("..")
+from checkrulethread.fileanalyze import PEFileAnalize, getFileInfo
 
 class UploadFile(QtCore.QThread):
-    finfishSignal = QtCore.pyqtSignal(int, tuple)
+    finishSignal = QtCore.pyqtSignal(int, tuple)
 
     '''
     @文件名
@@ -44,12 +47,12 @@ class UploadFile(QtCore.QThread):
         md5 = hashlib.md5(open(self.filename, 'rb').read()).hexdigest()
         response = vt.get_file_report(md5)
         # print response # 所有结果
-        print response["response_code"]
-        if 204 == response["response_code"]:
+        print response["response_code"] # 网络响应码
+        if 204 == response["response_code"]: # 超出上传频率
             print "204"
-            pass
+            return ("http_code", "", response["response_code"], "")
         response_code_ = response["results"]["response_code"]
-        # print response_code_ # 二层响应代码
+        # print response_code_ # 返回信息响应代码
         if 1 == response_code_:
             # 解析json回传内容
             # 先显示报毒的引擎
@@ -64,14 +67,22 @@ class UploadFile(QtCore.QThread):
         else:
             response = vt.scan_file(self.filename) # 32M limit
             result.append(response["results"]["permalink"])
-        return ("scan_result", result) if response_code_ is 1 else ("permalink", result)
+        if 1 == response_code_:
+            return ("scan_result", result, response["response_code"], response_code_)
+        else:
+            return ("permalink", result, response["response_code"], response_code_)
+        # return ("scan_result", result, "http", response["response_code"], "code", response_code_)
+        #  if response_code_ is 1 else ("permalink", result, "http", response["response_code"], "code", response_code_)
         # print ("scan_result", result) if response_code_ is 1 else ("permalink", result)
 
     def run(self):
         print "run"
+        baseinfo = getFileInfo(self.filename)
+        infos = ("baseinfo", baseinfo)
+        self.finishSignal.emit(2, infos)
         self.checkInternet()
         msg = self.virustotalApi(self.apikey)
-        self.finfishSignal.emit(1, msg)
+        self.finishSignal.emit(1, msg)
 
 class AddFileToQqueu(QtCore.QThread):
 

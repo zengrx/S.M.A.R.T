@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>420</width>
+    <width>435</width>
     <height>480</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
   <property name="maximumSize">
    <size>
-    <width>420</width>
+    <width>16777215</width>
     <height>480</height>
    </size>
   </property>
@@ -26,18 +26,24 @@
    <string>上传样本</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>3</number>
+   </property>
+   <property name="topMargin">
+    <number>9</number>
+   </property>
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>240</height>
+       <height>220</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>240</height>
+       <height>220</height>
       </size>
      </property>
      <property name="title">
@@ -66,6 +72,18 @@
           <string>基本信息</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_4">
+          <property name="leftMargin">
+           <number>3</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <property name="rightMargin">
+           <number>3</number>
+          </property>
+          <property name="bottomMargin">
+           <number>3</number>
+          </property>
           <item>
            <widget class="QListWidget" name="listWidget"/>
           </item>
@@ -114,17 +132,27 @@
           <item>
            <widget class="QLabel" name="label_4">
             <property name="text">
-             <string>返回代码：</string>
+             <string>网络响应：</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="LE_Rsep">
-            <property name="maximumSize">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
              <size>
-              <width>50</width>
-              <height>16777215</height>
+              <width>40</width>
+              <height>20</height>
              </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>返回代码：</string>
             </property>
            </widget>
           </item>
@@ -145,16 +173,6 @@
            <widget class="QLabel" name="label">
             <property name="text">
              <string>检测率：</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="LE_DeteRate">
-            <property name="maximumSize">
-             <size>
-              <width>50</width>
-              <height>16777215</height>
-             </size>
             </property>
            </widget>
           </item>
@@ -179,6 +197,20 @@
            </property>
           </column>
          </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>网页链接：</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="LE_URL"/>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -237,7 +269,7 @@
           <item>
            <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>当前队列：</string>
+             <string>等待队列：</string>
             </property>
            </widget>
           </item>
@@ -313,6 +345,16 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>listWidget</tabstop>
+  <tabstop>listWidget_2</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>LE_URL</tabstop>
+  <tabstop>LE_Line</tabstop>
+  <tabstop>PB_2Queue</tabstop>
+  <tabstop>PB_Upload</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

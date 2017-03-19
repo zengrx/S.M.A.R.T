@@ -8,6 +8,7 @@ import numbers
 import array
 import math
 import pefile
+import magic
 import sqlite3
 
 '''
@@ -36,6 +37,27 @@ def dataEntropy(data):
             p_i = commonDiv(float(i), len(data))
             entropy -= p_i * math.log(p_i, 2)
     return entropy
+
+'''
+获取文件详细信息
+返回MD5 SHA1 SHA256 Size Type
+'''
+def getFileInfo(filename):
+    info = []
+    with open(filename, 'rb') as f:
+        cfile = f.read()
+        # md5    = 
+        info.append("MD5:\t{}".format(hashlib.md5(cfile).hexdigest()))
+        # sha1   = 
+        info.append("SHA1:\t{}".format(hashlib.sha1(cfile).hexdigest()))
+        # sha256 = 
+        info.append("SHA256:\t{}".format(hashlib.sha256(cfile).hexdigest()))
+        # fsize  = 
+        info.append("Size:\t{} Bytes".format(os.path.getsize(filename)))
+        file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
+        # ftype  = 
+        info.append("Type:\t{}".format(file_magic.from_file(filename)))
+    return info
 
 class PEFileAnalize:
     def __init__(self, filename):
