@@ -42,7 +42,9 @@ class UploadFile(QtCore.QThread):
     '''
     def virustotalApi(self, apikey):
         key = apikey
-        result = []
+        result  = []
+        result1 = [] # 检测到的引擎
+        result2 = [] # 未检测到的引擎
         vt = virus_total_apis.PublicApi(key)
         md5 = hashlib.md5(open(self.filename, 'rb').read()).hexdigest()
         response = vt.get_file_report(md5)
@@ -58,10 +60,10 @@ class UploadFile(QtCore.QThread):
             # 先显示报毒的引擎
             for n in response["results"]["scans"]:
                 if response["results"]["scans"][n]["detected"]:
-                    result.append("{} ^ {}".format(n, response["results"]["scans"][n]["result"]))
-            for n in response["results"]["scans"]:
-                if not response["results"]["scans"][n]["detected"]:
-                    result.append("{} ^ {}".format(n, response["results"]["scans"][n]["result"]))
+                    result1.append("{} ^ {}".format(n, response["results"]["scans"][n]["result"]))
+                else:
+                    result2.append("{} ^ {}".format(n, response["results"]["scans"][n]["result"]))
+            result = sorted(result1, key=str.lower) + sorted(result2, key=str.lower)
         elif -2 == response_code_:
             pass
         else:

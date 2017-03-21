@@ -14,6 +14,7 @@ from control import CheckFolder, ScanFile
 from fileinfothread.StartUI import MainWindow as detailwindow
 from menuset.uploadfile import Dialog as UploadDialog
 from menuset.setting import Dialog as SetDialog
+from gobalset import FlagSet
 
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
@@ -106,6 +107,7 @@ class MainWindow(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.PB_SelectFolder, QtCore.SIGNAL("clicked()"), self.selectFolder)
         QtCore.QObject.connect(self.ui.PB_Start, QtCore.SIGNAL("clicked()"), self.startScan)
         QtCore.QObject.connect(self.ui.PB_Clear, QtCore.SIGNAL("clicked()"), self.clearTableWidget)
+        self.ui.PB_End.clicked.connect(self.stopScan)
         
         # checkbox信号槽
         # 使用lambda表达式自定义参数
@@ -169,6 +171,7 @@ class MainWindow(QtGui.QMainWindow):
     def startScan(self):
         self.ui.progressBar.reset()
         self.ui.statusbar.showMessage(u"正在初始化...")
+        FlagSet.scanstopflag = 1 # 恢复停止标识
         # 设置左右滑动效果
         # 进度条最大最小值都为0
         self.ui.progressBar.setMaximum(0)
@@ -194,6 +197,11 @@ class MainWindow(QtGui.QMainWindow):
                 self.filesThread.start()
         else:
             pass
+
+    def stopScan(self):
+        print "stopscan"
+        self.ui.statusbar.showMessage(u"手动结束扫描，等待线程退出")
+        FlagSet.scanstopflag = 0
     
     '''
     扫描前准备函数
@@ -231,6 +239,12 @@ class MainWindow(QtGui.QMainWindow):
                 self.ui.statusbar.showMessage(u"未检索到符合条件的文件，扫描结束")
                 self.ui.progressBar.setMaximum(1)
                 self.ui.progressBar.setValue(1)
+                return
+            if 0 == FlagSet.scanstopflag:
+                self.ui.statusbar.showMessage(u"扫描初始化已停止")
+                self.ui.progressBar.setMaximum(1)
+                self.ui.progressBar.setValue(1)
+                return
             # 扫描线程准备工作 第一版 发列表
             # 下一版可以考虑不发文件名list
             # 3月2日更新配合多文件选择使用，暂不修改
@@ -254,7 +268,8 @@ class MainWindow(QtGui.QMainWindow):
         # 更新进度条 最大值和当前值放在一起
         self.ui.progressBar.setMaximum(int(self.filenum))
         self.ui.progressBar.setValue(num)
-
+        if int(self.filenum) == num:
+            self.ui.statusbar.showMessage(u"扫描结束")
         # 更新tablewidget
         self.rowindex = self.rowindex + 1
         i = self.rowindex

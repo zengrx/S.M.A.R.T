@@ -6,6 +6,7 @@ import magic, hashlib
 from checkrulethread.yaracheck import CheckPacker, CheckMalware, CheckCrypto
 from checkrulethread.clamav.clamav import CheckClamav
 from checkrulethread.fileanalyze import DefaultAnalyze
+from gobalset import FlagSet
 
 sys.path.append("../ssma_python2")
 from src import colors
@@ -87,6 +88,9 @@ class CheckFolder(QtCore.QThread):
         i = 0 # number of files
         j = 0 # number of dirs
         for root, dirs, files in os.walk(self.dir, topdown=True):
+            if 0 == FlagSet.scanstopflag:
+                print "stopflag"
+                break
             for di in dirs:
                 j = j + 1
                 # print os.path.join(root, di)
@@ -254,5 +258,9 @@ class ScanFile(QtCore.QThread):
                     self.detect = self.startClamThread(self.filename, i)
                 if 1 == self.Packflag:
                     self.detect = self.startPackThread(self.filename, i)
+            print FlagSet.scanstopflag
+            if 0 == FlagSet.scanstopflag:
+                self.fileSignal.emit(len(self.filelist), self.filename, self.infos)
+                break
             self.fileSignal.emit(i+1, self.filename, self.infos)
             

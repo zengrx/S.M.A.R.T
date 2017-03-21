@@ -1,6 +1,0 @@
-pefile
-python-magic
-yara-python
-ssdeep
-virustotal-api
-gitpython
