@@ -6,7 +6,7 @@ import hashlib
 import virus_total_apis
 from PyQt4 import QtCore, QtGui, Qt
 sys.path.append("..")
-from checkrulethread.fileanalyze import PEFileAnalize, getFileInfo
+from publicfunc.fileanalyze import PEFileAnalize, getFileInfo
 
 class UploadFile(QtCore.QThread):
     finishSignal = QtCore.pyqtSignal(int, tuple)

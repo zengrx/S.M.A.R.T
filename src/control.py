@@ -3,20 +3,12 @@
 from PyQt4 import QtCore, QtGui
 import time, sys, os
 import magic, hashlib
-from checkrulethread.yaracheck import CheckPacker, CheckMalware, CheckCrypto
-from checkrulethread.clamav.clamav import CheckClamav
-from checkrulethread.fileanalyze import DefaultAnalyze
+from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto
+from publicfunc.clamav.clamav import CheckClamav
+from publicfunc.fileanalyze import DefaultAnalyze
+from publicfunc.updatedata import cloneYaraData
 from gobalset import FlagSet
-
-sys.path.append("../ssma_python2")
-from src import colors
-from src.check_file import PEScanner, file_info
-from src.blacklisted_domain_ip import ransomware_and_malware_domain_check
-from src.check import is_malware, is_file_packed, check_crypto, is_antidb_antivm, is_malicious_document
-from src.check_file import PEScanner, file_info
-from src.check_updates import check_internet_connection, download_yara_rules_git
-from src.check_virustotal import virustotal
-from src.file_strings import get_strings
+import sqlite3
 
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
@@ -66,8 +58,11 @@ class CheckFolder(QtCore.QThread):
             typevalue.append("MPEG")
         if '12' in self.type: # .asm后缀
             typevalue.append(".asm")
-        file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
-        fmagic = file_magic.from_file(str(filename).encode('cp936'))
+        file_magic = magic.Magic(magic_file="C:\Python27\magic.mgc")
+        try:
+            fmagic = file_magic.from_file(str(filename).encode('cp936'))
+	except:
+	    print "maigc error {}".format(str(filename).encode('cp936'))
         extension = os.path.splitext(filename)[1]
         # 匹配文件类型或后缀名
         flag = 0
@@ -136,14 +131,27 @@ class ScanFile(QtCore.QThread):
     '''
     获取文件类型，日期，大小，md5等基本信息
     '''
-    def getFileInfo(self, filename):
+    def getFileInfo(self, index, filename):
         info = []
+        i = index - 1
         with open(filename, 'rb') as f:
             cfile = f.read()
             info.append(os.path.getsize(filename))
-            file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
+            file_magic = magic.Magic(magic_file="C:\Python27\magic.mgc")
             info.append(file_magic.from_file(filename))
             info.append(hashlib.md5(cfile).hexdigest())
+        try:
+            sqlconn = sqlite3.connect("../db/fileinfo.db")
+        except sqlite3.Error, e:
+            print "sqlite connect failed" , "\n", e.args[0]
+        sqlcursor = sqlconn.cursor()
+        try:
+            sqlcursor.execute("insert into base_info (id, name, path, size ,typt ,md5) values(?, ?, ?, ?, ?, ?)", (i, filename, "lalala", info[0], info[1], info[2]))
+            sqlconn.commit()
+            sqlconn.close()
+            print "write data success"
+        except:
+            print "sql exec err"
         return info
 
     '''
@@ -234,13 +242,16 @@ class ScanFile(QtCore.QThread):
     def run(self):
         # import random
         self.chooseScanRule(self.scanrule)
+        cloneYaraData()
         for i in range(len(self.filelist)):
             self.filename = self.filelist[i]
             # time.sleep(random.uniform(0, 0.5)) # 模拟耗时
             # 添加获取文件基本信息函数后
             # 此处可以发送多个参数
+            print i, FlagSet.scansqlcount
+            FlagSet.scansqlcount = FlagSet.scansqlcount + 1
             try:
-                self.infos = self.getFileInfo(str(self.filename).encode('cp936'))
+                self.infos = self.getFileInfo(FlagSet.scansqlcount, str(self.filename).encode('cp936'))
             except:
                 print str(i) + " error"
             self.filetype = self.infos[1]

@@ -15,6 +15,7 @@ from fileinfothread.StartUI import MainWindow as detailwindow
 from menuset.uploadfile import Dialog as UploadDialog
 from menuset.setting import Dialog as SetDialog
 from gobalset import FlagSet
+import sqlite3
 
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
@@ -57,6 +58,8 @@ class MainWindow(QtGui.QMainWindow):
         # self.table.horizontalHeader().setStretchLastSection(True)
         self.table.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.table.setContextMenuPolicy(Qt.Qt.CustomContextMenu)
+
+        FlagSet.scansqlcount = self.table.rowCount() # 为打开窗口不清数据做准备
         
         # 右键菜单信号槽
         self.table.customContextMenuRequested.connect(self.generateMenu)
@@ -276,10 +279,19 @@ class MainWindow(QtGui.QMainWindow):
         # print i
         self.table.setRowCount(i)
         # 或者用insertRow
-        fsize = str(msg2[0]).decode('utf-8')
-        ftype = str(msg2[1]).decode('utf-8')
-        fMD5  = str(msg2[2]).decode('utf-8')
-        p, f  = os.path.split(str(msg).decode('utf-8')) # 分割文件路径与文件名
+        try:
+            sqlconn = sqlite3.connect("../db/fileinfo.db")
+        except sqlite3.Error, e:
+            print "sqlite connect failed" , "\n", e.args[0]
+        sqlcursor = sqlconn.cursor()
+        sqlcursor.execute("select * from base_info where id =?", (int(i-1),))
+        sqlconn.commit()
+        sqlcursor = sqlcursor.fetchone()
+        sqlconn.close()
+        fsize = str(sqlcursor[3]).decode('utf-8')
+        ftype = str(sqlcursor[4]).decode('utf-8')
+        fMD5  = str(sqlcursor[5]).decode('utf-8')
+        p, f  = os.path.split(str(sqlcursor[1]).decode('utf-8')) # 分割文件路径与文件名
         self.table.setItem(i - 1, 0, QtGui.QTableWidgetItem(f))
         self.table.setItem(i - 1, 1, QtGui.QTableWidgetItem(p))
         sizeitem = QtGui.QTableWidgetItem(fsize+"  ")
@@ -288,7 +300,19 @@ class MainWindow(QtGui.QMainWindow):
         self.table.setItem(i - 1, 2, sizeitem)
         self.table.setItem(i - 1, 3, QtGui.QTableWidgetItem(ftype))
         self.table.setItem(i - 1, 7, QtGui.QTableWidgetItem(fMD5))
-        # self.table.setItem(i - 1, 4, QtGui.QTableWidgetItem(str(msg3)))
+        # fsize = str(msg2[0]).decode('utf-8')
+        # ftype = str(msg2[1]).decode('utf-8')
+        # fMD5  = str(msg2[2]).decode('utf-8')
+        # p, f  = os.path.split(str(msg).decode('utf-8')) # 分割文件路径与文件名
+        # self.table.setItem(i - 1, 0, QtGui.QTableWidgetItem(f))
+        # self.table.setItem(i - 1, 1, QtGui.QTableWidgetItem(p))
+        # sizeitem = QtGui.QTableWidgetItem(fsize+"  ")
+        # # 设置单元内容对齐方式
+        # sizeitem.setTextAlignment(Qt.Qt.AlignRight|Qt.Qt.AlignVCenter)
+        # self.table.setItem(i - 1, 2, sizeitem)
+        # self.table.setItem(i - 1, 3, QtGui.QTableWidgetItem(ftype))
+        # self.table.setItem(i - 1, 7, QtGui.QTableWidgetItem(fMD5))
+        # # self.table.setItem(i - 1, 4, QtGui.QTableWidgetItem(str(msg3)))
 
     def updateStatusBar(self):
         pass
@@ -476,6 +500,47 @@ class MainWindow(QtGui.QMainWindow):
         self.rowindex = 0 # 让新元素从第一行开始
         self.ui.progressBar.setValue(0) # 进度条回0
         self.ui.statusbar.showMessage(u"已清空显示列表内容")
+        try:
+            sqlconn = sqlite3.connect("../db/fileinfo.db")
+        except sqlite3.Error, e:
+            print "sqlite connect failed" , "\n", e.args[0]
+        sqlcursor = sqlconn.cursor()
+        sqlcursor.execute("delete from base_info where id >= 0")
+        sqlconn.commit()
+        sqlconn.close()
+        FlagSet.scansqlcount = 0 # 将全局计数flag置0
+
+    '''
+    重写窗口关闭事件
+    '''
+    def closeEvent(self, event):
+        quitbtn = QtGui.QMessageBox()
+        # quitbtn.setButtonText(quitbtn.Yes, u"llaalf")
+        recv = quitbtn.question(self, u"退出", u"是否保存当前信息", \
+                                                        quitbtn.Yes, \
+                                                        quitbtn.No, \
+                                                        quitbtn.Cancel )
+        if recv == quitbtn.No:
+            try:
+                sqlconn = sqlite3.connect("../db/fileinfo.db")
+            except sqlite3.Error, e:
+                print "sqlite connect failed" , "\n", e.args[0]
+            sqlcursor = sqlconn.cursor()
+            sqlcursor.execute("delete from base_info where id >= 0")
+            sqlconn.commit()
+            sqlconn.close()
+        elif recv == quitbtn.Yes:
+            print "saved"
+            pass
+            # 再保存一下scansqlcount计数
+        else:
+            event.ignore()
+
+    '''
+    窗口打开事件
+    '''
+    def showEvent(self, event):
+        pass
 
 
 if __name__ == "__main__":

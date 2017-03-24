@@ -4,18 +4,6 @@ from PyQt4 import QtCore, QtGui
 import time, sys, os
 import magic
 
-# 如果单独执行改为sys.path.append("../../ssma_python2")
-# 如果从scantest执行使用../ssma_python2
-sys.path.append("../ssma_python2")
-from src import colors
-from src.check_file import PEScanner, file_info
-from src.blacklisted_domain_ip import ransomware_and_malware_domain_check
-from src.check import is_malware, is_file_packed, check_crypto, is_antidb_antivm, is_malicious_document
-from src.check_file import PEScanner, file_info
-from src.check_updates import check_internet_connection, download_yara_rules_git
-from src.check_virustotal import virustotal
-from src.file_strings import get_strings
-
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
