@@ -4,7 +4,7 @@ import sys, os
 import socket
 import hashlib
 import virus_total_apis
-from PyQt4 import QtCore, QtGui, Qt
+from PyQt4 import QtCore
 sys.path.append("..")
 from publicfunc.fileanalyze import PEFileAnalize, getFileInfo
 

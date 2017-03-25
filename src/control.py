@@ -6,7 +6,7 @@ import magic, hashlib
 from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto
 from publicfunc.clamav.clamav import CheckClamav
 from publicfunc.fileanalyze import DefaultAnalyze
-from publicfunc.updatedata import cloneYaraData
+from publicfunc.updatedata import UpdateData
 from globalset import FlagSet
 import sqlite3
 
@@ -110,7 +110,8 @@ class CheckFolder(QtCore.QThread):
 扫描操作线程
 '''
 class ScanFile(QtCore.QThread):
-    fileSignal = QtCore.pyqtSignal(int, str, list)
+    fileSignal = QtCore.pyqtSignal(int, str)
+    smsgSignal = QtCore.pyqtSignal(str)
 
     def __init__(self, filelist, scanrule, parent=None):
         super(ScanFile, self).__init__(parent)
@@ -192,6 +193,14 @@ class ScanFile(QtCore.QThread):
     def recvDefaultResult(self):
         print "get default result"
 
+    '''
+    检查yara规则库
+    '''
+    def checkYaraExists(self):
+        self.smsgSignal.emit(u"未检测到Yara规则库，正在下载...")
+        U = UpdateData()
+        U.cloneYaraData()
+
     # 开始yara检测线程
     def startYaraThread(self, filename, filetype, index):
         # return
@@ -244,7 +253,8 @@ class ScanFile(QtCore.QThread):
     def run(self):
         # import random
         self.chooseScanRule(self.scanrule)
-        cloneYaraData()
+        if 1 == self.yaraflag:
+            self.checkYaraExists()
         for i in range(len(self.filelist)):
             self.filename = self.filelist[i]
             # time.sleep(random.uniform(0, 0.5)) # 模拟耗时
@@ -273,7 +283,7 @@ class ScanFile(QtCore.QThread):
                     self.detect = self.startPackThread(self.filename, i)
             print FlagSet.scanstopflag
             if 0 == FlagSet.scanstopflag:
-                self.fileSignal.emit(len(self.filelist), self.filename, self.infos)
+                self.fileSignal.emit(len(self.filelist), self.filename)
                 break
-            self.fileSignal.emit(i+1, self.filename, self.infos)
+            self.fileSignal.emit(i+1, self.filename)
             

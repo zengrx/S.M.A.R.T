@@ -11,9 +11,9 @@ from PyQt4 import QtGui, QtCore, Qt
 from UILib.MS_MainWindow import Ui_MainWindow
 import sys, os, shutil
 from control import CheckFolder, ScanFile
-from fileinfothread.StartUI import MainWindow as detailwindow
-from menuset.uploadfile import Dialog as UploadDialog
 from menuset.setting import Dialog as SetDialog
+from menuset.filedetail import Dialog as DetailDialog
+from menuset.uploadfile import Dialog as UploadDialog
 from globalset import FlagSet
 import sqlite3
 
@@ -102,9 +102,10 @@ class MainWindow(QtGui.QMainWindow):
         self.flist    = [] # uploadfile判断更新滑动窗口
 
         # 其他窗口对象实例
-        self.detailwindow = detailwindow()
+        self.setdialog    = SetDialog() # 设置
+        # self.detailwindow = detailwindow()
+        self.detailDialog = DetailDialog()
         self.uploadDialog = UploadDialog()
-        self.setdialog    = SetDialog()
 
         # 按钮事件信号槽
         QtCore.QObject.connect(self.ui.PB_SelectFolder, QtCore.SIGNAL("clicked()"), self.selectFolder)
@@ -197,6 +198,7 @@ class MainWindow(QtGui.QMainWindow):
                 # 直接连接control中的scanfile线程
                 self.filesThread = ScanFile(self.files, self.rule)
                 self.filesThread.fileSignal.connect(self.updateScanInfo) # 连到更新函数中
+                self.filesThread.smsgSignal.connect(self.updateStatusBar)
                 self.filesThread.start()
         else:
             pass
@@ -253,6 +255,7 @@ class MainWindow(QtGui.QMainWindow):
             # 3月2日更新配合多文件选择使用，暂不修改
             self.scanThread = ScanFile(scanlist, self.rule)
             self.scanThread.fileSignal.connect(self.updateScanInfo) # 连到更新函数中
+            self.scanThread.smsgSignal.connect(self.updateStatusBar)
             self.scanThread.start()
 
     '''
@@ -265,7 +268,7 @@ class MainWindow(QtGui.QMainWindow):
     @文件大小
     @文件MD5
     '''
-    def updateScanInfo(self, num, msg, msg2):
+    def updateScanInfo(self, num, msg):
         showmsg = 'recv result from file: ' + msg
         self.ui.statusbar.showMessage(showmsg)
         # 更新进度条 最大值和当前值放在一起
@@ -300,22 +303,10 @@ class MainWindow(QtGui.QMainWindow):
         self.table.setItem(i - 1, 2, sizeitem)
         self.table.setItem(i - 1, 3, QtGui.QTableWidgetItem(ftype))
         self.table.setItem(i - 1, 7, QtGui.QTableWidgetItem(fMD5))
-        # fsize = str(msg2[0]).decode('utf-8')
-        # ftype = str(msg2[1]).decode('utf-8')
-        # fMD5  = str(msg2[2]).decode('utf-8')
-        # p, f  = os.path.split(str(msg).decode('utf-8')) # 分割文件路径与文件名
-        # self.table.setItem(i - 1, 0, QtGui.QTableWidgetItem(f))
-        # self.table.setItem(i - 1, 1, QtGui.QTableWidgetItem(p))
-        # sizeitem = QtGui.QTableWidgetItem(fsize+"  ")
-        # # 设置单元内容对齐方式
-        # sizeitem.setTextAlignment(Qt.Qt.AlignRight|Qt.Qt.AlignVCenter)
-        # self.table.setItem(i - 1, 2, sizeitem)
-        # self.table.setItem(i - 1, 3, QtGui.QTableWidgetItem(ftype))
-        # self.table.setItem(i - 1, 7, QtGui.QTableWidgetItem(fMD5))
-        # # self.table.setItem(i - 1, 4, QtGui.QTableWidgetItem(str(msg3)))
 
-    def updateStatusBar(self):
-        pass
+    def updateStatusBar(self, msg):
+        print msg + " recv from updatedata class"
+        self.ui.statusbar.showMessage(msg)       
 
     def updateTableMsg(self):
         pass
@@ -442,14 +433,14 @@ class MainWindow(QtGui.QMainWindow):
         if action == item1:
             print u'您选了选项一，当前行文字内容是：',self.table.item(row_num,0).text()
             print ffull
-            filedetail = self.detailwindow
+            filedetail = self.detailDialog
             filedetail.getFileName(ffull)
             filedetail.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
             icon = QtGui.QIcon()
             icon.addPixmap(QtGui.QPixmap(".\UILib\icons\detail_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             filedetail.setWindowIcon(icon)
             filedetail.show()
-
+            
         elif action == item2:
             print u'您选了选项二，当前行文字内容是：',self.table.item(row_num,0).text()
 
