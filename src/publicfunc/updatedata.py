@@ -14,7 +14,7 @@ def cloneYaraData():
     if not os.listdir("rules"):
         print "Downloading Yara-rules..."
         # emit开始下载
-        print git.Git().clone("https://github.com/Yara-Rules/rules")
+        git.Git().clone("https://github.com/Yara-Rules/rules")
         # emit一个下载完成给UI线程
         return
     else:

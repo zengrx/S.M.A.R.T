@@ -14,7 +14,7 @@ from control import CheckFolder, ScanFile
 from fileinfothread.StartUI import MainWindow as detailwindow
 from menuset.uploadfile import Dialog as UploadDialog
 from menuset.setting import Dialog as SetDialog
-from gobalset import FlagSet
+from globalset import FlagSet
 import sqlite3
 
 reload(sys)
@@ -288,9 +288,9 @@ class MainWindow(QtGui.QMainWindow):
         sqlconn.commit()
         sqlcursor = sqlcursor.fetchone()
         sqlconn.close()
-        fsize = str(sqlcursor[3]).decode('utf-8')
-        ftype = str(sqlcursor[4]).decode('utf-8')
-        fMD5  = str(sqlcursor[5]).decode('utf-8')
+        fsize = str(sqlcursor[3])
+        ftype = str(sqlcursor[4])
+        fMD5  = str(sqlcursor[5])
         p, f  = os.path.split(str(sqlcursor[1]).decode('utf-8')) # 分割文件路径与文件名
         self.table.setItem(i - 1, 0, QtGui.QTableWidgetItem(f))
         self.table.setItem(i - 1, 1, QtGui.QTableWidgetItem(p))

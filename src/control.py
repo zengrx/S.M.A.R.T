@@ -7,7 +7,7 @@ from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto
 from publicfunc.clamav.clamav import CheckClamav
 from publicfunc.fileanalyze import DefaultAnalyze
 from publicfunc.updatedata import cloneYaraData
-from gobalset import FlagSet
+from globalset import FlagSet
 import sqlite3
 
 reload(sys)
@@ -58,7 +58,7 @@ class CheckFolder(QtCore.QThread):
             typevalue.append("MPEG")
         if '12' in self.type: # .asm后缀
             typevalue.append(".asm")
-        file_magic = magic.Magic(magic_file="C:\Python27\magic.mgc")
+        file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
         try:
             fmagic = file_magic.from_file(str(filename).encode('cp936'))
 	except:
@@ -137,16 +137,18 @@ class ScanFile(QtCore.QThread):
         with open(filename, 'rb') as f:
             cfile = f.read()
             info.append(os.path.getsize(filename))
-            file_magic = magic.Magic(magic_file="C:\Python27\magic.mgc")
+            file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
             info.append(file_magic.from_file(filename))
             info.append(hashlib.md5(cfile).hexdigest())
         try:
             sqlconn = sqlite3.connect("../db/fileinfo.db")
+            sqlconn.text_factory = str
         except sqlite3.Error, e:
             print "sqlite connect failed" , "\n", e.args[0]
         sqlcursor = sqlconn.cursor()
         try:
-            sqlcursor.execute("insert into base_info (id, name, path, size ,typt ,md5) values(?, ?, ?, ?, ?, ?)", (i, filename, "lalala", info[0], info[1], info[2]))
+            sfilename = filename.decode('cp936') # 解决windows下使用sqlite编码问题
+            sqlcursor.execute("insert into base_info (id, name, path, size ,typt ,md5) values(?, ?, ?, ?, ?, ?)", (i, sfilename, "lalala", info[0], info[1], info[2]))
             sqlconn.commit()
             sqlconn.close()
             print "write data success"
@@ -253,7 +255,7 @@ class ScanFile(QtCore.QThread):
             try:
                 self.infos = self.getFileInfo(FlagSet.scansqlcount, str(self.filename).encode('cp936'))
             except:
-                print str(i) + " error"
+                print str(i) + " error at getfileinfo"
             self.filetype = self.infos[1]
             self.filesize = self.infos[0]
             # file size should less than 100M
