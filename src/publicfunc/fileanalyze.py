@@ -43,21 +43,34 @@ def dataEntropy(data):
 返回MD5 SHA1 SHA256 Size Type
 '''
 def getFileInfo(filename):
-    info = []
+    infoo = [] # origin data
+    infof = [] # format data
     with open(filename, 'rb') as f:
         cfile = f.read()
-        # md5    = 
-        info.append("MD5:\t{}".format(hashlib.md5(cfile).hexdigest()))
+        # 分割文件名与路径
+        p, f  = os.path.split(str(filename).decode('cp936'))
+        # name   =
+        infof.append("Name:\t{}".format(f))
+        # path   =
+        infof.append("Path:\t{}".format(p))
+        # md5    =
+        infoo.append(hashlib.md5(cfile).hexdigest())
+        infof.append("MD5:\t{}".format(hashlib.md5(cfile).hexdigest()))
         # sha1   = 
-        info.append("SHA1:\t{}".format(hashlib.sha1(cfile).hexdigest()))
+        infoo.append(hashlib.sha1(cfile).hexdigest())
+        infof.append("SHA1:\t{}".format(hashlib.sha1(cfile).hexdigest()))
         # sha256 = 
-        info.append("SHA256:\t{}".format(hashlib.sha256(cfile).hexdigest()))
+        infoo.append(hashlib.sha256(cfile).hexdigest())
+        infof.append("SHA256:\t{}".format(hashlib.sha256(cfile).hexdigest()))
         # fsize  = 
-        info.append("Size:\t{} Bytes".format(os.path.getsize(filename)))
+        infoo.append(os.path.getsize(filename))
+        infof.append("Size:\t{} Bytes".format(os.path.getsize(filename)))
+        
         file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
         # ftype  = 
-        info.append("Type:\t{}".format(file_magic.from_file(filename)))
-    return info
+        infoo.append(file_magic.from_file(filename))
+        infof.append("Type:\t{}".format(file_magic.from_file(filename)))
+    return infoo, infof
 
 class PEFileAnalize:
     def __init__(self, filename):

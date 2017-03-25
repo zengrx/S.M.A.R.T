@@ -14,7 +14,7 @@ class FileDetail(QtCore.QThread):
 
     def run(self):
         # 获取文件基本内容
-        baseinfo = getFileInfo(self.filename)
+        useless, baseinfo = getFileInfo(self.filename)
         self.finishSignal.emit(baseinfo)
 
 class PEFileInfo(QtCore.QThread):

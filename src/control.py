@@ -5,7 +5,7 @@ import time, sys, os
 import magic, hashlib
 from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto
 from publicfunc.clamav.clamav import CheckClamav
-from publicfunc.fileanalyze import DefaultAnalyze
+from publicfunc.fileanalyze import getFileInfo, DefaultAnalyze
 from publicfunc.updatedata import UpdateData
 from globalset import FlagSet
 import sqlite3
@@ -132,15 +132,9 @@ class ScanFile(QtCore.QThread):
     '''
     获取文件类型，日期，大小，md5等基本信息
     '''
-    def getFileInfo(self, index, filename):
-        info = []
+    def write2DataBase(self, index, filename):
         i = index - 1
-        with open(filename, 'rb') as f:
-            cfile = f.read()
-            info.append(os.path.getsize(filename))
-            file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
-            info.append(file_magic.from_file(filename))
-            info.append(hashlib.md5(cfile).hexdigest())
+        info, useless = getFileInfo(filename)
         try:
             sqlconn = sqlite3.connect("../db/fileinfo.db")
             sqlconn.text_factory = str
@@ -149,7 +143,7 @@ class ScanFile(QtCore.QThread):
         sqlcursor = sqlconn.cursor()
         try:
             sfilename = filename.decode('cp936') # 解决windows下使用sqlite编码问题
-            sqlcursor.execute("insert into base_info (id, name, path, size ,typt ,md5) values(?, ?, ?, ?, ?, ?)", (i, sfilename, "lalala", info[0], info[1], info[2]))
+            sqlcursor.execute("insert into base_info (id, name, path, size ,typt ,md5) values(?, ?, ?, ?, ?, ?)", (i, sfilename, "lalala", info[3], info[4], info[0]))
             sqlconn.commit()
             sqlconn.close()
             print "write data success"
@@ -263,11 +257,11 @@ class ScanFile(QtCore.QThread):
             print i, FlagSet.scansqlcount
             FlagSet.scansqlcount = FlagSet.scansqlcount + 1
             try:
-                self.infos = self.getFileInfo(FlagSet.scansqlcount, str(self.filename).encode('cp936'))
+                self.infos = self.write2DataBase(FlagSet.scansqlcount, str(self.filename).encode('cp936'))
             except:
-                print str(i) + " error at getfileinfo"
-            self.filetype = self.infos[1]
-            self.filesize = self.infos[0]
+                print str(i) + " error when db operate"
+            self.filetype = self.infos[4]
+            self.filesize = self.infos[3]
             # file size should less than 100M
             if int(self.filesize) < 100*1024*1024:
                 # use default function

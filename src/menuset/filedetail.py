@@ -37,6 +37,7 @@ class Dialog(QtGui.QDialog):
             if "PE32" in n:
                 self.section.finishSignal.connect(self.showSetInfo)
                 self.section.start()
+            n = unicode(n)
             self.widget.addItem(n)
 
     def showAdvInfo(self, msg):

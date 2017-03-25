@@ -79,7 +79,7 @@ class UploadFile(QtCore.QThread):
 
     def run(self):
         print "run"
-        baseinfo = getFileInfo(self.filename)
+        useless, baseinfo = getFileInfo(self.filename)
         infos = ("baseinfo", baseinfo)
         self.finishSignal.emit(2, infos)
         self.checkInternet()

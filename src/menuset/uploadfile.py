@@ -86,6 +86,7 @@ class Dialog(QtGui.QDialog):
         if 2 == index:
             if msg[0] == "baseinfo":
                 for n in msg[1]:
+                    n = unicode(n)
                     self.ui.listWidget.addItem(n)
 
     def addFile2Queue(self, filename):
