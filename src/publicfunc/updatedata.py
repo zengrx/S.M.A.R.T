@@ -1,7 +1,7 @@
 #coding=utf-8
 
 from PyQt4 import QtCore
-import os, sys
+import os, sys, shutil
 import git
 
 class UpdateData(QtCore.QObject):
@@ -10,7 +10,7 @@ class UpdateData(QtCore.QObject):
         QtCore.QObject.__init__(self)
 
     '''
-    从github下载/更新yara数据库
+    从github下载yara规则库库
     '''
     def cloneYaraData(self):
         if not os.path.exists("rules"):
@@ -23,16 +23,18 @@ class UpdateData(QtCore.QObject):
             return
         else:
             print "exists yara data"
-        # else: # 更新yara数据库
-        #     update = QtGui.QMessageBox()
-        #     recv = update.question(u"q", u"r", update.Yes, update.No)
-        #     if recv == update.yes:
-        #         if os.path.exists("rules"):
-        #             shutil.rmtree("rules")
-        #         if os.path.exists("rules_compiled"):
-        #             shutil.rmtree("rules_compiled")
-        #             os.mkdir("rules_compiled")
-        #         download_yara_rules_git()
-        #     else:
-        #         print "donot update"
-        #         pass
+
+    '''
+    更新yara更新库
+    '''
+    def updateYaraData(self):
+        print u"更新规则库"
+        import time
+        time.sleep(10)
+        return
+        if os.path.exists("rules"):
+            shutil.rmtree("rules")
+        if os.path.exists("rules_compiled"):
+            shutil.rmtree("rules_compiled")
+        os.mkdir("rules_compiled")
+        self.cloneYaraData()
