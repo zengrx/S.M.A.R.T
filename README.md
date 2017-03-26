@@ -25,3 +25,8 @@ python代码里使用Magic时 指明magic信息文件，否则会报错
 - 需要注意在linux版本与windows版本中编码的不同
 
 - 目前已使用sqlite3为工程数据库，也需要注意编码问题
+
+--------
+- 发布版本    
+目前使用pyinstaller发布windows64位（PE32+）版本成功
+命令为 pyinstaller -w -p path/to/python27; -i path/to/main_icon.ico main.py
