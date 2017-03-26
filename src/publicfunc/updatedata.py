@@ -2,7 +2,7 @@
 
 from PyQt4 import QtCore
 import os, sys, shutil
-import git
+# import git
 
 class UpdateData(QtCore.QObject):
 
@@ -19,7 +19,7 @@ class UpdateData(QtCore.QObject):
             os.mkdir("rules_compiled")
         if not os.listdir("rules"):
             print "Downloading Yara-rules..."
-            git.Git().clone("https://github.com/Yara-Rules/rules")
+            # git.Git().clone("https://github.com/Yara-Rules/rules")
             return
         else:
             print "exists yara data"

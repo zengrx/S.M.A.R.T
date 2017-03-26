@@ -305,7 +305,7 @@ class MainWindow(QtGui.QMainWindow):
         self.table.setItem(i - 1, 7, QtGui.QTableWidgetItem(fMD5))
 
     def updateStatusBar(self, msg):
-        print msg + " recv from updatedata class"
+        print unicode(msg) + " recv from updatedata class"
         self.ui.statusbar.showMessage(msg)       
 
     def updateTableMsg(self):

@@ -1,0 +1,1 @@
+this folder for cache file, such as update yara and clamav data.

@@ -58,7 +58,7 @@ class CheckFolder(QtCore.QThread):
             typevalue.append("MPEG")
         if '12' in self.type: # .asm后缀
             typevalue.append(".asm")
-        file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
+        file_magic = magic.Magic(magic_file="../libs/magic.mgc")
         try:
             fmagic = file_magic.from_file(str(filename).encode('cp936'))
 	except:
@@ -254,7 +254,7 @@ class ScanFile(QtCore.QThread):
             # time.sleep(random.uniform(0, 0.5)) # 模拟耗时
             # 添加获取文件基本信息函数后
             # 此处可以发送多个参数
-            print i, FlagSet.scansqlcount
+            # print i, FlagSet.scansqlcount
             FlagSet.scansqlcount = FlagSet.scansqlcount + 1
             try:
                 self.infos = self.write2DataBase(FlagSet.scansqlcount, str(self.filename).encode('cp936'))
@@ -265,7 +265,7 @@ class ScanFile(QtCore.QThread):
             # file size should less than 100M
             if int(self.filesize) < 100*1024*1024:
                 # use default function
-                # self.dection = self.startDefaultThread(self.filename, self.filetype, i)
+                self.dection = self.startDefaultThread(self.filename, self.filetype, i)
                 # use yara rule
                 if 1 == self.yaraflag:
                     self.detect = self.startYaraThread(self.filename, self.filetype, i)

@@ -40,7 +40,8 @@ def dataEntropy(data):
 
 '''
 获取文件详细信息
-返回MD5 SHA1 SHA256 Size Type
+infoo:原始数据 返回MD5 SHA1 SHA256 Size Type
+infof:格式化   返回Name Path ...
 '''
 def getFileInfo(filename):
     infoo = [] # origin data
@@ -66,7 +67,7 @@ def getFileInfo(filename):
         infoo.append(os.path.getsize(filename))
         infof.append("Size:\t{} Bytes".format(os.path.getsize(filename)))
         
-        file_magic = magic.Magic(magic_file="D:\Python27\magic.mgc")
+        file_magic = magic.Magic(magic_file="../libs/magic.mgc")
         # ftype  = 
         infoo.append(file_magic.from_file(filename))
         infof.append("Type:\t{}".format(file_magic.from_file(filename)))
@@ -206,24 +207,34 @@ class PEFileAnalize:
             return filedate
 
     '''
+    检查文件入口点
+    '''
+    def checkEntryPoint(self):
+        return hex(self.pe.OPTIONAL_HEADER.AddressOfEntryPoint)
+
+    '''
     检查文件导入表内容
+    返回导入表{键-值}:{dll-API}
     '''
     def checkFileImports(self):
-        ret1 = []
-        ret2 = []
+        ret1 = [] # api信息
+        ret2 = [] # alert信息
+        ret3 = {} # {dll-API}信息
         if not hasattr(self.pe, 'DIRECTORY_ENTRY_IMPORT'):
             return ret1
         for lib in self.pe.DIRECTORY_ENTRY_IMPORT:
             for imp in lib.imports:
                 ret1.append(imp.name)
-        for n in ret1:
-            if n:
-                n = n.decode()
-                if any(map(n.startswith, self.alerts.keys())):
-                    for a in self.alerts:
-                        if n.startswith(a):
-                            ret2.append("{}^{}".format(n, self.alerts.get(a)))
-        return ret2
+            ret3[lib.dll] = ret1
+        return ret3
+        # for n in ret1:
+        #     if n:
+        #         n = n.decode()
+        #         if any(map(n.startswith, self.alerts.keys())):
+        #             for a in self.alerts:
+        #                 if n.startswith(a):
+        #                     ret2.append("{}^{}".format(n, self.alerts.get(a)))
+        # return ret2
 
     '''
     检查pe文件节信息
@@ -309,10 +320,11 @@ class DefaultAnalyze(QtCore.QThread):
 
     def test(self):
         peAnalize = PEFileAnalize(self.filename)
-        print peAnalize.checkFileDate()
-        print peAnalize.checkFileHeader()
+        print peAnalize.checkEntryPoint()
+        # print peAnalize.checkFileDate()
+        # print peAnalize.checkFileHeader()
         print peAnalize.checkFileImports()
-        print peAnalize.checkFileSections()
+        # print peAnalize.checkFileSections()
 
     def run(self):
         print "run function in defaultanalyze class"
