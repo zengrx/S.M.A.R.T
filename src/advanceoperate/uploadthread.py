@@ -17,7 +17,7 @@ class UploadFile(QtCore.QThread):
     '''
     def __init__(self, filename, apikey, parent=None):
         super(UploadFile, self).__init__(parent)
-        self.filename = str(filename).encode('cp936')
+        self.filename = str(filename)
         self.apikey   = apikey
         print self.filename
 

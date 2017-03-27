@@ -49,7 +49,7 @@ def getFileInfo(filename):
     with open(filename, 'rb') as f:
         cfile = f.read()
         # 分割文件名与路径
-        p, f  = os.path.split(str(filename).decode('cp936'))
+        p, f  = os.path.split(str(filename))
         # name   =
         infof.append("Name:\t{}".format(f))
         # path   =
@@ -67,10 +67,10 @@ def getFileInfo(filename):
         infoo.append(os.path.getsize(filename))
         infof.append("Size:\t{} Bytes".format(os.path.getsize(filename)))
         
-        file_magic = magic.Magic(magic_file="../libs/magic.mgc")
+        # file_magic = magic.Magic(magic_file="../libs/magic.mgc")
         # ftype  = 
-        infoo.append(file_magic.from_file(filename))
-        infof.append("Type:\t{}".format(file_magic.from_file(filename)))
+        infoo.append(magic.from_file(filename))
+        infof.append("Type:\t{}".format(magic.from_file(filename)))
     return infoo, infof
 
 class PEFileAnalize:

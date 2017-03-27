@@ -10,7 +10,7 @@ class FileDetail(QtCore.QThread):
 
     def __init__(self, filename, parent=None):
         super(FileDetail, self).__init__(parent)
-        self.filename = str(filename).encode('cp936')
+        self.filename = str(filename)
 
     def run(self):
         # 获取文件基本内容
@@ -22,7 +22,7 @@ class PEFileInfo(QtCore.QThread):
 
     def __init__(self, filename, parent=None):
         super(PEFileInfo, self).__init__(parent)
-        self.filename = str(filename).encode('cp936')
+        self.filename = str(filename)
 
     def getPEInfo(self):
         pefile  = PEFileAnalize(self.filename)
