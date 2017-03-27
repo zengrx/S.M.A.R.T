@@ -18,7 +18,6 @@ sys.setdefaultencoding( "utf-8" )
 '''
 class CheckFolder(QtCore.QThread):
     numberSignal = QtCore.pyqtSignal(int, str)
-    valueSignal  = QtCore.pyqtSignal(int, list)
 
     def __init__(self, cdir, ctype, parent=None):
         super(CheckFolder, self).__init__(parent)
@@ -58,11 +57,11 @@ class CheckFolder(QtCore.QThread):
             typevalue.append("MPEG")
         if '12' in self.type: # .asm后缀
             typevalue.append(".asm")
-        file_magic = magic.Magic(magic_file="../libs/magic.mgc")
+        # file_magic = magic.Magic(magic_file="../libs/magic.mgc")
         try:
-            fmagic = file_magic.from_file(str(filename).encode('cp936'))
-	except:
-	    print "maigc error {}".format(str(filename).encode('cp936'))
+            fmagic = magic.from_file(str(filename))
+        except:
+            print "maigc error {}".format(str(filename))
         extension = os.path.splitext(filename)[1]
         # 匹配文件类型或后缀名
         flag = 0
@@ -73,6 +72,13 @@ class CheckFolder(QtCore.QThread):
             if x in fmagic or x in extension:
                 flag += 1
         return flag
+    
+    def writeInit2DB(self, filename, index, sqlconn):
+        i = index
+        self.filename = filename
+        sqlcursor = sqlconn.cursor()
+        sfilename = self.filename # 解决windows下使用sqlite编码问题
+        sqlcursor.execute("insert into base_info (id, name, path) values(?, ?, ?)", (int(i), sfilename, "lalal"))
             
     #重写的run方法
     def run(self):
@@ -82,6 +88,11 @@ class CheckFolder(QtCore.QThread):
         result = [] # test print all files
         i = 0 # number of files
         j = 0 # number of dirs
+        sqlindex = FlagSet.scansqlcount # 数据库索引基址+本次插入索引
+        try:
+            sqlconn = sqlite3.connect("../db/fileinfo.db")
+        except sqlite3.Error, e:
+            print "sqlite connect failed" , "\n", e.args[0]        
         for root, dirs, files in os.walk(self.dir, topdown=True):
             if 0 == FlagSet.scanstopflag:
                 print "stopflag"
@@ -89,22 +100,21 @@ class CheckFolder(QtCore.QThread):
             for di in dirs:
                 j = j + 1
                 # print os.path.join(root, di)
-            
             for fl in files:
                 # print os.path.join(root, fl)
                 self.filename = os.path.join(root, fl)
                 if self.chooseFileType(self.filename) > 0:
-                    result.append(self.filename)
-                    # time.sleep(3)
-                    # self.numberSignal.emit(3, str(fl))
-                    i = i + 1
-
+                    self.writeInit2DB(self.filename, sqlindex, sqlconn)
+                    sqlindex +=  1
+                    i += 1
+        sqlconn.commit()
+        sqlconn.close()
         print "(origin)dirs: ",  j
         print "(origin)files: ", i
         # 发送初始化信息
         self.numberSignal.emit(1, str(j))  # dirs
         self.numberSignal.emit(2, str(i))  # files
-        self.valueSignal.emit(3, result) # filename
+        self.numberSignal.emit(3, "start analysis")  # start analysis signal
 
 '''
 扫描操作线程
@@ -115,7 +125,7 @@ class ScanFile(QtCore.QThread):
 
     def __init__(self, filelist, scanrule, parent=None):
         super(ScanFile, self).__init__(parent)
-        self.filelist = filelist # 从UI线程传回的文件名列表
+        self.filelist = filelist # 从UI线程传回的文件名列表-文件个数
         self.scanrule = scanrule # 从UI线程传回的扫描规则策略
         self.filename = '' # 文件名
         self.filetype = '' # 文件类型
@@ -130,7 +140,26 @@ class ScanFile(QtCore.QThread):
         self.whitflag = 0
 
     '''
-    获取文件类型，日期，大小，md5等基本信息
+    获取文件名信息
+    '''
+    def readFromDataBase(self, index):
+        i = index - 1
+        try:
+            sqlcoon = sqlite3.connect("../db/fileinfo.db")
+        except sqlite3.Error,e :
+            print "sqlite connect failed" , "\n", e.args[0]
+        sqlcursor = sqlcoon.cursor()
+        try:
+            sqlcursor.execute("select name from base_info where id =?", (int(i),))
+            sqlcoon.commit()
+            sqlcursor = sqlcursor.fetchone()
+            sqlcoon.close()
+            return sqlcursor[0]
+        except:
+            print "error when read db data"
+
+    '''
+    写入文件类型，日期，大小，md5等基本信息
     '''
     def write2DataBase(self, index, filename):
         i = index - 1
@@ -142,11 +171,10 @@ class ScanFile(QtCore.QThread):
             print "sqlite connect failed" , "\n", e.args[0]
         sqlcursor = sqlconn.cursor()
         try:
-            sfilename = filename.decode('cp936') # 解决windows下使用sqlite编码问题
-            sqlcursor.execute("insert into base_info (id, name, path, size ,typt ,md5) values(?, ?, ?, ?, ?, ?)", (i, sfilename, "lalala", info[3], info[4], info[0]))
+            sfilename = filename # 解决windows下使用sqlite编码问题
+            sqlcursor.execute("update base_info set size=? ,typt=? ,md5=? where id=?", (info[3], info[4], info[0], i))
             sqlconn.commit()
             sqlconn.close()
-            print "write data success"
         except:
             print "sql exec err"
         return info
@@ -176,7 +204,7 @@ class ScanFile(QtCore.QThread):
             self.whitflag = 1
 
     def startDefaultThread(self, filename, filetype, index):
-        filename = filename.encode('cp936')
+        filename = filename
         typepe = 'PE32'
         if typepe in filetype:
             self.checkdefault = DefaultAnalyze(filename, index)
@@ -198,7 +226,7 @@ class ScanFile(QtCore.QThread):
     # 开始yara检测线程
     def startYaraThread(self, filename, filetype, index):
         # return
-        filename = filename.encode('cp936')
+        filename = filename
         typepe   = 'PE32' # PE文件
         typesh   = 'text' # 文本&脚本文件
         if typepe in filetype:
@@ -227,7 +255,7 @@ class ScanFile(QtCore.QThread):
     '''
     def startClamThread(self, filename, index):
         print "use clamav signature"
-        filename = filename.encode('cp936')
+        filename = filename
         self.checkClamThread = CheckClamav(filename)
         self.checkClamThread.valueSignal.connect(self.recvClamResult)
         self.checkClamThread.start()
@@ -238,7 +266,7 @@ class ScanFile(QtCore.QThread):
 
     def startPackThread(self, filename, index):
         print "start check pack"
-        filename = filename.encode('cp936')
+        filename = filename
         self.checkPackThread = CheckPacker(filename, index)
         self.checkPackThread.valueSignal.connect(self.recvYaraResult)
         self.checkPackThread.start()
@@ -249,15 +277,35 @@ class ScanFile(QtCore.QThread):
         self.chooseScanRule(self.scanrule)
         if 1 == self.yaraflag:
             self.checkYaraExists()
-        for i in range(len(self.filelist)):
-            self.filename = self.filelist[i]
+        # 判断来自文件夹or文件选择
+        # 文件选择发送list信号
+        if isinstance(self.filelist, list):
+            print "it's a list"
+            sqlindex = FlagSet.scansqlcount
+            try:
+                sqlconn = sqlite3.connect("../db/fileinfo.db")
+            except sqlite3.Error, e:
+                print "sqlite connect failed" , "\n", e.args[0]
+            for i in range(len(self.filelist)):
+                self.filename = self.filelist[i]
+                print self.filename
+                sqlcursor = sqlconn.cursor()
+                sfilename = self.filename # 解决windows下使用sqlite编码问题
+                sqlcursor.execute("insert into base_info (id, name, path) values(?, ?, ?)", (int(sqlindex), sfilename, "lalal"))
+                sqlindex += 1
+            sqlconn.commit()
+            sqlconn.close()
+            self.filelist = len(self.filelist)
+        for i in range(self.filelist):
+            # self.filename = self.filelist[i]
             # time.sleep(random.uniform(0, 0.5)) # 模拟耗时
             # 添加获取文件基本信息函数后
             # 此处可以发送多个参数
             # print i, FlagSet.scansqlcount
             FlagSet.scansqlcount = FlagSet.scansqlcount + 1
             try:
-                self.infos = self.write2DataBase(FlagSet.scansqlcount, str(self.filename).encode('cp936'))
+                self.filename = self.readFromDataBase(FlagSet.scansqlcount)
+                self.infos = self.write2DataBase(FlagSet.scansqlcount, str(self.filename))
             except:
                 print str(i) + " error when db operate"
             self.filetype = self.infos[4]
@@ -275,9 +323,9 @@ class ScanFile(QtCore.QThread):
                     self.detect = self.startClamThread(self.filename, i)
                 if 1 == self.Packflag:
                     self.detect = self.startPackThread(self.filename, i)
-            print FlagSet.scanstopflag
+            # print FlagSet.scanstopflag
             if 0 == FlagSet.scanstopflag:
-                self.fileSignal.emit(len(self.filelist), self.filename)
+                self.fileSignal.emit(self.filelist, self.filename)
                 break
             self.fileSignal.emit(i+1, self.filename)
             

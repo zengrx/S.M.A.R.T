@@ -176,6 +176,7 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.progressBar.reset()
         self.ui.statusbar.showMessage(u"正在初始化...")
         FlagSet.scanstopflag = 1 # 恢复停止标识
+        FlagSet.scansqlcount = self.table.rowCount()
         # 设置左右滑动效果
         # 进度条最大最小值都为0
         self.ui.progressBar.setMaximum(0)
@@ -189,7 +190,6 @@ class MainWindow(QtGui.QMainWindow):
                 self.folderThread = CheckFolder(self.folder, self.type)
                 # two signals connect one slot
                 self.folderThread.numberSignal.connect(self.recvInitSingal)
-                self.folderThread.valueSignal.connect(self.recvInitSingal)
                 #执行run方法
                 self.folderThread.start()
         elif 1 == self.scanflag: # 选择文件
@@ -207,6 +207,15 @@ class MainWindow(QtGui.QMainWindow):
         print "stopscan"
         self.ui.statusbar.showMessage(u"手动结束扫描，等待线程退出")
         FlagSet.scanstopflag = 0
+        try:
+            sqlconn = sqlite3.connect("../db/fileinfo.db")
+        except sqlite3.Error, e:
+            print "sqlite connect failed" , "\n", e.args[0]
+        sqlcursor = sqlconn.cursor()
+        sqlcursor.execute("delete from base_info where md5 is NULL")#> ?", str(self.table.rowCount()),) <-warring
+        sqlconn.commit()
+        sqlconn.close()
+        print "delete no value data over"
     
     '''
     扫描前准备函数
@@ -253,7 +262,8 @@ class MainWindow(QtGui.QMainWindow):
             # 扫描线程准备工作 第一版 发列表
             # 下一版可以考虑不发文件名list
             # 3月2日更新配合多文件选择使用，暂不修改
-            self.scanThread = ScanFile(scanlist, self.rule)
+            # 3月27日更改为读写数据库
+            self.scanThread = ScanFile(int(self.filenum), self.rule)
             self.scanThread.fileSignal.connect(self.updateScanInfo) # 连到更新函数中
             self.scanThread.smsgSignal.connect(self.updateStatusBar)
             self.scanThread.start()
@@ -505,6 +515,9 @@ class MainWindow(QtGui.QMainWindow):
     重写窗口关闭事件
     '''
     def closeEvent(self, event):
+        # 无数据时直接推出
+        if 0 == FlagSet.scansqlcount:
+            return
         quitbtn = QtGui.QMessageBox()
         # quitbtn.setButtonText(quitbtn.Yes, u"llaalf")
         recv = quitbtn.question(self, u"退出", u"是否保存当前信息", \
