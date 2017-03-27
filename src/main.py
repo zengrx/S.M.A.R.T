@@ -49,6 +49,10 @@ class MainWindow(QtGui.QMainWindow):
         # 下拉菜单
         self.cbbox = self.ui.comboBox
 
+        # 初始按键不可用
+        self.ui.PB_Start.setEnabled(False)
+        self.ui.PB_End.setEnabled(False)
+
         # 设置tablewdiget属性
         # 自动适配header宽度，效果不好后期改适配最后一列
         # setStretchLastSection已在ui文件中设置 
@@ -165,6 +169,8 @@ class MainWindow(QtGui.QMainWindow):
                 self.ui.statusbar.showMessage(u"操作取消")
         else:
             pass
+        # 选择完成后激活开始按键
+        self.ui.PB_Start.setEnabled(True)
             
     '''
     扫描器起始
@@ -173,10 +179,22 @@ class MainWindow(QtGui.QMainWindow):
     需要添加类似的调度函数
     '''
     def startScan(self):
+        self.ui.PB_Start.setEnabled(False)
+        self.ui.PB_Clear.setEnabled(False)
+        self.ui.PB_End.setEnabled(True)
         self.ui.progressBar.reset()
         self.ui.statusbar.showMessage(u"正在初始化...")
         FlagSet.scanstopflag = 1 # 恢复停止标识
         FlagSet.scansqlcount = self.table.rowCount()
+        try:
+            sqlconn = sqlite3.connect("../db/fileinfo.db")
+        except sqlite3.Error, e:
+            print "sqlite connect failed" , "\n", e.args[0]
+        sqlcursor = sqlconn.cursor()
+        sqlcursor.execute("delete from base_info where md5 is NULL")#> ?", str(self.table.rowCount()),) <-warring
+        sqlconn.commit()
+        sqlconn.close()
+        print "delete no value data over"
         # 设置左右滑动效果
         # 进度条最大最小值都为0
         self.ui.progressBar.setMaximum(0)
@@ -205,17 +223,24 @@ class MainWindow(QtGui.QMainWindow):
 
     def stopScan(self):
         print "stopscan"
+        self.ui.PB_Start.setEnabled(True)
+        self.ui.PB_Clear.setEnabled(True)
+        self.ui.PB_End.setEnabled(False)
         self.ui.statusbar.showMessage(u"手动结束扫描，等待线程退出")
         FlagSet.scanstopflag = 0
-        try:
-            sqlconn = sqlite3.connect("../db/fileinfo.db")
-        except sqlite3.Error, e:
-            print "sqlite connect failed" , "\n", e.args[0]
-        sqlcursor = sqlconn.cursor()
-        sqlcursor.execute("delete from base_info where md5 is NULL")#> ?", str(self.table.rowCount()),) <-warring
-        sqlconn.commit()
-        sqlconn.close()
-        print "delete no value data over"
+        # if 0 == self.ui.progressBar.maximum():
+        #     print u"在初始化时结束扫描"
+        #     # 删除没有初始化没有显示的数据
+        #     # 与update分开是为了同步线程对数据库的操作 
+        #     try:
+        #         sqlconn = sqlite3.connect("../db/fileinfo.db")
+        #     except sqlite3.Error, e:
+        #         print "sqlite connect failed" , "\n", e.args[0]
+        #     sqlcursor = sqlconn.cursor()
+        #     sqlcursor.execute("delete from base_info where id>=?", str(self.table.rowCount()),) #<-warring
+        #     sqlconn.commit()
+        #     sqlconn.close()
+        #     print "delete no value data over"
     
     '''
     扫描前准备函数
@@ -286,6 +311,16 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.progressBar.setValue(num)
         if int(self.filenum) == num:
             self.ui.statusbar.showMessage(u"扫描结束")
+            # 删除没有update的数据
+            # try:
+            #     sqlconn = sqlite3.connect("../db/fileinfo.db")
+            # except sqlite3.Error, e:
+            #     print "sqlite connect failed" , "\n", e.args[0]
+            # sqlcursor = sqlconn.cursor()
+            # sqlcursor.execute("delete from base_info where md5 is NULL")#> ?", str(self.table.rowCount()),) <-warring
+            # sqlconn.commit()
+            # sqlconn.close()
+            # print "delete no value data over"
         # 更新tablewidget
         self.rowindex = self.rowindex + 1
         i = self.rowindex

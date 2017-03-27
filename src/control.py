@@ -57,11 +57,11 @@ class CheckFolder(QtCore.QThread):
             typevalue.append("MPEG")
         if '12' in self.type: # .asm后缀
             typevalue.append(".asm")
-        # file_magic = magic.Magic(magic_file="../libs/magic.mgc")
+        file_magic = magic.Magic(magic_file="../libs/magic.mgc")
         try:
-            fmagic = magic.from_file(str(filename))
+            fmagic = file_magic.from_file(str(filename).encode('cp936'))
         except:
-            print "maigc error {}".format(str(filename))
+            print "maigc error {}".format(str(filename).encode('cp936'))
         extension = os.path.splitext(filename)[1]
         # 匹配文件类型或后缀名
         flag = 0
@@ -166,12 +166,12 @@ class ScanFile(QtCore.QThread):
         info, useless = getFileInfo(filename)
         try:
             sqlconn = sqlite3.connect("../db/fileinfo.db")
-            sqlconn.text_factory = str
+            # sqlconn.text_factory = str
         except sqlite3.Error, e:
             print "sqlite connect failed" , "\n", e.args[0]
         sqlcursor = sqlconn.cursor()
         try:
-            sfilename = filename # 解决windows下使用sqlite编码问题
+            sfilename = filename.decode('cp936') # 解决windows下使用sqlite编码问题
             sqlcursor.execute("update base_info set size=? ,typt=? ,md5=? where id=?", (info[3], info[4], info[0], i))
             sqlconn.commit()
             sqlconn.close()
@@ -204,7 +204,7 @@ class ScanFile(QtCore.QThread):
             self.whitflag = 1
 
     def startDefaultThread(self, filename, filetype, index):
-        filename = filename
+        filename = filename.encode('cp936')
         typepe = 'PE32'
         if typepe in filetype:
             self.checkdefault = DefaultAnalyze(filename, index)
@@ -226,7 +226,7 @@ class ScanFile(QtCore.QThread):
     # 开始yara检测线程
     def startYaraThread(self, filename, filetype, index):
         # return
-        filename = filename
+        filename = filename.encode('cp936')
         typepe   = 'PE32' # PE文件
         typesh   = 'text' # 文本&脚本文件
         if typepe in filetype:
@@ -255,7 +255,7 @@ class ScanFile(QtCore.QThread):
     '''
     def startClamThread(self, filename, index):
         print "use clamav signature"
-        filename = filename
+        filename = filename.encode('cp936')
         self.checkClamThread = CheckClamav(filename)
         self.checkClamThread.valueSignal.connect(self.recvClamResult)
         self.checkClamThread.start()
@@ -266,7 +266,7 @@ class ScanFile(QtCore.QThread):
 
     def startPackThread(self, filename, index):
         print "start check pack"
-        filename = filename
+        filename = filename.encode('cp936')
         self.checkPackThread = CheckPacker(filename, index)
         self.checkPackThread.valueSignal.connect(self.recvYaraResult)
         self.checkPackThread.start()
@@ -305,15 +305,17 @@ class ScanFile(QtCore.QThread):
             FlagSet.scansqlcount = FlagSet.scansqlcount + 1
             try:
                 self.filename = self.readFromDataBase(FlagSet.scansqlcount)
-                self.infos = self.write2DataBase(FlagSet.scansqlcount, str(self.filename))
+                print self.filename
+                self.infos = self.write2DataBase(FlagSet.scansqlcount, str(self.filename).encode('cp936'))
             except:
                 print str(i) + " error when db operate"
+                return
             self.filetype = self.infos[4]
             self.filesize = self.infos[3]
             # file size should less than 100M
             if int(self.filesize) < 100*1024*1024:
                 # use default function
-                self.dection = self.startDefaultThread(self.filename, self.filetype, i)
+                # self.dection = self.startDefaultThread(self.filename, self.filetype, i)
                 # use yara rule
                 if 1 == self.yaraflag:
                     self.detect = self.startYaraThread(self.filename, self.filetype, i)
@@ -325,6 +327,7 @@ class ScanFile(QtCore.QThread):
                     self.detect = self.startPackThread(self.filename, i)
             # print FlagSet.scanstopflag
             if 0 == FlagSet.scanstopflag:
+                # 发送filelist长度在ui线程中标记结束
                 self.fileSignal.emit(self.filelist, self.filename)
                 break
             self.fileSignal.emit(i+1, self.filename)
