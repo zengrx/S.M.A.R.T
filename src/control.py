@@ -297,6 +297,8 @@ class ScanFile(QtCore.QThread):
             sqlconn.close()
             self.filelist = len(self.filelist)
         for i in range(self.filelist):
+            import random
+            time.sleep(random.uniform(0, 0.3))
             # self.filename = self.filelist[i]
             # time.sleep(random.uniform(0, 0.5)) # 模拟耗时
             # 添加获取文件基本信息函数后
@@ -305,7 +307,7 @@ class ScanFile(QtCore.QThread):
             FlagSet.scansqlcount = FlagSet.scansqlcount + 1
             try:
                 self.filename = self.readFromDataBase(FlagSet.scansqlcount)
-                print self.filename
+                # print self.filename
                 self.infos = self.write2DataBase(FlagSet.scansqlcount, str(self.filename).encode('cp936'))
             except:
                 print str(i) + " error when db operate"

@@ -63,8 +63,9 @@ class MainWindow(QtGui.QMainWindow):
         self.table.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.table.setContextMenuPolicy(Qt.Qt.CustomContextMenu)
 
-        FlagSet.scansqlcount = self.table.rowCount() # 为打开窗口不清数据做准备
-        
+        # tablewidget信号槽--排序
+        self.table.horizontalHeader().sectionClicked.connect(self.tableHeaderEvent)
+         
         # 右键菜单信号槽
         self.table.customContextMenuRequested.connect(self.generateMenu)
 
@@ -311,18 +312,8 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.progressBar.setValue(num)
         if int(self.filenum) == num:
             self.ui.statusbar.showMessage(u"扫描结束")
-            # 删除没有update的数据
-            # try:
-            #     sqlconn = sqlite3.connect("../db/fileinfo.db")
-            # except sqlite3.Error, e:
-            #     print "sqlite connect failed" , "\n", e.args[0]
-            # sqlcursor = sqlconn.cursor()
-            # sqlcursor.execute("delete from base_info where md5 is NULL")#> ?", str(self.table.rowCount()),) <-warring
-            # sqlconn.commit()
-            # sqlconn.close()
-            # print "delete no value data over"
         # 更新tablewidget
-        self.rowindex = self.rowindex + 1
+        self.rowindex = FlagSet.scansqlcount
         i = self.rowindex
         # print i
         self.table.setRowCount(i)
@@ -355,6 +346,28 @@ class MainWindow(QtGui.QMainWindow):
 
     def updateTableMsg(self):
         pass
+
+    '''
+    初始化时从数据库中读取内容并更新
+    msg:数据库查询返回元组
+    '''
+    def updateFromDBInit(self, msg):
+        info  = msg
+        index = info[0] + 1 # index标记
+        self.table.setRowCount(index)
+        p, f  = os.path.split(str(info[1]).decode('utf-8'))
+        size  = str(info[3])
+        ftype = str(info[4])
+        md5   = str(info[5])
+        index -= 1
+        # self.table.setItem(index - 1, 0, QtGui.QTableWidgetItem(f))
+        self.table.setItem(index, 0, QtGui.QTableWidgetItem(f))
+        self.table.setItem(index, 1, QtGui.QTableWidgetItem(p))
+        sizeitem = QtGui.QTableWidgetItem(size+"  ")
+        sizeitem.setTextAlignment(Qt.Qt.AlignRight|Qt.Qt.AlignVCenter)
+        self.table.setItem(index, 2, QtGui.QTableWidgetItem(sizeitem))
+        self.table.setItem(index, 3, QtGui.QTableWidgetItem(ftype))
+        self.table.setItem(index, 7, QtGui.QTableWidgetItem(md5))
 
     '''
     checkbox事件
@@ -526,6 +539,36 @@ class MainWindow(QtGui.QMainWindow):
             return
 
     '''
+    表头点击事件
+    index:表头section索引值
+    '''
+    def tableHeaderEvent(self, index):
+        if 0 == index:
+            print u"按文件名排序"
+            self.table.sortByColumn(0)
+        elif 1 == index:
+            print u"按文件路径排序"
+            self.table.sortByColumn(1)
+        elif 2 == index:
+            print u"按文件大小排序，单位Bytes"
+            # 使用sort方法时将以qstirng方式排序
+        elif 3 == index:
+            print u"按文件类型排序"
+            self.table.sortByColumn(3)
+        elif 4 == index:
+            print u"按扫描结果排序"
+
+        elif 5 == index:
+            print u"按用户标记排序"
+
+        elif 6 == index:
+            print u"按分析日期排序"
+
+        else:
+            print "MD5"
+            pass
+
+    '''
     清空tablewidget内容
     '''
     def clearTableWidget(self):
@@ -550,7 +593,7 @@ class MainWindow(QtGui.QMainWindow):
     重写窗口关闭事件
     '''
     def closeEvent(self, event):
-        # 无数据时直接推出
+        # 无数据时直接退出
         if 0 == FlagSet.scansqlcount:
             return
         quitbtn = QtGui.QMessageBox()
@@ -579,7 +622,18 @@ class MainWindow(QtGui.QMainWindow):
     窗口打开事件
     '''
     def showEvent(self, event):
-        pass
+        try:
+            sqlconn = sqlite3.connect("../db/fileinfo.db")
+        except sqlite3.Error, e:
+            print "sqlite connect failed" , "\n", e.args[0]
+        sqlcursor = sqlconn.cursor()
+        sqlcursor.execute("select * from base_info where md5 not NULL")
+        sqlconn.commit()
+        for raw in sqlcursor:
+            self.updateFromDBInit(raw)
+        sqlconn.close()
+        print self.table.rowCount()
+        FlagSet.scansqlcount = self.table.rowCount() # 为打开窗口不清数据做准备
 
 
 if __name__ == "__main__":
