@@ -18,17 +18,27 @@ class FileDetail(QtCore.QThread):
         self.finishSignal.emit(baseinfo)
 
 class PEFileInfo(QtCore.QThread):
-    finishSignal = QtCore.pyqtSignal(list)
+    sectionSignal = QtCore.pyqtSignal(list)
+    importSignal  = QtCore.pyqtSignal(dict)
 
     def __init__(self, filename, parent=None):
         super(PEFileInfo, self).__init__(parent)
         self.filename = str(filename).encode('cp936')
 
-    def getPEInfo(self):
+    # 处理PE节
+    def getSetInfo(self):
         pefile  = PEFileAnalize(self.filename)
-        secinfo = pefile.checkFileSections()
-        return secinfo
+        setinfo = pefile.checkFileSections()
+        return setinfo
+    
+    # 处理导入表
+    def getImpInfo(self):
+        pefile  = PEFileAnalize(self.filename)
+        impinfo = pefile.checkFileImports()
+        return impinfo
 
     def run(self):
         print "pefile info from thread"
-        self.finishSignal.emit(self.getPEInfo())
+        # 处理PE节时速度较慢
+        self.importSignal.emit(self.getImpInfo())
+        self.sectionSignal.emit(self.getSetInfo())

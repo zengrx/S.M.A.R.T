@@ -65,6 +65,16 @@
             </item>
            </layout>
           </widget>
+          <widget class="QWidget" name="tab_4">
+           <attribute name="title">
+            <string>导入表信息</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QTreeWidget" name="treeWidget"/>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="tab_3">
            <attribute name="title">
             <string>PE节信息</string>
