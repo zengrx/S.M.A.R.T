@@ -12,6 +12,7 @@ from UILib.MS_MainWindow import Ui_MainWindow
 import sys, os, shutil
 from control import CheckFolder, ScanFile
 from menuset.setting import Dialog as SetDialog
+from menuset.authorinfo import Dialog as AuthorInfo
 from menuset.filedetail import Dialog as DetailDialog
 from menuset.uploadfile import Dialog as UploadDialog
 from globalset import FlagSet
@@ -108,7 +109,7 @@ class MainWindow(QtGui.QMainWindow):
 
         # 其他窗口对象实例
         self.setdialog    = SetDialog() # 设置
-        # self.detailwindow = detailwindow()
+        self.authorinfo   = AuthorInfo()
         self.detailDialog = DetailDialog()
         self.uploadDialog = UploadDialog()
 
@@ -445,12 +446,19 @@ class MainWindow(QtGui.QMainWindow):
     '''
     def menuBarOperate(self, index):
         print index
-        dialog = self.setdialog
-        dialog.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\UILib\icons\setting_icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        dialog.setWindowIcon(icon)
-        dialog.show()
+        if 1 == index:
+            dialog = self.setdialog
+            dialog.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap(".\UILib\icons\setting_icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            dialog.setWindowIcon(icon)
+            dialog.show()
+        if 6 == index:
+            dialog = self.authorinfo
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap(".\UILib\icons\pk.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            dialog.setWindowIcon(icon)
+            dialog.show()
         
     '''
     右键菜单生成函数
@@ -543,6 +551,9 @@ class MainWindow(QtGui.QMainWindow):
     index:表头section索引值
     '''
     def tableHeaderEvent(self, index):
+        if 0 == FlagSet.scansqlcount:
+            return
+        self.table.horizontalHeader().setSortIndicatorShown(True)
         if 0 == index:
             print u"按文件名排序"
             self.table.sortByColumn(0)
@@ -566,6 +577,7 @@ class MainWindow(QtGui.QMainWindow):
 
         else:
             print "MD5"
+            self.table.horizontalHeader().setSortIndicatorShown(False)
             pass
 
     '''
@@ -588,6 +600,7 @@ class MainWindow(QtGui.QMainWindow):
         sqlconn.commit()
         sqlconn.close()
         FlagSet.scansqlcount = 0 # 将全局计数flag置0
+        self.table.horizontalHeader().setSortIndicatorShown(False)
 
     '''
     重写窗口关闭事件
