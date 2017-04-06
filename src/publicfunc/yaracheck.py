@@ -86,6 +86,22 @@ def check_crypto(filename):
             if m:
                 return m
 
+def is_webshell(filename):
+    if not os.path.exists("rules_compiled/Webshells"):
+        os.mkdir("rules_compiled/Webshells")
+        for n in os.listdir("rules/Webshells"):
+            rule = yara.compile("rules/Webshells/" + n)
+            rule.save("rules_compiled/Webshells/" + n)
+            rule = yara.load("rules_compiled/Webshells/" + n)
+            m = rule.match(filename)
+            if m:
+                return m
+    else:
+        for n in os.listdir("rules_compiled/Webshells"):
+            rule = yara.load("rules_compiled/Webshells/" + n)
+            m = rule.match(filename)
+            if m:
+                return m
 
 def is_malware(filename):
     if not os.path.exists("rules_compiled/malware"):
@@ -161,10 +177,12 @@ class CheckMalware(QtCore.QThread):
         self.filename = filename
     
     def run(self):
+        # 匹配到spyeye的基本是debug文件
         malresult = is_malware(self.filename)
+        atiresult = is_antidb_antivm(self.filename)
         result = []
-        if malresult:
-            print "get malresult!"
+        if malresult or atiresult:
+            print "get malresult or antidbg_antivm!"
             for n in malresult:
                 try:
                     print "{} - {}".format(n, n.meta['description'])
@@ -188,6 +206,27 @@ class CheckCrypto(QtCore.QThread):
         if cptresult:
             print "get crypto!"
             for n in cptresult:
+                try:
+                    print "{} - {}".format(n, n.meta['description'])
+                except:
+                    print n
+        else:
+            print "no match"
+
+class CheckWebshell(QtCore.QThread):
+    numberSignal = QtCore.pyqtSignal(int, str)
+    valueSignal  = QtCore.pyqtSignal(list)
+
+    def __init__(self, filename, parent=None):
+        super(CheckWebshell, self).__init__(parent)
+        self.filename = filename
+
+    def run(self):
+        shellresult = is_webshell(self.filename)
+        result = []
+        if shellresult:
+            print "get webshell!"
+            for n in shellresult:
                 try:
                     print "{} - {}".format(n, n.meta['description'])
                 except:

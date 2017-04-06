@@ -3,7 +3,7 @@
 from PyQt4 import QtCore, QtGui
 import time, sys, os
 import magic, hashlib
-from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto
+from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto, CheckWebshell
 from publicfunc.clamav.clamav import CheckClamav
 from publicfunc.fileanalyze import getFileInfo, DefaultAnalyze
 from publicfunc.updatedata import UpdateData
@@ -236,11 +236,15 @@ class ScanFile(QtCore.QThread):
             self.checkMalwThread.valueSignal.connect(self.recvYaraResult)
             self.checkMalwThread.start()
             self.checkMalwThread.wait()
-        if typesh in filetype: # 检测加密特征
+        if typesh in filetype: # 文本类型检测加密特征,webshell
             print "---------SH----------"
+            self.checkShelThread = CheckWebshell(filename)
+            self.checkShelThread.valueSignal.connect(self.recvYaraResult)
             self.checkCrypThread = CheckCrypto(filename)
             self.checkCrypThread.valueSignal.connect(self.recvYaraResult)
+            self.checkShelThread.start()
             self.checkCrypThread.start()
+            self.checkShelThread.wait()
             self.checkCrypThread.wait()
 
     # 获取yara检测结果
