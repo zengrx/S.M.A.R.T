@@ -57,12 +57,13 @@ class MainWindow(QtGui.QMainWindow):
         # 设置tablewdiget属性
         # 自动适配header宽度，效果不好后期改适配最后一列
         # setStretchLastSection已在ui文件中设置 
-        # 设置不可编辑 设置每次选中一行
+        # 设置不可编辑 设置每次选中一行 设置可多选
         self.table = self.ui.tableWidget
         # self.table.horizontalHeader().setResizeMode(QtGui.QHeaderView.Stretch)
         # self.table.horizontalHeader().setStretchLastSection(True)
         self.table.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.table.setContextMenuPolicy(Qt.Qt.CustomContextMenu)
+        self.table.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
 
         # tablewidget信号槽--排序
         self.table.horizontalHeader().sectionClicked.connect(self.tableHeaderEvent)
@@ -466,85 +467,91 @@ class MainWindow(QtGui.QMainWindow):
     '''
     def generateMenu(self, pos):
         # 未选中元素时无法使用右键菜单
-        # currentrow = self.table.currentRow()
-        # print currentrow
-        # if currentrow < 0:
-        #     return
-        print pos
-        row_num = -1 # 右键操作列索引
+        print pos # 原始坐标
+        row_num = [] # 右键操作列索引列表
         for i in self.table.selectionModel().selection().indexes():
-            row_num = i.row()
-        print row_num
-        if row_num < 0:
+            row_num.append(i.row())
+        row_num = list(set(row_num))
+        # print row_num
+        # print len(row_num)
+        # 未选中任何一行
+        if len(row_num) < 1:
             return
-        menu = QtGui.QMenu()
-        item1 = menu.addAction(QtGui.QIcon(".\UILib\icons\detail_icon.png"), u"详细信息") # (u"详细信息")
-        item2 = menu.addAction(QtGui.QIcon(".\UILib\icons\Fanalyz_icon.png"), u"文件分析")
-        item3 = menu.addAction(QtGui.QIcon(".\UILib\icons\img_icon.png"), u"二进制图像")
-        item4 = menu.addAction(QtGui.QIcon(".\UILib\icons\delete_icon.png"), u"删除文件")
-        item5 = menu.addAction(QtGui.QIcon(".\UILib\icons\locate_icon.png"), u"打开文件位置")
-        markmenu = menu.addMenu(QtGui.QIcon(".\UILib\icons\usermark_icon.png"), u"用户标记")
-        item6 = markmenu.addAction(u"分析完成")
-        item7 = markmenu.addAction(u"仍需分析")
-        item8 = markmenu.addAction(u"3")
-        item9 = menu.addAction(QtGui.QIcon(".\UILib\icons\upload_icon.png"), u"上传样本")
-        action = menu.exec_(self.table.mapToGlobal(pos))
-        fname = self.table.item(row_num, 0).text()
-        fpath = self.table.item(row_num, 1).text()
-        ffull = os.path.join(str(fpath), str(fname)) # 文件绝对路径
-        fmd5  = self.table.item(row_num, 7).text()
-        flist = self.flist # 文件名列表
-        flist.append(fmd5)
-        print flist
-        if action == item1:
-            print u'您选了选项一，当前行文字内容是：',self.table.item(row_num,0).text()
-            print ffull
-            filedetail = self.detailDialog
-            filedetail.getFileName(ffull)
-            filedetail.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
-            icon = QtGui.QIcon()
-            icon.addPixmap(QtGui.QPixmap(".\UILib\icons\detail_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-            filedetail.setWindowIcon(icon)
-            filedetail.show()
-            
-        elif action == item2:
-            print u'您选了选项二，当前行文字内容是：',self.table.item(row_num,0).text()
-
-        elif action == item3:
-            print u'您选了选项三，当前行文字内容是：',self.table.item(row_num,0).text()
-        
-        elif action == item5:
-            print u"打开文件所在位置"
+        # 选中多行
+        elif len(row_num) > 1:
+            print u"多选"
+            print row_num
+            mumenu  = QtGui.QMenu()
+            muitem1 = mumenu.addAction(u"多行右键测试")
+            maction = mumenu.exec_(self.table.mapToGlobal(pos))
+            if maction == muitem1:
+                print "get clicked"
+        # 选中一行
+        else:
+            row_num = row_num[0]
+            menu = QtGui.QMenu()
+            item1 = menu.addAction(QtGui.QIcon(".\UILib\icons\detail_icon.png"), u"详细信息") # (u"详细信息")
+            item2 = menu.addAction(QtGui.QIcon(".\UILib\icons\Fanalyz_icon.png"), u"文件分析")
+            item3 = menu.addAction(QtGui.QIcon(".\UILib\icons\img_icon.png"), u"二进制图像")
+            item4 = menu.addAction(QtGui.QIcon(".\UILib\icons\delete_icon.png"), u"删除文件")
+            item5 = menu.addAction(QtGui.QIcon(".\UILib\icons\locate_icon.png"), u"打开文件位置")
+            markmenu = menu.addMenu(QtGui.QIcon(".\UILib\icons\usermark_icon.png"), u"用户标记")
+            item6 = markmenu.addAction(u"分析完成")
+            item7 = markmenu.addAction(u"仍需分析")
+            item8 = markmenu.addAction(u"3")
+            item9 = menu.addAction(QtGui.QIcon(".\UILib\icons\upload_icon.png"), u"上传样本")
+            action = menu.exec_(self.table.mapToGlobal(pos))
             fname = self.table.item(row_num, 0).text()
             fpath = self.table.item(row_num, 1).text()
-            ffull = os.path.join(str(fpath), str(fname))
-            # 仅打开文件夹
-            # os.startfile(fpath)
-            # 打开文件-慎重
-            # os.startfile(ffull)
-            # 打开文件夹并定位到文件
-            estr = 'explorer /select,' + str(ffull)
-            os.system(estr)
-
-        elif action == item9:
-            # 在没有数据库的情况下
-            # 如果前后两次打开同一个文件，那么不清空内容
-            # 否则执行clear方法
-            dialog = self.uploadDialog
-            dialog.getFilename(ffull)
-            if len(flist) == 2:
-                if flist[0] != flist[1]:
-                    dialog.clearFileData()
-                del flist[0]
-            print flist
-            dialog.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
-            icon = QtGui.QIcon()
-            icon.addPixmap(QtGui.QPixmap(".\UILib\icons\upload_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-            dialog.setWindowIcon(icon)
-            dialog.show()
-
-        else:
-            return
+            ffull = os.path.join(str(fpath), str(fname)) # 文件绝对路径
+            fmd5  = self.table.item(row_num, 7).text()
+            if action == item1:
+                print u'您选了选项一，当前行文字内容是：',self.table.item(row_num,0).text()
+                print ffull
+                filedetail = self.detailDialog
+                filedetail.getFileName(ffull)
+                filedetail.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
+                icon = QtGui.QIcon()
+                icon.addPixmap(QtGui.QPixmap(".\UILib\icons\detail_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                filedetail.setWindowIcon(icon)
+                filedetail.show()
+            elif action == item2:
+                print u'您选了选项二，当前行文字内容是：',self.table.item(row_num,0).text()
+            elif action == item3:
+                print u'您选了选项三，当前行文字内容是：',self.table.item(row_num,0).text()
+            elif action == item5:
+                print u"打开文件所在位置"
+                fname = self.table.item(row_num, 0).text()
+                fpath = self.table.item(row_num, 1).text()
+                ffull = os.path.join(str(fpath), str(fname))
+                # 仅打开文件夹
+                # os.startfile(fpath)
+                # 打开文件-慎重
+                # os.startfile(ffull)
+                # 打开文件夹并定位到文件
+                estr = 'explorer /select,' + str(ffull)
+                os.system(estr)
+            elif action == item9:
+                # 在没有数据库的情况下
+                # 如果前后两次打开同一个文件，那么不清空内容
+                # 否则执行clear方法
+                flist = self.flist # 文件名列表
+                flist.append(fmd5)
+                print flist
+                dialog = self.uploadDialog
+                dialog.getFilename(ffull)
+                if len(flist) == 2:
+                    if flist[0] != flist[1]:
+                        dialog.clearFileData()
+                    del flist[0]
+                print flist
+                dialog.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
+                icon = QtGui.QIcon()
+                icon.addPixmap(QtGui.QPixmap(".\UILib\icons\upload_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                dialog.setWindowIcon(icon)
+                dialog.show()
+            else:
+                return
 
     '''
     表头点击事件
