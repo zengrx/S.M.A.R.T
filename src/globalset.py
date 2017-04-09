@@ -4,7 +4,10 @@ class FlagSet(object):
 
     # 扫描线程开始结束标识
     scanstopflag = 1 # 0-停止 1-扫描
-    scansqlcount = 0 # 数据库扫描计数标识
+    # 扫描完成标识
+    scandoneflag = 1 # 0-未完 1-完成
+    # 数据库扫描计数标识
+    scansqlcount = 0
 
 class ImpAlert(object):
 

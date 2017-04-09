@@ -121,7 +121,7 @@ class CheckFolder(QtCore.QThread):
 '''
 class ScanFile(QtCore.QThread):
     fileSignal = QtCore.pyqtSignal(int, str)
-    smsgSignal = QtCore.pyqtSignal(str)
+    smsgSignal = QtCore.pyqtSignal(int, str)
 
     def __init__(self, filelist, scanrule, parent=None):
         super(ScanFile, self).__init__(parent)
@@ -219,9 +219,10 @@ class ScanFile(QtCore.QThread):
     检查yara规则库
     '''
     def checkYaraExists(self):
-        self.smsgSignal.emit(u"未检测到Yara规则库，正在下载...")
-        U = UpdateData()
-        U.cloneYaraData()
+        self.smsgSignal.emit(-1, u"未检测到Yara规则库，正在下载...")
+        time.sleep(10)
+        # U = UpdateData()
+        # U.cloneYaraData()
 
     # 开始yara检测线程
     def startYaraThread(self, filename, filetype, index):
@@ -283,6 +284,20 @@ class ScanFile(QtCore.QThread):
             self.checkYaraExists()
         # 判断来自文件夹or文件选择
         # 文件选择发送list信号
+        if isinstance(self.filelist, tuple):
+            print "datebase update"
+            for i in range(len(self.filelist[1])):
+                time.sleep(0.5)
+                # print self.filelist[1][i]
+            # try:
+            #     sqlconn = sqlite3.connect("../db/fileinfo.db")
+            # except sqlite3.Error, e:
+            #     print "sqlite connect failed" , "\n", e.args[0]
+            # for i in range(len(self.filelist[1])):
+            #     sqlcursor = sqlconn.cursor()
+            #     sqlcursor.execute("update base_info set md5=? where id=?", ("info[0]", self.filelist[1][i]))
+                self.fileSignal.emit(self.filelist[1][i], str(i + 1))
+            return
         if isinstance(self.filelist, list):
             print "it's a list"
             sqlindex = FlagSet.scansqlcount
@@ -302,7 +317,8 @@ class ScanFile(QtCore.QThread):
             self.filelist = len(self.filelist)
         for i in range(self.filelist):
             import random
-            time.sleep(random.uniform(0, 0.3))
+            # time.sleep(random.uniform(0, 0.3))
+            time.sleep(0.2)
             # self.filename = self.filelist[i]
             # time.sleep(random.uniform(0, 0.5)) # 模拟耗时
             # 添加获取文件基本信息函数后

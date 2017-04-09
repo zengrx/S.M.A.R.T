@@ -188,6 +188,7 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.progressBar.reset()
         self.ui.statusbar.showMessage(u"正在初始化...")
         FlagSet.scanstopflag = 1 # 恢复停止标识
+        FlagSet.scandoneflag = 0 # 恢复完成标识
         FlagSet.scansqlcount = self.table.rowCount()
         try:
             sqlconn = sqlite3.connect("../db/fileinfo.db")
@@ -231,19 +232,6 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.PB_End.setEnabled(False)
         self.ui.statusbar.showMessage(u"手动结束扫描，等待线程退出")
         FlagSet.scanstopflag = 0
-        # if 0 == self.ui.progressBar.maximum():
-        #     print u"在初始化时结束扫描"
-        #     # 删除没有初始化没有显示的数据
-        #     # 与update分开是为了同步线程对数据库的操作 
-        #     try:
-        #         sqlconn = sqlite3.connect("../db/fileinfo.db")
-        #     except sqlite3.Error, e:
-        #         print "sqlite connect failed" , "\n", e.args[0]
-        #     sqlcursor = sqlconn.cursor()
-        #     sqlcursor.execute("delete from base_info where id>=?", str(self.table.rowCount()),) #<-warring
-        #     sqlconn.commit()
-        #     sqlconn.close()
-        #     print "delete no value data over"
     
     '''
     扫描前准备函数
@@ -281,6 +269,10 @@ class MainWindow(QtGui.QMainWindow):
                 self.ui.statusbar.showMessage(u"未检索到符合条件的文件，扫描结束")
                 self.ui.progressBar.setMaximum(1)
                 self.ui.progressBar.setValue(1)
+                FlagSet.scandoneflag = 1
+                self.ui.PB_Start.setEnabled(True)
+                self.ui.PB_Clear.setEnabled(True)
+                self.ui.PB_End.setEnabled(False)
                 return
             if 0 == FlagSet.scanstopflag:
                 self.ui.statusbar.showMessage(u"扫描初始化已停止")
@@ -297,8 +289,6 @@ class MainWindow(QtGui.QMainWindow):
             self.scanThread.start()
 
     '''
-    暂时将statusbar和tablewidget信息集中在这里
-    验证后再分离功能
     可对应添加scanfile信号发射的参数
     @msg:文件绝对路径，将分割为文件名+路径
     @文件类型
@@ -307,13 +297,7 @@ class MainWindow(QtGui.QMainWindow):
     @文件MD5
     '''
     def updateScanInfo(self, num, msg):
-        showmsg = 'recv result from file: ' + msg
-        self.ui.statusbar.showMessage(showmsg)
-        # 更新进度条 最大值和当前值放在一起
-        self.ui.progressBar.setMaximum(int(self.filenum))
-        self.ui.progressBar.setValue(num)
-        if int(self.filenum) == num:
-            self.ui.statusbar.showMessage(u"扫描结束")
+        self.updateStatusBar(num, msg)
         # 更新tablewidget
         self.rowindex = FlagSet.scansqlcount
         i = self.rowindex
@@ -342,9 +326,29 @@ class MainWindow(QtGui.QMainWindow):
         self.table.setItem(i - 1, 3, QtGui.QTableWidgetItem(ftype))
         self.table.setItem(i - 1, 7, QtGui.QTableWidgetItem(fMD5))
 
-    def updateStatusBar(self, msg):
-        print unicode(msg) + " recv from updatedata class"
-        self.ui.statusbar.showMessage(msg)       
+    '''
+    更新重新扫描返回事件
+    '''
+    def updateRescanInfo(self, num, msg):
+        self.updateStatusBar(int(msg), msg)
+        # 读取数据库内容并更改
+        # self.table.setItem(num, 4, QtGui.QTableWidgetItem(msg))
+
+    '''
+    更新进度条函数
+    '''
+    def updateStatusBar(self, num, msg):
+        showmsg = 'recv result from file: ' + msg
+        self.ui.statusbar.showMessage(showmsg)
+        # 更新进度条 最大值和当前值放在一起
+        self.ui.progressBar.setMaximum(int(self.filenum))
+        self.ui.progressBar.setValue(num)
+        if int(self.filenum) == num:
+            self.ui.statusbar.showMessage(u"扫描结束")
+            FlagSet.scandoneflag = 1
+            self.ui.PB_Start.setEnabled(True)
+            self.ui.PB_Clear.setEnabled(True)
+            self.ui.PB_End.setEnabled(False)
 
     def updateTableMsg(self):
         pass
@@ -479,19 +483,28 @@ class MainWindow(QtGui.QMainWindow):
             return
         # 选中多行
         elif len(row_num) > 1:
+            if FlagSet.scandoneflag == 0:
+                return
             print u"多选"
-            print row_num
             mumenu  = QtGui.QMenu()
-            muitem1 = mumenu.addAction(u"多行右键测试")
+            muitem1 = mumenu.addAction(QtGui.QIcon(".\UILib\icons\drescan_icon.png"), u"重新扫描")
             maction = mumenu.exec_(self.table.mapToGlobal(pos))
             if maction == muitem1:
                 print "get clicked"
+                self.filenum = len(row_num)
+                rescanfiles  = ("rescan", row_num)
+                print rescanfiles
+                # 直接连接control中的scanfile线程
+                self.rule, useless = self.prevScanPrepare()
+                self.filesThread = ScanFile(rescanfiles, self.rule)
+                self.filesThread.fileSignal.connect(self.updateRescanInfo) # 连到更行重新函数中
+                self.filesThread.start()
         # 选中一行
         else:
             row_num = row_num[0]
             menu = QtGui.QMenu()
             item1 = menu.addAction(QtGui.QIcon(".\UILib\icons\detail_icon.png"), u"详细信息") # (u"详细信息")
-            item2 = menu.addAction(QtGui.QIcon(".\UILib\icons\Fanalyz_icon.png"), u"文件分析")
+            item2 = menu.addAction(QtGui.QIcon(".\UILib\icons\drescan_icon.png"), u"重新扫描")
             item3 = menu.addAction(QtGui.QIcon(".\UILib\icons\img_icon.png"), u"二进制图像")
             item4 = menu.addAction(QtGui.QIcon(".\UILib\icons\delete_icon.png"), u"删除文件")
             item5 = menu.addAction(QtGui.QIcon(".\UILib\icons\locate_icon.png"), u"打开文件位置")
@@ -517,6 +530,16 @@ class MainWindow(QtGui.QMainWindow):
                 filedetail.show()
             elif action == item2:
                 print u'您选了选项二，当前行文字内容是：',self.table.item(row_num,0).text()
+                self.filenum = 1
+                rescan = []
+                rescan.append(row_num)
+                rescanfiles  = ("rescan", rescan)
+                print rescanfiles
+                # 直接连接control中的scanfile线程
+                self.rule, useless = self.prevScanPrepare()
+                self.filesThread = ScanFile(rescanfiles, self.rule)
+                self.filesThread.fileSignal.connect(self.updateRescanInfo) # 连到更行重新函数中
+                self.filesThread.start()
             elif action == item3:
                 print u'您选了选项三，当前行文字内容是：',self.table.item(row_num,0).text()
             elif action == item5:
