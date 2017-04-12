@@ -10,6 +10,8 @@ import math
 import pefile
 import magic
 import sqlite3
+import re
+import urlparse
 sys.path.append("../")
 from globalset import ImpAlert
 
@@ -74,6 +76,50 @@ def getFileInfo(filename):
         infoo.append(file_magic.from_file(filename))
         infof.append("Type:\t{}".format(file_magic.from_file(filename)))
     return infoo, infof
+
+class GetFileString:
+    def __init__(self, filename):
+        self.filename = filename
+        self.chars    = b"A-Za-z0-9!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ "
+        self.short_t  = 4
+        self.regexp   = '[{}]{{{},}}'.format(self.chars.decode(), self.short_t).encode()
+        self.pattern  = re.compile(self.regexp)
+
+        with open(self.filename, 'rb') as f:
+            fbytes = self.fileProcess(f)
+            fstr   = []
+            for n in fbytes:
+                fstr.append(n.decode())
+        self.result = (self.checkIPAddr(fstr), self.checkWebsit(fstr), self.checkEmail(fstr))
+        
+    def fileProcess(self, filename):
+        data = filename.read()
+        return self.pattern.findall(data)
+
+    def getResult(self):
+        return self.result
+
+    def checkIPAddr(self, strlist):
+        ippattern = re.compile(r'((([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])[ (\[]?(\.|dot)[ )\]]?){3}([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]))')
+        f = filter(ippattern.match, strlist)
+        return list(f)
+
+    def checkWebsit(self, strlist):
+        websit = []
+        for n in strlist:
+            try:
+                netloc = urlparse.urlparse(n.split()[0]).netloc
+                if netloc and "." in netloc and not netloc.startswith(".") and not netloc.endswith("."):
+                    websit.append(netloc)
+            except:
+                pass
+        websit = list(set(websit))
+        return websit
+
+    def checkEmail(self, strlist):
+        email = re.compile(r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)')
+        f = filter(email.match, strlist)
+        return list(f)
 
 class PEFileAnalize:
     def __init__(self, filename):
@@ -208,14 +254,20 @@ class DefaultAnalyze(QtCore.QThread):
         super(DefaultAnalyze, self).__init__(parent)
         self.filename = filename
 
+    def strResult(self):
+        strcheck = GetFileString(self.filename)
+        r = strcheck.getResult()
+        print r
+
     def test(self):
         peAnalize = PEFileAnalize(self.filename)
-        print peAnalize.checkEntryPoint()
-        # print peAnalize.checkFileDate()
-        # print peAnalize.checkFileHeader()
-        print peAnalize.checkFileImports()
-        # print peAnalize.checkFileSections()
+        peAnalize.checkEntryPoint()
+        peAnalize.checkFileDate()
+        peAnalize.checkFileHeader()
+        peAnalize.checkFileImports()
+        peAnalize.checkFileSections()
 
     def run(self):
         print "run function in defaultanalyze class"
         self.test()
+        self.strResult()

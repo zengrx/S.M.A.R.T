@@ -78,7 +78,7 @@ class CheckFolder(QtCore.QThread):
         self.filename = filename
         sqlcursor = sqlconn.cursor()
         sfilename = self.filename # 解决windows下使用sqlite编码问题
-        sqlcursor.execute("insert into base_info (id, name, path) values(?, ?, ?)", (int(i), sfilename, "lalal"))
+        sqlcursor.execute("insert into base_info (id, name) values(?, ?)", (int(i), sfilename))
             
     #重写的run方法
     def run(self):
@@ -172,7 +172,7 @@ class ScanFile(QtCore.QThread):
         sqlcursor = sqlconn.cursor()
         try:
             sfilename = filename.decode('cp936') # 解决windows下使用sqlite编码问题
-            sqlcursor.execute("update base_info set size=? ,typt=? ,md5=? where id=?", (info[3], info[4], info[0], i))
+            sqlcursor.execute("update base_info set size=? ,type=? ,md5=? where id=?", (info[3], info[4], info[0], i))
             sqlconn.commit()
             sqlconn.close()
         except:
@@ -207,6 +207,10 @@ class ScanFile(QtCore.QThread):
         filename = filename.encode('cp936')
         typepe = 'PE32'
         if typepe in filetype:
+            # 需要拆分为三个左右的线程
+            # 将结果统一返回recv函数
+            # 由recv函数做数据库操作处理
+            # string的检查所有文件类型都要支持  
             self.checkdefault = DefaultAnalyze(filename, index)
             self.checkdefault.valueSignal.connect(self.recvDefaultResult)
             self.checkdefault.start()
@@ -310,7 +314,7 @@ class ScanFile(QtCore.QThread):
                 print self.filename
                 sqlcursor = sqlconn.cursor()
                 sfilename = self.filename # 解决windows下使用sqlite编码问题
-                sqlcursor.execute("insert into base_info (id, name, path) values(?, ?, ?)", (int(sqlindex), sfilename, "lalal"))
+                sqlcursor.execute("insert into base_info (id, name) values(?, ?)", (int(sqlindex), sfilename))
                 sqlindex += 1
             sqlconn.commit()
             sqlconn.close()
@@ -337,7 +341,7 @@ class ScanFile(QtCore.QThread):
             # file size should less than 100M
             if int(self.filesize) < 100*1024*1024:
                 # use default function
-                # self.dection = self.startDefaultThread(self.filename, self.filetype, i)
+                self.startDefaultThread(self.filename, self.filetype, i)
                 # use yara rule
                 if 1 == self.yaraflag:
                     self.detect = self.startYaraThread(self.filename, self.filetype, i)

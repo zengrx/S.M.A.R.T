@@ -313,8 +313,8 @@ class MainWindow(QtGui.QMainWindow):
         sqlconn.commit()
         sqlcursor = sqlcursor.fetchone()
         sqlconn.close()
-        fsize = str(sqlcursor[3])
-        ftype = str(sqlcursor[4])
+        fsize = str(sqlcursor[2])
+        ftype = str(sqlcursor[3])
         fMD5  = str(sqlcursor[5])
         p, f  = os.path.split(str(sqlcursor[1]).decode('utf-8')) # 分割文件路径与文件名
         self.table.setItem(i - 1, 0, QtGui.QTableWidgetItem(f))
@@ -338,6 +338,11 @@ class MainWindow(QtGui.QMainWindow):
     更新进度条函数
     '''
     def updateStatusBar(self, num, msg):
+        if -1 == num:
+            self.ui.statusbar.showMessage(u"未检测到yara规则库，正在下载...")
+            self.ui.progressBar.setMaximum(0)
+            self.ui.progressBar.setValue(0)
+            return # 没有return进度条不会左右移动
         showmsg = 'recv result from file: ' + msg
         self.ui.statusbar.showMessage(showmsg)
         # 更新进度条 最大值和当前值放在一起
@@ -362,8 +367,8 @@ class MainWindow(QtGui.QMainWindow):
         index = info[0] + 1 # index标记
         self.table.setRowCount(index)
         p, f  = os.path.split(str(info[1]).decode('utf-8'))
-        size  = str(info[3])
-        ftype = str(info[4])
+        size  = str(info[2])
+        ftype = str(info[3])
         md5   = str(info[5])
         index -= 1
         # self.table.setItem(index - 1, 0, QtGui.QTableWidgetItem(f))
@@ -483,11 +488,11 @@ class MainWindow(QtGui.QMainWindow):
             return
         # 选中多行
         elif len(row_num) > 1:
-            if FlagSet.scandoneflag == 0:
-                return
             print u"多选"
             mumenu  = QtGui.QMenu()
             muitem1 = mumenu.addAction(QtGui.QIcon(".\UILib\icons\drescan_icon.png"), u"重新扫描")
+            if 0 == FlagSet.scandoneflag:
+                muitem1.setEnabled(False)
             maction = mumenu.exec_(self.table.mapToGlobal(pos))
             if maction == muitem1:
                 print "get clicked"
@@ -498,6 +503,7 @@ class MainWindow(QtGui.QMainWindow):
                 self.rule, useless = self.prevScanPrepare()
                 self.filesThread = ScanFile(rescanfiles, self.rule)
                 self.filesThread.fileSignal.connect(self.updateRescanInfo) # 连到更行重新函数中
+                self.filesThread.smsgSignal.connect(self.updateStatusBar)
                 self.filesThread.start()
         # 选中一行
         else:
@@ -513,6 +519,10 @@ class MainWindow(QtGui.QMainWindow):
             item7 = markmenu.addAction(u"仍需分析")
             item8 = markmenu.addAction(u"3")
             item9 = menu.addAction(QtGui.QIcon(".\UILib\icons\upload_icon.png"), u"上传样本")
+            if 0 == FlagSet.scandoneflag:
+                item2.setEnabled(False)
+                item4.setEnabled(False)
+                markmenu.setEnabled(False)
             action = menu.exec_(self.table.mapToGlobal(pos))
             fname = self.table.item(row_num, 0).text()
             fpath = self.table.item(row_num, 1).text()
@@ -539,6 +549,7 @@ class MainWindow(QtGui.QMainWindow):
                 self.rule, useless = self.prevScanPrepare()
                 self.filesThread = ScanFile(rescanfiles, self.rule)
                 self.filesThread.fileSignal.connect(self.updateRescanInfo) # 连到更行重新函数中
+                self.filesThread.smsgSignal.connect(self.updateStatusBar)
                 self.filesThread.start()
             elif action == item3:
                 print u'您选了选项三，当前行文字内容是：',self.table.item(row_num,0).text()
