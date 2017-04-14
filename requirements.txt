@@ -1,0 +1,11 @@
+GitPython
+numpy
+pandas
+pefile
+Pillow
+python-magic
+scikit-learn
+scipy
+ssdeep
+virustotal-api
+yara-python
