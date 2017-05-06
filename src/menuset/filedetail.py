@@ -19,16 +19,17 @@ class Dialog(QtGui.QDialog):
         self.ui.setupUi(self)
 
         self.widget   = self.ui.listWidget
-        self.wdiget2  = self.ui.listWidget_2
         self.tree     = self.ui.treeWidget
         self.table    = self.ui.tableWidget
         self.filename = ""
+        self.md5      = ""
         self.filetype = ""
 
-    def getFileName(self, filename):
+    def getFileName(self, filename, md5):
         self.filename = filename
+        self.md5      = md5
         self.detail   = FileDetail(self.filename) # 基本信息
-        self.peinfo   = PEFileInfo(self.filename) # PE信息
+        self.peinfo   = PEFileInfo(self.filename, self.md5) # PE信息
         self.detail.finishSignal.connect(self.showBaseInfo)
         self.detail.start()
 
@@ -37,7 +38,7 @@ class Dialog(QtGui.QDialog):
         self.table.clearContents() # 清空table内容保留列名
         self.tree.clear()
         for n in msg:
-            if "PE32" in n:
+            if "PE32" in n or "executable" in n:
                 self.peinfo.importSignal.connect(self.showImpImfo) # 连接显示导入表widget
                 self.peinfo.sectionSignal.connect(self.showSetInfo) # 连接显示节信息widget
                 self.peinfo.start()
@@ -87,12 +88,24 @@ class Dialog(QtGui.QDialog):
     在tablewidget中显示PE节信息
     '''
     def showSetInfo(self, msg):
+        # 认可的节名称
+        goodsection = ['.data', '.text', '.code', '.reloc', '.idata', '.edata', '.rdata', '.bss', '.rsrc']
         self.table.setRowCount(msg[0])
         for i in range(msg[0]):
             for j in range(5):
                 item = str(msg[i * 5 + j + 1])
                 self.table.setItem(i, j, QtGui.QTableWidgetItem(item))
         self.table.horizontalHeader().setResizeMode(QtGui.QHeaderView.Stretch) #自适应宽度
+        for i in range(msg[0]):
+            secname = self.table.item(i, 0)
+            if secname.text() not in goodsection:
+                secname.setTextColor(Qt.Qt.red)
+            entrpoy = self.table.item(i, 4)
+            if float(entrpoy.text()) < 1 or float(entrpoy.text()) > 7:
+                entrpoy.setTextColor(Qt.Qt.red)
+            rawsize = self.table.item(i, 3)
+            if 0 == int(rawsize.text()):
+                rawsize.setTextColor(Qt.Qt.red)
         print "updated tablewidget"
 
 

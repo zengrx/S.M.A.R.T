@@ -17,7 +17,7 @@ class UploadFile(QtCore.QThread):
     '''
     def __init__(self, filename, apikey, parent=None):
         super(UploadFile, self).__init__(parent)
-        self.filename = str(filename).encode('cp936')
+        self.filename = str(filename)#.encode('cp936')
         self.apikey   = apikey
         print self.filename
 
@@ -68,7 +68,10 @@ class UploadFile(QtCore.QThread):
             pass
         else:
             response = vt.scan_file(self.filename) # 32M limit
-            result.append(response["results"]["permalink"])
+            if response["results"]["verbose_msg"]:
+                result.append(response["results"]["verbose_msg"])
+            else:
+                result.append(response["results"]["permalink"])
         if 1 == response_code_:
             return ("scan_result", result, response["response_code"], response_code_)
         else:
@@ -82,7 +85,10 @@ class UploadFile(QtCore.QThread):
         useless, baseinfo = getFileInfo(self.filename)
         infos = ("baseinfo", baseinfo)
         self.finishSignal.emit(2, infos)
-        self.checkInternet()
+        ret = self.checkInternet()
+        if not ret:
+            self.finishSignal.emit(3, tuple(['网络连接失败...']))
+            return
         msg = self.virustotalApi(self.apikey)
         self.finishSignal.emit(1, msg)
 

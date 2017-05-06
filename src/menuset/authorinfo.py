@@ -21,7 +21,6 @@ class Dialog(QtGui.QDialog):
         msg = ''
         image = QtGui.QImage()
         if image.load(img):
-            print "load pk img ok"
             self.ui.label.setPixmap(QtGui.QPixmap.fromImage(image))
             self.ui.label_2.setText(u"  bugreport@ ")
             self.ui.label_3.setText(u"  zengrx1995@gmail.com; zengrx1995@163.com; zengrx1995@outlook.com")

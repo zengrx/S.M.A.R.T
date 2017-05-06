@@ -80,7 +80,7 @@ class Dialog(QtGui.QDialog):
             elif msg[0] == "permalink":
                 if msg[1]:
                     print "your file has been analysising"
-                    self.ui.LE_URL.setText(str(msg[1]))
+                    self.ui.LE_URL.setText(str(msg[1][0]))
             elif msg[0] == "http_code":
                 self.ui.LE_URL.setText(u"网络响应问题，请参考官方文档")
         if 2 == index:
@@ -88,6 +88,9 @@ class Dialog(QtGui.QDialog):
                 for n in msg[1]:
                     n = unicode(n)
                     self.ui.listWidget.addItem(n)
+        if 3 == index:
+            self.ui.PB_Upload.setEnabled(True)
+            self.ui.LE_URL.setText(u"网络连接失败...")
 
     def addFile2Queue(self, filename):
         pass
@@ -97,6 +100,7 @@ class Dialog(QtGui.QDialog):
         self.table.setRowCount(0)
         self.table.clearContents()
         self.ui.listWidget.clear()
+        self.ui.LE_URL.clear()
         self.ui.label.setText(u"检测率: ")
         self.ui.label_4.setText(u"网络响应: ")
         self.ui.label_5.setText(u"返回代码: ")

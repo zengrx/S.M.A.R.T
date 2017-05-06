@@ -3,11 +3,11 @@
 from PyQt4 import QtCore, QtGui
 import time, sys, os
 import magic, hashlib
-from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto, CheckWebshell
+from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto, CheckWebshell, Checkcustom
 from publicfunc.clamav.clamav import CheckClamav
-from publicfunc.fileanalyze import getFileInfo, DefaultAnalyze
+from publicfunc.fileanalyze import getFileInfo, DefaultAnalyze, GetFileString
 from publicfunc.updatedata import UpdateData
-from globalset import FlagSet
+from globalset import FlagSet, ImpAlert, YaraAlert, StaticValue, FilePath
 import sqlite3
 
 reload(sys)
@@ -18,11 +18,14 @@ sys.setdefaultencoding( "utf-8" )
 '''
 class CheckFolder(QtCore.QThread):
     numberSignal = QtCore.pyqtSignal(int, str)
+    folderSignal = QtCore.pyqtSignal(int, str)
 
-    def __init__(self, cdir, ctype, parent=None):
+    def __init__(self, cdir, ctype, crule, cdepth, parent=None):
         super(CheckFolder, self).__init__(parent)
         self.dir      = str(cdir).decode('utf-8')
         self.type     = ctype
+        self.rule     = crule
+        self.depth    = cdepth
         self.filename = ""
 
     '''
@@ -38,6 +41,7 @@ class CheckFolder(QtCore.QThread):
         typevalue = [] # 储存文件类型字符串
         if '7' in self.type: # PE文件
             typevalue.append("PE32")
+            typevalue.append("executable")
         if '8' in self.type: # office/pdf文档等
             typevalue.append("Microsoft")
             typevalue.append("Document File")
@@ -57,11 +61,11 @@ class CheckFolder(QtCore.QThread):
             typevalue.append("MPEG")
         if '12' in self.type: # .asm后缀
             typevalue.append(".asm")
-        file_magic = magic.Magic(magic_file="../libs/magic.mgc")
+        # file_magic = magic.Magic(magic_file="../libs/magic.mgc")
         try:
-            fmagic = file_magic.from_file(str(filename).encode('cp936'))
+            fmagic = magic.from_file(str(filename))#.encode('cp936'))
         except:
-            print "maigc error {}".format(str(filename).encode('cp936'))
+            print "maigc error {}".format(str(filename))#.encode('cp936'))
         extension = os.path.splitext(filename)[1]
         # 匹配文件类型或后缀名
         flag = 0
@@ -73,6 +77,19 @@ class CheckFolder(QtCore.QThread):
                 flag += 1
         return flag
     
+    '''
+    匹配白名单
+    有匹配时返回1
+    '''
+    def matchWhiteList(self, filename):
+        tmpf = ''
+        for af in FilePath.whitefile:
+            tmpf = str(af)#.decode('cp936')
+            if tmpf == str(filename) and '6' in self.rule:
+                print "hit", tmpf
+                self.folderSignal.emit(1, "match a withlist file: " + unicode(tmpf))
+                return 1
+
     def writeInit2DB(self, filename, index, sqlconn):
         i = index
         self.filename = filename
@@ -83,7 +100,9 @@ class CheckFolder(QtCore.QThread):
     #重写的run方法
     def run(self):
         #self.dir = os.path.join(str(self.folder).decode('utf-8'))
-        print self.dir, self.type
+        # print self.dir, self.type
+        sendm = "entrance folder:" + unicode(self.dir) + "\t" + "file type:" + str(self.type)
+        self.folderSignal.emit(1, sendm)
         assert os.path.isdir(self.dir), "make sure this is a path"
         result = [] # test print all files
         i = 0 # number of files
@@ -92,21 +111,35 @@ class CheckFolder(QtCore.QThread):
         try:
             sqlconn = sqlite3.connect("../db/fileinfo.db")
         except sqlite3.Error, e:
-            print "sqlite connect failed" , "\n", e.args[0]        
+            print "sqlite connect failed" , "\n", e.args[0]
+        # print self.depth
+        sendm = "scan depth:" + str(self.depth)
+        self.folderSignal.emit(1, sendm)
+        d = str(self.dir).count('\\')
         for root, dirs, files in os.walk(self.dir, topdown=True):
             if 0 == FlagSet.scanstopflag:
-                print "stopflag"
+                # print "stopflag"
+                sendm = "user has stoped initialization, quit..."
+                self.folderSignal.emit(1, sendm)
                 break
-            for di in dirs:
-                j = j + 1
-                # print os.path.join(root, di)
-            for fl in files:
-                # print os.path.join(root, fl)
-                self.filename = os.path.join(root, fl)
-                if self.chooseFileType(self.filename) > 0:
-                    self.writeInit2DB(self.filename, sqlindex, sqlconn)
-                    sqlindex +=  1
-                    i += 1
+            # print root
+            s = str(root).count('\\')
+            layer = s - d
+            # print layer
+            sendm = root + "  -->layers: " + str(layer)
+            self.folderSignal.emit(1, sendm)
+            if layer <= self.depth or -1 == self.depth:
+                for di in dirs:
+                    j = j + 1
+                    # print os.path.join(root, di)
+                for fl in files:
+                    # print os.path.join(root, fl)
+                    self.filename = os.path.join(root, fl)
+                    wflag = self.matchWhiteList(self.filename)
+                    if self.chooseFileType(self.filename) > 0 and not wflag:
+                        self.writeInit2DB(self.filename, sqlindex, sqlconn)
+                        sqlindex +=  1
+                        i += 1
         sqlconn.commit()
         sqlconn.close()
         print "(origin)dirs: ",  j
@@ -115,6 +148,7 @@ class CheckFolder(QtCore.QThread):
         self.numberSignal.emit(1, str(j))  # dirs
         self.numberSignal.emit(2, str(i))  # files
         self.numberSignal.emit(3, "start analysis")  # start analysis signal
+        self.folderSignal.emit(1, "folder check initialization over")
 
 '''
 扫描操作线程
@@ -122,19 +156,23 @@ class CheckFolder(QtCore.QThread):
 class ScanFile(QtCore.QThread):
     fileSignal = QtCore.pyqtSignal(int, str)
     smsgSignal = QtCore.pyqtSignal(int, str)
+    flogSignal = QtCore.pyqtSignal(int, str)
 
     def __init__(self, filelist, scanrule, parent=None):
         super(ScanFile, self).__init__(parent)
         self.filelist = filelist # 从UI线程传回的文件名列表-文件个数
         self.scanrule = scanrule # 从UI线程传回的扫描规则策略
         self.filename = '' # 文件名
+        self.md5      = '' # 文件md5
         self.filetype = '' # 文件类型
         self.filesize = '' # 文件大小
         self.infos    = [] # baseinfo列表
         self.detect   = [] # 检测结论
+        self.score    = 0  # 评分
+        self.sendmsg  = '' # 分析text内容
         # flags
-        self.yaraflag = 0
-        self.clamflag = 0
+        self.pealflag = 0
+        self.crypflag = 0
         self.Packflag = 0
         self.selfflag = 0
         self.whitflag = 0
@@ -146,7 +184,7 @@ class ScanFile(QtCore.QThread):
         i = index - 1
         try:
             sqlcoon = sqlite3.connect("../db/fileinfo.db")
-        except sqlite3.Error,e :
+        except sqlite3.Error, e :
             print "sqlite connect failed" , "\n", e.args[0]
         sqlcursor = sqlcoon.cursor()
         try:
@@ -161,9 +199,8 @@ class ScanFile(QtCore.QThread):
     '''
     写入文件类型，日期，大小，md5等基本信息
     '''
-    def write2DataBase(self, index, filename):
+    def write2DataBase(self, index, info, score, alstime):
         i = index - 1
-        info, useless = getFileInfo(filename)
         try:
             sqlconn = sqlite3.connect("../db/fileinfo.db")
             # sqlconn.text_factory = str
@@ -171,13 +208,29 @@ class ScanFile(QtCore.QThread):
             print "sqlite connect failed" , "\n", e.args[0]
         sqlcursor = sqlconn.cursor()
         try:
-            sfilename = filename.decode('cp936') # 解决windows下使用sqlite编码问题
-            sqlcursor.execute("update base_info set size=? ,type=? ,md5=? where id=?", (info[3], info[4], info[0], i))
+            sqlcursor.execute("update base_info set size=? ,type=? ,md5=?, score=?, mark=?, time=? where id=?", (info[3], info[4], info[0], score, "none", alstime, i))
             sqlconn.commit()
             sqlconn.close()
-        except:
-            print "sql exec err"
-        return info
+        except sqlite3.Error, e:
+            print "sql exec err" , "\n", e.args[0]
+
+    '''
+    重新扫描时更新数据库内容
+    主要更新扫描结果
+    '''
+    def update4DataBse(self, index, score, alstime):
+        i = index
+        try:
+            sqlconn = sqlite3.connect("../db/fileinfo.db")
+        except sqlite3.Error, e:
+            print "sqlite connect failed" , "\n", e.args[0]
+        sqlcursor = sqlconn.cursor()
+        try:
+            sqlcursor.execute("update base_info set score=?, time=? where id=?", (score, alstime, i))
+            sqlconn.commit()
+            sqlconn.close()
+        except sqlite3.Error, e:
+            print "sql exec err" , "\n", e.args[0]
 
     '''
     应用main中设置的规则进行扫描调度
@@ -188,11 +241,11 @@ class ScanFile(QtCore.QThread):
         if not any(set(rules)):
             print u"使用内置规则"
         if '2' in rules:
-            print u"使用yara规则"
-            self.yaraflag = 1
+            print u"使用PE分析"
+            self.pealflag = 1
         if '3' in rules:
-            print u"使用clamav"
-            self.clamflag = 1
+            print u"使用检查加密"
+            self.crypflag = 1
         if '4' in rules:
             print u"使用文件查壳"
             self.Packflag = 1
@@ -203,60 +256,219 @@ class ScanFile(QtCore.QThread):
             print u"启用白名单"
             self.whitflag = 1
 
-    def startDefaultThread(self, filename, filetype, index):
-        filename = filename.encode('cp936')
-        typepe = 'PE32'
+    '''
+    使用内置方法检查
+    '''
+    def startDefaultThread(self, filename, filetype, md5, index):
+        filename = filename#.encode('cp936')
+        typepe = 'executable'
         if typepe in filetype:
-            # 需要拆分为三个左右的线程
-            # 将结果统一返回recv函数
-            # 由recv函数做数据库操作处理
-            # string的检查所有文件类型都要支持  
-            self.checkdefault = DefaultAnalyze(filename, index)
-            self.checkdefault.valueSignal.connect(self.recvDefaultResult)
-            self.checkdefault.start()
-            self.checkdefault.wait()
+            sqlcursor = self.readPEinfoDB(md5)
+            if sqlcursor:
+                print "pe_info exist"
+                entrypnt = sqlcursor[1]
+                setinfo  = sqlcursor[2]
+                impinfo  = sqlcursor[3]
+                cpltime  = sqlcursor[4]
+                self.score = self.PEDetectionResult(entrypnt, setinfo, impinfo, cpltime)
+            else:
+                # 需要拆分为三个左右的线程
+                # 线程级别安全操作 
+                # 使用Queue在threading处理数据库操作 
+                self.checkdefault = DefaultAnalyze(filename, md5, index)
+                self.checkdefault.valueSignal.connect(self.recvDefaultResult)
+                self.checkdefault.start()
+                self.checkdefault.wait()
 
-    def recvDefaultResult(self):
+    '''
+    从pe_info表中读取信息
+    '''
+    def readPEinfoDB(self, md5):
+        try:
+            sqlconn = sqlite3.connect('../db/fileinfo.db')
+        except sqlite3.Error, e:
+            print "sqlite connect failed", "\n", e.args[0]
+        sqlcursor = sqlconn.cursor()
+        sqlcursor.execute("select * from pe_info where md5=?", (md5,))
+        sqlconn.commit()
+        sqlcursor = sqlcursor.fetchone()
+        return sqlcursor
+
+    '''
+    接收线程返回的内容
+    '''
+    def recvDefaultResult(self, msg, md5):
         print "get default result"
+        if 1 == msg:
+            sqlcursor = self.readPEinfoDB(str(md5))
+            entrypnt  = sqlcursor[1]
+            setinfo   = sqlcursor[2]
+            impinfo   = sqlcursor[3]
+            cpltime   = sqlcursor[4]
+            self.score = self.PEDetectionResult(entrypnt, setinfo, impinfo, cpltime)
+        # elif -1 == msg: else:
+        else:
+            return
+
+    '''
+    PE分析结果汇总
+    '''
+    def PEDetectionResult(self, entrypnt, setinfo, impinfo, cpltime):
+        dtk = 0
+        # fillm = "                        "
+        fillm = "\t\t"
+        # sendm = self.filename + " PE file analysis result\n"
+        sendm = ''
+        nowdate = int(time.gmtime(time.time())[0])
+        # 可疑的编译时间
+        if cpltime > nowdate or cpltime < 1995:
+            dtk += 1
+            sendm = sendm + fillm + "---------suspicious cpltime----------" + "\n\t\t" + str(cpltime) + "\n"
+        # 可疑的API
+        alt = ImpAlert().alerts # 取alob内容
+        att = [] # 文件中存在的可疑API列表
+        impinfo = dict(eval(impinfo)) # unicode转dict
+        apis = list(set(impinfo.values()[0])) # 文件使用所有API列表
+        tmp = ""
+        for i in apis:
+            if i: # 除去none
+                if any(map(i.startswith, alt.keys())):
+                    for a in alt:
+                        if i.startswith(a):
+                             tmp += "\t\t{} : {}\n".format(i, alt.get(a))
+                    dtk += 1
+        sendm = sendm + fillm + "-----------suspicious api------------" + "\n" + tmp + "\n"
+        # 可疑的PE节信息
+        setinfo = list(eval(setinfo)) # unicode转list
+        # 认可的节名称
+        goodsection  = ['.data', '.text', '.code', '.reloc', '.idata', '.edata', '.rdata', '.bss', '.rsrc']
+        numofsection = setinfo[0]
+        if numofsection < 1 or numofsection > 9:
+            dtk += 1
+            sendm = sendm + fillm + "------suspicious section number------" + "\n\t\t" + str(numofsection) + "\n"
+        sectionname = [] # 可疑的节名称
+        rawsize0    = [] # 可疑的0长度节
+        ssetsize    = [] # 可疑的节长度
+        sentropy    = [] # 可疑的节熵
+        for i in range(numofsection):
+            secname     = str(setinfo[i * 5 + 1])
+            virtualsize = int(setinfo[i * 5 + 3])
+            rawsize     = int(setinfo[i * 5 + 4])
+            entropy     = float(setinfo[i * 5 + 5])
+            sectionname.append(secname)
+            if 0 == rawsize and virtualsize > 0:
+                dtk += 1
+                rawsize0.append(secname)
+            if 0 != rawsize and virtualsize / rawsize > 10:
+                dtk += 1
+                ssetsize.append(secname)
+            if entropy < 1 or entropy > 7:
+                dtk += 1
+                sentropy.append(secname)
+        if len(rawsize0):
+            sendm = sendm + fillm + "--------suspicious rawsize 0---------" + "\n\t\t" + str(rawsize0) + "\n"
+        if len(ssetsize):
+            sendm = sendm + fillm + "------suspicious size section--------" + "\n\t\t" + str(ssetsize) + "\n"
+        if len(sentropy):
+            sendm = sendm + fillm + "---------suspicious entropy----------" + "\n\t\t" + str(sentropy) + "\n"
+        badsections = [bad for bad in sectionname if bad not in goodsection]
+        if len(badsections):
+            sendm = sendm + fillm + "------suspicious section name--------" + "\n\t\t" + str(badsections) + "\n"
+        dtk += len(badsections)
+        # self.flogSignal.emit(2, sendm)
+        self.sendmsg += sendm
+        return dtk
 
     '''
     检查yara规则库
     '''
     def checkYaraExists(self):
-        self.smsgSignal.emit(-1, u"未检测到Yara规则库，正在下载...")
-        time.sleep(10)
-        # U = UpdateData()
-        # U.cloneYaraData()
+        if not os.listdir("rules"):
+            self.smsgSignal.emit(-1, u"未检测到Yara规则库，正在下载...")
+            # U = UpdateData()
+            # U.cloneYaraData()
+        else:
+            self.smsgSignal.emit(-1, u"Yara规则库存在，准备分析文件")
 
     # 开始yara检测线程
-    def startYaraThread(self, filename, filetype, index):
+    def startYaraThread(self, filename, filetype, md5, index):
         # return
-        filename = filename.encode('cp936')
-        typepe   = 'PE32' # PE文件
+        filename = filename#.encode('cp936')
+        typepe   = 'executable' # PE文件
         typesh   = 'text' # 文本&脚本文件
+        # 开始可疑字符检查
+        strcheck = GetFileString(filename)
+        r = strcheck.getResult()
+        # 解析返回元组
+        self.analyzeSusString(r)
+        sqlcursor = self.readYaraResultDB(md5)
+        if sqlcursor:
+            print "yara_result exist"
+            return
         if typepe in filetype:
             print "---------PE----------"
-            # 链接checkpacker线程
-            self.checkMalwThread = CheckMalware(filename)
+            # PE文件检测malware特征,antidbg特征
+            self.checkMalwThread = CheckMalware(filename, md5)
             self.checkMalwThread.valueSignal.connect(self.recvYaraResult)
             self.checkMalwThread.start()
             self.checkMalwThread.wait()
-        if typesh in filetype: # 文本类型检测加密特征,webshell
+        # elif typesh in filetype: # 文本类型检测webshell特征
+        else:
             print "---------SH----------"
-            self.checkShelThread = CheckWebshell(filename)
+            self.checkShelThread = CheckWebshell(filename, md5)
             self.checkShelThread.valueSignal.connect(self.recvYaraResult)
-            self.checkCrypThread = CheckCrypto(filename)
-            self.checkCrypThread.valueSignal.connect(self.recvYaraResult)
             self.checkShelThread.start()
-            self.checkCrypThread.start()
             self.checkShelThread.wait()
-            self.checkCrypThread.wait()
+    
+    '''
+    获取yara数据库信息
+    1.插入默认yara检测数据时使用
+    2.run方法汇总时使用
+    '''
+    def readYaraResultDB(self, md5):
+        try:
+            sqlconn = sqlite3.connect("../db/detected.db")
+        except sqlite3.Error, e:
+            print "sqlite connect failed", "\n", e.args[0]
+        sqlcursor = sqlconn.cursor()
+        sqlcursor.execute("select * from yara_result where md5=?", (md5,))
+        sqlconn.commit()
+        sqlcursor = sqlcursor.fetchone()
+        return sqlcursor
 
     # 获取yara检测结果
     # 在该接收函数中应该处理汇总的信息
     def recvYaraResult(self, msg):
         print "get result from yarathread"
-        return msg
+        print msg
+
+    '''
+    解析可疑字符返回内容
+    r[0]:ip地址
+    r[1]:网址
+    r[2]:邮箱
+    '''
+    def analyzeSusString(self, result):
+        ipaddr = list(set(result[0]))
+        websit = list(set(result[1]))
+        email  = list(set(result[2]))
+        self.sendmsg = self.filename + " File Analysis Result:\n"
+        sendm = ''
+        # print result
+        if len(ipaddr):
+            sendm += "\t\t--------suspicious ip address--------\n"
+            for i in ipaddr:
+                sendm += "\t\t{}\n".format(str(i))
+        if len(websit):
+            sendm += "\t\t----------suspicious websit----------\n"
+            for i in websit:
+                sendm += "\t\t{}\n".format(str(i))
+        if len(email):
+            sendm += "\t\t-------suspicious email address------\n"
+            for i in email:
+                sendm += "\t\t{}\n".format(str(i))
+        self.sendmsg += sendm
+        # self.flogSignal.emit(3, sendm)
 
     '''
     使用clamav数据库规则检测
@@ -264,7 +476,7 @@ class ScanFile(QtCore.QThread):
     '''
     def startClamThread(self, filename, index):
         print "use clamav signature"
-        filename = filename.encode('cp936')
+        filename = filename#.encode('cp936')
         self.checkClamThread = CheckClamav(filename)
         self.checkClamThread.valueSignal.connect(self.recvClamResult)
         self.checkClamThread.start()
@@ -273,34 +485,134 @@ class ScanFile(QtCore.QThread):
     def recvClamResult(self, msg):
         pass
 
-    def startPackThread(self, filename, index):
+    def startPackThread(self, filename, index, md5):
+        sqlcursor = self.readYaraResultDB(md5)
+        if sqlcursor[2]:
+            print "packed result exist"
+            return
         print "start check pack"
-        filename = filename.encode('cp936')
-        self.checkPackThread = CheckPacker(filename, index)
+        filename = filename#.encode('cp936')
+        self.checkPackThread = CheckPacker(filename, index, md5)
         self.checkPackThread.valueSignal.connect(self.recvYaraResult)
         self.checkPackThread.start()
         self.checkPackThread.wait()
 
+    def startCrypThread(self, filename, index, md5):
+        sqlcursor = self.readYaraResultDB(md5)
+        if sqlcursor[3]:
+            print "crypto result exist"
+            return
+        print "start check crypto"
+        filename = filename#.encode('cp936')
+        self.checkCrypThread = CheckCrypto(filename, md5)
+        self.checkCrypThread.valueSignal.connect(self.recvYaraResult)
+        self.checkCrypThread.start()
+        self.checkCrypThread.wait()
+
+    def startCustThread(self, filename, index, md5):
+        filename = filename#.encode('cp936')
+        self.checkCustThread = Checkcustom(filename, md5)
+        self.checkCustThread.valueSignal.connect(self.recvYaraResult)
+        self.checkCustThread.start()
+        self.checkCustThread.wait()
+
+    '''
+    yara分析结果汇总
+    '''
+    def yaraDetectionResult(self, result):
+        yarscore = 0
+        string = [] # 结果概述
+        print result
+        if result[1] == "null":
+            print "not malware or antidbg, not webshell, not documentmal"
+        else:
+            if dict(eval(result[1])).has_key("malware"):
+                yarscore += len(set(YaraAlert.malalerts.keys()) & set(dict(eval(result[1]))["malware"]))
+            if dict(eval(result[1])).has_key("antidbg"):
+                yarscore += len(set(YaraAlert.atialerts.keys()) & set(dict(eval(result[1]))["antidbg"]))
+            print dict(eval(result[1]))
+        if result[2]:
+            yarscore += len(set(YaraAlert.pkdalerts.keys()) & set(dict(eval(result[2]))["packed"])) 
+            print dict(eval(result[2]))
+        if result[3]:
+            yarscore += len(set(YaraAlert.cptalerts.keys()) & set(dict(eval(result[3]))["crypto"]))
+            print dict(eval(result[3]))
+        return yarscore
+
+    '''
+    汇总分析结果
+    '''
+    def collectAnalyzResult(self):
+        pass
+
+    '''
+    文件分析总控
+    判断执行何种分析功能
+    '''
+    def analysisControl(self, index):
+        i = index
+        # 默认规则换成yara
+        # PE-Malware+antidbg
+        # SH-Webshell  
+        self.startYaraThread(self.filename, self.filetype, self.md5, i)
+        # 分析pe文件--影响self.score值
+        if 1 == self.pealflag:
+            self.startDefaultThread(self.filename, self.filetype, self.md5, i)
+        # 检查是否存在可疑的加密记号
+        if 1 == self.crypflag:
+            self.startCrypThread(self.filename, i, self.md5)
+        # 检查可能加壳记号
+        if 1 == self.Packflag:
+            self.startPackThread(self.filename, i, self.md5)
+        if 1 == self.selfflag:
+            print "going to use custom rule"
+            self.startCustThread(self.filename, i, self.md5)
+        yararst = self.readYaraResultDB(self.md5)
+        yarscore = self.yaraDetectionResult(yararst)
+        return yarscore
+        # print yararst
+
     def run(self):
         # import random
         self.chooseScanRule(self.scanrule)
-        if 1 == self.yaraflag:
-            self.checkYaraExists()
+        self.checkYaraExists()
         # 判断来自文件夹or文件选择
         # 文件选择发送list信号
         if isinstance(self.filelist, tuple):
             print "datebase update"
+            # print self.filelist
             for i in range(len(self.filelist[1])):
-                time.sleep(0.5)
+                time.sleep(0.2)
                 # print self.filelist[1][i]
-            # try:
-            #     sqlconn = sqlite3.connect("../db/fileinfo.db")
-            # except sqlite3.Error, e:
-            #     print "sqlite connect failed" , "\n", e.args[0]
-            # for i in range(len(self.filelist[1])):
-            #     sqlcursor = sqlconn.cursor()
-            #     sqlcursor.execute("update base_info set md5=? where id=?", ("info[0]", self.filelist[1][i]))
+                try:
+                    sqlconn = sqlite3.connect("../db/fileinfo.db")
+                except sqlite3.Error, e:
+                    print "sqlite connect failed" , "\n", e.args[0]
+                sqlcursor = sqlconn.cursor()
+                sqlcursor.execute("select * from base_info where id=?", (self.filelist[1][i],))
+                sqlconn.commit()
+                sqlcursor = sqlcursor.fetchone()
+                sqlconn.close()
+                self.filename = sqlcursor[1]
+                self.md5      = sqlcursor[5]
+                self.filetype = sqlcursor[3]
+                self.filesize = sqlcursor[2]
+                print "----------------", "\n", self.filename
+                # file size should less than 100M
+                # file type should be supported
+                typeflag = 0
+                for t in StaticValue.typesupport:
+                    if t in self.filetype:
+                        typeflag = 1
+                        break
+                if int(self.filesize) < 100*1024*1024 and typeflag:
+                    s = self.analysisControl(i)
+                else:
+                    self.sendmsg = "unsupport type"
+                    s = -1
+                self.update4DataBse(self.filelist[1][i], s, time.time())
                 self.fileSignal.emit(self.filelist[1][i], str(i + 1))
+                self.flogSignal.emit(2, self.sendmsg)
             return
         if isinstance(self.filelist, list):
             print "it's a list"
@@ -320,41 +632,35 @@ class ScanFile(QtCore.QThread):
             sqlconn.close()
             self.filelist = len(self.filelist)
         for i in range(self.filelist):
-            import random
-            # time.sleep(random.uniform(0, 0.3))
             time.sleep(0.2)
-            # self.filename = self.filelist[i]
-            # time.sleep(random.uniform(0, 0.5)) # 模拟耗时
-            # 添加获取文件基本信息函数后
-            # 此处可以发送多个参数
             # print i, FlagSet.scansqlcount
             FlagSet.scansqlcount = FlagSet.scansqlcount + 1
-            try:
-                self.filename = self.readFromDataBase(FlagSet.scansqlcount)
-                # print self.filename
-                self.infos = self.write2DataBase(FlagSet.scansqlcount, str(self.filename).encode('cp936'))
-            except:
-                print str(i) + " error when db operate"
-                return
+            self.filename = self.readFromDataBase(FlagSet.scansqlcount)
+            self.infos, useless = getFileInfo(str(self.filename))#.encode('cp936'))
+            if "error" == self.infos[0]:
+                print u"可能扫描到临时生成的文件"
+                continue
+            self.md5      = self.infos[0]
             self.filetype = self.infos[4]
             self.filesize = self.infos[3]
             # file size should less than 100M
-            if int(self.filesize) < 100*1024*1024:
-                # use default function
-                self.startDefaultThread(self.filename, self.filetype, i)
-                # use yara rule
-                if 1 == self.yaraflag:
-                    self.detect = self.startYaraThread(self.filename, self.filetype, i)
-                # 直接使用生成的clamav全部规则
-                # 后期计划拆分针对不同类型文件的规则
-                if 1 == self.clamflag: 
-                    self.detect = self.startClamThread(self.filename, i)
-                if 1 == self.Packflag:
-                    self.detect = self.startPackThread(self.filename, i)
+            # file type should be supported
+            typeflag = 0
+            for t in StaticValue.typesupport:
+                if t in self.filetype:
+                    typeflag = 1
+                    break    
+            if int(self.filesize) < 100*1024*1024 and typeflag:
+                self.score = self.analysisControl(i)
+            else:
+                self.sendmsg = "unsupport type"
+                self.score = -1
+            self.write2DataBase(FlagSet.scansqlcount, self.infos, self.score, time.time())
             # print FlagSet.scanstopflag
             if 0 == FlagSet.scanstopflag:
                 # 发送filelist长度在ui线程中标记结束
                 self.fileSignal.emit(self.filelist, self.filename)
+                self.flogSignal.emit(2, self.sendmsg)
                 break
             self.fileSignal.emit(i+1, self.filename)
-            
+            self.flogSignal.emit(2, self.sendmsg)

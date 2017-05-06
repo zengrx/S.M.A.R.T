@@ -12,6 +12,8 @@ import magic
 import sqlite3
 import re
 import urlparse
+import Queue
+import threading
 sys.path.append("../")
 from globalset import ImpAlert
 
@@ -50,33 +52,37 @@ infof:格式化   返回Name Path ...
 def getFileInfo(filename):
     infoo = [] # origin data
     infof = [] # format data
-    with open(filename, 'rb') as f:
-        cfile = f.read()
-        # 分割文件名与路径
-        p, f  = os.path.split(str(filename).decode('cp936'))
-        # name   =
-        infof.append("Name:\t{}".format(f))
-        # path   =
-        infof.append("Path:\t{}".format(p))
-        # md5    =
-        infoo.append(hashlib.md5(cfile).hexdigest())
-        infof.append("MD5:\t{}".format(hashlib.md5(cfile).hexdigest()))
-        # sha1   = 
-        infoo.append(hashlib.sha1(cfile).hexdigest())
-        infof.append("SHA1:\t{}".format(hashlib.sha1(cfile).hexdigest()))
-        # sha256 = 
-        infoo.append(hashlib.sha256(cfile).hexdigest())
-        infof.append("SHA256:\t{}".format(hashlib.sha256(cfile).hexdigest()))
-        # fsize  = 
-        infoo.append(os.path.getsize(filename))
-        infof.append("Size:\t{} Bytes".format(os.path.getsize(filename)))
+    if os.path.exists(filename):
+        with open(filename, 'rb') as f:
+            cfile = f.read()
+            # 分割文件名与路径
+            p, f  = os.path.split(str(filename))#.decode('cp936'))
+            # name   =
+            infof.append("Name:\t{}".format(f))
+            # path   =
+            infof.append("Path:\t{}".format(p))
+            # md5    =
+            infoo.append(hashlib.md5(cfile).hexdigest())
+            infof.append("MD5:\t{}".format(hashlib.md5(cfile).hexdigest()))
+            # sha1   = 
+            infoo.append(hashlib.sha1(cfile).hexdigest())
+            infof.append("SHA1:\t{}".format(hashlib.sha1(cfile).hexdigest()))
+            # sha256 = 
+            infoo.append(hashlib.sha256(cfile).hexdigest())
+            infof.append("SHA256:\t{}".format(hashlib.sha256(cfile).hexdigest()))
+            # fsize  = 
+            infoo.append(os.path.getsize(filename))
+            infof.append("Size:\t{} Bytes".format(os.path.getsize(filename)))
+            
+            # file_magic = magic.Magic(magic_file="../libs/magic.mgc")
+            # ftype  = 
+            infoo.append(magic.from_file(filename))
+            infof.append("Type:\t{}".format(magic.from_file(filename)))
+        return infoo, infof
+    else:
+        print "file " + filename + "not exist!"
+        return ["error"], ["error"]
         
-        file_magic = magic.Magic(magic_file="../libs/magic.mgc")
-        # ftype  = 
-        infoo.append(file_magic.from_file(filename))
-        infof.append("Type:\t{}".format(file_magic.from_file(filename)))
-    return infoo, infof
-
 class GetFileString:
     def __init__(self, filename):
         self.filename = filename
@@ -134,10 +140,19 @@ class PEFileAnalize:
     def checkFileDate(self):
         pedate = self.pe.FILE_HEADER.TimeDateStamp
         filedate = int(time.ctime(pedate).split()[-1])
-        nowdate = int(time.gmtime(time.time())[0])
-        # 怀疑的编译时间
-        if filedate > nowdate or filedate < 1995:
-            return filedate
+        return filedate
+
+    '''
+    查看运行平台
+    '''
+    def checkMachine(self):
+        machine = self.pe.FILE_HEADER.Machine
+        if 0x14c == machine:
+            return 32
+        elif 0x8664 == machine:
+            return 64
+        else:
+            return -1
 
     '''
     检查文件入口点
@@ -160,17 +175,6 @@ class PEFileAnalize:
                 ret1.append(imp.name)
             ret3[lib.dll] = ret1
         return ret3
-        # for n in ret1:
-        #     if n:
-        #         n = n.decode()
-        #         if any(map(n.startswith, self.alerts.keys())):
-        #             for a in self.alerts:
-        #                 if n.startswith(a):
-        #                     ret2.append("{}^{}".format(n, self.alerts.get(a)))
-        # return ret2
-        # -------------
-        # self.alerts use ImpAlert.alerts now
-        # -------------
 
     '''
     检查pe文件节信息
@@ -181,51 +185,17 @@ class PEFileAnalize:
         datasizeflag = False
         # 储存变量的list
         virtualSize  = []
-        sectionName  = []
         pefileinfos  = []
-        # 认可的节名称
-        goodsection  = ['.data', '.text', '.code', '.reloc', '.idata', '.edata', '.rdata', '.bss', '.rsrc']
         # 获取文件节个数
         numofsection = self.pe.FILE_HEADER.NumberOfSections
-        if numofsection < 1 or numofsection > 9:
-            print "suspicious number os sections"
-        else:
-            print "number of sections: ", numofsection
         pefileinfos.append(numofsection)
         for section in self.pe.sections:
-            secname = section.Name.strip(b"\x00").decode(errors='ignore')
-            sectionName.append(secname)
             entropy = section.get_entropy()
-            subentropyflag = False
-            if entropy < 1 or entropy > 7:
-                entropyflag = True
-                subentropyflag = True
-            try:
-                if section.Misc_VirtualSize / section.SizeOfRawData > 10:
-                    virtualSize.append((secname, section.Misc_VirtualSize))
-            except:
-                if section.SizeOfRawData == 0 and section.Misc_VirtualSize > 0:
-                    datasizeflag = True
-                    virtualSize.append((section.Name.strip(b"\x00").decode(errors='ignore'), section.Misc_VirtualSize))
             pefileinfos.append(section.Name.strip(b"\x00").decode(errors='ignore'))
             pefileinfos.append(hex(section.VirtualAddress))
             pefileinfos.append(section.Misc_VirtualSize)
             pefileinfos.append(section.SizeOfRawData)
             pefileinfos.append(str(entropy))
-
-        if virtualSize:
-            for n, m in virtualSize:
-                print 'SUSPICIOUS size of the section "{}" when stored in memory - {}'.format(n, m)
-        if entropyflag:
-            print "very high or very low entropy means that file or section is compressed or encrypted since truly data is not common."
-        if datasizeflag:
-            print "suspicious size of the raw data: 0"
-        badsections = [bad for bad in sectionName if bad not in goodsection]
-        if badsections:
-            print "suspicious section names:"
-            for n in badsections:
-                print n,
-            print ""
         return pefileinfos
 
     def checkFileHeader(self):
@@ -248,26 +218,93 @@ class PEFileAnalize:
 
 class DefaultAnalyze(QtCore.QThread):
     numberSignal = QtCore.pyqtSignal(int, str)
-    valueSignal  = QtCore.pyqtSignal(list)
+    valueSignal  = QtCore.pyqtSignal(int, str)
 
-    def __init__(self, filename, index, parent=None):
+    def __init__(self, filename, md5, index, parent=None):
         super(DefaultAnalyze, self).__init__(parent)
-        self.filename = filename
+        self.filename  = filename
+        self.md5       = md5
+        self.peAnalize = PEFileAnalize(self.filename)
 
-    def strResult(self):
-        strcheck = GetFileString(self.filename)
-        r = strcheck.getResult()
-        print r
-
+    # PE文件分析测试函数
     def test(self):
         peAnalize = PEFileAnalize(self.filename)
-        peAnalize.checkEntryPoint()
+        # peAnalize.checkEntryPoint()
         peAnalize.checkFileDate()
-        peAnalize.checkFileHeader()
+        # peAnalize.checkFileHeader()
         peAnalize.checkFileImports()
         peAnalize.checkFileSections()
+    
+    def func1(self, q):
+        result1 = self.peAnalize.checkFileDate()
+        result2 = self.peAnalize.checkEntryPoint()
+        result3 = self.peAnalize.checkMachine()
+        q.put((1, result1, result2, result3))
+
+    def func2(self, q):
+        result = self.peAnalize.checkFileImports()
+        q.put((2, result))
+
+    def func3(self, q):
+        result = self.peAnalize.checkFileSections()
+        q.put((3, result))
+
+    # python threading模块测试函数
+    # 三个子函数时比顺序执行平均快3秒 
+    def PEThreadControl(self, q):
+        tlist = []
+        t1 = threading.Thread(target=self.func1, args=(q,))
+        tlist.append(t1)
+        t2 = threading.Thread(target=self.func2, args=(q,))
+        tlist.append(t2)
+        t3 = threading.Thread(target=self.func3, args=(q,))
+        tlist.append(t3)
+        for i in tlist:
+            i.start()
+        for i in tlist:
+            i.join()
+
+    '''
+    写入PE文件信息
+    md5:文件md5值，作为数据库外键
+    queue:PE分析线程队列
+    return数据库执行结果
+    -1:数据库连接失败
+    -2:更新数据失败
+     1:数据库更新成功
+    '''
+    def write2PEInfoDB(self, md5, queue):
+        try:
+            sqlconn = sqlite3.connect('../db/fileinfo.db')
+        except sqlite3.Error, e:
+            print "sqlite connect failed", "\n", e.args[0]
+            return -1
+        sqlcursor = sqlconn.cursor()
+        try:            
+            print "insert a new pe file info"
+            sqlcursor.execute("insert into pe_info (md5) values(?)", (md5,))
+            while(not queue.empty()):
+                info = queue.get()
+                if 1 == info[0]:
+                    # print info[1], info[2]
+                    sqlcursor.execute("update pe_info set cpltime=?, entrypnt=?, petype=? where md5=?", (info[1], info[2], info[3], md5))
+                elif 2 == info[0]:
+                    # print info[1]
+                    sqlcursor.execute("update pe_info set impinfo=? where md5=?", (str(info[1]), md5))
+                else:
+                    # print info[1]
+                    sqlcursor.execute("update pe_info set setinfo=? where md5=?", (str(info[1]), md5))
+            sqlconn.commit()
+            sqlconn.close()
+            return 1
+        except sqlite3.Error, e:
+            print "error when read db data", "\n", e.args[0]
+            return -2
 
     def run(self):
         print "run function in defaultanalyze class"
-        self.test()
-        self.strResult()
+        # self.test()
+        que = Queue.Queue()
+        self.PEThreadControl(que)
+        ret = self.write2PEInfoDB(self.md5, que)
+        self.valueSignal.emit(ret, self.md5)

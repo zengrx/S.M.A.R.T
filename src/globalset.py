@@ -126,3 +126,116 @@ class ImpAlert(object):
         'Wow64DisableWow64FsRedirection': "Disables file redirection that occurs in 32-bit files loaded on a 64-bit system. If a 32-bit application writes to C:\Windows\System32 after calling this function, then it will write to the real C:\Windows\System32 instead of being redirected to C:\Windows\SysWOW64.",
         'WSAStartup': "Used to initialize low-level network functionality. Finding calls to WSAStartup can often be an easy way to locate the start of network-related functionality."
     }
+
+class YaraAlert(object):
+
+    # 恶意软件
+    malalerts = {
+        'spyeye':'debugged',
+        'Str_Win32_Winsock2_Library':'network',
+        'Str_Win32_Wininet_Library':'network',
+        'Str_Win32_Internet_API':'network',
+        'Str_Win32_Http_API':'network',
+        'Powerkatz_DLL_Generic':'hack',
+        'suspicious_packer_section':'pack',
+        'UPX':'pack'
+    }
+    # 反调试
+    atialerts = {
+        'anti_dbg':'debugged',
+        'network_udp_sock':'network',
+        'network_tcp_listen':'network',
+        'network_http':'network',
+        'network_tcp_socket':'network',
+        'network_dns':'network',
+        'screenshot':'remote',
+        'keylogger':'remote',
+        'win_registry':'authority',
+        'win_files_operation':'fileop',
+        'win_hook':'authority',
+        'win_token':'authority',
+        'win_mutex':'authority',
+        'cred_local':'authority',
+        'inject_thread':'inject',
+        'create_service':'service'
+    }
+    # 加壳信息
+    pkdalerts = {
+        'Borland':'',
+        'BobSoftMiniDelphiBoBBobSoft':'',
+        'UPXv20MarkusLaszloReiser':'packed',
+        'UPXV200V290MarkusOberhumerLaszloMolnarJohnReiser':'packed',
+        'UPXProtectorv10x2':'packed',
+        'UPX20030XMarkusOberhumerLaszloMolnarJohnReiser':'packed',
+        'possible_includes_base64_packed_functions':'crypto'
+    }
+    # 加密信息
+    cptalerts = {
+        'contentis_base64':'crypto',
+        'Big_Numbers0':'crypto',
+        'Big_Numbers1':'crypto',
+        'Big_Numbers3':'crypto',
+        'MD5_Constants':'crypto',
+        'BASE64_table':'crypto',
+        'SHA1_Constants':'crypto',
+        'CRC32_table':'crypto',
+        'OpenSSL_DSA':'crypto',
+        'Advapi_Hash_API':'crypto'
+    }
+
+class YaraDescription(object):
+
+    # 恶意软件
+    malalerts = {
+        'spyeye':'Debug information',
+        'Str_Win32_Winsock2_Library':'Match Winsock 2 API library declaration',
+        'Str_Win32_Wininet_Library':'Match Windows Inet API library declaration',
+        'Str_Win32_Internet_API':'Match Windows Inet API call',
+        'Str_Win32_Http_API':'Match Windows Http API call',
+        'Powerkatz_DLL_Generic':'a Mimikatz version prepared to run in memory via Powershell',
+        '':''
+    }
+    # 反调试
+    atialerts = {
+        'anti_dbg':'Checks if being debugged',
+        'network_udp_sock':'Communications over UDP network',
+        'network_tcp_listen':'Listen for incoming communication',
+        'network_http':'Communications over HTTP',
+        'network_tcp_socket':'Communications over RAW socket',
+        'network_dns':'Communications use DNS',
+        'screenshot':'Take screenshot',
+        'keylogger':'Run a keylogger',
+        'win_registry':'Affect system registries',
+        'win_files_operation':'Affect private profile',
+        'win_hook':'Affect hook table',
+        'win_token':'Affect system token',
+        'win_mutex':'Create or check mutex',
+        'cred_local':'Steal credential',
+        'inject_thread':'Code injection with CreateRemoteThread in a remote process',
+        'create_service':'Create a windows service'
+    }
+    # 加壳信息
+    pkdalerts = {
+        'Borland':'',
+        'BobSoftMiniDelphiBoBBobSoft':'',
+        'UPXv20MarkusLaszloReiser':'',
+        'UPXV200V290MarkusOberhumerLaszloMolnarJohnReiser':'',
+        'UPXProtectorv10x2':'',
+        'UPX20030XMarkusOberhumerLaszloMolnarJohnReiser':'',
+        'possible_includes_base64_packed_functions':''
+    }
+    # 加密信息
+    cptalerts = {
+        'contentis_base64':'This rule finds for base64 strings',
+    }
+
+class StaticValue(object):
+
+    goodsection = []
+    typesupport = ['PE32', 'executable', 'Microsoft', 'Document', 'File', 'PDF', 'text', 'script', 'html']
+
+class FilePath(object):
+
+    whitelist = "./custom/whitelist.txt"
+    whitefile = []
+    customyar = "./custom/custom.yar"

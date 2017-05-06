@@ -19,7 +19,7 @@ class UpdateData(QtCore.QObject):
             os.mkdir("rules_compiled")
         if not os.listdir("rules"):
             print "Downloading Yara-rules..."
-            # git.Git().clone("https://github.com/Yara-Rules/rules")
+            git.Git().clone("https://github.com/Yara-Rules/rules")
             return
         else:
             print "exists yara data"

@@ -8,6 +8,9 @@ import pandas as pd
 import numpy as np
 import re, os
 
+import sys
+reload(sys)
+sys.setdefaultencoding( "utf-8" )
 
 def getOpcodeSequence(filename):
     opcode_seq = []
@@ -63,8 +66,8 @@ cIojVJGQOtrL0S1ApeDY
 1KB3Z7gd5aN4Xmx8W0sf
 '''
 
-filepath = '/home/zrx/code/malwaredata/train/28U1hRkQ6Yl57493ZdXD.asm'
-tops = getOpcodeSequence(filepath)
+filepath = 'G:\\工程及其他\\train\\cIojVJGQOtrL0S1ApeDY.asm'
+tops = getOpcodeSequence(filepath.encode('cp936'))
 t3gram = getOpcodeNgram(tops)
 # print t3gram
 testdata = {}

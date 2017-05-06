@@ -1,0 +1,84 @@
+[2017-05-05 01:42:55]  /home/zrx/Documents/Virus/WormVirus/virus_main.exe File Analysis Result:
+		-----------suspicious api------------
+		WSAStartup : Used to initialize low-level network functionality. Finding calls to WSAStartup can often be an easy way to locate the start of network-related functionality.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetTickCount : Retrieves the number of milliseconds since bootup. This function is sometimes used to gather timing information as an anti-debugging technique. GetTickCount is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		connect : Used to connect to a remote socket. Malware often uses low-level functionality to connect to a command-and-control server.
+		system : Function to run another program provided by some C runtime libraries. On Windows, this function serves as a wrapper function to CreateProcess.
+		send : Sends data to a remote machine. Malware often uses this function to send data to a remote command-and-control server.
+		RegOpenKeyExW : Opens a handle to a registry key for reading and editing. Registry keys are sometimes written as a way for software to achieve persistence on a host. The registry also contains a whole host of operating system and application setting information.
+
+		---------suspicious entropy----------
+		['.data']
+
+[2017-05-05 01:42:55]  /home/zrx/Documents/Virus/WormVirus/test_virus_body.exe File Analysis Result:
+		-----------suspicious api------------
+		accept : Used to listen for incoming connections. This function indicates that the program will listen for incoming connections on a socket.
+		WSAStartup : Used to initialize low-level network functionality. Finding calls to WSAStartup can often be an easy way to locate the start of network-related functionality.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetTickCount : Retrieves the number of milliseconds since bootup. This function is sometimes used to gather timing information as an anti-debugging technique. GetTickCount is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		recv : Receives data from a remote machine. Malware often uses this function to receive data from a remote command-and-control server.
+
+		---------suspicious entropy----------
+		['.data']
+
+[2017-05-05 01:42:55]  /home/zrx/Documents/Virus/honeyWormVirus/Worm_body.exe File Analysis Result:
+		-----------suspicious api------------
+		WSAStartup : Used to initialize low-level network functionality. Finding calls to WSAStartup can often be an easy way to locate the start of network-related functionality.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetTickCount : Retrieves the number of milliseconds since bootup. This function is sometimes used to gather timing information as an anti-debugging technique. GetTickCount is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		connect : Used to connect to a remote socket. Malware often uses low-level functionality to connect to a command-and-control server.
+		system : Function to run another program provided by some C runtime libraries. On Windows, this function serves as a wrapper function to CreateProcess.
+		send : Sends data to a remote machine. Malware often uses this function to send data to a remote command-and-control server.
+		RegOpenKeyExW : Opens a handle to a registry key for reading and editing. Registry keys are sometimes written as a way for software to achieve persistence on a host. The registry also contains a whole host of operating system and application setting information.
+
+		---------suspicious entropy----------
+		['.data']
+
+[2017-05-05 01:42:56]  /home/zrx/Documents/Virus/honeyWormVirus/Worm_srv.exe File Analysis Result:
+		-----------suspicious api------------
+		accept : Used to listen for incoming connections. This function indicates that the program will listen for incoming connections on a socket.
+		WSAStartup : Used to initialize low-level network functionality. Finding calls to WSAStartup can often be an easy way to locate the start of network-related functionality.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetTickCount : Retrieves the number of milliseconds since bootup. This function is sometimes used to gather timing information as an anti-debugging technique. GetTickCount is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		recv : Receives data from a remote machine. Malware often uses this function to receive data from a remote command-and-control server.
+
+		---------suspicious entropy----------
+		['.data']
+
+[2017-05-05 01:42:56]  /home/zrx/Documents/Virus/JLCSS_Virus/JLCSS_Virus.exe File Analysis Result:
+		-----------suspicious api------------
+		GetForegroundWindow : Returns a handle to the window currently in the foreground of the desktop. Keyloggers commonly use this function to determine in which window the user is entering his keystrokes.
+		GetStartupInfoA : Retrieves a structure containing details about how the current process was configured to run, such as where the standard handles are directed.
+		RegOpenKeyExA : Opens a handle to a registry key for reading and editing. Registry keys are sometimes written as a way for software to achieve persistence on a host. The registry also contains a whole host of operating system and application setting information.
+		GetModuleHandleA : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		CreateProcessA : Creates and launches a new process. If malware creates a new process, you will need to analyze the new process as well.
+
+
+[2017-05-05 01:42:56]  /home/zrx/Documents/Virus/LaborDayVirus/LaborDayVirus.exe File Analysis Result:
+		-----------suspicious api------------
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetTickCount : Retrieves the number of milliseconds since bootup. This function is sometimes used to gather timing information as an anti-debugging technique. GetTickCount is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetStartupInfoA : Retrieves a structure containing details about how the current process was configured to run, such as where the standard handles are directed.
+
+		---------suspicious entropy----------
+		['.data']
+
+[2017-05-05 01:42:57]  /home/zrx/Desktop/GameSetup.exe File Analysis Result:
+		---------suspicious cpltime----------
+		1987
+		-----------suspicious api------------
+		LoadLibraryA : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['']
+		---------suspicious entropy----------
+		['', '']
+		------suspicious section name--------
+		['', '']

@@ -1,0 +1,729 @@
+[2017-05-03 19:35:55]  entrance folder:E:\project	file type:['7']
+[2017-05-03 19:35:55]  scan depth:-1
+[2017-05-03 19:35:55]  E:\project  -->layers: 0
+[2017-05-03 19:35:55]  E:\project\ACMhomework  -->layers: 1
+[2017-05-03 19:35:56]  E:\project\ACMhomework\ACMhomework  -->layers: 2
+[2017-05-03 19:35:56]  E:\project\ACMhomework\ACMhomework\Debug  -->layers: 3
+[2017-05-03 19:35:56]  E:\project\ACMhomework\ACMhomework\Debug\ACMhomework.tlog  -->layers: 4
+[2017-05-03 19:35:56]  E:\project\ACMhomework\Debug  -->layers: 2
+[2017-05-03 19:35:57]  E:\project\aesencrypt  -->layers: 1
+[2017-05-03 19:35:57]  E:\project\aesencrypt\aesencrypt  -->layers: 2
+[2017-05-03 19:35:57]  E:\project\aesencrypt\aesencrypt\Debug  -->layers: 3
+[2017-05-03 19:35:57]  E:\project\aesencrypt\aesencrypt\Debug\aesencrypt.tlog  -->layers: 4
+[2017-05-03 19:35:57]  E:\project\aesencrypt\Debug  -->layers: 2
+[2017-05-03 19:35:58]  E:\project\bintreelevelcpps  -->layers: 1
+[2017-05-03 19:35:58]  E:\project\bintreelevelstd  -->layers: 1
+[2017-05-03 19:35:58]  E:\project\bintreelevelstd\bintreelevelstd  -->layers: 2
+[2017-05-03 19:35:58]  E:\project\bintreelevelstd\bintreelevelstd\Debug  -->layers: 3
+[2017-05-03 19:35:58]  E:\project\bintreelevelstd\bintreelevelstd\Debug\bintreelevelstd.tlog  -->layers: 4
+[2017-05-03 19:35:58]  E:\project\bintreelevelstd\Debug  -->layers: 2
+[2017-05-03 19:35:58]  E:\project\BinTreewithLevel  -->layers: 1
+[2017-05-03 19:35:59]  E:\project\BinTreewithLevel\BinTreewithLevel  -->layers: 2
+[2017-05-03 19:35:59]  E:\project\BinTreewithLevel\BinTreewithLevel\Debug  -->layers: 3
+[2017-05-03 19:35:59]  E:\project\BinTreewithLevel\BinTreewithLevel\Debug\BinTreewithLevel.tlog  -->layers: 4
+[2017-05-03 19:35:59]  E:\project\BinTreewithLevel\Debug  -->layers: 2
+[2017-05-03 19:35:59]  E:\project\BinTree_dll  -->layers: 1
+[2017-05-03 19:35:59]  E:\project\BinTree_dll\BinTree_dll  -->layers: 2
+[2017-05-03 19:36:00]  E:\project\BinTree_dll\BinTree_dll\Debug  -->layers: 3
+[2017-05-03 19:36:00]  E:\project\BinTree_dll\BinTree_dll\Debug\BinTree_dll.tlog  -->layers: 4
+[2017-05-03 19:36:00]  E:\project\BinTree_dll\BinTree_implicit  -->layers: 2
+[2017-05-03 19:36:00]  E:\project\BinTree_dll\BinTree_implicit\Debug  -->layers: 3
+[2017-05-03 19:36:00]  E:\project\BinTree_dll\BinTree_implicit\Debug\BinTree_implicit.tlog  -->layers: 4
+[2017-05-03 19:36:01]  E:\project\BinTree_dll\Debug  -->layers: 2
+[2017-05-03 19:36:01]  E:\project\daily1  -->layers: 1
+[2017-05-03 19:36:01]  E:\project\daily1\daily1  -->layers: 2
+[2017-05-03 19:36:01]  E:\project\daily1\daily1\Debug  -->layers: 3
+[2017-05-03 19:36:01]  E:\project\daily1\daily1\Debug\daily1.tlog  -->layers: 4
+[2017-05-03 19:36:01]  E:\project\daily1\Debug  -->layers: 2
+[2017-05-03 19:36:01]  E:\project\dailytest  -->layers: 1
+[2017-05-03 19:36:02]  E:\project\dailytest\dailytest  -->layers: 2
+[2017-05-03 19:36:02]  E:\project\dailytest\dailytest\Debug  -->layers: 3
+[2017-05-03 19:36:02]  E:\project\dailytest\dailytest\Debug\dailytest.tlog  -->layers: 4
+[2017-05-03 19:36:02]  E:\project\dailytest\Debug  -->layers: 2
+[2017-05-03 19:36:02]  E:\project\dijkstra  -->layers: 1
+[2017-05-03 19:36:02]  E:\project\dijkstra\Debug  -->layers: 2
+[2017-05-03 19:36:02]  E:\project\dijkstra\dijkstra  -->layers: 2
+[2017-05-03 19:36:03]  E:\project\dijkstra\dijkstra\Debug  -->layers: 3
+[2017-05-03 19:36:03]  E:\project\dijkstra\dijkstra\Debug\dijkstra.tlog  -->layers: 4
+[2017-05-03 19:36:03]  E:\project\dlltest  -->layers: 1
+[2017-05-03 19:36:03]  E:\project\dlltest\Debug  -->layers: 2
+[2017-05-03 19:36:03]  E:\project\dlltest\dlltest  -->layers: 2
+[2017-05-03 19:36:03]  E:\project\dlltest\dlltest\Debug  -->layers: 3
+[2017-05-03 19:36:04]  E:\project\dlltest\dlltest\Debug\dlltest.tlog  -->layers: 4
+[2017-05-03 19:36:04]  E:\project\dlltest\dlltest_implicit  -->layers: 2
+[2017-05-03 19:36:04]  E:\project\dlltest\dlltest_implicit\Debug  -->layers: 3
+[2017-05-03 19:36:04]  E:\project\dlltest\dlltest_implicit\Debug\dlltest_implicit.tlog  -->layers: 4
+[2017-05-03 19:36:04]  E:\project\euclid  -->layers: 1
+[2017-05-03 19:36:04]  E:\project\euclid\Debug  -->layers: 2
+[2017-05-03 19:36:05]  E:\project\euclid\euclid  -->layers: 2
+[2017-05-03 19:36:05]  E:\project\euclid\euclid\Debug  -->layers: 3
+[2017-05-03 19:36:05]  E:\project\euclid\euclid\Debug\euclid.tlog  -->layers: 4
+[2017-05-03 19:36:05]  E:\project\finaltest  -->layers: 1
+[2017-05-03 19:36:05]  E:\project\finaltest\Debug  -->layers: 2
+[2017-05-03 19:36:05]  E:\project\finaltest\finaltest  -->layers: 2
+[2017-05-03 19:36:05]  E:\project\finaltest\finaltest\Debug  -->layers: 3
+[2017-05-03 19:36:05]  E:\project\finaltest\finaltest\Debug\finaltest.tlog  -->layers: 4
+[2017-05-03 19:36:06]  E:\project\goj  -->layers: 1
+[2017-05-03 19:36:06]  E:\project\goj\Debug  -->layers: 2
+[2017-05-03 19:36:06]  E:\project\goj\goj  -->layers: 2
+[2017-05-03 19:36:06]  E:\project\goj\goj\Debug  -->layers: 3
+[2017-05-03 19:36:06]  E:\project\goj\goj\Debug\goj.tlog  -->layers: 4
+[2017-05-03 19:36:06]  E:\project\graph  -->layers: 1
+[2017-05-03 19:36:07]  E:\project\graph\Debug  -->layers: 2
+[2017-05-03 19:36:07]  E:\project\graph\graph  -->layers: 2
+[2017-05-03 19:36:07]  E:\project\graph\graph\Debug  -->layers: 3
+[2017-05-03 19:36:07]  E:\project\graph\graph\Debug\graph.tlog  -->layers: 4
+[2017-05-03 19:36:07]  E:\project\hdoj  -->layers: 1
+[2017-05-03 19:36:07]  E:\project\hdoj\Debug  -->layers: 2
+[2017-05-03 19:36:07]  E:\project\hdoj\hdoj  -->layers: 2
+[2017-05-03 19:36:08]  E:\project\hdoj\hdoj\Debug  -->layers: 3
+[2017-05-03 19:36:08]  E:\project\hdoj\hdoj\Debug\hdoj.tlog  -->layers: 4
+[2017-05-03 19:36:08]  E:\project\heapsort  -->layers: 1
+[2017-05-03 19:36:08]  E:\project\heapsort\Debug  -->layers: 2
+[2017-05-03 19:36:08]  E:\project\heapsort\heapsort  -->layers: 2
+[2017-05-03 19:36:08]  E:\project\heapsort\heapsort\Debug  -->layers: 3
+[2017-05-03 19:36:09]  E:\project\heapsort\heapsort\Debug\heapsort.tlog  -->layers: 4
+[2017-05-03 19:36:09]  E:\project\hehe  -->layers: 1
+[2017-05-03 19:36:09]  E:\project\homework  -->layers: 1
+[2017-05-03 19:36:09]  E:\project\homework\Debug  -->layers: 2
+[2017-05-03 19:36:09]  E:\project\homework\homework  -->layers: 2
+[2017-05-03 19:36:09]  E:\project\homework\homework\Debug  -->layers: 3
+[2017-05-03 19:36:09]  E:\project\homework\homework\Debug\homework.tlog  -->layers: 4
+[2017-05-03 19:36:10]  E:\project\insertsort  -->layers: 1
+[2017-05-03 19:36:10]  E:\project\insertsort\Debug  -->layers: 2
+[2017-05-03 19:36:10]  E:\project\insertsort\insertsort  -->layers: 2
+[2017-05-03 19:36:10]  E:\project\insertsort\insertsort\Debug  -->layers: 3
+[2017-05-03 19:36:10]  E:\project\insertsort\insertsort\Debug\insertsort.tlog  -->layers: 4
+[2017-05-03 19:36:10]  E:\project\linkBinTree  -->layers: 1
+[2017-05-03 19:36:10]  E:\project\linkBinTree\BinTree  -->layers: 2
+[2017-05-03 19:36:11]  E:\project\linkBinTree\BinTree\Debug  -->layers: 3
+[2017-05-03 19:36:11]  E:\project\linkBinTree\BinTree\Debug\LBinTree.tlog  -->layers: 4
+[2017-05-03 19:36:11]  E:\project\linkBinTree\Debug  -->layers: 2
+[2017-05-03 19:36:11]  E:\project\linkqueue  -->layers: 1
+[2017-05-03 19:36:11]  E:\project\linkqueue\Debug  -->layers: 2
+[2017-05-03 19:36:11]  E:\project\linkqueue\linkqueue  -->layers: 2
+[2017-05-03 19:36:11]  E:\project\linkqueue\linkqueue\Debug  -->layers: 3
+[2017-05-03 19:36:12]  E:\project\linkqueue\linkqueue\Debug\linkqueue.tlog  -->layers: 4
+[2017-05-03 19:36:12]  E:\project\linkstack  -->layers: 1
+[2017-05-03 19:36:12]  E:\project\linkstack\Debug  -->layers: 2
+[2017-05-03 19:36:12]  E:\project\linkstack\linkstack  -->layers: 2
+[2017-05-03 19:36:12]  E:\project\linkstack\linkstack\Debug  -->layers: 3
+[2017-05-03 19:36:12]  E:\project\linkstack\linkstack\Debug\linkstack.tlog  -->layers: 4
+[2017-05-03 19:36:13]  E:\project\list_hwork  -->layers: 1
+[2017-05-03 19:36:13]  E:\project\list_hwork\Debug  -->layers: 2
+[2017-05-03 19:36:13]  E:\project\list_hwork\list_hwork  -->layers: 2
+[2017-05-03 19:36:13]  E:\project\list_hwork\list_hwork\Debug  -->layers: 3
+[2017-05-03 19:36:13]  E:\project\list_hwork\list_hwork\Debug\list_hwork.tlog  -->layers: 4
+[2017-05-03 19:36:13]  E:\project\mazetest  -->layers: 1
+[2017-05-03 19:36:13]  E:\project\mazetest\Debug  -->layers: 2
+[2017-05-03 19:36:14]  E:\project\mazetest\mazetest  -->layers: 2
+[2017-05-03 19:36:14]  E:\project\mazetest\mazetest\Debug  -->layers: 3
+[2017-05-03 19:36:14]  E:\project\mazetest\mazetest\Debug\mazetest.tlog  -->layers: 4
+[2017-05-03 19:36:14]  E:\project\mergesort  -->layers: 1
+[2017-05-03 19:36:14]  E:\project\mergesort\Debug  -->layers: 2
+[2017-05-03 19:36:14]  E:\project\mergesort\mergesort  -->layers: 2
+[2017-05-03 19:36:14]  E:\project\mergesort\mergesort\Debug  -->layers: 3
+[2017-05-03 19:36:15]  E:\project\mergesort\mergesort\Debug\mergesort.tlog  -->layers: 4
+[2017-05-03 19:36:15]  E:\project\mergesorttest  -->layers: 1
+[2017-05-03 19:36:15]  E:\project\mergesorttest\Debug  -->layers: 2
+[2017-05-03 19:36:15]  E:\project\mergesorttest\mergesorttest  -->layers: 2
+[2017-05-03 19:36:15]  E:\project\mergesorttest\mergesorttest\Debug  -->layers: 3
+[2017-05-03 19:36:15]  E:\project\mergesorttest\mergesorttest\Debug\mergesorttest.tlog  -->layers: 4
+[2017-05-03 19:36:16]  E:\project\mvctest  -->layers: 1
+[2017-05-03 19:36:16]  E:\project\mvctest\mvctest  -->layers: 2
+[2017-05-03 19:36:17]  E:\project\mvctest\mvctest\Account  -->layers: 3
+[2017-05-03 19:36:17]  E:\project\mvctest\mvctest\App_Data  -->layers: 3
+[2017-05-03 19:36:17]  E:\project\mvctest\mvctest\App_Start  -->layers: 3
+[2017-05-03 19:36:17]  E:\project\mvctest\mvctest\bin  -->layers: 3
+[2017-05-03 19:36:19]  E:\project\mvctest\mvctest\bin\zh-Hans  -->layers: 4
+[2017-05-03 19:36:20]  E:\project\mvctest\mvctest\Content  -->layers: 3
+[2017-05-03 19:36:20]  E:\project\mvctest\mvctest\Content\themes  -->layers: 4
+[2017-05-03 19:36:20]  E:\project\mvctest\mvctest\Content\themes\base  -->layers: 5
+[2017-05-03 19:36:20]  E:\project\mvctest\mvctest\Content\themes\base\images  -->layers: 6
+[2017-05-03 19:36:20]  E:\project\mvctest\mvctest\Content\themes\base\minified  -->layers: 6
+[2017-05-03 19:36:21]  E:\project\mvctest\mvctest\Content\themes\base\minified\images  -->layers: 7
+[2017-05-03 19:36:21]  E:\project\mvctest\mvctest\Images  -->layers: 3
+[2017-05-03 19:36:21]  E:\project\mvctest\mvctest\obj  -->layers: 3
+[2017-05-03 19:36:21]  E:\project\mvctest\mvctest\obj\Debug  -->layers: 4
+[2017-05-03 19:36:21]  E:\project\mvctest\mvctest\obj\Debug\TempPE  -->layers: 5
+[2017-05-03 19:36:21]  E:\project\mvctest\mvctest\Properties  -->layers: 3
+[2017-05-03 19:36:21]  E:\project\mvctest\mvctest\Scripts  -->layers: 3
+[2017-05-03 19:36:22]  E:\project\mvctest\mvctest\Scripts\WebForms  -->layers: 4
+[2017-05-03 19:36:23]  E:\project\mvctest\mvctest\Scripts\WebForms\MSAjax  -->layers: 5
+[2017-05-03 19:36:25]  E:\project\mvctest\packages  -->layers: 2
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\AspNet.ScriptManager.jQuery.1.8.2  -->layers: 3
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\AspNet.ScriptManager.jQuery.1.8.2\lib  -->layers: 4
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\AspNet.ScriptManager.jQuery.1.8.2\lib\net40  -->layers: 5
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\AspNet.ScriptManager.jQuery.1.8.2\lib\net45  -->layers: 5
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.8.24  -->layers: 3
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.8.24\lib  -->layers: 4
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.8.24\lib\net40  -->layers: 5
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.8.24\lib\net45  -->layers: 5
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\DotNetOpenAuth.AspNet.4.1.4.12333  -->layers: 3
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib  -->layers: 4
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net40-full  -->layers: 5
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net45-full  -->layers: 5
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\DotNetOpenAuth.Core.4.1.4.12333  -->layers: 3
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\DotNetOpenAuth.Core.4.1.4.12333\lib  -->layers: 4
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net40-full  -->layers: 5
+[2017-05-03 19:36:25]  E:\project\mvctest\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net45-full  -->layers: 5
+[2017-05-03 19:36:26]  E:\project\mvctest\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333  -->layers: 3
+[2017-05-03 19:36:26]  E:\project\mvctest\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib  -->layers: 4
+[2017-05-03 19:36:26]  E:\project\mvctest\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net40-full  -->layers: 5
+[2017-05-03 19:36:26]  E:\project\mvctest\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net45-full  -->layers: 5
+[2017-05-03 19:36:26]  E:\project\mvctest\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333  -->layers: 3
+[2017-05-03 19:36:26]  E:\project\mvctest\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib  -->layers: 4
+[2017-05-03 19:36:26]  E:\project\mvctest\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net40-full  -->layers: 5
+[2017-05-03 19:36:26]  E:\project\mvctest\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net45-full  -->layers: 5
+[2017-05-03 19:36:26]  E:\project\mvctest\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333  -->layers: 3
+[2017-05-03 19:36:26]  E:\project\mvctest\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib  -->layers: 4
+[2017-05-03 19:36:26]  E:\project\mvctest\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net40-full  -->layers: 5
+[2017-05-03 19:36:26]  E:\project\mvctest\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net45-full  -->layers: 5
+[2017-05-03 19:36:27]  E:\project\mvctest\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333  -->layers: 3
+[2017-05-03 19:36:27]  E:\project\mvctest\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib  -->layers: 4
+[2017-05-03 19:36:27]  E:\project\mvctest\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net40-full  -->layers: 5
+[2017-05-03 19:36:27]  E:\project\mvctest\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net45-full  -->layers: 5
+[2017-05-03 19:36:27]  E:\project\mvctest\packages\EntityFramework.5.0.0  -->layers: 3
+[2017-05-03 19:36:27]  E:\project\mvctest\packages\EntityFramework.5.0.0\Content  -->layers: 4
+[2017-05-03 19:36:27]  E:\project\mvctest\packages\EntityFramework.5.0.0\lib  -->layers: 4
+[2017-05-03 19:36:27]  E:\project\mvctest\packages\EntityFramework.5.0.0\lib\net40  -->layers: 5
+[2017-05-03 19:36:27]  E:\project\mvctest\packages\EntityFramework.5.0.0\lib\net40\zh-Hans  -->layers: 6
+[2017-05-03 19:36:27]  E:\project\mvctest\packages\EntityFramework.5.0.0\lib\net45  -->layers: 5
+[2017-05-03 19:36:28]  E:\project\mvctest\packages\EntityFramework.5.0.0\lib\net45\zh-Hans  -->layers: 6
+[2017-05-03 19:36:28]  E:\project\mvctest\packages\EntityFramework.5.0.0\tools  -->layers: 4
+[2017-05-03 19:36:28]  E:\project\mvctest\packages\EntityFramework.zh-Hans.5.0.0  -->layers: 3
+[2017-05-03 19:36:28]  E:\project\mvctest\packages\EntityFramework.zh-Hans.5.0.0\lib  -->layers: 4
+[2017-05-03 19:36:28]  E:\project\mvctest\packages\EntityFramework.zh-Hans.5.0.0\lib\net40  -->layers: 5
+[2017-05-03 19:36:28]  E:\project\mvctest\packages\EntityFramework.zh-Hans.5.0.0\lib\net40\zh-Hans  -->layers: 6
+[2017-05-03 19:36:28]  E:\project\mvctest\packages\EntityFramework.zh-Hans.5.0.0\lib\net45  -->layers: 5
+[2017-05-03 19:36:28]  E:\project\mvctest\packages\EntityFramework.zh-Hans.5.0.0\lib\net45\zh-Hans  -->layers: 6
+[2017-05-03 19:36:29]  E:\project\mvctest\packages\jQuery.1.8.2  -->layers: 3
+[2017-05-03 19:36:29]  E:\project\mvctest\packages\jQuery.1.8.2\Content  -->layers: 4
+[2017-05-03 19:36:29]  E:\project\mvctest\packages\jQuery.1.8.2\Content\Scripts  -->layers: 5
+[2017-05-03 19:36:29]  E:\project\mvctest\packages\jQuery.1.8.2\Tools  -->layers: 4
+[2017-05-03 19:36:30]  E:\project\mvctest\packages\jQuery.UI.Combined.1.8.24  -->layers: 3
+[2017-05-03 19:36:30]  E:\project\mvctest\packages\jQuery.UI.Combined.1.8.24\Content  -->layers: 4
+[2017-05-03 19:36:30]  E:\project\mvctest\packages\jQuery.UI.Combined.1.8.24\Content\Content  -->layers: 5
+[2017-05-03 19:36:30]  E:\project\mvctest\packages\jQuery.UI.Combined.1.8.24\Content\Content\themes  -->layers: 6
+[2017-05-03 19:36:30]  E:\project\mvctest\packages\jQuery.UI.Combined.1.8.24\Content\Content\themes\base  -->layers: 7
+[2017-05-03 19:36:30]  E:\project\mvctest\packages\jQuery.UI.Combined.1.8.24\Content\Content\themes\base\images  -->layers: 8
+[2017-05-03 19:36:30]  E:\project\mvctest\packages\jQuery.UI.Combined.1.8.24\Content\Content\themes\base\minified  -->layers: 8
+[2017-05-03 19:36:30]  E:\project\mvctest\packages\jQuery.UI.Combined.1.8.24\Content\Content\themes\base\minified\images  -->layers: 9
+[2017-05-03 19:36:31]  E:\project\mvctest\packages\jQuery.UI.Combined.1.8.24\Content\Scripts  -->layers: 5
+[2017-05-03 19:36:31]  E:\project\mvctest\packages\jQuery.UI.Combined.1.8.24\Tools  -->layers: 4
+[2017-05-03 19:36:31]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.1.0.0  -->layers: 3
+[2017-05-03 19:36:31]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.1.0.0\Content  -->layers: 4
+[2017-05-03 19:36:31]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.1.0.0\Content\App_Start  -->layers: 5
+[2017-05-03 19:36:31]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.0  -->layers: 3
+[2017-05-03 19:36:31]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.0\lib  -->layers: 4
+[2017-05-03 19:36:31]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.0\lib\net40  -->layers: 5
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.0\lib\net40\zh-Hans  -->layers: 6
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.0\lib\net45  -->layers: 5
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.0\lib\net45\zh-Hans  -->layers: 6
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.Core.zh-Hans.1.0.0  -->layers: 3
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.Core.zh-Hans.1.0.0\lib  -->layers: 4
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.Core.zh-Hans.1.0.0\lib\net40  -->layers: 5
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.Core.zh-Hans.1.0.0\lib\net40\zh-Hans  -->layers: 6
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.Core.zh-Hans.1.0.0\lib\net45  -->layers: 5
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.FriendlyUrls.Core.zh-Hans.1.0.0\lib\net45\zh-Hans  -->layers: 6
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.1  -->layers: 3
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.1\lib  -->layers: 4
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.1\lib\net40  -->layers: 5
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.1\lib\net40\zh-Hans  -->layers: 6
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.1\lib\net45  -->layers: 5
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.1\lib\net45\zh-Hans  -->layers: 6
+[2017-05-03 19:36:32]  E:\project\mvctest\packages\Microsoft.AspNet.Membership.OpenAuth.zh-Hans.1.0.1  -->layers: 3
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Membership.OpenAuth.zh-Hans.1.0.1\lib  -->layers: 4
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Membership.OpenAuth.zh-Hans.1.0.1\lib\net40  -->layers: 5
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Membership.OpenAuth.zh-Hans.1.0.1\lib\net40\zh-Hans  -->layers: 6
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Membership.OpenAuth.zh-Hans.1.0.1\lib\net45  -->layers: 5
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Membership.OpenAuth.zh-Hans.1.0.1\lib\net45\zh-Hans  -->layers: 6
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Providers.Core.1.2  -->layers: 3
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Providers.Core.1.2\lib  -->layers: 4
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40  -->layers: 5
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\zh-Hans  -->layers: 6
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Providers.Core.zh-Hans.1.2  -->layers: 3
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Providers.Core.zh-Hans.1.2\lib  -->layers: 4
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Providers.Core.zh-Hans.1.2\lib\net40  -->layers: 5
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Providers.Core.zh-Hans.1.2\lib\net40\zh-Hans  -->layers: 6
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Providers.LocalDB.1.1  -->layers: 3
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Providers.LocalDB.1.1\content  -->layers: 4
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.Providers.LocalDB.1.1\tools  -->layers: 4
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6  -->layers: 3
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6\content  -->layers: 4
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6\content\Scripts  -->layers: 5
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6\content\Scripts\WebForms  -->layers: 6
+[2017-05-03 19:36:33]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6\content\Scripts\WebForms\MSAjax  -->layers: 7
+[2017-05-03 19:36:35]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6\lib  -->layers: 4
+[2017-05-03 19:36:35]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6\lib\net45  -->layers: 5
+[2017-05-03 19:36:35]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.WebForms.4.5.6  -->layers: 3
+[2017-05-03 19:36:35]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.WebForms.4.5.6\content  -->layers: 4
+[2017-05-03 19:36:35]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.WebForms.4.5.6\content\Scripts  -->layers: 5
+[2017-05-03 19:36:35]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.WebForms.4.5.6\content\Scripts\WebForms  -->layers: 6
+[2017-05-03 19:36:35]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.WebForms.4.5.6\lib  -->layers: 4
+[2017-05-03 19:36:35]  E:\project\mvctest\packages\Microsoft.AspNet.ScriptManager.WebForms.4.5.6\lib\net45  -->layers: 5
+[2017-05-03 19:36:35]  E:\project\mvctest\packages\Microsoft.AspNet.Web.Optimization.1.0.0  -->layers: 3
+[2017-05-03 19:36:35]  E:\project\mvctest\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib  -->layers: 4
+[2017-05-03 19:36:35]  E:\project\mvctest\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40  -->layers: 5
+[2017-05-03 19:36:35]  E:\project\mvctest\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\zh-Hans  -->layers: 6
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0  -->layers: 3
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0\content  -->layers: 4
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0\lib  -->layers: 4
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0\lib\net45  -->layers: 5
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Microsoft.AspNet.Web.Optimization.zh-Hans.1.0.0  -->layers: 3
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Microsoft.AspNet.Web.Optimization.zh-Hans.1.0.0\lib  -->layers: 4
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Microsoft.AspNet.Web.Optimization.zh-Hans.1.0.0\lib\net40  -->layers: 5
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Microsoft.AspNet.Web.Optimization.zh-Hans.1.0.0\lib\net40\zh-Hans  -->layers: 6
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Microsoft.Web.Infrastructure.1.0.0.0  -->layers: 3
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib  -->layers: 4
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40  -->layers: 5
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Microsoft.Web.Infrastructure.1.0.0.0\tools  -->layers: 4
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Modernizr.2.6.2  -->layers: 3
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Modernizr.2.6.2\Content  -->layers: 4
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Modernizr.2.6.2\Content\Scripts  -->layers: 5
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\Modernizr.2.6.2\Tools  -->layers: 4
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\WebGrease.1.1.0  -->layers: 3
+[2017-05-03 19:36:36]  E:\project\mvctest\packages\WebGrease.1.1.0\lib  -->layers: 4
+[2017-05-03 19:36:37]  E:\project\mvctest\packages\WebGrease.1.1.0\tools  -->layers: 4
+[2017-05-03 19:36:37]  E:\project\New AI-IpClient  -->layers: 1
+[2017-05-03 19:36:37]  E:\project\New AI-IpClient\Debug  -->layers: 2
+[2017-05-03 19:36:38]  E:\project\New AI-IpClient\ipch  -->layers: 2
+[2017-05-03 19:36:38]  E:\project\New AI-IpClient\ipch\new ai-ipclient-e132260b  -->layers: 3
+[2017-05-03 19:36:38]  E:\project\New AI-IpClient\New AI-IpClient  -->layers: 2
+[2017-05-03 19:36:39]  E:\project\New AI-IpClient\New AI-IpClient\Debug  -->layers: 3
+[2017-05-03 19:36:39]  E:\project\New AI-IpClient\New AI-IpClient\Debug\New AI-IpClient.tlog  -->layers: 4
+[2017-05-03 19:36:39]  E:\project\New AI-IpClient\New AI-IpClient\res  -->layers: 3
+[2017-05-03 19:36:39]  E:\project\New AI-IpClient - 副本  -->layers: 1
+[2017-05-03 19:36:40]  E:\project\New AI-IpClient - 副本\Debug  -->layers: 2
+[2017-05-03 19:36:40]  E:\project\New AI-IpClient - 副本\ipch  -->layers: 2
+[2017-05-03 19:36:40]  E:\project\New AI-IpClient - 副本\ipch\new ai-ipclient-e132260b  -->layers: 3
+[2017-05-03 19:36:40]  E:\project\New AI-IpClient - 副本\New AI-IpClient  -->layers: 2
+[2017-05-03 19:36:40]  E:\project\New AI-IpClient - 副本\New AI-IpClient\Debug  -->layers: 3
+[2017-05-03 19:36:41]  E:\project\New AI-IpClient - 副本\New AI-IpClient\Debug\New AI-IpClient.tlog  -->layers: 4
+[2017-05-03 19:36:41]  E:\project\New AI-IpClient - 副本\New AI-IpClient\res  -->layers: 3
+[2017-05-03 19:36:41]  E:\project\NewIpClient  -->layers: 1
+[2017-05-03 19:36:41]  E:\project\NewIpClient\Debug  -->layers: 2
+[2017-05-03 19:36:41]  E:\project\NewIpClient\ipch  -->layers: 2
+[2017-05-03 19:36:41]  E:\project\NewIpClient\ipch\newipclient-2863ada6  -->layers: 3
+[2017-05-03 19:36:42]  E:\project\NewIpClient\NewIpClient  -->layers: 2
+[2017-05-03 19:36:42]  E:\project\NewIpClient\NewIpClient\Debug  -->layers: 3
+[2017-05-03 19:36:42]  E:\project\NewIpClient\NewIpClient\Debug\NewIpClient.tlog  -->layers: 4
+[2017-05-03 19:36:43]  E:\project\NewIpClient\NewIpClient\res  -->layers: 3
+[2017-05-03 19:36:43]  E:\project\OJ  -->layers: 1
+[2017-05-03 19:36:43]  E:\project\OJ\Debug  -->layers: 2
+[2017-05-03 19:36:43]  E:\project\OJ\OJ  -->layers: 2
+[2017-05-03 19:36:43]  E:\project\OJ\OJ\Debug  -->layers: 3
+[2017-05-03 19:36:43]  E:\project\OJ\OJ\Debug\OJ.tlog  -->layers: 4
+[2017-05-03 19:36:43]  E:\project\opensslca  -->layers: 1
+[2017-05-03 19:36:44]  E:\project\opensslca\Debug  -->layers: 2
+[2017-05-03 19:36:44]  E:\project\opensslca\opensslca  -->layers: 2
+[2017-05-03 19:36:44]  E:\project\opensslca\opensslca\Debug  -->layers: 3
+[2017-05-03 19:36:45]  E:\project\opensslca\opensslca\Debug\opensslca.tlog  -->layers: 4
+[2017-05-03 19:36:45]  E:\project\opensslca\opensslca\demoCA  -->layers: 3
+[2017-05-03 19:36:45]  E:\project\openssl_sample  -->layers: 1
+[2017-05-03 19:36:45]  E:\project\openssl_sample\Debug  -->layers: 2
+[2017-05-03 19:36:45]  E:\project\openssl_sample\openssl_sample  -->layers: 2
+[2017-05-03 19:36:45]  E:\project\openssl_sample\openssl_sample\Debug  -->layers: 3
+[2017-05-03 19:36:46]  E:\project\openssl_sample\openssl_sample\Debug\openssl_sample.tlog  -->layers: 4
+[2017-05-03 19:36:46]  E:\project\openssl_sample\openssl_sample\x64  -->layers: 3
+[2017-05-03 19:36:46]  E:\project\openssl_sample\openssl_sample\x64\Debug  -->layers: 4
+[2017-05-03 19:36:46]  E:\project\openssl_sample\openssl_sample\x64\Debug\openssl_sample.tlog  -->layers: 5
+[2017-05-03 19:36:46]  E:\project\openssl_sample\x64  -->layers: 2
+[2017-05-03 19:36:46]  E:\project\openssl_sample\x64\Debug  -->layers: 3
+[2017-05-03 19:36:46]  E:\project\party  -->layers: 1
+[2017-05-03 19:36:46]  E:\project\party\Debug  -->layers: 2
+[2017-05-03 19:36:46]  E:\project\party\party  -->layers: 2
+[2017-05-03 19:36:46]  E:\project\party\party\Debug  -->layers: 3
+[2017-05-03 19:36:47]  E:\project\party\party\Debug\party.tlog  -->layers: 4
+[2017-05-03 19:36:47]  E:\project\quicksort  -->layers: 1
+[2017-05-03 19:36:47]  E:\project\quicksort\Debug  -->layers: 2
+[2017-05-03 19:36:47]  E:\project\quicksort\quicksort  -->layers: 2
+[2017-05-03 19:36:47]  E:\project\quicksort\quicksort\Debug  -->layers: 3
+[2017-05-03 19:36:47]  E:\project\quicksort\quicksort\Debug\quicksort.tlog  -->layers: 4
+[2017-05-03 19:36:48]  E:\project\radixsort  -->layers: 1
+[2017-05-03 19:36:48]  E:\project\radixsort\Debug  -->layers: 2
+[2017-05-03 19:36:48]  E:\project\radixsort\radixsort  -->layers: 2
+[2017-05-03 19:36:48]  E:\project\radixsort\radixsort\Debug  -->layers: 3
+[2017-05-03 19:36:48]  E:\project\radixsort\radixsort\Debug\radixsort.tlog  -->layers: 4
+[2017-05-03 19:36:48]  E:\project\random  -->layers: 1
+[2017-05-03 19:36:49]  E:\project\random\Debug  -->layers: 2
+[2017-05-03 19:36:49]  E:\project\random\random  -->layers: 2
+[2017-05-03 19:36:49]  E:\project\random\random\Debug  -->layers: 3
+[2017-05-03 19:36:49]  E:\project\random\random\Debug\random.tlog  -->layers: 4
+[2017-05-03 19:36:49]  E:\project\randsorttest  -->layers: 1
+[2017-05-03 19:36:49]  E:\project\randsorttest\Debug  -->layers: 2
+[2017-05-03 19:36:49]  E:\project\randsorttest\randsorttest  -->layers: 2
+[2017-05-03 19:36:50]  E:\project\randsorttest\randsorttest\Debug  -->layers: 3
+[2017-05-03 19:36:50]  E:\project\randsorttest\randsorttest\Debug\randsorttest.tlog  -->layers: 4
+[2017-05-03 19:36:50]  E:\project\seqqueue  -->layers: 1
+[2017-05-03 19:36:50]  E:\project\seqqueue\Debug  -->layers: 2
+[2017-05-03 19:36:51]  E:\project\seqqueue\seqqueue  -->layers: 2
+[2017-05-03 19:36:51]  E:\project\seqqueue\seqqueue\Debug  -->layers: 3
+[2017-05-03 19:36:51]  E:\project\seqqueue\seqqueue\Debug\seqqueue.tlog  -->layers: 4
+[2017-05-03 19:36:51]  E:\project\seqstack  -->layers: 1
+[2017-05-03 19:36:51]  E:\project\seqstack\Debug  -->layers: 2
+[2017-05-03 19:36:51]  E:\project\seqstack\stack  -->layers: 2
+[2017-05-03 19:36:51]  E:\project\seqstack\stack\Debug  -->layers: 3
+[2017-05-03 19:36:52]  E:\project\seqstack\stack\Debug\stack.tlog  -->layers: 4
+[2017-05-03 19:36:52]  E:\project\socketsend  -->layers: 1
+[2017-05-03 19:36:52]  E:\project\socketsend\socketreceive  -->layers: 2
+[2017-05-03 19:36:52]  E:\project\socketsend\socketsend  -->layers: 2
+[2017-05-03 19:36:52]  E:\project\stacktest  -->layers: 1
+[2017-05-03 19:36:52]  E:\project\stacktest\Debug  -->layers: 2
+[2017-05-03 19:36:52]  E:\project\stacktest\stacktest  -->layers: 2
+[2017-05-03 19:36:53]  E:\project\stacktest\stacktest\Debug  -->layers: 3
+[2017-05-03 19:36:53]  E:\project\stacktest\stacktest\Debug\stacktest.tlog  -->layers: 4
+[2017-05-03 19:36:53]  E:\project\structlisttest  -->layers: 1
+[2017-05-03 19:36:53]  E:\project\structlisttest\Debug  -->layers: 2
+[2017-05-03 19:36:53]  E:\project\structlisttest\structlisttest  -->layers: 2
+[2017-05-03 19:36:53]  E:\project\structlisttest\structlisttest\Debug  -->layers: 3
+[2017-05-03 19:36:53]  E:\project\structlisttest\structlisttest\Debug\structlisttest.tlog  -->layers: 4
+[2017-05-03 19:36:54]  E:\project\structure  -->layers: 1
+[2017-05-03 19:36:54]  E:\project\structure\Debug  -->layers: 2
+[2017-05-03 19:36:54]  E:\project\structure\structure  -->layers: 2
+[2017-05-03 19:36:54]  E:\project\structure\structure\Debug  -->layers: 3
+[2017-05-03 19:36:54]  E:\project\structure\structure\Debug\structure.tlog  -->layers: 4
+[2017-05-03 19:36:54]  E:\project\stusql  -->layers: 1
+[2017-05-03 19:36:54]  E:\project\stusql\Debug  -->layers: 2
+[2017-05-03 19:36:54]  E:\project\stusql\ipch  -->layers: 2
+[2017-05-03 19:36:55]  E:\project\stusql\ipch\stusql-b472dea4  -->layers: 3
+[2017-05-03 19:36:55]  E:\project\stusql\Release  -->layers: 2
+[2017-05-03 19:36:55]  E:\project\stusql\stusql  -->layers: 2
+[2017-05-03 19:36:55]  E:\project\stusql\stusql\Debug  -->layers: 3
+[2017-05-03 19:36:56]  E:\project\stusql\stusql\Debug\stusql.tlog  -->layers: 4
+[2017-05-03 19:36:56]  E:\project\stusql\stusql\Release  -->layers: 3
+[2017-05-03 19:36:56]  E:\project\stusql\stusql\Release\stusql.tlog  -->layers: 4
+[2017-05-03 19:36:57]  E:\project\stusql\stusql\res  -->layers: 3
+[2017-05-03 19:36:57]  E:\project\test  -->layers: 1
+[2017-05-03 19:36:57]  E:\project\test\Debug  -->layers: 2
+[2017-05-03 19:36:57]  E:\project\test\test  -->layers: 2
+[2017-05-03 19:36:57]  E:\project\test\test\Debug  -->layers: 3
+[2017-05-03 19:36:57]  E:\project\test\test\Debug\test.tlog  -->layers: 4
+[2017-05-03 19:36:57]  E:\project\WindowsFormsApplication1-zrx  -->layers: 1
+[2017-05-03 19:36:57]  E:\project\WindowsFormsApplication1-zrx\WindowsFormsApplication1  -->layers: 2
+[2017-05-03 19:36:58]  E:\project\WindowsFormsApplication1-zrx\WindowsFormsApplication1\bin  -->layers: 3
+[2017-05-03 19:36:58]  E:\project\WindowsFormsApplication1-zrx\WindowsFormsApplication1\bin\Debug  -->layers: 4
+[2017-05-03 19:36:58]  E:\project\WindowsFormsApplication1-zrx\WindowsFormsApplication1\obj  -->layers: 3
+[2017-05-03 19:36:58]  E:\project\WindowsFormsApplication1-zrx\WindowsFormsApplication1\obj\Debug  -->layers: 4
+[2017-05-03 19:36:58]  E:\project\WindowsFormsApplication1-zrx\WindowsFormsApplication1\obj\Debug\TempPE  -->layers: 5
+[2017-05-03 19:36:58]  E:\project\WindowsFormsApplication1-zrx\WindowsFormsApplication1\Properties  -->layers: 3
+[2017-05-03 19:36:58]  E:\project\复习  -->layers: 1
+[2017-05-03 19:36:59]  E:\project\复习\Debug  -->layers: 2
+[2017-05-03 19:36:59]  E:\project\复习\复习  -->layers: 2
+[2017-05-03 19:36:59]  E:\project\复习\复习\Debug  -->layers: 3
+[2017-05-03 19:36:59]  E:\project\复习\复习\Debug\复习.tlog  -->layers: 4
+[2017-05-03 19:36:59]  E:\project\白书实例  -->layers: 1
+[2017-05-03 19:36:59]  E:\project\白书实例\Debug  -->layers: 2
+[2017-05-03 19:36:59]  E:\project\白书实例\白书实例  -->layers: 2
+[2017-05-03 19:36:59]  E:\project\白书实例\白书实例\Debug  -->layers: 3
+[2017-05-03 19:37:00]  E:\project\白书实例\白书实例\Debug\白书实例.tlog  -->layers: 4
+[2017-05-03 19:37:00]  folder check initialization over
+[2017-05-03 19:37:06]  E:\project\ACMhomework\Debug\ACMhomework.exe File Analysis Result:
+		-----------suspicious api------------
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:08]  E:\project\aesencrypt\Debug\aesencrypt.exe File Analysis Result:
+		-----------suspicious api------------
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:09]  E:\project\bintreelevelstd\Debug\bintreelevelstd.exe File Analysis Result:
+		-----------suspicious api------------
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss', '.data']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:11]  E:\project\BinTreewithLevel\Debug\BinTreewithLevel.exe File Analysis Result:
+		-----------suspicious api------------
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:13]  E:\project\BinTree_dll\Debug\BinTree_dll.dll File Analysis Result:
+		-----------suspicious api------------
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:14]  E:\project\BinTree_dll\Debug\BinTree_implicit.exe File Analysis Result:
+		-----------suspicious api------------
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:16]  E:\project\daily1\Debug\daily1.exe File Analysis Result:
+		-----------suspicious api------------
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss', '.data']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:17]  E:\project\dailytest\Debug\dailytest.exe File Analysis Result:
+		-----------suspicious api------------
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:19]  E:\project\dijkstra\Debug\dijkstra.exe File Analysis Result:
+		-----------suspicious api------------
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:21]  E:\project\dlltest\Debug\dlltest.dll File Analysis Result:
+		-----------suspicious api------------
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss', '.data']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:22]  E:\project\dlltest\Debug\dlltest_implicit.exe File Analysis Result:
+		-----------suspicious api------------
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:24]  E:\project\euclid\Debug\euclid.exe File Analysis Result:
+		-----------suspicious api------------
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:25]  E:\project\finaltest\Debug\finaltest.exe File Analysis Result:
+		-----------suspicious api------------
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:27]  E:\project\goj\Debug\goj.exe File Analysis Result:
+		-----------suspicious api------------
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss', '.data']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:29]  E:\project\graph\Debug\graph.exe File Analysis Result:
+		-----------suspicious api------------
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:30]  E:\project\hdoj\Debug\hdoj.exe File Analysis Result:
+		--------suspicious ip address--------
+		127.0.0.1
+		-----------suspicious api------------
+		WSAStartup : Used to initialize low-level network functionality. Finding calls to WSAStartup can often be an easy way to locate the start of network-related functionality.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		inet_addr : Converts an IP address string like 127.0.0.1 so that it can be used by func- tions such as connect . The string specified can sometimes be used as a network-based signature.
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		recvfrom : Receives data from a remote machine. Malware often uses this function to receive data from a remote command-and-control server.
+		sendto : Sends data to a remote machine. Malware often uses this function to send data to a remote command-and-control server.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss', '.data']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:32]  E:\project\heapsort\Debug\heapsort.exe File Analysis Result:
+		-----------suspicious api------------
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:33]  E:\project\homework\Debug\homework.exe File Analysis Result:
+		-----------suspicious api------------
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss']
+		------suspicious section name--------
+		['.textbss']
+
+[2017-05-03 19:37:35]  E:\project\insertsort\Debug\insertsort.exe File Analysis Result:
+		-----------suspicious api------------
+		QueryPerformanceCounter : Used to retrieve the value of the hardware-based performance counter. This function is sometimes using to gather timing information as part of an anti-debugging technique. It is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		IsDebuggerPresent : Checks to see if the current process is being debugged, often as part oan anti-debugging technique. This function is often added by the compiler and is included in many executables, so simply seeing it as an imported function provides little information.
+		GetModuleHandleW : Used to obtain a handle to an already loaded module. Malware may use GetModuleHandle to locate and modify code in a loaded module or to search for a good location to inject code.
+		WideCharToMultiByte : Used to convert a Unicode string into an ASCII string.
+		LoadLibraryExW : Loads a DLL into a process that may not have been loaded when the program started. Imported by nearly every Win32 program.
+		GetProcAddress : Retrieves the address of a function in a DLL loaded into memory. Used to import functions from other DLLs in addition to the functions imported in the PE file header.
+
+		--------suspicious rawsize 0---------
+		['.textbss']
+		---------suspicious entropy----------
+		['.textbss', '.data']
+		------suspicious section name--------
+		['.textbss']
