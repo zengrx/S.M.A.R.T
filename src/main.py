@@ -614,13 +614,13 @@ class MainWindow(QtGui.QMainWindow):
             dialog = self.setdialog
             dialog.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
             icon = QtGui.QIcon()
-            icon.addPixmap(QtGui.QPixmap(".\\UILib\\icons\\setting_icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon.addPixmap(QtGui.QPixmap("./UILib/icons/setting_icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             dialog.setWindowIcon(icon)
             dialog.show()
         if 6 == index:
             dialog = self.authorinfo
             icon = QtGui.QIcon()
-            icon.addPixmap(QtGui.QPixmap(".\\UILib\\icons\\pk.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon.addPixmap(QtGui.QPixmap("./UILib/icons/pk.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             dialog.setWindowIcon(icon)
             dialog.show()
         
@@ -647,7 +647,7 @@ class MainWindow(QtGui.QMainWindow):
         elif len(row_num) > 1:
             print u"多选"
             mumenu  = QtGui.QMenu()
-            muitem1 = mumenu.addAction(QtGui.QIcon(".\\UILib\\icons\\drescan_icon.png"), u"重新扫描")
+            muitem1 = mumenu.addAction(QtGui.QIcon("./UILib/icons/drescan_icon.png"), u"重新扫描")
             if 0 == FlagSet.scandoneflag:
                 muitem1.setEnabled(False)
             maction = mumenu.exec_(self.table.mapToGlobal(pos))
@@ -667,26 +667,29 @@ class MainWindow(QtGui.QMainWindow):
         else:
             row_num = row_num[0]
             menu = QtGui.QMenu()
-            item1 = menu.addAction(QtGui.QIcon(".\\UILib\\icons\\detail_icon.png"), u"详细信息") # (u"详细信息")
-            item2 = menu.addAction(QtGui.QIcon(".\\UILib\\icons\\drescan_icon.png"), u"重新扫描")
-            advmenu = menu.addMenu(QtGui.QIcon(".\\UILib\\icons\\robot_icon.png"), u"机器学习")
-            item3 = advmenu.addAction(QtGui.QIcon(".\\UILib\\icons\\img_icon.png"), u"二进制图像")
-            item4 = advmenu.addAction(QtGui.QIcon(".\\UILib\\icons\\code_icon.png"), u"操作码分类")
-            item5 = menu.addAction(QtGui.QIcon(".\\UILib\\icons\\mark_icon.png"), u"文件位置")
-            item6 = menu.addAction(QtGui.QIcon(".\\UILib\\icons\\user_icon.png"), u"用户标记")
-            item7 = menu.addAction(QtGui.QIcon(".\\UILib\\icons\\upload_icon.png"), u"上传样本")
-            if 0 == FlagSet.scandoneflag:
-                item2.setEnabled(False)
-                item6.setEnabled(False)
-            if 'PE32' not in self.table.item(row_num, 3).text():
-                item3.setEnabled(False)
-            if not str(self.table.item(row_num, 0).text()).endswith('.asm'):
-                item4.setEnabled(False)
-            action = menu.exec_(self.table.mapToGlobal(pos))
+            item1 = menu.addAction(QtGui.QIcon("./UILib/icons/detail_icon.png"), u"详细信息") # (u"详细信息")
+            item2 = menu.addAction(QtGui.QIcon("./UILib/icons/drescan_icon.png"), u"重新扫描")
+            advmenu = menu.addMenu(QtGui.QIcon("./UILib/icons/robot_icon.png"), u"机器学习")
+            item3 = advmenu.addAction(QtGui.QIcon("./UILib/icons/img_icon.png"), u"二进制图像")
+            item4 = advmenu.addAction(QtGui.QIcon("./UILib/icons/code_icon.png"), u"操作码分类")
+            item5 = menu.addAction(QtGui.QIcon("./UILib/icons/mark_icon.png"), u"文件位置")
+            item6 = menu.addAction(QtGui.QIcon("./UILib/icons/user_icon.png"), u"用户标记")
+            item7 = menu.addAction(QtGui.QIcon("./UILib/icons/upload_icon.png"), u"上传样本")
             fname = self.table.item(row_num, 0).text()
             fpath = self.table.item(row_num, 1).text()
             ffull = os.path.join(str(fpath), str(fname)) # 文件绝对路径
             fmd5  = self.table.item(row_num, 7).text()
+            if 0 == FlagSet.scandoneflag:
+                item2.setEnabled(False)
+                item6.setEnabled(False)
+            # if 'PE32' not in self.table.item(row_num, 3).text() and 'executable' not in self.table.item(row_num, 3).text():
+            # 更改为png图片及可执行文件都触发
+            ext = os.path.splitext(str(fname))[1]
+            if 'executable' not in self.table.item(row_num, 3).text() and 'png' not in ext:
+                item3.setEnabled(False)
+            if not str(self.table.item(row_num, 0).text()).endswith('.asm'):
+                item4.setEnabled(False)
+            action = menu.exec_(self.table.mapToGlobal(pos))
             if action == item1:
                 # print u'您选了选项一，当前行文字内容是：', self.table.item(row_num, 0).text()
                 print ffull
@@ -694,7 +697,7 @@ class MainWindow(QtGui.QMainWindow):
                 filedetail.getFileName(ffull, fmd5)
                 filedetail.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
                 icon = QtGui.QIcon()
-                icon.addPixmap(QtGui.QPixmap(".\\UILib\\icons\\detail_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                icon.addPixmap(QtGui.QPixmap("./UILib/icons/detail_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
                 filedetail.setWindowIcon(icon)
                 filedetail.show()
             elif action == item2:
@@ -712,12 +715,12 @@ class MainWindow(QtGui.QMainWindow):
                 self.filesThread.flogSignal.connect(self.showFileAnalyzLog)
                 self.filesThread.start()
             elif action == item3:
-                print "going to greate a pe imgae"
+                print "going to greate a pe image"
                 malimgclass = self.malimgDialog
                 malimgclass.getFileName(ffull)
                 malimgclass.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
                 icon = QtGui.QIcon()
-                icon.addPixmap(QtGui.QPixmap(".\\UILib\\icons\\img_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                icon.addPixmap(QtGui.QPixmap("./UILib/icons/img_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
                 malimgclass.setWindowIcon(icon)
                 malimgclass.show()
             elif action == item4:
@@ -726,7 +729,7 @@ class MainWindow(QtGui.QMainWindow):
                 opcodeclass.getFileName(ffull)
                 opcodeclass.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
                 icon = QtGui.QIcon()
-                icon.addPixmap(QtGui.QPixmap(".\\UILib\\icons\\code_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                icon.addPixmap(QtGui.QPixmap("./UILib/icons/code_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
                 opcodeclass.setWindowIcon(icon)
                 opcodeclass.show()
             elif action == item5:
@@ -763,7 +766,7 @@ class MainWindow(QtGui.QMainWindow):
                 print flist
                 dialog.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
                 icon = QtGui.QIcon()
-                icon.addPixmap(QtGui.QPixmap(".\\UILib\\icons\\upload_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                icon.addPixmap(QtGui.QPixmap("./UILib/icons/upload_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
                 dialog.setWindowIcon(icon)
                 dialog.show()
             else:

@@ -16,7 +16,7 @@ class Dialog(QtGui.QDialog):
         self.setImg()
 
     def setImg(self):
-        img = str(".\UILib\icons\pk.png")
+        img = str("./UILib/icons/pk.png")
         # print im
         msg = ''
         image = QtGui.QImage()

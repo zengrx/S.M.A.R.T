@@ -1,0 +1,1030 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+3gram_opcode_worked.py	../test_cache/opcodetest/3gram_opcode_worked.py	1;"	kind:file	line:1
+ANY	../src/publicfunc/clamav/convert2yara.py	/^    ANY = 0$/;"	kind:variable	line:13
+ANY	../test_cache/clamavinpytest/parse_clamav.py	/^    ANY = 0$/;"	kind:variable	line:36
+ASCII	../src/publicfunc/clamav/convert2yara.py	/^    ASCII = 7$/;"	kind:variable	line:20
+ASCII	../test_cache/clamavinpytest/parse_clamav.py	/^    ASCII = 7$/;"	kind:variable	line:43
+AddFileToQqueu	../src/advanceoperate/uploadthread.py	/^class AddFileToQqueu(QtCore.QThread):$/;"	kind:class	line:95
+AddFileToQqueu	../src/menuset/uploadfile.py	/^from advanceoperate.uploadthread import UploadFile, AddFileToQqueu$/;"	kind:namespace	line:7
+AuthorInfo	../src/main.py	/^from menuset.authorinfo import Dialog as AuthorInfo$/;"	kind:namespace	line:16
+BallTree	../src/advanceoperate/malimgthread.py	/^from sklearn.neighbors import BallTree$/;"	kind:namespace	line:9
+BallTree	../test_cache/imgtest/predict.py	/^from sklearn.neighbors import BallTree$/;"	kind:namespace	line:3
+CheckClamav	../src/control.py	/^from publicfunc.clamav.clamav import CheckClamav$/;"	kind:namespace	line:7
+CheckClamav	../src/publicfunc/clamav/clamav.py	/^class CheckClamav(QtCore.QThread):$/;"	kind:class	line:36
+CheckCrypto	../src/control.py	/^from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto, CheckWebshell, Checkcustom$/;"	kind:namespace	line:6
+CheckCrypto	../src/publicfunc/yaracheck.py	/^class CheckCrypto(QtCore.QThread):$/;"	kind:class	line:272
+CheckFolder	../src/control.py	/^class CheckFolder(QtCore.QThread):$/;"	kind:class	line:19
+CheckFolder	../src/main.py	/^from control import CheckFolder, ScanFile$/;"	kind:namespace	line:14
+CheckMalware	../src/control.py	/^from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto, CheckWebshell, Checkcustom$/;"	kind:namespace	line:6
+CheckMalware	../src/publicfunc/yaracheck.py	/^class CheckMalware(QtCore.QThread):$/;"	kind:class	line:216
+CheckPacker	../src/control.py	/^from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto, CheckWebshell, Checkcustom$/;"	kind:namespace	line:6
+CheckPacker	../src/publicfunc/yaracheck.py	/^class CheckPacker(QtCore.QThread):$/;"	kind:class	line:167
+CheckWebshell	../src/control.py	/^from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto, CheckWebshell, Checkcustom$/;"	kind:namespace	line:6
+CheckWebshell	../src/publicfunc/yaracheck.py	/^class CheckWebshell(QtCore.QThread):$/;"	kind:class	line:314
+Checkcustom	../src/control.py	/^from publicfunc.yaracheck import CheckPacker, CheckMalware, CheckCrypto, CheckWebshell, Checkcustom$/;"	kind:namespace	line:6
+Checkcustom	../src/publicfunc/yaracheck.py	/^class Checkcustom(QtCore.QThread):$/;"	kind:class	line:359
+DefaultAnalyze	../src/control.py	/^from publicfunc.fileanalyze import getFileInfo, DefaultAnalyze, GetFileString$/;"	kind:namespace	line:8
+DefaultAnalyze	../src/publicfunc/fileanalyze.py	/^class DefaultAnalyze(QtCore.QThread):$/;"	kind:class	line:219
+DetailDialog	../src/main.py	/^from menuset.filedetail import Dialog as DetailDialog$/;"	kind:namespace	line:17
+Dialog	../src/UILib/author.py	/^    Dialog = QtGui.QDialog()$/;"	kind:variable	line:66
+Dialog	../src/UILib/detail.py	/^    Dialog = QtGui.QDialog()$/;"	kind:variable	line:110
+Dialog	../src/UILib/malimg.py	/^    Dialog = QtGui.QDialog()$/;"	kind:variable	line:99
+Dialog	../src/UILib/opcode.py	/^    Dialog = QtGui.QDialog()$/;"	kind:variable	line:89
+Dialog	../src/UILib/setting.py	/^    Dialog = QtGui.QDialog()$/;"	kind:variable	line:141
+Dialog	../src/UILib/upload_file.py	/^    Dialog = QtGui.QDialog()$/;"	kind:variable	line:165
+Dialog	../src/menuset/authorinfo.py	/^class Dialog(QtGui.QDialog):$/;"	kind:class	line:9
+Dialog	../src/menuset/filedetail.py	/^class Dialog(QtGui.QDialog):$/;"	kind:class	line:13
+Dialog	../src/menuset/malimgclassify.py	/^class Dialog(QtGui.QDialog):$/;"	kind:class	line:14
+Dialog	../src/menuset/ngramopcode.py	/^class Dialog(QtGui.QDialog):$/;"	kind:class	line:12
+Dialog	../src/menuset/setting.py	/^class Dialog(QtGui.QDialog):$/;"	kind:class	line:13
+Dialog	../src/menuset/uploadfile.py	/^class Dialog(QtGui.QDialog):$/;"	kind:class	line:12
+Do	../src/publicfunc/clamav/updateclamav.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:149
+Do	../test_cache/clamavinpytest/update_clamav_signatures.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:159
+ELF	../src/publicfunc/clamav/convert2yara.py	/^    ELF = 6$/;"	kind:variable	line:19
+ELF	../test_cache/clamavinpytest/parse_clamav.py	/^    ELF = 6$/;"	kind:variable	line:42
+FLASH	../src/publicfunc/clamav/convert2yara.py	/^    FLASH = 11$/;"	kind:variable	line:23
+FLASH	../test_cache/clamavinpytest/parse_clamav.py	/^    FLASH = 11$/;"	kind:variable	line:46
+FileDetail	../src/advanceoperate/detailthread.py	/^class FileDetail(QtCore.QThread):$/;"	kind:class	line:9
+FileDetail	../src/menuset/filedetail.py	/^from advanceoperate.detailthread import FileDetail, PEFileInfo$/;"	kind:namespace	line:7
+FilePath	../src/control.py	/^from globalset import FlagSet, ImpAlert, YaraAlert, StaticValue, FilePath$/;"	kind:namespace	line:10
+FilePath	../src/globalset.py	/^class FilePath(object):$/;"	kind:class	line:237
+FilePath	../src/main.py	/^from globalset import FlagSet, FilePath$/;"	kind:namespace	line:21
+FilePath	../src/test.py	/^from globalset import FilePath$/;"	kind:namespace	line:2
+FlagSet	../src/control.py	/^from globalset import FlagSet, ImpAlert, YaraAlert, StaticValue, FilePath$/;"	kind:namespace	line:10
+FlagSet	../src/globalset.py	/^class FlagSet(object):$/;"	kind:class	line:3
+FlagSet	../src/main.py	/^from globalset import FlagSet, FilePath$/;"	kind:namespace	line:21
+FlagSet	../src/menuset/setting.py	/^from globalset import FlagSet$/;"	kind:namespace	line:8
+GRAPHICS	../src/publicfunc/clamav/convert2yara.py	/^    GRAPHICS = 5$/;"	kind:variable	line:18
+GRAPHICS	../test_cache/clamavinpytest/parse_clamav.py	/^    GRAPHICS = 5$/;"	kind:variable	line:41
+GetFileString	../src/control.py	/^from publicfunc.fileanalyze import getFileInfo, DefaultAnalyze, GetFileString$/;"	kind:namespace	line:8
+GetFileString	../src/publicfunc/fileanalyze.py	/^class GetFileString:$/;"	kind:class	line:86
+HTML	../src/publicfunc/clamav/convert2yara.py	/^    HTML = 3$/;"	kind:variable	line:16
+HTML	../test_cache/clamavinpytest/parse_clamav.py	/^    HTML = 3$/;"	kind:variable	line:39
+Image	../src/advanceoperate/malimgthread.py	/^from PIL import Image$/;"	kind:namespace	line:5
+Image	../src/menuset/authorinfo.py	/^from PIL import Image$/;"	kind:namespace	line:5
+Image	../src/menuset/malimgclassify.py	/^from PIL import Image$/;"	kind:namespace	line:6
+Image	../test_cache/imgtest/malwareimg.py	/^from PIL import Image$/;"	kind:namespace	line:3
+Image	../test_cache/imgtest/predict.py	/^from PIL import Image$/;"	kind:namespace	line:30
+Image	../test_cache/malwareimgtest/asmimage.py	/^from PIL import Image$/;"	kind:namespace	line:7
+Image	../test_cache/test1.py	/^from PIL import Image$/;"	kind:namespace	line:2
+ImpAlert	../src/control.py	/^from globalset import FlagSet, ImpAlert, YaraAlert, StaticValue, FilePath$/;"	kind:namespace	line:10
+ImpAlert	../src/globalset.py	/^class ImpAlert(object):$/;"	kind:class	line:12
+ImpAlert	../src/menuset/filedetail.py	/^from globalset import ImpAlert$/;"	kind:namespace	line:8
+ImpAlert	../src/publicfunc/fileanalyze.py	/^from globalset import ImpAlert$/;"	kind:namespace	line:18
+JAVA	../src/publicfunc/clamav/convert2yara.py	/^    JAVA = 12$/;"	kind:variable	line:24
+JAVA	../test_cache/clamavinpytest/parse_clamav.py	/^    JAVA = 12$/;"	kind:variable	line:47
+KNeighborsClassifier	../src/advanceoperate/malimgthread.py	/^from sklearn.neighbors import KNeighborsClassifier$/;"	kind:namespace	line:8
+KNeighborsClassifier	../test_cache/imgtest/crossvalidation.py	/^from sklearn.neighbors import KNeighborsClassifier$/;"	kind:namespace	line:35
+KNeighborsClassifier	../test_cache/imgtest/predict.py	/^from sklearn.neighbors import KNeighborsClassifier$/;"	kind:namespace	line:49
+MACHO	../src/publicfunc/clamav/convert2yara.py	/^    MACHO = 9$/;"	kind:variable	line:21
+MACHO	../test_cache/clamavinpytest/parse_clamav.py	/^    MACHO = 9$/;"	kind:variable	line:44
+MAIL	../src/publicfunc/clamav/convert2yara.py	/^    MAIL = 4$/;"	kind:variable	line:17
+MAIL	../test_cache/clamavinpytest/parse_clamav.py	/^    MAIL = 4$/;"	kind:variable	line:40
+MainWindow	../src/UILib/main.py	/^    MainWindow = QtGui.QMainWindow()$/;"	kind:variable	line:588
+MainWindow	../src/main.py	/^class MainWindow(QtGui.QMainWindow):$/;"	kind:class	line:27
+MalformedRuleError	../src/publicfunc/clamav/convert2yara.py	/^class MalformedRuleError(Exception):$/;"	kind:class	line:40
+MalformedRuleError	../test_cache/clamavinpytest/parse_clamav.py	/^class MalformedRuleError(Exception):$/;"	kind:class	line:62
+MalimgDialog	../src/main.py	/^from menuset.malimgclassify import Dialog as MalimgDialog$/;"	kind:namespace	line:19
+MalwareImageClass	../src/advanceoperate/malimgthread.py	/^class MalwareImageClass(QtCore.QThread):$/;"	kind:class	line:31
+MalwareImageClass	../src/menuset/malimgclassify.py	/^from advanceoperate.malimgthread import MalwareImageClass$/;"	kind:namespace	line:9
+MyDialog	../test_cache/ui.py	/^class MyDialog(QDialog):  $/;"	kind:class	line:3
+OLE	../src/publicfunc/clamav/convert2yara.py	/^    OLE = 2$/;"	kind:variable	line:15
+OLE	../test_cache/clamavinpytest/parse_clamav.py	/^    OLE = 2$/;"	kind:variable	line:38
+OpcodeDialog	../src/main.py	/^from menuset.ngramopcode import Dialog as OpcodeDialog$/;"	kind:namespace	line:18
+OpcodeNgram	../src/advanceoperate/opcodethread.py	/^class OpcodeNgram(QtCore.QThread):$/;"	kind:class	line:24
+OpcodeNgram	../src/menuset/ngramopcode.py	/^from advanceoperate.opcodethread import OpcodeNgram$/;"	kind:namespace	line:7
+PDF	../src/publicfunc/clamav/convert2yara.py	/^    PDF = 10$/;"	kind:variable	line:22
+PDF	../test_cache/clamavinpytest/parse_clamav.py	/^    PDF = 10$/;"	kind:variable	line:45
+PE	../src/publicfunc/clamav/convert2yara.py	/^    PE = 1$/;"	kind:variable	line:14
+PE	../test_cache/clamavinpytest/parse_clamav.py	/^    PE = 1$/;"	kind:variable	line:37
+PEDetectionResult	../src/control.py	/^    def PEDetectionResult(self, entrypnt, setinfo, impinfo, cpltime):$/;"	kind:member	line:316
+PEFileAnalize	../src/advanceoperate/detailthread.py	/^from publicfunc.fileanalyze import PEFileAnalize, getFileInfo$/;"	kind:namespace	line:7
+PEFileAnalize	../src/advanceoperate/uploadthread.py	/^from publicfunc.fileanalyze import PEFileAnalize, getFileInfo$/;"	kind:namespace	line:9
+PEFileAnalize	../src/publicfunc/fileanalyze.py	/^class PEFileAnalize:$/;"	kind:class	line:130
+PEFileInfo	../src/advanceoperate/detailthread.py	/^class PEFileInfo(QtCore.QThread):$/;"	kind:class	line:21
+PEFileInfo	../src/menuset/filedetail.py	/^from advanceoperate.detailthread import FileDetail, PEFileInfo$/;"	kind:namespace	line:7
+PEThreadControl	../src/publicfunc/fileanalyze.py	/^    def PEThreadControl(self, q):$/;"	kind:member	line:254
+Qt	../src/main.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:10
+Qt	../src/menuset/authorinfo.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+Qt	../src/menuset/filedetail.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+Qt	../src/menuset/malimgclassify.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+Qt	../src/menuset/ngramopcode.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+Qt	../src/menuset/setting.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+Qt	../src/menuset/uploadfile.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtCore	../src/UILib/author.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtCore	../src/UILib/detail.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtCore	../src/UILib/main.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtCore	../src/UILib/malimg.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtCore	../src/UILib/opcode.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtCore	../src/UILib/setting.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtCore	../src/UILib/upload_file.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtCore	../src/advanceoperate/detailthread.py	/^from PyQt4 import QtCore$/;"	kind:namespace	line:4
+QtCore	../src/advanceoperate/malimgthread.py	/^from PyQt4 import QtCore$/;"	kind:namespace	line:3
+QtCore	../src/advanceoperate/opcodethread.py	/^from PyQt4 import QtCore$/;"	kind:namespace	line:3
+QtCore	../src/advanceoperate/uploadthread.py	/^from PyQt4 import QtCore$/;"	kind:namespace	line:7
+QtCore	../src/control.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:3
+QtCore	../src/main.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:10
+QtCore	../src/menuset/authorinfo.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtCore	../src/menuset/filedetail.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtCore	../src/menuset/malimgclassify.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtCore	../src/menuset/ngramopcode.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtCore	../src/menuset/setting.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtCore	../src/menuset/uploadfile.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtCore	../src/publicfunc/clamav/clamav.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:5
+QtCore	../src/publicfunc/fileanalyze.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:5
+QtCore	../src/publicfunc/updatedata.py	/^from PyQt4 import QtCore$/;"	kind:namespace	line:3
+QtCore	../src/publicfunc/yaracheck.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:5
+QtGui	../src/UILib/author.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtGui	../src/UILib/detail.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtGui	../src/UILib/main.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtGui	../src/UILib/malimg.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtGui	../src/UILib/opcode.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtGui	../src/UILib/setting.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtGui	../src/UILib/upload_file.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:9
+QtGui	../src/control.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:3
+QtGui	../src/main.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:10
+QtGui	../src/menuset/authorinfo.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtGui	../src/menuset/filedetail.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtGui	../src/menuset/malimgclassify.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtGui	../src/menuset/ngramopcode.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtGui	../src/menuset/setting.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtGui	../src/menuset/uploadfile.py	/^from PyQt4 import QtGui, QtCore, Qt$/;"	kind:namespace	line:3
+QtGui	../src/publicfunc/clamav/clamav.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:5
+QtGui	../src/publicfunc/fileanalyze.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:5
+QtGui	../src/publicfunc/yaracheck.py	/^from PyQt4 import QtCore, QtGui$/;"	kind:namespace	line:5
+Queue	../src/publicfunc/fileanalyze.py	/^import Queue$/;"	kind:namespace	line:15
+RF	../src/advanceoperate/opcodethread.py	/^from sklearn.ensemble import RandomForestClassifier as RF$/;"	kind:namespace	line:4
+RF	../test_cache/imgtest/predict.py	/^from sklearn.ensemble import RandomForestClassifier as RF$/;"	kind:namespace	line:60
+RF	../test_cache/malwareimgtest/combine.py	/^from sklearn.ensemble import RandomForestClassifier as RF$/;"	kind:namespace	line:1
+RF	../test_cache/malwareimgtest/firstrandomforest.py	/^from sklearn.ensemble import RandomForestClassifier as RF$/;"	kind:namespace	line:1
+RF	../test_cache/malwareimgtest/secondrandomforest.py	/^from sklearn.ensemble import RandomForestClassifier as RF$/;"	kind:namespace	line:1
+RF	../test_cache/opcodetest/3gram_opcode_worked.py	/^from sklearn.ensemble import RandomForestClassifier as RF$/;"	kind:namespace	line:3
+RF	../test_cache/opcodetest/opcode_n-gram.py	/^from sklearn.ensemble import RandomForestClassifier as RF$/;"	kind:namespace	line:3
+RF	../test_cache/opcodetest/secondrandomforest.py	/^from sklearn.ensemble import RandomForestClassifier as RF$/;"	kind:namespace	line:1
+RF	../test_cache/opcodetest/testsgram.py	/^from sklearn.ensemble import RandomForestClassifier as RF$/;"	kind:namespace	line:3
+RULES	../src/publicfunc/clamav/convert2yara.py	/^RULES = set()$/;"	kind:variable	line:47
+RULES	../test_cache/clamavinpytest/parse_clamav.py	/^RULES = set()$/;"	kind:variable	line:68
+ScanFile	../src/control.py	/^class ScanFile(QtCore.QThread):$/;"	kind:class	line:156
+ScanFile	../src/main.py	/^from control import CheckFolder, ScanFile$/;"	kind:namespace	line:14
+SetDialog	../src/main.py	/^from menuset.setting import Dialog as SetDialog$/;"	kind:namespace	line:15
+StaticValue	../src/control.py	/^from globalset import FlagSet, ImpAlert, YaraAlert, StaticValue, FilePath$/;"	kind:namespace	line:10
+StaticValue	../src/globalset.py	/^class StaticValue(object):$/;"	kind:class	line:232
+StratifiedKFold	../src/advanceoperate/malimgthread.py	/^from sklearn.cross_validation import StratifiedKFold$/;"	kind:namespace	line:6
+StratifiedKFold	../test_cache/imgtest/crossvalidation.py	/^from sklearn.cross_validation import StratifiedKFold$/;"	kind:namespace	line:2
+StratifiedKFold	../test_cache/imgtest/predict.py	/^from sklearn.cross_validation import StratifiedKFold$/;"	kind:namespace	line:2
+TargetType	../src/publicfunc/clamav/convert2yara.py	/^class TargetType:$/;"	kind:class	line:12
+TargetType	../test_cache/clamavinpytest/parse_clamav.py	/^class TargetType:$/;"	kind:class	line:35
+URL_DAILY	../src/publicfunc/clamav/updateclamav.py	/^URL_DAILY = "http:\/\/database.clamav.net\/daily.cvd"$/;"	kind:variable	line:14
+URL_DAILY	../test_cache/clamavinpytest/update_clamav_signatures.py	/^URL_DAILY = "http:\/\/database.clamav.net\/daily.cvd"$/;"	kind:variable	line:31
+URL_MAIN	../src/publicfunc/clamav/updateclamav.py	/^URL_MAIN = "http:\/\/database.clamav.net\/main.cvd"$/;"	kind:variable	line:13
+URL_MAIN	../test_cache/clamavinpytest/update_clamav_signatures.py	/^URL_MAIN = "http:\/\/database.clamav.net\/main.cvd"$/;"	kind:variable	line:30
+Ui_Dialog	../src/UILib/author.py	/^class Ui_Dialog(object):$/;"	kind:class	line:25
+Ui_Dialog	../src/UILib/detail.py	/^class Ui_Dialog(object):$/;"	kind:class	line:25
+Ui_Dialog	../src/UILib/malimg.py	/^class Ui_Dialog(object):$/;"	kind:class	line:25
+Ui_Dialog	../src/UILib/opcode.py	/^class Ui_Dialog(object):$/;"	kind:class	line:25
+Ui_Dialog	../src/UILib/setting.py	/^class Ui_Dialog(object):$/;"	kind:class	line:25
+Ui_Dialog	../src/UILib/upload_file.py	/^class Ui_Dialog(object):$/;"	kind:class	line:25
+Ui_Dialog	../src/menuset/authorinfo.py	/^from UILib.author import Ui_Dialog$/;"	kind:namespace	line:7
+Ui_Dialog	../src/menuset/filedetail.py	/^from UILib.detail import Ui_Dialog$/;"	kind:namespace	line:6
+Ui_Dialog	../src/menuset/malimgclassify.py	/^from UILib.malimg import Ui_Dialog$/;"	kind:namespace	line:8
+Ui_Dialog	../src/menuset/ngramopcode.py	/^from UILib.opcode import Ui_Dialog$/;"	kind:namespace	line:6
+Ui_Dialog	../src/menuset/setting.py	/^from UILib.setting import Ui_Dialog$/;"	kind:namespace	line:6
+Ui_Dialog	../src/menuset/uploadfile.py	/^from UILib.upload_file import Ui_Dialog$/;"	kind:namespace	line:6
+Ui_MainWindow	../src/UILib/main.py	/^class Ui_MainWindow(object):$/;"	kind:class	line:25
+Ui_MainWindow	../src/main.py	/^from UILib.main import Ui_MainWindow$/;"	kind:namespace	line:11
+UpdateClamav	../src/publicfunc/clamav/clamav.py	/^class UpdateClamav(QtCore.QThread):$/;"	kind:class	line:13
+UpdateData	../src/control.py	/^from publicfunc.updatedata import UpdateData$/;"	kind:namespace	line:9
+UpdateData	../src/menuset/setting.py	/^from publicfunc.updatedata import UpdateData$/;"	kind:namespace	line:7
+UpdateData	../src/publicfunc/updatedata.py	/^class UpdateData(QtCore.QObject):$/;"	kind:class	line:7
+UploadDialog	../src/main.py	/^from menuset.uploadfile import Dialog as UploadDialog$/;"	kind:namespace	line:20
+UploadFile	../src/advanceoperate/uploadthread.py	/^class UploadFile(QtCore.QThread):$/;"	kind:class	line:11
+UploadFile	../src/menuset/uploadfile.py	/^from advanceoperate.uploadthread import UploadFile, AddFileToQqueu$/;"	kind:namespace	line:7
+ValidationResult	../src/advanceoperate/malimgthread.py	/^class ValidationResult(QtCore.QThread):$/;"	kind:class	line:21
+ValidationResult	../src/advanceoperate/opcodethread.py	/^class ValidationResult(QtCore.QThread):$/;"	kind:class	line:14
+X	../test_cache/imgtest/crossvalidation.py	/^X = numpy.load('img_features.npy')$/;"	kind:variable	line:7
+X	../test_cache/imgtest/predict.py	/^X = numpy.load('img_features.npy')$/;"	kind:variable	line:10
+X_test	../test_cache/imgtest/crossvalidation.py	/^    X_test = X[test_indices]$/;"	kind:variable	line:63
+X_train	../test_cache/imgtest/crossvalidation.py	/^    X_train = X[train_indices]$/;"	kind:variable	line:61
+YaraAlert	../src/control.py	/^from globalset import FlagSet, ImpAlert, YaraAlert, StaticValue, FilePath$/;"	kind:namespace	line:10
+YaraAlert	../src/globalset.py	/^class YaraAlert(object):$/;"	kind:class	line:130
+YaraDescription	../src/globalset.py	/^class YaraDescription(object):$/;"	kind:class	line:186
+YaraRule	../src/publicfunc/clamav/convert2yara.py	/^class YaraRule:$/;"	kind:class	line:49
+YaraRule	../test_cache/clamavinpytest/parse_clamav.py	/^class YaraRule:$/;"	kind:class	line:71
+__eq__	../src/publicfunc/clamav/convert2yara.py	/^    def __eq__(self, other):$/;"	kind:member	line:188
+__eq__	../test_cache/clamavinpytest/parse_clamav.py	/^    def __eq__(self, other):$/;"	kind:member	line:209
+__init__	../src/advanceoperate/detailthread.py	/^    def __init__(self, filename, md5, parent=None):$/;"	kind:member	line:25
+__init__	../src/advanceoperate/detailthread.py	/^    def __init__(self, filename, parent=None):$/;"	kind:member	line:12
+__init__	../src/advanceoperate/malimgthread.py	/^    def __init__(self, filename, parent=None):$/;"	kind:member	line:24
+__init__	../src/advanceoperate/malimgthread.py	/^    def __init__(self, filename, parent=None):$/;"	kind:member	line:36
+__init__	../src/advanceoperate/opcodethread.py	/^    def __init__(self, filename, parent=None):$/;"	kind:member	line:17
+__init__	../src/advanceoperate/opcodethread.py	/^    def __init__(self, filename, parent=None):$/;"	kind:member	line:28
+__init__	../src/advanceoperate/uploadthread.py	/^    def __init__(self, filename, apikey, parent=None):$/;"	kind:member	line:18
+__init__	../src/advanceoperate/uploadthread.py	/^    def __init__(self, filename, parent=None):$/;"	kind:member	line:97
+__init__	../src/control.py	/^    def __init__(self, cdir, ctype, crule, cdepth, parent=None):$/;"	kind:member	line:23
+__init__	../src/control.py	/^    def __init__(self, filelist, scanrule, parent=None):$/;"	kind:member	line:161
+__init__	../src/main.py	/^    def __init__(self, parent=None):$/;"	kind:member	line:31
+__init__	../src/menuset/authorinfo.py	/^    def __init__(self, parent=None):$/;"	kind:member	line:11
+__init__	../src/menuset/filedetail.py	/^    def __init__(self, parent=None):$/;"	kind:member	line:16
+__init__	../src/menuset/malimgclassify.py	/^    def __init__(self, parent=None):$/;"	kind:member	line:16
+__init__	../src/menuset/ngramopcode.py	/^    def __init__(self, parent=None):$/;"	kind:member	line:14
+__init__	../src/menuset/setting.py	/^    def __init__(self, parent=None):$/;"	kind:member	line:15
+__init__	../src/menuset/uploadfile.py	/^    def __init__(self, parent=None):$/;"	kind:member	line:14
+__init__	../src/publicfunc/clamav/clamav.py	/^    def __init__(self, filename, parent=None):$/;"	kind:member	line:40
+__init__	../src/publicfunc/clamav/clamav.py	/^    def __init__(self, parent=None):$/;"	kind:member	line:15
+__init__	../src/publicfunc/clamav/convert2yara.py	/^    def __init__(self, malware_name, signatures, logical_expression=None, is_daily=False):$/;"	kind:member	line:50
+__init__	../src/publicfunc/fileanalyze.py	/^    def __init__(self, filename):$/;"	kind:member	line:131
+__init__	../src/publicfunc/fileanalyze.py	/^    def __init__(self, filename):$/;"	kind:member	line:87
+__init__	../src/publicfunc/fileanalyze.py	/^    def __init__(self, filename, md5, index, parent=None):$/;"	kind:member	line:223
+__init__	../src/publicfunc/updatedata.py	/^    def __init__(self, parent=None):$/;"	kind:member	line:9
+__init__	../src/publicfunc/yaracheck.py	/^    def __init__(self, filename, index, md5, parent=None):$/;"	kind:member	line:171
+__init__	../src/publicfunc/yaracheck.py	/^    def __init__(self, filename, md5, parent=None):$/;"	kind:member	line:220
+__init__	../src/publicfunc/yaracheck.py	/^    def __init__(self, filename, md5, parent=None):$/;"	kind:member	line:276
+__init__	../src/publicfunc/yaracheck.py	/^    def __init__(self, filename, md5, parent=None):$/;"	kind:member	line:318
+__init__	../src/publicfunc/yaracheck.py	/^    def __init__(self, filename, md5, parent=None):$/;"	kind:member	line:363
+__init__	../test_cache/clamavinpytest/parse_clamav.py	/^    def __init__(self, malware_name, signatures, logical_expression=None, is_daily=False):$/;"	kind:member	line:72
+__init__	../test_cache/ui.py	/^    def __init__(self, parent=None):  $/;"	kind:member	line:4
+__init__.py	../src/UILib/__init__.py	1;"	kind:file	line:1
+__init__.py	../src/advanceoperate/__init__.py	1;"	kind:file	line:1
+__init__.py	../src/menuset/__init__.py	1;"	kind:file	line:1
+__init__.py	../src/publicfunc/__init__.py	1;"	kind:file	line:1
+__init__.py	../src/publicfunc/clamav/__init__.py	1;"	kind:file	line:1
+__str__	../src/publicfunc/clamav/convert2yara.py	/^    def __str__(self):$/;"	kind:member	line:191
+__str__	../test_cache/clamavinpytest/parse_clamav.py	/^    def __str__(self):$/;"	kind:member	line:212
+_encoding	../src/UILib/author.py	/^    _encoding = QtGui.QApplication.UnicodeUTF8$/;"	kind:variable	line:18
+_encoding	../src/UILib/detail.py	/^    _encoding = QtGui.QApplication.UnicodeUTF8$/;"	kind:variable	line:18
+_encoding	../src/UILib/main.py	/^    _encoding = QtGui.QApplication.UnicodeUTF8$/;"	kind:variable	line:18
+_encoding	../src/UILib/malimg.py	/^    _encoding = QtGui.QApplication.UnicodeUTF8$/;"	kind:variable	line:18
+_encoding	../src/UILib/opcode.py	/^    _encoding = QtGui.QApplication.UnicodeUTF8$/;"	kind:variable	line:18
+_encoding	../src/UILib/setting.py	/^    _encoding = QtGui.QApplication.UnicodeUTF8$/;"	kind:variable	line:18
+_encoding	../src/UILib/upload_file.py	/^    _encoding = QtGui.QApplication.UnicodeUTF8$/;"	kind:variable	line:18
+_fromUtf8	../src/UILib/author.py	/^    _fromUtf8 = QtCore.QString.fromUtf8$/;"	kind:variable	line:12
+_fromUtf8	../src/UILib/author.py	/^    def _fromUtf8(s):$/;"	kind:function	line:14
+_fromUtf8	../src/UILib/detail.py	/^    _fromUtf8 = QtCore.QString.fromUtf8$/;"	kind:variable	line:12
+_fromUtf8	../src/UILib/detail.py	/^    def _fromUtf8(s):$/;"	kind:function	line:14
+_fromUtf8	../src/UILib/main.py	/^    _fromUtf8 = QtCore.QString.fromUtf8$/;"	kind:variable	line:12
+_fromUtf8	../src/UILib/main.py	/^    def _fromUtf8(s):$/;"	kind:function	line:14
+_fromUtf8	../src/UILib/malimg.py	/^    _fromUtf8 = QtCore.QString.fromUtf8$/;"	kind:variable	line:12
+_fromUtf8	../src/UILib/malimg.py	/^    def _fromUtf8(s):$/;"	kind:function	line:14
+_fromUtf8	../src/UILib/opcode.py	/^    _fromUtf8 = QtCore.QString.fromUtf8$/;"	kind:variable	line:12
+_fromUtf8	../src/UILib/opcode.py	/^    def _fromUtf8(s):$/;"	kind:function	line:14
+_fromUtf8	../src/UILib/setting.py	/^    _fromUtf8 = QtCore.QString.fromUtf8$/;"	kind:variable	line:12
+_fromUtf8	../src/UILib/setting.py	/^    def _fromUtf8(s):$/;"	kind:function	line:14
+_fromUtf8	../src/UILib/upload_file.py	/^    _fromUtf8 = QtCore.QString.fromUtf8$/;"	kind:variable	line:12
+_fromUtf8	../src/UILib/upload_file.py	/^    def _fromUtf8(s):$/;"	kind:function	line:14
+_translate	../src/UILib/author.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:19
+_translate	../src/UILib/author.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:22
+_translate	../src/UILib/detail.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:19
+_translate	../src/UILib/detail.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:22
+_translate	../src/UILib/main.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:19
+_translate	../src/UILib/main.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:22
+_translate	../src/UILib/malimg.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:19
+_translate	../src/UILib/malimg.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:22
+_translate	../src/UILib/opcode.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:19
+_translate	../src/UILib/opcode.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:22
+_translate	../src/UILib/setting.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:19
+_translate	../src/UILib/setting.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:22
+_translate	../src/UILib/upload_file.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:19
+_translate	../src/UILib/upload_file.py	/^    def _translate(context, text, disambig):$/;"	kind:function	line:22
+_translate_offset	../src/publicfunc/clamav/convert2yara.py	/^    def _translate_offset(self, offset, index):$/;"	kind:member	line:94
+_translate_offset	../test_cache/clamavinpytest/parse_clamav.py	/^    def _translate_offset(self, offset, index):$/;"	kind:member	line:116
+_translate_signature	../src/publicfunc/clamav/convert2yara.py	/^    def _translate_signature(self, sig, index):$/;"	kind:member	line:81
+_translate_signature	../test_cache/clamavinpytest/parse_clamav.py	/^    def _translate_signature(self, sig, index):$/;"	kind:member	line:103
+a	../test_cache/createimg.py	/^a = array.array("B") # uint8 array$/;"	kind:variable	line:6
+addFile2Queue	../src/menuset/uploadfile.py	/^    def addFile2Queue(self, filename):$/;"	kind:member	line:95
+alerts	../src/globalset.py	/^    alerts = {$/;"	kind:variable	line:14
+analysisControl	../src/control.py	/^    def analysisControl(self, index):$/;"	kind:member	line:552
+analyzeSusString	../src/control.py	/^    def analyzeSusString(self, result):$/;"	kind:member	line:451
+app	../src/UILib/author.py	/^    app = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:65
+app	../src/UILib/detail.py	/^    app = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:109
+app	../src/UILib/main.py	/^    app = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:587
+app	../src/UILib/malimg.py	/^    app = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:98
+app	../src/UILib/opcode.py	/^    app = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:88
+app	../src/UILib/setting.py	/^    app = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:140
+app	../src/UILib/upload_file.py	/^    app = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:164
+app	../src/main.py	/^    app = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:1056
+app	../test_cache/ui.py	/^    app = QApplication(sys.argv)  $/;"	kind:variable	line:25
+argparse	../src/publicfunc/clamav/updateclamav.py	/^import argparse$/;"	kind:namespace	line:9
+argparse	../test_cache/clamavinpytest/parse_clamav.py	/^import argparse$/;"	kind:namespace	line:19
+argparse	../test_cache/clamavinpytest/update_clamav_signatures.py	/^import argparse$/;"	kind:namespace	line:26
+args	../src/publicfunc/clamav/updateclamav.py	/^args = parser.parse_args()$/;"	kind:variable	line:135
+args	../test_cache/clamavinpytest/update_clamav_signatures.py	/^args = parser.parse_args()$/;"	kind:variable	line:145
+array	../src/menuset/malimgclassify.py	/^import numpy, scipy, array$/;"	kind:namespace	line:5
+array	../src/publicfunc/fileanalyze.py	/^import array$/;"	kind:namespace	line:8
+asmimage.py	../test_cache/malwareimgtest/asmimage.py	1;"	kind:file	line:1
+atialerts	../src/globalset.py	/^    atialerts = {$/;"	kind:variable	line:144
+atialerts	../src/globalset.py	/^    atialerts = {$/;"	kind:variable	line:199
+author.py	../src/UILib/author.py	1;"	kind:file	line:1
+authorinfo.py	../src/menuset/authorinfo.py	1;"	kind:file	line:1
+avg_acc	../test_cache/imgtest/crossvalidation.py	/^avg_acc = numpy.trace(conf_mat)\/sum(no_imgs)$/;"	kind:variable	line:88
+b	../test_cache/imgtest/predict.py	/^b = BallTree(X)$/;"	kind:variable	line:14
+basepath	../test_cache/malwareimgtest/asmimage.py	/^basepath = "E:\\\\git\\\\test\\\\train\\\\1\\\\"$/;"	kind:variable	line:55
+basepath	../test_cache/malwareimgtest/opcode_n-gram.py	/^basepath = "E:\\\\git\\\\test\\\\train\\\\"$/;"	kind:variable	line:38
+basepath	../test_cache/opcodetest/opcode_n-gram.py	/^basepath = '\/home\/zrx\/code\/malwaredata\/testtrain\/'$/;"	kind:variable	line:45
+binascii	../test_cache/malwareimgtest/asmimage.py	/^import binascii$/;"	kind:namespace	line:6
+binascii	../test_cache/test1.py	/^import binascii$/;"	kind:namespace	line:3
+cPickle	../src/advanceoperate/malimgthread.py	/^import cPickle$/;"	kind:namespace	line:14
+cPickle	../test_cache/imgtest/predict.py	/^import cPickle$/;"	kind:namespace	line:8
+cc	../test_cache/malwareimgtest/opcode_n-gram.py	/^cc = Counter([])$/;"	kind:variable	line:50
+cc	../test_cache/opcodetest/opcode_n-gram.py	/^cc = Counter([])$/;"	kind:variable	line:57
+checkBoxEvent	../src/main.py	/^    def checkBoxEvent(self, flag):$/;"	kind:member	line:541
+checkEmail	../src/publicfunc/fileanalyze.py	/^    def checkEmail(self, strlist):$/;"	kind:member	line:125
+checkEntryPoint	../src/publicfunc/fileanalyze.py	/^    def checkEntryPoint(self):$/;"	kind:member	line:160
+checkFileDate	../src/publicfunc/fileanalyze.py	/^    def checkFileDate(self):$/;"	kind:member	line:140
+checkFileHeader	../src/publicfunc/fileanalyze.py	/^    def checkFileHeader(self):$/;"	kind:member	line:201
+checkFileImports	../src/publicfunc/fileanalyze.py	/^    def checkFileImports(self):$/;"	kind:member	line:167
+checkFileSections	../src/publicfunc/fileanalyze.py	/^    def checkFileSections(self):$/;"	kind:member	line:182
+checkIPAddr	../src/publicfunc/fileanalyze.py	/^    def checkIPAddr(self, strlist):$/;"	kind:member	line:108
+checkInternet	../src/advanceoperate/uploadthread.py	/^    def checkInternet(self):$/;"	kind:member	line:27
+checkMachine	../src/publicfunc/fileanalyze.py	/^    def checkMachine(self):$/;"	kind:member	line:148
+checkWebsit	../src/publicfunc/fileanalyze.py	/^    def checkWebsit(self, strlist):$/;"	kind:member	line:113
+checkYaraExists	../src/control.py	/^    def checkYaraExists(self):$/;"	kind:member	line:385
+check_crypto	../src/publicfunc/yaracheck.py	/^def check_crypto(filename):$/;"	kind:function	line:73
+chooseFileType	../src/control.py	/^    def chooseFileType(self, filename):$/;"	kind:member	line:37
+chooseScanRule	../src/control.py	/^    def chooseScanRule(self, rules):$/;"	kind:member	line:239
+clamav.py	../src/publicfunc/clamav/clamav.py	1;"	kind:file	line:1
+classifyImage	../src/advanceoperate/malimgthread.py	/^    def classifyImage(self, feature_X, label_y, number):$/;"	kind:member	line:57
+clearAnalysisLog	../src/main.py	/^    def clearAnalysisLog(self):$/;"	kind:member	line:887
+clearFileData	../src/menuset/uploadfile.py	/^    def clearFileData(self):$/;"	kind:member	line:98
+clearTableWidget	../src/main.py	/^    def clearTableWidget(self):$/;"	kind:member	line:838
+clf	../test_cache/imgtest/crossvalidation.py	/^    clf = KNeighborsClassifier(n_neighbors,weights='distance') $/;"	kind:variable	line:60
+clf	../test_cache/imgtest/crossvalidation.py	/^    clf = []$/;"	kind:variable	line:59
+cloneYaraData	../src/publicfunc/updatedata.py	/^    def cloneYaraData(self):$/;"	kind:member	line:15
+closeEvent	../src/main.py	/^    def closeEvent(self, event):$/;"	kind:member	line:1003
+cm	../test_cache/imgtest/crossvalidation.py	/^    cm = []$/;"	kind:variable	line:81
+cm	../test_cache/imgtest/crossvalidation.py	/^    cm = confusion_matrix(y_test,y_predict)$/;"	kind:variable	line:82
+cnt	../test_cache/imgtest/crossvalidation.py	/^    cnt = cnt + 1$/;"	kind:variable	line:29
+cnt	../test_cache/imgtest/crossvalidation.py	/^cnt=0$/;"	kind:variable	line:26
+collectAnalyzResult	../src/control.py	/^    def collectAnalyzResult(self):$/;"	kind:member	line:545
+combine.py	../test_cache/malwareimgtest/combine.py	1;"	kind:file	line:1
+commonDiv	../src/publicfunc/fileanalyze.py	/^def commonDiv(a, b):$/;"	kind:function	line:24
+concluSignal	../src/advanceoperate/malimgthread.py	/^    concluSignal = QtCore.pyqtSignal(int, list)$/;"	kind:variable	line:33
+concluSignal	../src/advanceoperate/opcodethread.py	/^    concluSignal = QtCore.pyqtSignal(list)$/;"	kind:variable	line:26
+conf_mat	../test_cache/imgtest/crossvalidation.py	/^    conf_mat = conf_mat + cm $/;"	kind:variable	line:84
+conf_mat	../test_cache/imgtest/crossvalidation.py	/^conf_mat = conf_mat.T # since rows and  cols are interchanged$/;"	kind:variable	line:87
+conf_mat	../test_cache/imgtest/crossvalidation.py	/^conf_mat = numpy.zeros((len(no_imgs),len(no_imgs))) # Initializing the Confusion Matrix$/;"	kind:variable	line:50
+conf_mat2	../test_cache/imgtest/crossvalidation.py	/^conf_mat2 = numpy.around(conf_mat_norm,decimals=2) # rounding to display in figure$/;"	kind:variable	line:97
+conf_mat_norm	../test_cache/imgtest/crossvalidation.py	/^conf_mat_norm = conf_mat\/no_imgs # Normalizing the confusion matrix$/;"	kind:variable	line:89
+confusion_matrix	../src/advanceoperate/malimgthread.py	/^from sklearn.metrics import confusion_matrix$/;"	kind:namespace	line:7
+confusion_matrix	../test_cache/imgtest/crossvalidation.py	/^from sklearn.metrics import confusion_matrix$/;"	kind:namespace	line:34
+confusion_matrix	../test_cache/imgtest/predict.py	/^from sklearn.metrics import confusion_matrix$/;"	kind:namespace	line:48
+confusion_matrix	../test_cache/malwareimgtest/combine.py	/^from sklearn.metrics import confusion_matrix$/;"	kind:namespace	line:3
+confusion_matrix	../test_cache/malwareimgtest/firstrandomforest.py	/^from sklearn.metrics import confusion_matrix$/;"	kind:namespace	line:3
+confusion_matrix	../test_cache/malwareimgtest/secondrandomforest.py	/^from sklearn.metrics import confusion_matrix$/;"	kind:namespace	line:3
+confusion_matrix	../test_cache/opcodetest/3gram_opcode_worked.py	/^from sklearn.metrics import confusion_matrix$/;"	kind:namespace	line:5
+confusion_matrix	../test_cache/opcodetest/opcode_n-gram.py	/^from sklearn.metrics import confusion_matrix$/;"	kind:namespace	line:5
+confusion_matrix	../test_cache/opcodetest/secondrandomforest.py	/^from sklearn.metrics import confusion_matrix$/;"	kind:namespace	line:3
+confusion_matrix	../test_cache/opcodetest/testsgram.py	/^from sklearn.metrics import confusion_matrix$/;"	kind:namespace	line:5
+control.py	../src/control.py	1;"	kind:file	line:1
+convert2yara.py	../src/publicfunc/clamav/convert2yara.py	1;"	kind:file	line:1
+convertBin2Img	../src/menuset/malimgclassify.py	/^    def convertBin2Img(self, filename):$/;"	kind:member	line:46
+convertSocre2Rank	../src/main.py	/^    def convertSocre2Rank(self, score):$/;"	kind:member	line:503
+convertTime	../src/main.py	/^    def convertTime(self, intime):$/;"	kind:member	line:525
+count	../test_cache/malwareimgtest/opcode_n-gram.py	/^count = 1$/;"	kind:variable	line:41
+count	../test_cache/opcodetest/opcode_n-gram.py	/^count = 1$/;"	kind:variable	line:48
+cptalerts	../src/globalset.py	/^    cptalerts = {$/;"	kind:variable	line:173
+cptalerts	../src/globalset.py	/^    cptalerts = {$/;"	kind:variable	line:228
+createimg.py	../test_cache/createimg.py	1;"	kind:file	line:1
+cross_validation	../src/advanceoperate/malimgthread.py	/^from sklearn import cross_validation$/;"	kind:namespace	line:10
+cross_validation	../test_cache/imgtest/predict.py	/^from sklearn import cross_validation$/;"	kind:namespace	line:4
+cross_validation	../test_cache/malwareimgtest/combine.py	/^from sklearn import cross_validation$/;"	kind:namespace	line:2
+cross_validation	../test_cache/malwareimgtest/firstrandomforest.py	/^from sklearn import cross_validation$/;"	kind:namespace	line:2
+cross_validation	../test_cache/malwareimgtest/secondrandomforest.py	/^from sklearn import cross_validation$/;"	kind:namespace	line:2
+cross_validation	../test_cache/opcodetest/3gram_opcode_worked.py	/^from sklearn import cross_validation$/;"	kind:namespace	line:4
+cross_validation	../test_cache/opcodetest/opcode_n-gram.py	/^from sklearn import cross_validation$/;"	kind:namespace	line:4
+cross_validation	../test_cache/opcodetest/secondrandomforest.py	/^from sklearn import cross_validation$/;"	kind:namespace	line:2
+cross_validation	../test_cache/opcodetest/testsgram.py	/^from sklearn import cross_validation$/;"	kind:namespace	line:4
+crossvalidation.py	../test_cache/imgtest/crossvalidation.py	1;"	kind:file	line:1
+cspath	../test_cache/malwareimgtest/randomsubset.py	/^		cspath = sbase + fname$/;"	kind:variable	line:47
+cspath	../test_cache/opcodetest/randomsubset.py	/^		cspath = sbase + fname$/;"	kind:variable	line:43
+ctpath	../test_cache/malwareimgtest/randomsubset.py	/^		ctpath = tbase + fname$/;"	kind:variable	line:48
+ctpath	../test_cache/opcodetest/randomsubset.py	/^		ctpath = tbase + fname$/;"	kind:variable	line:44
+customyar	../src/globalset.py	/^    customyar = ".\/custom\/custom.yar"/;"	kind:variable	line:241
+dataEntropy	../src/publicfunc/fileanalyze.py	/^def dataEntropy(data):$/;"	kind:function	line:34
+dataframelist	../test_cache/malwareimgtest/opcode_n-gram.py	/^dataframelist = []$/;"	kind:variable	line:60
+dataframelist	../test_cache/opcodetest/opcode_n-gram.py	/^dataframelist = []$/;"	kind:variable	line:69
+datetime	../src/main.py	/^from datetime import datetime$/;"	kind:namespace	line:13
+dd	../test_cache/opcodetest/3gram_opcode_worked.py	/^dd = np.array(finallist).reshape(1, -1)$/;"	kind:variable	line:90
+dd	../test_cache/opcodetest/opcode_n-gram.py	/^dd = np.array(testdata.values(), dtype = int).reshape((1,-1))$/;"	kind:variable	line:100
+dd	../test_cache/opcodetest/testsgram.py	/^dd = np.array(testdata.values(), dtype = int).reshape((1,-1))$/;"	kind:variable	line:82
+des	../test_cache/imgtest/predict.py	/^des = leargist.color_gist(im1); # 960 values$/;"	kind:variable	line:34
+detail.py	../src/UILib/detail.py	1;"	kind:file	line:1
+detailthread.py	../src/advanceoperate/detailthread.py	1;"	kind:file	line:1
+df	../test_cache/malwareimgtest/opcode_n-gram.py	/^df = pd.DataFrame(dataframelist)$/;"	kind:variable	line:70
+df	../test_cache/opcodetest/opcode_n-gram.py	/^df = pd.DataFrame(dataframelist)$/;"	kind:variable	line:83
+download_file	../src/publicfunc/clamav/updateclamav.py	/^def download_file(url):$/;"	kind:function	line:19
+download_file	../test_cache/clamavinpytest/update_clamav_signatures.py	/^def download_file(url):$/;"	kind:function	line:34
+extended_offset_pattern	../src/publicfunc/clamav/convert2yara.py	/^extended_offset_pattern = re.compile("([A-Z][A-Z0-9]{1,2})(([+-])([0-9,]+))?")$/;"	kind:variable	line:9
+extended_offset_pattern	../test_cache/clamavinpytest/parse_clamav.py	/^extended_offset_pattern = re.compile("([A-Z][A-Z0-9]{1,2})(([+-])([0-9,]+))?")$/;"	kind:variable	line:29
+f	../src/test.py	/^f = open(FilePath.whitelist, "r")$/;"	kind:variable	line:7
+f	../test_cache/createimg.py	/^f = open('xxx.xx')$/;"	kind:variable	line:2
+feature	../test_cache/imgtest/predict.py	/^feature = des[0:320]; # since the image is grayscale, we need only first 320 values$/;"	kind:variable	line:35
+feature	../test_cache/opcodetest/3gram_opcode_worked.py	/^    feature = tuple(eval(feature)) # 转""数据为元组$/;"	kind:variable	line:77
+feature	../test_cache/opcodetest/testsgram.py	/^    feature = tuple(eval(feature)) # 转""数据为元组$/;"	kind:variable	line:74
+features	../test_cache/opcodetest/3gram_opcode_worked.py	/^features = subtrainfeature.columns.tolist()[1:]$/;"	kind:variable	line:38
+features	../test_cache/opcodetest/testsgram.py	/^features = subtrainfeature.columns.tolist()[1:]$/;"	kind:variable	line:35
+fids	../test_cache/malwareimgtest/randomsubset.py	/^fids = []$/;"	kind:variable	line:16
+fids	../test_cache/opcodetest/randomsubset.py	/^fids = []$/;"	kind:variable	line:12
+fileProcess	../src/publicfunc/fileanalyze.py	/^    def fileProcess(self, filename):$/;"	kind:member	line:101
+fileSignal	../src/control.py	/^    fileSignal = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:157
+fileanalyze.py	../src/publicfunc/fileanalyze.py	1;"	kind:file	line:1
+filedetail.py	../src/menuset/filedetail.py	1;"	kind:file	line:1
+filename	../test_cache/malwareimgtest/asmimage.py	/^    filename = basepath + sid + ".bytes"$/;"	kind:variable	line:62
+filename	../test_cache/malwareimgtest/opcode_n-gram.py	/^    filename = basepath + sid + ".asm"$/;"	kind:variable	line:45
+filename	../test_cache/opcodetest/opcode_n-gram.py	/^    filename = basepath + sid + ".asm"$/;"	kind:variable	line:52
+filename	../test_cache/test1.py	/^filename = "\/home\/zrx\/Downloads\/Shadowsocks.exe"$/;"	kind:variable	line:15
+filepath	../test_cache/opcodetest/3gram_opcode_worked.py	/^filepath = 'G:\\\\工程及其他\\\\train\\\\cIojVJGQOtrL0S1ApeDY.asm'$/;"	kind:variable	line:69
+filepath	../test_cache/opcodetest/opcode_n-gram.py	/^filepath = '\/home\/zrx\/code\/malwaredata\/train\/IkzqRMZW71YALpX6VtCf.asm'$/;"	kind:variable	line:88
+filepath	../test_cache/opcodetest/testsgram.py	/^filepath = '\/home\/zrx\/code\/malwaredata\/train\/4UTMdcZkxzLvwygO8EuK.asm'$/;"	kind:variable	line:66
+finallist	../test_cache/opcodetest/3gram_opcode_worked.py	/^finallist = []$/;"	kind:variable	line:86
+findMostSimilarImg	../src/advanceoperate/malimgthread.py	/^    def findMostSimilarImg(self, feature_X, serial):$/;"	kind:member	line:81
+finishSignal	../src/advanceoperate/detailthread.py	/^    finishSignal = QtCore.pyqtSignal(list)$/;"	kind:variable	line:10
+finishSignal	../src/advanceoperate/malimgthread.py	/^    finishSignal = QtCore.pyqtSignal(list)$/;"	kind:variable	line:22
+finishSignal	../src/advanceoperate/opcodethread.py	/^    finishSignal = QtCore.pyqtSignal(list)$/;"	kind:variable	line:15
+finishSignal	../src/advanceoperate/uploadthread.py	/^    finishSignal = QtCore.pyqtSignal(int, tuple)$/;"	kind:variable	line:12
+firstrandomforest.py	../test_cache/malwareimgtest/firstrandomforest.py	1;"	kind:file	line:1
+floating_jump_pattern	../src/publicfunc/clamav/convert2yara.py	/^floating_jump_pattern = re.compile("\\{\\-([0-9]+)\\}")$/;"	kind:variable	line:10
+floating_jump_pattern	../test_cache/clamavinpytest/parse_clamav.py	/^floating_jump_pattern = re.compile("\\{\\-([0-9]+)\\}")$/;"	kind:variable	line:32
+flogSignal	../src/control.py	/^    flogSignal = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:159
+fnames	../test_cache/malwareimgtest/randomsubset.py	/^	fnames = ['{0}.asm'.format(fid),'{0}.bytes'.format(fid)]$/;"	kind:variable	line:45
+fnames	../test_cache/opcodetest/randomsubset.py	/^	fnames = ['{0}.asm'.format(fid),'{0}.asm'.format(fid)]$/;"	kind:variable	line:41
+folderSignal	../src/control.py	/^    folderSignal = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:21
+forget	../src/publicfunc/clamav/updateclamav.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:149
+forget	../test_cache/clamavinpytest/update_clamav_signatures.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:159
+func1	../src/publicfunc/fileanalyze.py	/^    def func1(self, q):$/;"	kind:member	line:238
+func2	../src/publicfunc/fileanalyze.py	/^    def func2(self, q):$/;"	kind:member	line:244
+func3	../src/publicfunc/fileanalyze.py	/^    def func3(self, q):$/;"	kind:member	line:248
+g	../test_cache/createimg.py	/^g = np.reshape(a, (len(a) \/ width, width))$/;"	kind:variable	line:9
+g	../test_cache/createimg.py	/^g = np.uint8(g)$/;"	kind:variable	line:10
+generateMenu	../src/main.py	/^    def generateMenu(self, pos):$/;"	kind:member	line:631
+getCalenderDate	../src/main.py	/^    def getCalenderDate(self):$/;"	kind:member	line:919
+getClassifyLabel	../src/advanceoperate/malimgthread.py	/^    def getClassifyLabel(self):$/;"	kind:member	line:45
+getClassifyLabel	../src/advanceoperate/opcodethread.py	/^    def getClassifyLabel(self, t3gram):$/;"	kind:member	line:38
+getFileInfo	../src/advanceoperate/detailthread.py	/^from publicfunc.fileanalyze import PEFileAnalize, getFileInfo$/;"	kind:namespace	line:7
+getFileInfo	../src/advanceoperate/uploadthread.py	/^from publicfunc.fileanalyze import PEFileAnalize, getFileInfo$/;"	kind:namespace	line:9
+getFileInfo	../src/control.py	/^from publicfunc.fileanalyze import getFileInfo, DefaultAnalyze, GetFileString$/;"	kind:namespace	line:8
+getFileInfo	../src/publicfunc/fileanalyze.py	/^def getFileInfo(filename):$/;"	kind:function	line:52
+getFileName	../src/menuset/filedetail.py	/^    def getFileName(self, filename, md5):$/;"	kind:member	line:28
+getFileName	../src/menuset/malimgclassify.py	/^    def getFileName(self, filename):$/;"	kind:member	line:26
+getFileName	../src/menuset/ngramopcode.py	/^    def getFileName(self, filename):$/;"	kind:member	line:24
+getFilename	../src/menuset/uploadfile.py	/^    def getFilename(self, filename):$/;"	kind:member	line:30
+getImpInfo	../src/advanceoperate/detailthread.py	/^    def getImpInfo(self):$/;"	kind:member	line:37
+getMatrixFromBin	../test_cache/test1.py	/^def getMatrixFromBin(filename, width):$/;"	kind:function	line:5
+getMatrixfrom_asm	../test_cache/malwareimgtest/asmimage.py	/^def getMatrixfrom_asm(filename, startindex = 0, pixnum = 5000):$/;"	kind:function	line:21
+getMatrixfrom_bin	../test_cache/malwareimgtest/asmimage.py	/^def getMatrixfrom_bin(filename, width = 512, oneRow = False):$/;"	kind:function	line:10
+getMatrixfrom_hex	../test_cache/malwareimgtest/asmimage.py	/^def getMatrixfrom_hex(filename, width):$/;"	kind:function	line:31
+getOpcodeNgram	../src/advanceoperate/opcodethread.py	/^    def getOpcodeNgram(self, ops, n=3):$/;"	kind:member	line:79
+getOpcodeNgram	../test_cache/malwareimgtest/opcode_n-gram.py	/^def getOpcodeNgram(ops, n=3):$/;"	kind:function	line:33
+getOpcodeNgram	../test_cache/opcodetest/3gram_opcode_worked.py	/^def getOpcodeNgram(ops, n=3):$/;"	kind:function	line:31
+getOpcodeNgram	../test_cache/opcodetest/opcode_n-gram.py	/^def getOpcodeNgram(ops, n=3):$/;"	kind:function	line:40
+getOpcodeNgram	../test_cache/opcodetest/testsgram.py	/^def getOpcodeNgram(ops, n=3):$/;"	kind:function	line:28
+getOpcodeSequence	../src/advanceoperate/opcodethread.py	/^    def getOpcodeSequence(self, filename):$/;"	kind:member	line:57
+getOpcodeSequence	../test_cache/malwareimgtest/opcode_n-gram.py	/^def getOpcodeSequence(filename):$/;"	kind:function	line:6
+getOpcodeSequence	../test_cache/opcodetest/3gram_opcode_worked.py	/^def getOpcodeSequence(filename):$/;"	kind:function	line:15
+getOpcodeSequence	../test_cache/opcodetest/opcode_n-gram.py	/^def getOpcodeSequence(filename):$/;"	kind:function	line:13
+getOpcodeSequence	../test_cache/opcodetest/testsgram.py	/^def getOpcodeSequence(filename):$/;"	kind:function	line:12
+getResult	../src/publicfunc/fileanalyze.py	/^    def getResult(self):$/;"	kind:member	line:105
+getRules	../test_cache/test.py	/^def getRules(path):$/;"	kind:function	line:5
+getScanPolicy	../src/main.py	/^    def getScanPolicy(self):$/;"	kind:member	line:578
+getSetInfo	../src/advanceoperate/detailthread.py	/^    def getSetInfo(self):$/;"	kind:member	line:31
+get_meta_signature	../src/publicfunc/clamav/convert2yara.py	/^    def get_meta_signature(self):$/;"	kind:member	line:185
+get_meta_signature	../test_cache/clamavinpytest/parse_clamav.py	/^    def get_meta_signature(self):$/;"	kind:member	line:206
+glob	../src/advanceoperate/malimgthread.py	/^import os, glob, numpy, sys$/;"	kind:namespace	line:4
+glob	../test_cache/imgtest/crossvalidation.py	/^import os, glob$/;"	kind:namespace	line:33
+glob	../test_cache/imgtest/malwareimg.py	/^import os, glob, numpy, sys$/;"	kind:namespace	line:5
+glob	../test_cache/imgtest/predict.py	/^import os, glob$/;"	kind:namespace	line:47
+globalset.py	../src/globalset.py	1;"	kind:file	line:1
+goodsection	../src/globalset.py	/^    goodsection = []$/;"	kind:variable	line:234
+hashlib	../src/advanceoperate/uploadthread.py	/^import hashlib$/;"	kind:namespace	line:5
+hashlib	../src/control.py	/^import magic, hashlib$/;"	kind:namespace	line:5
+hashlib	../src/publicfunc/fileanalyze.py	/^import hashlib$/;"	kind:namespace	line:6
+help	../src/publicfunc/clamav/updateclamav.py	/^                    help="Work with local copies of ClamAV signature files.")$/;"	kind:variable	line:134
+help	../test_cache/clamavinpytest/update_clamav_signatures.py	/^                    help="Work with local copies of ClamAV signature files.")$/;"	kind:variable	line:144
+hexdigits	../src/publicfunc/clamav/convert2yara.py	/^from string import maketrans, hexdigits$/;"	kind:namespace	line:5
+hexdigits	../test_cache/clamavinpytest/parse_clamav.py	/^from string import maketrans, hexdigits$/;"	kind:namespace	line:22
+hitClamavRule	../src/publicfunc/clamav/clamav.py	/^    def hitClamavRule(self):$/;"	kind:member	line:44
+i	../test_cache/malwareimgtest/asmimage.py	/^i = 0$/;"	kind:variable	line:58
+icon	../src/main.py	/^    icon = QtGui.QIcon()$/;"	kind:variable	line:1058
+im	../test_cache/imgtest/predict.py	/^im = Image.open('\/home\/amber\/Documents\/smart_image\/malimg_dataset\/malimg_paper_dataset_imgs\/Malex.gen!J\/00a05020315b92d79e4dda579dc4ed80.png')$/;"	kind:variable	line:32
+im	../test_cache/malwareimgtest/asmimage.py	/^        im = Image.fromarray(im) #转换为图像$/;"	kind:variable	line:74
+im	../test_cache/malwareimgtest/asmimage.py	/^    im = getMatrixfrom_hex(filename, 512)$/;"	kind:variable	line:73
+im	../test_cache/test1.py	/^im = Image.fromarray(getMatrixFromBin(filename,512))$/;"	kind:variable	line:16
+im1	../test_cache/imgtest/predict.py	/^im1 = im.resize((64,64), Image.ANTIALIAS); # for faster computation$/;"	kind:variable	line:33
+import	../src/publicfunc/clamav/updateclamav.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:149
+import	../test_cache/clamavinpytest/update_clamav_signatures.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:159
+importSignal	../src/advanceoperate/detailthread.py	/^    importSignal  = QtCore.pyqtSignal(dict)$/;"	kind:variable	line:23
+is_antidb_antivm	../src/publicfunc/yaracheck.py	/^def is_antidb_antivm(filename):$/;"	kind:function	line:53
+is_custom_rules	../src/publicfunc/yaracheck.py	/^def is_custom_rules(filename):$/;"	kind:function	line:140
+is_file_packed	../src/publicfunc/yaracheck.py	/^def is_file_packed(filename):$/;"	kind:function	line:11
+is_malicious_document	../src/publicfunc/yaracheck.py	/^def is_malicious_document(filename):$/;"	kind:function	line:41
+is_malware	../src/publicfunc/yaracheck.py	/^def is_malware(filename):$/;"	kind:function	line:111
+is_webshell	../src/publicfunc/yaracheck.py	/^def is_webshell(filename):$/;"	kind:function	line:92
+keyPressEvent	../src/main.py	/^    def keyPressEvent(self, event):$/;"	kind:member	line:985
+kfold	../test_cache/imgtest/crossvalidation.py	/^kfold = 10 # no. of folds (better to have this at the start of the code)$/;"	kind:variable	line:17
+knn	../test_cache/imgtest/predict.py	/^knn = KNeighborsClassifier(n_neighbors,weights='distance')$/;"	kind:variable	line:53
+labels	../test_cache/malwareimgtest/combine.py	/^labels = subtrain.Class$/;"	kind:variable	line:12
+labels	../test_cache/malwareimgtest/firstrandomforest.py	/^labels = subtrain.Class$/;"	kind:variable	line:11
+labels	../test_cache/malwareimgtest/secondrandomforest.py	/^labels = subtrain.Class$/;"	kind:variable	line:10
+labels	../test_cache/opcodetest/3gram_opcode_worked.py	/^labels = subtrain.Class$/;"	kind:variable	line:96
+labels	../test_cache/opcodetest/opcode_n-gram.py	/^labels = subtrain.Class$/;"	kind:variable	line:106
+labels	../test_cache/opcodetest/secondrandomforest.py	/^labels = subtrain.Class$/;"	kind:variable	line:10
+labels	../test_cache/opcodetest/testsgram.py	/^labels = subtrain.Class$/;"	kind:variable	line:88
+leargist	../src/advanceoperate/malimgthread.py	/^import leargist$/;"	kind:namespace	line:13
+leargist	../test_cache/imgtest/malwareimg.py	/^import leargist$/;"	kind:namespace	line:4
+leargist	../test_cache/imgtest/predict.py	/^import leargist$/;"	kind:namespace	line:31
+len1	../test_cache/imgtest/crossvalidation.py	/^    len1 = len(glob.glob('*.png')) # assuming the images are stored as 'png'$/;"	kind:variable	line:46
+len1	../test_cache/imgtest/malwareimg.py	/^    len1 = len(glob.glob('*.png')) # assuming the images are stored as 'png'$/;"	kind:variable	line:21
+list_fams	../test_cache/imgtest/crossvalidation.py	/^list_fams = os.listdir(os.getcwd()) # vector of strings with family names$/;"	kind:variable	line:39
+list_fams	../test_cache/imgtest/malwareimg.py	/^list_fams = os.listdir(os.getcwd()) # vector of strings with family names$/;"	kind:variable	line:12
+ln	../test_cache/createimg.py	/^ln = os.path.getsize('xxx.xx') # get length$/;"	kind:variable	line:3
+magic	../src/control.py	/^import magic, hashlib$/;"	kind:namespace	line:5
+magic	../src/publicfunc/fileanalyze.py	/^import magic$/;"	kind:namespace	line:11
+main	../src/publicfunc/clamav/convert2yara.py	/^def main():$/;"	kind:function	line:341
+main	../test_cache/clamavinpytest/parse_clamav.py	/^def main():$/;"	kind:function	line:354
+main	../test_cache/testpefilefunc.py	/^def main():  $/;"	kind:function	line:27
+main.py	../src/UILib/main.py	1;"	kind:file	line:1
+main.py	../src/main.py	1;"	kind:file	line:1
+maketrans	../src/publicfunc/clamav/convert2yara.py	/^from string import maketrans, hexdigits$/;"	kind:namespace	line:5
+maketrans	../test_cache/clamavinpytest/parse_clamav.py	/^from string import maketrans, hexdigits$/;"	kind:namespace	line:22
+malalerts	../src/globalset.py	/^    malalerts = {$/;"	kind:variable	line:133
+malalerts	../src/globalset.py	/^    malalerts = {$/;"	kind:variable	line:189
+malimg.py	../src/UILib/malimg.py	1;"	kind:file	line:1
+malimgclassify.py	../src/menuset/malimgclassify.py	1;"	kind:file	line:1
+malimgthread.py	../src/advanceoperate/malimgthread.py	1;"	kind:file	line:1
+malpath	../test_cache/test.py	/^    malpath = sys.argv[2]$/;"	kind:variable	line:24
+malwarSignal	../src/advanceoperate/malimgthread.py	/^    malwarSignal = QtCore.pyqtSignal(int, list)$/;"	kind:variable	line:32
+malwareimg.py	../test_cache/imgtest/malwareimg.py	1;"	kind:file	line:1
+map3gram	../test_cache/malwareimgtest/opcode_n-gram.py	/^map3gram = defaultdict(Counter)$/;"	kind:variable	line:39
+map3gram	../test_cache/opcodetest/opcode_n-gram.py	/^map3gram = defaultdict(Counter)$/;"	kind:variable	line:46
+mapimg	../test_cache/malwareimgtest/asmimage.py	/^mapimg = defaultdict(list)$/;"	kind:variable	line:56
+matchWhiteList	../src/control.py	/^    def matchWhiteList(self, filename):$/;"	kind:member	line:84
+math	../src/publicfunc/fileanalyze.py	/^import math$/;"	kind:namespace	line:9
+matplotlib	../test_cache/imgtest/crossvalidation.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:91
+menuBarOperate	../src/main.py	/^    def menuBarOperate(self, index):$/;"	kind:member	line:611
+mids	../test_cache/malwareimgtest/randomsubset.py	/^    mids = mids.reset_index(drop=True) #重新对9个族排列id$/;"	kind:variable	line:20
+mids	../test_cache/opcodetest/randomsubset.py	/^    mids = mids.reset_index(drop=True) #重新对9个族排列id$/;"	kind:variable	line:16
+module	../src/publicfunc/clamav/updateclamav.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:149
+module	../test_cache/clamavinpytest/update_clamav_signatures.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:159
+myWindow	../test_cache/ui.py	/^    myWindow = MyDialog()  $/;"	kind:variable	line:26
+myapp	../src/main.py	/^    myapp = MainWindow()$/;"	kind:variable	line:1057
+n	../test_cache/imgtest/predict.py	/^n = cPickle.load(open("img.p","rb"))$/;"	kind:variable	line:12
+n_neighbors	../test_cache/imgtest/crossvalidation.py	/^n_neighbors = 1; # better to have this at the start of the code$/;"	kind:variable	line:52
+n_neighbors	../test_cache/imgtest/predict.py	/^n_neighbors = 5; # better to have this at the start of the code$/;"	kind:variable	line:51
+ngramopcode.py	../src/menuset/ngramopcode.py	1;"	kind:file	line:1
+no_imgs	../test_cache/imgtest/crossvalidation.py	/^no_imgs = [] # No. of samples per family$/;"	kind:variable	line:42
+no_imgs	../test_cache/imgtest/malwareimg.py	/^no_imgs = [] # No. of samples per family$/;"	kind:variable	line:16
+normalize	../test_cache/malwareimgtest/opcode_n-gram.py	/^    def normalize(counter):$/;"	kind:function	line:27
+normalize	../test_cache/opcodetest/opcode_n-gram.py	/^    def normalize(counter):$/;"	kind:function	line:34
+not	../src/publicfunc/clamav/updateclamav.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:149
+not	../test_cache/clamavinpytest/update_clamav_signatures.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:159
+np	../src/advanceoperate/opcodethread.py	/^import numpy as np$/;"	kind:namespace	line:7
+np	../test_cache/malwareimgtest/firstrandomforest.py	/^import numpy as np$/;"	kind:namespace	line:5
+np	../test_cache/opcodetest/3gram_opcode_worked.py	/^import numpy as np$/;"	kind:namespace	line:8
+np	../test_cache/opcodetest/opcode_n-gram.py	/^import numpy as np$/;"	kind:namespace	line:11
+np	../test_cache/opcodetest/testsgram.py	/^import numpy as np$/;"	kind:namespace	line:8
+num	../test_cache/imgtest/predict.py	/^num = int(knn.predict(query_feature))$/;"	kind:variable	line:55
+numberSignal	../src/control.py	/^    numberSignal = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:20
+numberSignal	../src/publicfunc/clamav/clamav.py	/^    numberSignal = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:37
+numberSignal	../src/publicfunc/fileanalyze.py	/^    numberSignal = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:220
+numberSignal	../src/publicfunc/yaracheck.py	/^    numberSignal = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:168
+numberSignal	../src/publicfunc/yaracheck.py	/^    numberSignal = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:217
+numberSignal	../src/publicfunc/yaracheck.py	/^    numberSignal = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:273
+numberSignal	../src/publicfunc/yaracheck.py	/^    numberSignal = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:315
+numberSignal	../src/publicfunc/yaracheck.py	/^    numberSignal = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:360
+numbers	../src/publicfunc/fileanalyze.py	/^import numbers$/;"	kind:namespace	line:7
+numpy	../src/advanceoperate/malimgthread.py	/^import os, glob, numpy, sys$/;"	kind:namespace	line:4
+numpy	../src/menuset/malimgclassify.py	/^import numpy, scipy, array$/;"	kind:namespace	line:5
+numpy	../test_cache/imgtest/crossvalidation.py	/^import numpy$/;"	kind:namespace	line:5
+numpy	../test_cache/imgtest/malwareimg.py	/^import os, glob, numpy, sys$/;"	kind:namespace	line:5
+numpy	../test_cache/imgtest/predict.py	/^import numpy$/;"	kind:namespace	line:7
+numpy	../test_cache/malwareimgtest/asmimage.py	/^import numpy$/;"	kind:namespace	line:3
+numpy	../test_cache/test1.py	/^import numpy$/;"	kind:namespace	line:1
+op3gram	../test_cache/malwareimgtest/opcode_n-gram.py	/^    op3gram = getOpcodeNgram(ops)$/;"	kind:variable	line:47
+op3gram	../test_cache/opcodetest/opcode_n-gram.py	/^    op3gram = getOpcodeNgram(ops)$/;"	kind:variable	line:54
+opSequece2Matrix	../src/advanceoperate/opcodethread.py	/^    def opSequece2Matrix(self, opngram):$/;"	kind:member	line:88
+opcode.py	../src/UILib/opcode.py	1;"	kind:file	line:1
+opcodeSignal	../src/advanceoperate/opcodethread.py	/^    opcodeSignal = QtCore.pyqtSignal(list)$/;"	kind:variable	line:25
+opcode_n-gram.py	../test_cache/malwareimgtest/opcode_n-gram.py	1;"	kind:file	line:1
+opcode_n-gram.py	../test_cache/opcodetest/opcode_n-gram.py	1;"	kind:file	line:1
+opcodethread.py	../src/advanceoperate/opcodethread.py	1;"	kind:file	line:1
+opd	../test_cache/malwareimgtest/randomsubset.py	/^    opd = opd.append(mids.loc[rchoice]) #组合出新的csv作为训练子集$/;"	kind:variable	line:32
+opd	../test_cache/malwareimgtest/randomsubset.py	/^opd = opd.reset_index(drop=True)$/;"	kind:variable	line:36
+opd	../test_cache/malwareimgtest/randomsubset.py	/^opd = pd.DataFrame()$/;"	kind:variable	line:17
+opd	../test_cache/opcodetest/randomsubset.py	/^    opd = opd.append(mids.loc[rchoice]) #组合出新的csv作为训练子集$/;"	kind:variable	line:28
+opd	../test_cache/opcodetest/randomsubset.py	/^opd = opd.reset_index(drop=True)$/;"	kind:variable	line:32
+opd	../test_cache/opcodetest/randomsubset.py	/^opd = pd.DataFrame()$/;"	kind:variable	line:13
+ops	../test_cache/malwareimgtest/opcode_n-gram.py	/^    ops = getOpcodeSequence(filename)$/;"	kind:variable	line:46
+ops	../test_cache/opcodetest/opcode_n-gram.py	/^    ops = getOpcodeSequence(filename)$/;"	kind:variable	line:53
+os	../src/advanceoperate/detailthread.py	/^import sys, os$/;"	kind:namespace	line:3
+os	../src/advanceoperate/malimgthread.py	/^import os, glob, numpy, sys$/;"	kind:namespace	line:4
+os	../src/advanceoperate/opcodethread.py	/^import re, os$/;"	kind:namespace	line:8
+os	../src/advanceoperate/uploadthread.py	/^import sys, os$/;"	kind:namespace	line:3
+os	../src/control.py	/^import time, sys, os$/;"	kind:namespace	line:4
+os	../src/main.py	/^import time, sys, os, shutil$/;"	kind:namespace	line:12
+os	../src/menuset/authorinfo.py	/^import sys, os$/;"	kind:namespace	line:4
+os	../src/menuset/filedetail.py	/^import sys, os, time$/;"	kind:namespace	line:4
+os	../src/menuset/malimgclassify.py	/^import os, sys, time$/;"	kind:namespace	line:4
+os	../src/menuset/ngramopcode.py	/^import sys, os, time$/;"	kind:namespace	line:4
+os	../src/menuset/setting.py	/^import sys, os, time$/;"	kind:namespace	line:4
+os	../src/menuset/uploadfile.py	/^import sys, os, time$/;"	kind:namespace	line:4
+os	../src/publicfunc/clamav/clamav.py	/^import sys, os$/;"	kind:namespace	line:3
+os	../src/publicfunc/clamav/updateclamav.py	/^import os$/;"	kind:namespace	line:4
+os	../src/publicfunc/fileanalyze.py	/^import sys, os$/;"	kind:namespace	line:3
+os	../src/publicfunc/updatedata.py	/^import os, sys, shutil$/;"	kind:namespace	line:4
+os	../src/publicfunc/yaracheck.py	/^import sys, os$/;"	kind:namespace	line:3
+os	../src/test.py	/^import sys, os$/;"	kind:namespace	line:1
+os	../test_cache/clamavinpytest/update_clamav_signatures.py	/^import os$/;"	kind:namespace	line:21
+os	../test_cache/imgtest/crossvalidation.py	/^import os, glob$/;"	kind:namespace	line:33
+os	../test_cache/imgtest/malwareimg.py	/^import os, glob, numpy, sys$/;"	kind:namespace	line:5
+os	../test_cache/imgtest/predict.py	/^import os, glob$/;"	kind:namespace	line:47
+os	../test_cache/malwareimgtest/asmimage.py	/^import os$/;"	kind:namespace	line:2
+os	../test_cache/malwareimgtest/opcode_n-gram.py	/^import os$/;"	kind:namespace	line:3
+os	../test_cache/malwareimgtest/randomsubset.py	/^import os, time$/;"	kind:namespace	line:3
+os	../test_cache/opcodetest/3gram_opcode_worked.py	/^import re, os$/;"	kind:namespace	line:9
+os	../test_cache/opcodetest/opcode_n-gram.py	/^import os$/;"	kind:namespace	line:9
+os	../test_cache/opcodetest/randomsubset.py	/^import os, time$/;"	kind:namespace	line:3
+os	../test_cache/opcodetest/testsgram.py	/^import re, os$/;"	kind:namespace	line:9
+os	../test_cache/test.py	/^import os$/;"	kind:namespace	line:2
+os	../test_cache/testpefilefunc.py	/^import os,os.path  $/;"	kind:namespace	line:2
+our	../src/publicfunc/clamav/updateclamav.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:149
+our	../test_cache/clamavinpytest/update_clamav_signatures.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:159
+p	../test_cache/imgtest/crossvalidation.py	/^p = range(n_samples) # an index array, 0:n_samples$/;"	kind:variable	line:11
+parsePe	../test_cache/testpefilefunc.py	/^def parsePe(filePath,dllDict):  $/;"	kind:function	line:4
+parse_clamav.py	../test_cache/clamavinpytest/parse_clamav.py	1;"	kind:file	line:1
+parse_ldb	../src/publicfunc/clamav/convert2yara.py	/^def parse_ldb(input, output, is_daily=False):$/;"	kind:function	line:293
+parse_ldb	../src/publicfunc/clamav/updateclamav.py	/^from convert2yara import parse_ndb, parse_ldb$/;"	kind:namespace	line:10
+parse_ldb	../test_cache/clamavinpytest/parse_clamav.py	/^def parse_ldb(input, output, is_daily=False):$/;"	kind:function	line:308
+parse_ldb	../test_cache/clamavinpytest/update_clamav_signatures.py	/^from parse_clamav import parse_ndb, parse_ldb$/;"	kind:namespace	line:27
+parse_ndb	../src/publicfunc/clamav/convert2yara.py	/^def parse_ndb(input, output, is_daily=False):$/;"	kind:function	line:257
+parse_ndb	../src/publicfunc/clamav/updateclamav.py	/^from convert2yara import parse_ndb, parse_ldb$/;"	kind:namespace	line:10
+parse_ndb	../test_cache/clamavinpytest/parse_clamav.py	/^def parse_ndb(input, output, is_daily=False):$/;"	kind:function	line:278
+parse_ndb	../test_cache/clamavinpytest/update_clamav_signatures.py	/^from parse_clamav import parse_ndb, parse_ldb$/;"	kind:namespace	line:27
+parser	../src/publicfunc/clamav/updateclamav.py	/^parser = argparse.ArgumentParser(description="Updates ClamAV signatures for plugin_clamav.")$/;"	kind:variable	line:131
+parser	../test_cache/clamavinpytest/update_clamav_signatures.py	/^parser = argparse.ArgumentParser(description="Updates ClamAV signatures for plugin_clamav.")$/;"	kind:variable	line:141
+path	../test_cache/testpefilefunc.py	/^import os,os.path  $/;"	kind:namespace	line:2
+pd	../src/advanceoperate/opcodethread.py	/^import pandas as pd$/;"	kind:namespace	line:6
+pd	../test_cache/malwareimgtest/asmimage.py	/^import pandas as pd$/;"	kind:namespace	line:5
+pd	../test_cache/malwareimgtest/combine.py	/^import pandas as pd$/;"	kind:namespace	line:4
+pd	../test_cache/malwareimgtest/firstrandomforest.py	/^import pandas as pd$/;"	kind:namespace	line:4
+pd	../test_cache/malwareimgtest/opcode_n-gram.py	/^import pandas as pd$/;"	kind:namespace	line:4
+pd	../test_cache/malwareimgtest/randomsubset.py	/^import pandas as pd$/;"	kind:namespace	line:5
+pd	../test_cache/malwareimgtest/secondrandomforest.py	/^import pandas as pd$/;"	kind:namespace	line:4
+pd	../test_cache/opcodetest/3gram_opcode_worked.py	/^import pandas as pd$/;"	kind:namespace	line:7
+pd	../test_cache/opcodetest/opcode_n-gram.py	/^import pandas as pd$/;"	kind:namespace	line:10
+pd	../test_cache/opcodetest/randomsubset.py	/^import pandas as pd$/;"	kind:namespace	line:5
+pd	../test_cache/opcodetest/secondrandomforest.py	/^import pandas as pd$/;"	kind:namespace	line:4
+pd	../test_cache/opcodetest/testsgram.py	/^import pandas as pd$/;"	kind:namespace	line:7
+pefile	../src/publicfunc/fileanalyze.py	/^import pefile$/;"	kind:namespace	line:10
+pefile	../test_cache/testpefilefunc.py	/^import pefile  $/;"	kind:namespace	line:3
+pkdalerts	../src/globalset.py	/^    pkdalerts = {$/;"	kind:variable	line:163
+pkdalerts	../src/globalset.py	/^    pkdalerts = {$/;"	kind:variable	line:218
+plt	../test_cache/imgtest/crossvalidation.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:91
+predict.py	../test_cache/imgtest/predict.py	1;"	kind:file	line:1
+prevScanPrepare	../src/main.py	/^    def prevScanPrepare(self):$/;"	kind:member	line:275
+queryDBOperate	../src/main.py	/^    def queryDBOperate(self, flag):$/;"	kind:member	line:433
+query_feature	../test_cache/imgtest/predict.py	/^query_feature = feature.reshape(1, -1)$/;"	kind:variable	line:37
+random	../src/advanceoperate/malimgthread.py	/^import random$/;"	kind:namespace	line:15
+random	../test_cache/imgtest/crossvalidation.py	/^import random$/;"	kind:namespace	line:1
+random	../test_cache/imgtest/predict.py	/^import random$/;"	kind:namespace	line:1
+randomForestClassify	../src/advanceoperate/opcodethread.py	/^    def randomForestClassify(self, matrix):$/;"	kind:member	line:96
+randomsubset.py	../test_cache/malwareimgtest/randomsubset.py	1;"	kind:file	line:1
+randomsubset.py	../test_cache/opcodetest/randomsubset.py	1;"	kind:file	line:1
+range_offset_pattern	../src/publicfunc/clamav/convert2yara.py	/^range_offset_pattern = re.compile("(\\d+),(\\d+)")$/;"	kind:variable	line:8
+range_offset_pattern	../test_cache/clamavinpytest/parse_clamav.py	/^range_offset_pattern = re.compile("(\\d+),(\\d+)")$/;"	kind:variable	line:25
+rchoice	../test_cache/malwareimgtest/randomsubset.py	/^    rchoice = [rs.randint(0,len(mids)-1) for i in range(20)]$/;"	kind:variable	line:22
+rchoice	../test_cache/opcodetest/randomsubset.py	/^    rchoice = [rs.randint(0,len(mids)-1) for i in range(500)]$/;"	kind:variable	line:18
+re	../src/advanceoperate/opcodethread.py	/^import re, os$/;"	kind:namespace	line:8
+re	../src/publicfunc/clamav/convert2yara.py	/^import re$/;"	kind:namespace	line:4
+re	../src/publicfunc/fileanalyze.py	/^import re$/;"	kind:namespace	line:13
+re	../test_cache/clamavinpytest/parse_clamav.py	/^import re$/;"	kind:namespace	line:20
+re	../test_cache/malwareimgtest/opcode_n-gram.py	/^import re$/;"	kind:namespace	line:1
+re	../test_cache/opcodetest/3gram_opcode_worked.py	/^import re, os$/;"	kind:namespace	line:9
+re	../test_cache/opcodetest/opcode_n-gram.py	/^import re$/;"	kind:namespace	line:7
+re	../test_cache/opcodetest/testsgram.py	/^import re, os$/;"	kind:namespace	line:9
+readFromDB	../src/main.py	/^    def readFromDB(self, index):$/;"	kind:member	line:392
+readFromDataBase	../src/control.py	/^    def readFromDataBase(self, index):$/;"	kind:member	line:183
+readPEinfoDB	../src/control.py	/^    def readPEinfoDB(self, md5):$/;"	kind:member	line:286
+readYaraResultDB	../src/control.py	/^    def readYaraResultDB(self, md5):$/;"	kind:member	line:428
+read_hexbytes	../test_cache/malwareimgtest/asmimage.py	/^def read_hexbytes(filename):$/;"	kind:function	line:45
+recvAnalyzeResult	../src/menuset/uploadfile.py	/^    def recvAnalyzeResult(self, index, msg):$/;"	kind:member	line:49
+recvClamResult	../src/control.py	/^    def recvClamResult(self, msg):$/;"	kind:member	line:485
+recvDefaultResult	../src/control.py	/^    def recvDefaultResult(self, msg, md5):$/;"	kind:member	line:300
+recvInitSingal	../src/main.py	/^    def recvInitSingal(self, index, msg):$/;"	kind:member	line:293
+recvYaraResult	../src/control.py	/^    def recvYaraResult(self, msg):$/;"	kind:member	line:441
+rem	../test_cache/createimg.py	/^rem = ln % width$/;"	kind:variable	line:5
+retranslateUi	../src/UILib/author.py	/^    def retranslateUi(self, Dialog):$/;"	kind:member	line:56
+retranslateUi	../src/UILib/detail.py	/^    def retranslateUi(self, Dialog):$/;"	kind:member	line:89
+retranslateUi	../src/UILib/main.py	/^    def retranslateUi(self, MainWindow):$/;"	kind:member	line:484
+retranslateUi	../src/UILib/malimg.py	/^    def retranslateUi(self, Dialog):$/;"	kind:member	line:82
+retranslateUi	../src/UILib/opcode.py	/^    def retranslateUi(self, Dialog):$/;"	kind:member	line:74
+retranslateUi	../src/UILib/setting.py	/^    def retranslateUi(self, Dialog):$/;"	kind:member	line:115
+retranslateUi	../src/UILib/upload_file.py	/^    def retranslateUi(self, Dialog):$/;"	kind:member	line:144
+rids	../test_cache/malwareimgtest/randomsubset.py	/^    rids = [mids.loc[i].Id for i in rchoice] #rids值为对应选中的文件名称$/;"	kind:variable	line:30
+rids	../test_cache/opcodetest/randomsubset.py	/^    rids = [mids.loc[i].Id for i in rchoice] #rids值为对应选中的文件名称$/;"	kind:variable	line:26
+rs	../test_cache/malwareimgtest/randomsubset.py	/^rs = Random()$/;"	kind:variable	line:12
+rs	../test_cache/opcodetest/randomsubset.py	/^rs = Random()$/;"	kind:variable	line:8
+rulepath	../test_cache/test.py	/^    rulepath = sys.argv[1]$/;"	kind:variable	line:23
+run	../src/advanceoperate/detailthread.py	/^    def run(self):$/;"	kind:member	line:16
+run	../src/advanceoperate/detailthread.py	/^    def run(self):$/;"	kind:member	line:42
+run	../src/advanceoperate/malimgthread.py	/^    def run(self):$/;"	kind:member	line:28
+run	../src/advanceoperate/malimgthread.py	/^    def run(self):$/;"	kind:member	line:99
+run	../src/advanceoperate/opcodethread.py	/^    def run(self):$/;"	kind:member	line:117
+run	../src/advanceoperate/opcodethread.py	/^    def run(self):$/;"	kind:member	line:21
+run	../src/advanceoperate/uploadthread.py	/^    def run(self):$/;"	kind:member	line:101
+run	../src/advanceoperate/uploadthread.py	/^    def run(self):$/;"	kind:member	line:83
+run	../src/control.py	/^    def run(self):$/;"	kind:member	line:101
+run	../src/control.py	/^    def run(self):$/;"	kind:member	line:575
+run	../src/publicfunc/clamav/clamav.py	/^    def run(self):$/;"	kind:member	line:61
+run	../src/publicfunc/fileanalyze.py	/^    def run(self):$/;"	kind:member	line:304
+run	../src/publicfunc/yaracheck.py	/^    def run(self):$/;"	kind:member	line:194
+run	../src/publicfunc/yaracheck.py	/^    def run(self):$/;"	kind:member	line:242
+run	../src/publicfunc/yaracheck.py	/^    def run(self):$/;"	kind:member	line:298
+run	../src/publicfunc/yaracheck.py	/^    def run(self):$/;"	kind:member	line:340
+run	../src/publicfunc/yaracheck.py	/^    def run(self):$/;"	kind:member	line:385
+saveAnalysisLog	../src/main.py	/^    def saveAnalysisLog(self):$/;"	kind:member	line:895
+sbase	../test_cache/malwareimgtest/randomsubset.py	/^sbase = 'G:\\\\工程及其他\\\\train\\\\'$/;"	kind:variable	line:40
+sbase	../test_cache/malwareimgtest/randomsubset.py	/^sbase = sbase.encode('cp936')$/;"	kind:variable	line:41
+sbase	../test_cache/opcodetest/randomsubset.py	/^sbase = '\/home\/zrx\/code\/malwaredata\/train\/'$/;"	kind:variable	line:36
+scan	../test_cache/test.py	/^def scan(rule, path):$/;"	kind:function	line:14
+scandoneflag	../src/globalset.py	/^    scandoneflag = 1 # 0-未完 1-完成$/;"	kind:variable	line:8
+scansqlcount	../src/globalset.py	/^    scansqlcount = 0$/;"	kind:variable	line:10
+scanstopflag	../src/globalset.py	/^    scanstopflag = 1 # 0-停止 1-扫描$/;"	kind:variable	line:6
+scipy	../src/menuset/malimgclassify.py	/^import numpy, scipy, array$/;"	kind:namespace	line:5
+secondrandomforest.py	../test_cache/malwareimgtest/secondrandomforest.py	1;"	kind:file	line:1
+secondrandomforest.py	../test_cache/opcodetest/secondrandomforest.py	1;"	kind:file	line:1
+sectionSignal	../src/advanceoperate/detailthread.py	/^    sectionSignal = QtCore.pyqtSignal(list)$/;"	kind:variable	line:22
+selectFolder	../src/main.py	/^    def selectFolder(self):$/;"	kind:member	line:175
+selectedfeatures	../test_cache/malwareimgtest/opcode_n-gram.py	/^selectedfeatures = {}$/;"	kind:variable	line:53
+selectedfeatures	../test_cache/opcodetest/opcode_n-gram.py	/^selectedfeatures = {}$/;"	kind:variable	line:60
+setImg	../src/menuset/authorinfo.py	/^    def setImg(self):$/;"	kind:member	line:18
+setting.py	../src/UILib/setting.py	1;"	kind:file	line:1
+setting.py	../src/menuset/setting.py	1;"	kind:file	line:1
+setupUi	../src/UILib/author.py	/^    def setupUi(self, Dialog):$/;"	kind:member	line:26
+setupUi	../src/UILib/detail.py	/^    def setupUi(self, Dialog):$/;"	kind:member	line:26
+setupUi	../src/UILib/main.py	/^    def setupUi(self, MainWindow):$/;"	kind:member	line:26
+setupUi	../src/UILib/malimg.py	/^    def setupUi(self, Dialog):$/;"	kind:member	line:26
+setupUi	../src/UILib/opcode.py	/^    def setupUi(self, Dialog):$/;"	kind:member	line:26
+setupUi	../src/UILib/setting.py	/^    def setupUi(self, Dialog):$/;"	kind:member	line:26
+setupUi	../src/UILib/upload_file.py	/^    def setupUi(self, Dialog):$/;"	kind:member	line:26
+showAdvInfo	../src/menuset/filedetail.py	/^    def showAdvInfo(self, msg):$/;"	kind:member	line:48
+showBaseInfo	../src/menuset/filedetail.py	/^    def showBaseInfo(self, msg):$/;"	kind:member	line:36
+showClassifyResult	../src/menuset/malimgclassify.py	/^    def showClassifyResult(self, flag, msg):$/;"	kind:member	line:62
+showClassifyResult	../src/menuset/ngramopcode.py	/^    def showClassifyResult(self, msg):$/;"	kind:member	line:52
+showEvent	../src/main.py	/^    def showEvent(self, event):$/;"	kind:member	line:1032
+showFileAnalyzLog	../src/main.py	/^    def showFileAnalyzLog(self, flag, msg):$/;"	kind:member	line:878
+showImpImfo	../src/menuset/filedetail.py	/^    def showImpImfo(self, msg):$/;"	kind:member	line:56
+showSetInfo	../src/menuset/filedetail.py	/^    def showSetInfo(self, msg):$/;"	kind:member	line:90
+shuffle	../src/advanceoperate/malimgthread.py	/^from sklearn.utils import shuffle$/;"	kind:namespace	line:11
+shuffle	../test_cache/imgtest/crossvalidation.py	/^from sklearn.utils import shuffle$/;"	kind:namespace	line:3
+shuffle	../test_cache/imgtest/predict.py	/^from sklearn.utils import shuffle$/;"	kind:namespace	line:5
+shutil	../src/main.py	/^import time, sys, os, shutil$/;"	kind:namespace	line:12
+shutil	../src/publicfunc/clamav/updateclamav.py	/^import shutil$/;"	kind:namespace	line:5
+shutil	../src/publicfunc/updatedata.py	/^import os, sys, shutil$/;"	kind:namespace	line:4
+shutil	../test_cache/clamavinpytest/update_clamav_signatures.py	/^import shutil$/;"	kind:namespace	line:22
+shutil	../test_cache/malwareimgtest/randomsubset.py	/^import shutil$/;"	kind:namespace	line:6
+shutil	../test_cache/opcodetest/randomsubset.py	/^import shutil $/;"	kind:namespace	line:6
+skf	../test_cache/imgtest/crossvalidation.py	/^skf = StratifiedKFold(y,kfold)#,indices='true')$/;"	kind:variable	line:19
+skfind	../test_cache/imgtest/crossvalidation.py	/^skfind = [None]*len(skf) # indices$/;"	kind:variable	line:25
+sklearn	../src/advanceoperate/malimgthread.py	/^import sklearn$/;"	kind:namespace	line:12
+sklearn	../test_cache/imgtest/crossvalidation.py	/^import sklearn$/;"	kind:namespace	line:4
+sklearn	../test_cache/imgtest/predict.py	/^import sklearn$/;"	kind:namespace	line:6
+smsgSignal	../src/control.py	/^    smsgSignal = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:158
+sname	../test_cache/malwareimgtest/asmimage.py	/^        sname = str(filename) + ".png"$/;"	kind:variable	line:75
+socket	../src/advanceoperate/uploadthread.py	/^import socket$/;"	kind:namespace	line:4
+sortByFileSize	../src/main.py	/^    def sortByFileSize(self, flag):$/;"	kind:member	line:814
+sqlite3	../src/advanceoperate/detailthread.py	/^import sqlite3$/;"	kind:namespace	line:5
+sqlite3	../src/control.py	/^import sqlite3$/;"	kind:namespace	line:11
+sqlite3	../src/main.py	/^import sqlite3$/;"	kind:namespace	line:22
+sqlite3	../src/publicfunc/clamav/clamav.py	/^import sqlite3$/;"	kind:namespace	line:6
+sqlite3	../src/publicfunc/fileanalyze.py	/^import sqlite3$/;"	kind:namespace	line:12
+sqlite3	../src/publicfunc/yaracheck.py	/^import sqlite3$/;"	kind:namespace	line:6
+srf	../test_cache/imgtest/predict.py	/^srf = RF(n_estimators=50, n_jobs=-1)$/;"	kind:variable	line:61
+srf	../test_cache/malwareimgtest/combine.py	/^srf = RF(n_estimators=500, n_jobs=-1)$/;"	kind:variable	line:18
+srf	../test_cache/malwareimgtest/firstrandomforest.py	/^srf = RF(n_estimators=500, n_jobs=-1)$/;"	kind:variable	line:16
+srf	../test_cache/malwareimgtest/secondrandomforest.py	/^srf = RF(n_estimators=500, n_jobs=-1)$/;"	kind:variable	line:16
+srf	../test_cache/opcodetest/3gram_opcode_worked.py	/^srf = RF(n_estimators=500, n_jobs=-1)$/;"	kind:variable	line:104
+srf	../test_cache/opcodetest/opcode_n-gram.py	/^srf = RF(n_estimators=500, n_jobs=-1)$/;"	kind:variable	line:111
+srf	../test_cache/opcodetest/secondrandomforest.py	/^srf = RF(n_estimators=500, n_jobs=-1)$/;"	kind:variable	line:16
+srf	../test_cache/opcodetest/testsgram.py	/^srf = RF(n_estimators=500, n_jobs=-1)$/;"	kind:variable	line:93
+standard	../test_cache/malwareimgtest/opcode_n-gram.py	/^    standard = {}$/;"	kind:variable	line:62
+standard	../test_cache/opcodetest/opcode_n-gram.py	/^    standard = {}$/;"	kind:variable	line:72
+startClamThread	../src/control.py	/^    def startClamThread(self, filename, index):$/;"	kind:member	line:477
+startCrypThread	../src/control.py	/^    def startCrypThread(self, filename, index, md5):$/;"	kind:member	line:500
+startCustThread	../src/control.py	/^    def startCustThread(self, filename, index, md5):$/;"	kind:member	line:512
+startDefaultThread	../src/control.py	/^    def startDefaultThread(self, filename, filetype, md5, index):$/;"	kind:member	line:262
+startPackThread	../src/control.py	/^    def startPackThread(self, filename, index, md5):$/;"	kind:member	line:488
+startScan	../src/main.py	/^    def startScan(self):$/;"	kind:member	line:215
+startYaraThread	../src/control.py	/^    def startYaraThread(self, filename, filetype, md5, index):$/;"	kind:member	line:394
+stopScan	../src/main.py	/^    def stopScan(self):$/;"	kind:member	line:262
+store2DataBaseByDate	../src/main.py	/^    def store2DataBaseByDate(self):$/;"	kind:member	line:860
+subtrain	../test_cache/malwareimgtest/asmimage.py	/^subtrain = pd.read_csv('subtrainLabels.csv')$/;"	kind:variable	line:57
+subtrain	../test_cache/malwareimgtest/combine.py	/^subtrain = pd.merge(subtrain,subtrainLabel,on='Id')$/;"	kind:variable	line:11
+subtrain	../test_cache/malwareimgtest/combine.py	/^subtrain = pd.merge(subtrainfeature1,subtrainfeature2,on='Id')$/;"	kind:variable	line:10
+subtrain	../test_cache/malwareimgtest/combine.py	/^subtrain = subtrain.as_matrix()$/;"	kind:variable	line:14
+subtrain	../test_cache/malwareimgtest/firstrandomforest.py	/^subtrain = pd.merge(subtrainLabel,subtrainfeature,on='Id')$/;"	kind:variable	line:10
+subtrain	../test_cache/malwareimgtest/firstrandomforest.py	/^subtrain = subtrain.as_matrix()$/;"	kind:variable	line:13
+subtrain	../test_cache/malwareimgtest/opcode_n-gram.py	/^subtrain = pd.read_csv('subtrainLabels.csv')$/;"	kind:variable	line:40
+subtrain	../test_cache/malwareimgtest/secondrandomforest.py	/^subtrain = pd.merge(subtrainLabel,subtrainfeature,on='Id')$/;"	kind:variable	line:9
+subtrain	../test_cache/malwareimgtest/secondrandomforest.py	/^subtrain = subtrain.as_matrix()$/;"	kind:variable	line:12
+subtrain	../test_cache/opcodetest/3gram_opcode_worked.py	/^subtrain = pd.merge(subtrainLabel,subtrainfeature,on='Id')$/;"	kind:variable	line:95
+subtrain	../test_cache/opcodetest/3gram_opcode_worked.py	/^subtrain = subtrain.as_matrix()$/;"	kind:variable	line:99
+subtrain	../test_cache/opcodetest/opcode_n-gram.py	/^subtrain = pd.merge(subtrainLabel,subtrainfeature,on='Id')$/;"	kind:variable	line:105
+subtrain	../test_cache/opcodetest/opcode_n-gram.py	/^subtrain = pd.read_csv('subtrainLabels.csv')$/;"	kind:variable	line:47
+subtrain	../test_cache/opcodetest/opcode_n-gram.py	/^subtrain = subtrain.as_matrix()$/;"	kind:variable	line:108
+subtrain	../test_cache/opcodetest/secondrandomforest.py	/^subtrain = pd.merge(subtrainLabel,subtrainfeature,on='Id')$/;"	kind:variable	line:9
+subtrain	../test_cache/opcodetest/secondrandomforest.py	/^subtrain = subtrain.as_matrix()$/;"	kind:variable	line:12
+subtrain	../test_cache/opcodetest/testsgram.py	/^subtrain = pd.merge(subtrainLabel,subtrainfeature,on='Id')$/;"	kind:variable	line:87
+subtrain	../test_cache/opcodetest/testsgram.py	/^subtrain = subtrain.as_matrix()$/;"	kind:variable	line:90
+subtrainLabel	../test_cache/malwareimgtest/combine.py	/^subtrainLabel = pd.read_csv('subtrainLabels.csv')$/;"	kind:variable	line:7
+subtrainLabel	../test_cache/malwareimgtest/firstrandomforest.py	/^subtrainLabel = pd.read_csv('subtrainLabels.csv')$/;"	kind:variable	line:8
+subtrainLabel	../test_cache/malwareimgtest/secondrandomforest.py	/^subtrainLabel = pd.read_csv('subtrainLabels.csv')$/;"	kind:variable	line:7
+subtrainLabel	../test_cache/opcodetest/3gram_opcode_worked.py	/^subtrainLabel = pd.read_csv('subtrainLabels.csv')$/;"	kind:variable	line:93
+subtrainLabel	../test_cache/opcodetest/opcode_n-gram.py	/^subtrainLabel = pd.read_csv('subtrainLabels.csv')$/;"	kind:variable	line:103
+subtrainLabel	../test_cache/opcodetest/secondrandomforest.py	/^subtrainLabel = pd.read_csv('subtrainLabels.csv')$/;"	kind:variable	line:7
+subtrainLabel	../test_cache/opcodetest/testsgram.py	/^subtrainLabel = pd.read_csv('subtrainLabels.csv')$/;"	kind:variable	line:85
+subtrainfeature	../test_cache/malwareimgtest/firstrandomforest.py	/^subtrainfeature = pd.read_csv("imgfeature.csv")$/;"	kind:variable	line:9
+subtrainfeature	../test_cache/malwareimgtest/secondrandomforest.py	/^subtrainfeature = pd.read_csv("3gramfeature.csv")$/;"	kind:variable	line:8
+subtrainfeature	../test_cache/opcodetest/3gram_opcode_worked.py	/^subtrainfeature = pd.read_csv("3gramfeature.csv")$/;"	kind:variable	line:36
+subtrainfeature	../test_cache/opcodetest/3gram_opcode_worked.py	/^subtrainfeature = pd.read_csv("3gramfeature.csv")$/;"	kind:variable	line:94
+subtrainfeature	../test_cache/opcodetest/opcode_n-gram.py	/^subtrainfeature = pd.read_csv("3gramfeature.csv")$/;"	kind:variable	line:104
+subtrainfeature	../test_cache/opcodetest/secondrandomforest.py	/^subtrainfeature = pd.read_csv("3gramfeature.csv")$/;"	kind:variable	line:8
+subtrainfeature	../test_cache/opcodetest/testsgram.py	/^subtrainfeature = pd.read_csv("3gramfeature.csv")$/;"	kind:variable	line:33
+subtrainfeature	../test_cache/opcodetest/testsgram.py	/^subtrainfeature = pd.read_csv("3gramfeature.csv")$/;"	kind:variable	line:86
+subtrainfeature1	../test_cache/malwareimgtest/combine.py	/^subtrainfeature1 = pd.read_csv("3gramfeature.csv")$/;"	kind:variable	line:8
+subtrainfeature2	../test_cache/malwareimgtest/combine.py	/^subtrainfeature2 = pd.read_csv("imgfeature.csv")$/;"	kind:variable	line:9
+sv	../test_cache/imgtest/predict.py	/^sv = svm.NuSVC(gamma=0.001)$/;"	kind:variable	line:67
+svm	../test_cache/imgtest/predict.py	/^from sklearn import svm$/;"	kind:namespace	line:66
+svm	../test_cache/malwareimgtest/asmimage.py	/^from sklearn import svm$/;"	kind:namespace	line:8
+sys	../src/UILib/author.py	/^    import sys$/;"	kind:namespace	line:64
+sys	../src/UILib/detail.py	/^    import sys$/;"	kind:namespace	line:108
+sys	../src/UILib/main.py	/^    import sys$/;"	kind:namespace	line:586
+sys	../src/UILib/malimg.py	/^    import sys$/;"	kind:namespace	line:97
+sys	../src/UILib/opcode.py	/^    import sys$/;"	kind:namespace	line:87
+sys	../src/UILib/setting.py	/^    import sys$/;"	kind:namespace	line:139
+sys	../src/UILib/upload_file.py	/^    import sys$/;"	kind:namespace	line:163
+sys	../src/advanceoperate/detailthread.py	/^import sys, os$/;"	kind:namespace	line:3
+sys	../src/advanceoperate/malimgthread.py	/^import os, glob, numpy, sys$/;"	kind:namespace	line:4
+sys	../src/advanceoperate/malimgthread.py	/^import sys$/;"	kind:namespace	line:17
+sys	../src/advanceoperate/opcodethread.py	/^import sys$/;"	kind:namespace	line:10
+sys	../src/advanceoperate/uploadthread.py	/^import sys, os$/;"	kind:namespace	line:3
+sys	../src/control.py	/^import time, sys, os$/;"	kind:namespace	line:4
+sys	../src/main.py	/^import time, sys, os, shutil$/;"	kind:namespace	line:12
+sys	../src/menuset/authorinfo.py	/^import sys, os$/;"	kind:namespace	line:4
+sys	../src/menuset/filedetail.py	/^import sys, os, time$/;"	kind:namespace	line:4
+sys	../src/menuset/malimgclassify.py	/^import os, sys, time$/;"	kind:namespace	line:4
+sys	../src/menuset/ngramopcode.py	/^import sys, os, time$/;"	kind:namespace	line:4
+sys	../src/menuset/setting.py	/^import sys, os, time$/;"	kind:namespace	line:4
+sys	../src/menuset/uploadfile.py	/^import sys, os, time$/;"	kind:namespace	line:4
+sys	../src/publicfunc/clamav/clamav.py	/^import sys, os$/;"	kind:namespace	line:3
+sys	../src/publicfunc/clamav/convert2yara.py	/^import sys$/;"	kind:namespace	line:3
+sys	../src/publicfunc/clamav/updateclamav.py	/^import sys$/;"	kind:namespace	line:3
+sys	../src/publicfunc/fileanalyze.py	/^import sys, os$/;"	kind:namespace	line:3
+sys	../src/publicfunc/updatedata.py	/^import os, sys, shutil$/;"	kind:namespace	line:4
+sys	../src/publicfunc/yaracheck.py	/^import sys, os$/;"	kind:namespace	line:3
+sys	../src/test.py	/^import sys, os$/;"	kind:namespace	line:1
+sys	../test_cache/clamavinpytest/parse_clamav.py	/^import sys$/;"	kind:namespace	line:21
+sys	../test_cache/clamavinpytest/update_clamav_signatures.py	/^import sys$/;"	kind:namespace	line:20
+sys	../test_cache/imgtest/malwareimg.py	/^import os, glob, numpy, sys$/;"	kind:namespace	line:5
+sys	../test_cache/malwareimgtest/randomsubset.py	/^import sys $/;"	kind:namespace	line:8
+sys	../test_cache/opcodetest/3gram_opcode_worked.py	/^import sys$/;"	kind:namespace	line:11
+sys	../test_cache/test.py	/^import sys$/;"	kind:namespace	line:3
+sys	../test_cache/ui.py	/^    import sys  $/;"	kind:namespace	line:24
+t3gram	../test_cache/opcodetest/3gram_opcode_worked.py	/^t3gram = getOpcodeNgram(tops)$/;"	kind:variable	line:71
+t3gram	../test_cache/opcodetest/opcode_n-gram.py	/^t3gram = getOpcodeNgram(tops)$/;"	kind:variable	line:90
+t3gram	../test_cache/opcodetest/testsgram.py	/^t3gram = getOpcodeNgram(tops)$/;"	kind:variable	line:68
+tableHeaderEvent	../src/main.py	/^    def tableHeaderEvent(self, index):$/;"	kind:member	line:776
+tarfile	../src/publicfunc/clamav/updateclamav.py	/^import tarfile$/;"	kind:namespace	line:6
+tarfile	../test_cache/clamavinpytest/update_clamav_signatures.py	/^import tarfile$/;"	kind:namespace	line:23
+tbase	../test_cache/malwareimgtest/randomsubset.py	/^tbase = 'E:\\\\git\\\\test\\\\train\\\\'$/;"	kind:variable	line:42
+tbase	../test_cache/opcodetest/randomsubset.py	/^tbase = '\/home\/zrx\/code\/malwaredata\/testtrain\/'$/;"	kind:variable	line:38
+tc	../test_cache/malwareimgtest/opcode_n-gram.py	/^tc = 0$/;"	kind:variable	line:54
+tc	../test_cache/opcodetest/opcode_n-gram.py	/^tc = 0$/;"	kind:variable	line:61
+temp1	../test_cache/imgtest/malwareimg.py	/^temp1 = numpy.zeros(len(no_imgs)+1)$/;"	kind:variable	line:32
+temp2	../test_cache/imgtest/malwareimg.py	/^    temp2 = temp2+ int(temp1[jj+1])$/;"	kind:variable	line:40
+temp2	../test_cache/imgtest/malwareimg.py	/^temp2 = int(temp1[0]); # now temp2 is [0 no_imgs]$/;"	kind:variable	line:34
+temp3	../test_cache/imgtest/malwareimg.py	/^    temp3 = temp2 +int(temp1[jj+1])$/;"	kind:variable	line:37
+test	../src/menuset/malimgclassify.py	/^    def test(self):$/;"	kind:member	line:34
+test	../src/publicfunc/fileanalyze.py	/^    def test(self):$/;"	kind:member	line:230
+test.py	../src/test.py	1;"	kind:file	line:1
+test.py	../test_cache/test.py	1;"	kind:file	line:1
+test1.py	../test_cache/test1.py	1;"	kind:file	line:1
+test_indices	../test_cache/imgtest/crossvalidation.py	/^    test_indices = skfind[i][1]$/;"	kind:variable	line:58
+testdata	../test_cache/opcodetest/3gram_opcode_worked.py	/^testdata = sorted(testdata.items()) # 以特征元组规定顺序排序$/;"	kind:variable	line:83
+testdata	../test_cache/opcodetest/3gram_opcode_worked.py	/^testdata = {}$/;"	kind:variable	line:73
+testdata	../test_cache/opcodetest/opcode_n-gram.py	/^testdata = {}$/;"	kind:variable	line:91
+testdata	../test_cache/opcodetest/testsgram.py	/^testdata = {}$/;"	kind:variable	line:70
+testpefilefunc.py	../test_cache/testpefilefunc.py	1;"	kind:file	line:1
+testsgram.py	../test_cache/opcodetest/testsgram.py	1;"	kind:file	line:1
+thiswindow	../src/menuset/authorinfo.py	/^    thiswindow = Dialog()$/;"	kind:variable	line:32
+thiswindow	../src/menuset/filedetail.py	/^    thiswindow = Dialog()$/;"	kind:variable	line:115
+thiswindow	../src/menuset/ngramopcode.py	/^    thiswindow = Dialog()$/;"	kind:variable	line:74
+thiswindow	../src/menuset/setting.py	/^    thiswindow = Dialog()$/;"	kind:variable	line:33
+thiswindow	../src/menuset/uploadfile.py	/^    thiswindow = Dialog()$/;"	kind:variable	line:112
+threading	../src/publicfunc/fileanalyze.py	/^import threading$/;"	kind:namespace	line:16
+tic	../test_cache/imgtest/crossvalidation.py	/^    tic = time.time()$/;"	kind:variable	line:68
+tic	../test_cache/imgtest/crossvalidation.py	/^    tic = time.time()$/;"	kind:variable	line:75
+time	../src/control.py	/^import time, sys, os$/;"	kind:namespace	line:4
+time	../src/main.py	/^import time, sys, os, shutil$/;"	kind:namespace	line:12
+time	../src/menuset/filedetail.py	/^import sys, os, time$/;"	kind:namespace	line:4
+time	../src/menuset/malimgclassify.py	/^import os, sys, time$/;"	kind:namespace	line:4
+time	../src/menuset/ngramopcode.py	/^import sys, os, time$/;"	kind:namespace	line:4
+time	../src/menuset/setting.py	/^import sys, os, time$/;"	kind:namespace	line:4
+time	../src/menuset/uploadfile.py	/^import sys, os, time$/;"	kind:namespace	line:4
+time	../src/publicfunc/fileanalyze.py	/^import time$/;"	kind:namespace	line:4
+time	../src/publicfunc/updatedata.py	/^        import time$/;"	kind:namespace	line:32
+time	../test_cache/imgtest/crossvalidation.py	/^    import time$/;"	kind:namespace	line:67
+time	../test_cache/malwareimgtest/randomsubset.py	/^import os, time$/;"	kind:namespace	line:3
+time	../test_cache/opcodetest/randomsubset.py	/^import os, time$/;"	kind:namespace	line:3
+to	../src/publicfunc/clamav/updateclamav.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:149
+to	../test_cache/clamavinpytest/update_clamav_signatures.py	/^        f.write("import \\"pe\\"\\n\\n")  # Do not forget to import our module.$/;"	kind:namespace	line:159
+toc	../test_cache/imgtest/crossvalidation.py	/^    toc = time.time()$/;"	kind:variable	line:70
+toc	../test_cache/imgtest/crossvalidation.py	/^    toc = time.time()$/;"	kind:variable	line:77
+tops	../test_cache/opcodetest/3gram_opcode_worked.py	/^tops = getOpcodeSequence(filepath.encode('cp936'))$/;"	kind:variable	line:70
+tops	../test_cache/opcodetest/opcode_n-gram.py	/^tops = getOpcodeSequence(filepath)$/;"	kind:variable	line:89
+tops	../test_cache/opcodetest/testsgram.py	/^tops = getOpcodeSequence(filepath)$/;"	kind:variable	line:67
+total	../test_cache/imgtest/malwareimg.py	/^total = sum(no_imgs) # total number of all samples$/;"	kind:variable	line:26
+train_indices	../test_cache/imgtest/crossvalidation.py	/^    train_indices = skfind[i][0]$/;"	kind:variable	line:57
+train_opcode_lm	../test_cache/malwareimgtest/opcode_n-gram.py	/^def train_opcode_lm(ops, order=4):$/;"	kind:function	line:19
+train_opcode_lm	../test_cache/opcodetest/opcode_n-gram.py	/^def train_opcode_lm(ops, order=4):$/;"	kind:function	line:26
+trainlabels	../test_cache/malwareimgtest/randomsubset.py	/^trainlabels = pd.read_csv('trainLabels.csv')$/;"	kind:variable	line:15
+trainlabels	../test_cache/opcodetest/randomsubset.py	/^trainlabels = pd.read_csv('trainLabels.csv')$/;"	kind:variable	line:11
+traversalFiles	../test_cache/testpefilefunc.py	/^def traversalFiles(filePath,dllDict):  $/;"	kind:function	line:16
+typesupport	../src/globalset.py	/^    typesupport = ['PE32', 'executable', 'Microsoft', 'Document', 'File', 'PDF', 'text', 'script', 'html']$/;"	kind:variable	line:235
+ui	../src/UILib/author.py	/^    ui = Ui_Dialog()$/;"	kind:variable	line:67
+ui	../src/UILib/detail.py	/^    ui = Ui_Dialog()$/;"	kind:variable	line:111
+ui	../src/UILib/main.py	/^    ui = Ui_MainWindow()$/;"	kind:variable	line:589
+ui	../src/UILib/malimg.py	/^    ui = Ui_Dialog()$/;"	kind:variable	line:100
+ui	../src/UILib/opcode.py	/^    ui = Ui_Dialog()$/;"	kind:variable	line:90
+ui	../src/UILib/setting.py	/^    ui = Ui_Dialog()$/;"	kind:variable	line:142
+ui	../src/UILib/upload_file.py	/^    ui = Ui_Dialog()$/;"	kind:variable	line:166
+ui.py	../test_cache/ui.py	1;"	kind:file	line:1
+update4DataBse	../src/control.py	/^    def update4DataBse(self, index, score, alstime):$/;"	kind:member	line:221
+updateDatabase	../src/publicfunc/clamav/clamav.py	/^    def updateDatabase(self):$/;"	kind:member	line:22
+updateFromDBInit	../src/main.py	/^    def updateFromDBInit(self, index, msg):$/;"	kind:member	line:470
+updateFromHistoryDB	../src/main.py	/^    def updateFromHistoryDB(self, index, msg):$/;"	kind:member	line:953
+updateRescanInfo	../src/main.py	/^    def updateRescanInfo(self, num, msg):$/;"	kind:member	line:369
+updateScanInfo	../src/main.py	/^    def updateScanInfo(self, num, msg):$/;"	kind:member	line:334
+updateSignatures	../src/publicfunc/clamav/clamav.py	/^    def updateSignatures(self):$/;"	kind:member	line:30
+updateStatusBar	../src/main.py	/^    def updateStatusBar(self, num, msg):$/;"	kind:member	line:408
+updateTableMsg	../src/main.py	/^    def updateTableMsg(self):$/;"	kind:member	line:426
+updateTableWdiget	../src/menuset/ngramopcode.py	/^    def updateTableWdiget(self, msg):$/;"	kind:member	line:41
+updateYaraData	../src/publicfunc/updatedata.py	/^    def updateYaraData(self):$/;"	kind:member	line:30
+update_clamav_signatures.py	../test_cache/clamavinpytest/update_clamav_signatures.py	1;"	kind:file	line:1
+update_signatures	../src/publicfunc/clamav/updateclamav.py	/^def update_signatures(url, download):$/;"	kind:function	line:78
+update_signatures	../test_cache/clamavinpytest/update_clamav_signatures.py	/^def update_signatures(url, download):$/;"	kind:function	line:88
+updateclamav.py	../src/publicfunc/clamav/updateclamav.py	1;"	kind:file	line:1
+updatedata.py	../src/publicfunc/updatedata.py	1;"	kind:file	line:1
+updateyara	../src/menuset/setting.py	/^    def updateyara(self):$/;"	kind:member	line:22
+uploadFile	../src/menuset/uploadfile.py	/^    def uploadFile(self, filename):$/;"	kind:member	line:38
+upload_file.py	../src/UILib/upload_file.py	1;"	kind:file	line:1
+uploadfile.py	../src/menuset/uploadfile.py	1;"	kind:file	line:1
+uploadthread.py	../src/advanceoperate/uploadthread.py	1;"	kind:file	line:1
+urllib2	../src/publicfunc/clamav/updateclamav.py	/^import urllib2$/;"	kind:namespace	line:8
+urllib2	../test_cache/clamavinpytest/update_clamav_signatures.py	/^import urllib2$/;"	kind:namespace	line:25
+urlparse	../src/publicfunc/fileanalyze.py	/^import urlparse$/;"	kind:namespace	line:14
+valueSignal	../src/publicfunc/clamav/clamav.py	/^    valueSignal  = QtCore.pyqtSignal(list)$/;"	kind:variable	line:38
+valueSignal	../src/publicfunc/fileanalyze.py	/^    valueSignal  = QtCore.pyqtSignal(int, str)$/;"	kind:variable	line:221
+valueSignal	../src/publicfunc/yaracheck.py	/^    valueSignal  = QtCore.pyqtSignal(int)$/;"	kind:variable	line:169
+valueSignal	../src/publicfunc/yaracheck.py	/^    valueSignal  = QtCore.pyqtSignal(int)$/;"	kind:variable	line:218
+valueSignal	../src/publicfunc/yaracheck.py	/^    valueSignal  = QtCore.pyqtSignal(int)$/;"	kind:variable	line:274
+valueSignal	../src/publicfunc/yaracheck.py	/^    valueSignal  = QtCore.pyqtSignal(int)$/;"	kind:variable	line:316
+valueSignal	../src/publicfunc/yaracheck.py	/^    valueSignal  = QtCore.pyqtSignal(int)$/;"	kind:variable	line:361
+virus_total_apis	../src/advanceoperate/uploadthread.py	/^import virus_total_apis$/;"	kind:namespace	line:6
+virustotalApi	../src/advanceoperate/uploadthread.py	/^    def virustotalApi(self, apikey):$/;"	kind:member	line:43
+whitefile	../src/globalset.py	/^    whitefile = []$/;"	kind:variable	line:240
+whitelist	../src/globalset.py	/^    whitelist = ".\/custom\/whitelist.txt"$/;"	kind:variable	line:239
+width	../test_cache/createimg.py	/^width = int(ln**0.5)$/;"	kind:variable	line:4
+window	../src/menuset/authorinfo.py	/^    window = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:31
+window	../src/menuset/filedetail.py	/^    window = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:114
+window	../src/menuset/ngramopcode.py	/^    window = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:73
+window	../src/menuset/setting.py	/^    window = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:32
+window	../src/menuset/uploadfile.py	/^    window = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:111
+write2DataBase	../src/control.py	/^    def write2DataBase(self, index, info, score, alstime):$/;"	kind:member	line:202
+write2PEInfoDB	../src/publicfunc/fileanalyze.py	/^    def write2PEInfoDB(self, md5, queue):$/;"	kind:member	line:276
+write2YaraDB	../src/publicfunc/yaracheck.py	/^    def write2YaraDB(self, md5, result):$/;"	kind:member	line:177
+write2YaraDB	../src/publicfunc/yaracheck.py	/^    def write2YaraDB(self, md5, result):$/;"	kind:member	line:225
+write2YaraDB	../src/publicfunc/yaracheck.py	/^    def write2YaraDB(self, md5, result):$/;"	kind:member	line:281
+write2YaraDB	../src/publicfunc/yaracheck.py	/^    def write2YaraDB(self, md5, result):$/;"	kind:member	line:323
+write2YaraDB	../src/publicfunc/yaracheck.py	/^    def write2YaraDB(self, md5, result):$/;"	kind:member	line:368
+writeInit2DB	../src/control.py	/^    def writeInit2DB(self, filename, index, sqlconn):$/;"	kind:member	line:93
+y	../test_cache/imgtest/crossvalidation.py	/^y = numpy.load('img_labels.npy')$/;"	kind:variable	line:8
+y	../test_cache/imgtest/malwareimg.py	/^y = numpy.zeros(total) # label vector$/;"	kind:variable	line:29
+y	../test_cache/imgtest/predict.py	/^y = numpy.load('img_labels.npy')$/;"	kind:variable	line:11
+y_predict	../test_cache/imgtest/crossvalidation.py	/^    y_predict = []$/;"	kind:variable	line:74
+y_predict	../test_cache/imgtest/crossvalidation.py	/^    y_predict = clf.predict(X_test) # output is labels and not indices$/;"	kind:variable	line:76
+y_test	../test_cache/imgtest/crossvalidation.py	/^    y_test = y[test_indices]$/;"	kind:variable	line:64
+y_train	../test_cache/imgtest/crossvalidation.py	/^    y_train = y[train_indices]$/;"	kind:variable	line:62
+yara	../src/publicfunc/clamav/clamav.py	/^import yara$/;"	kind:namespace	line:4
+yara	../src/publicfunc/yaracheck.py	/^import yara$/;"	kind:namespace	line:4
+yara	../test_cache/test.py	/^import yara$/;"	kind:namespace	line:1
+yaraDetectionResult	../src/control.py	/^    def yaraDetectionResult(self, result):$/;"	kind:member	line:522
+yaracheck.py	../src/publicfunc/yaracheck.py	1;"	kind:file	line:1
+yararule	../test_cache/test.py	/^    yararule = getRules(rulepath)$/;"	kind:variable	line:25
+zlib	../src/publicfunc/clamav/updateclamav.py	/^import zlib$/;"	kind:namespace	line:7
+zlib	../test_cache/clamavinpytest/update_clamav_signatures.py	/^import zlib$/;"	kind:namespace	line:24
+zlib_decompress	../src/publicfunc/clamav/updateclamav.py	/^def zlib_decompress(path, outpath):$/;"	kind:function	line:55
+zlib_decompress	../test_cache/clamavinpytest/update_clamav_signatures.py	/^def zlib_decompress(path, outpath):$/;"	kind:function	line:68

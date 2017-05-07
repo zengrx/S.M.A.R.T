@@ -36,8 +36,8 @@ class OpcodeNgram(QtCore.QThread):
     操作码频数合并训练特征
     '''
     def getClassifyLabel(self, t3gram):
-        self.trainfeatu = pd.read_csv(".\\datafiles\\3gramfeature.csv")
-        self.trainlabel = pd.read_csv('.\\datafiles\\subtrainLabels.csv')
+        self.trainfeatu = pd.read_csv("./datafiles/3gramfeature.csv")
+        self.trainlabel = pd.read_csv('./datafiles/subtrainLabels.csv')
         # 取csv文件的第一行中除去id列，并转化为list
         features = self.trainfeatu.columns.tolist()[1:]
         newdata = {}
