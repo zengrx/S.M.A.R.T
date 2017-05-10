@@ -115,7 +115,7 @@ class CheckFolder(QtCore.QThread):
         # print self.depth
         sendm = "scan depth:" + str(self.depth)
         self.folderSignal.emit(1, sendm)
-        d = str(self.dir).count('\\')
+        d = str(self.dir).count('/')
         for root, dirs, files in os.walk(self.dir, topdown=True):
             if 0 == FlagSet.scanstopflag:
                 # print "stopflag"
@@ -123,7 +123,7 @@ class CheckFolder(QtCore.QThread):
                 self.folderSignal.emit(1, sendm)
                 break
             # print root
-            s = str(root).count('\\')
+            s = str(root).count('/')
             layer = s - d
             # print layer
             sendm = root + "  -->layers: " + str(layer)
@@ -315,9 +315,7 @@ class ScanFile(QtCore.QThread):
     '''
     def PEDetectionResult(self, entrypnt, setinfo, impinfo, cpltime):
         dtk = 0
-        # fillm = "                        "
         fillm = "\t\t"
-        # sendm = self.filename + " PE file analysis result\n"
         sendm = ''
         nowdate = int(time.gmtime(time.time())[0])
         # 可疑的编译时间
@@ -532,7 +530,11 @@ class ScanFile(QtCore.QThread):
                 yarscore += len(set(YaraAlert.atialerts.keys()) & set(dict(eval(result[1]))["antidbg"]))
             print dict(eval(result[1]))
         if result[2]:
-            yarscore += len(set(YaraAlert.pkdalerts.keys()) & set(dict(eval(result[2]))["packed"])) 
+            yarscore += len(set(YaraAlert.pkdalerts.keys()) & set(dict(eval(result[2]))["packed"]))
+            if 'IsPacked' in result[2]:
+                yarscore += 5
+            if 'HasModified_DOS_Message' in result[2]:
+                yarscore += 15
             print dict(eval(result[2]))
         if result[3]:
             yarscore += len(set(YaraAlert.cptalerts.keys()) & set(dict(eval(result[3]))["crypto"]))
