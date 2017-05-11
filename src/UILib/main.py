@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created by: PyQt4 UI code generator 4.11.4
+# Created by: PyQt4 UI code generator 4.12
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -297,7 +297,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addItem(spacerItem8)
         self.verticalLayout_7.addLayout(self.horizontalLayout_2)
         self.horizontalLayout_9.addWidget(self.groupBox)
-        self.horizontalLayout_9.setStretch(0, 6)
+        self.horizontalLayout_9.setStretch(0, 5)
         self.horizontalLayout_9.setStretch(1, 3)
         self.horizontalLayout_9.setStretch(2, 3)
         self.verticalLayout_3.addLayout(self.horizontalLayout_9)
@@ -337,6 +337,7 @@ class Ui_MainWindow(object):
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName(_fromUtf8("tab_2"))
         self.verticalLayout_8 = QtGui.QVBoxLayout(self.tab_2)
+        self.verticalLayout_8.setMargin(0)
         self.verticalLayout_8.setObjectName(_fromUtf8("verticalLayout_8"))
         self.textEdit = QtGui.QTextEdit(self.tab_2)
         self.textEdit.setObjectName(_fromUtf8("textEdit"))
@@ -356,6 +357,7 @@ class Ui_MainWindow(object):
         self.tab_3 = QtGui.QWidget()
         self.tab_3.setObjectName(_fromUtf8("tab_3"))
         self.verticalLayout_9 = QtGui.QVBoxLayout(self.tab_3)
+        self.verticalLayout_9.setMargin(0)
         self.verticalLayout_9.setObjectName(_fromUtf8("verticalLayout_9"))
         self.horizontalLayout_12 = QtGui.QHBoxLayout()
         self.horizontalLayout_12.setObjectName(_fromUtf8("horizontalLayout_12"))
@@ -453,23 +455,23 @@ class Ui_MainWindow(object):
         self.AC_Check.setObjectName(_fromUtf8("AC_Check"))
         self.AC_Setting = QtGui.QAction(MainWindow)
         self.AC_Setting.setObjectName(_fromUtf8("AC_Setting"))
-        self.AC_Loadcfg = QtGui.QAction(MainWindow)
-        self.AC_Loadcfg.setObjectName(_fromUtf8("AC_Loadcfg"))
+        self.AC_CheckML = QtGui.QAction(MainWindow)
+        self.AC_CheckML.setObjectName(_fromUtf8("AC_CheckML"))
         self.AC_Info = QtGui.QAction(MainWindow)
         self.AC_Info.setObjectName(_fromUtf8("AC_Info"))
         self.AC_About = QtGui.QAction(MainWindow)
         self.AC_About.setObjectName(_fromUtf8("AC_About"))
         self.AC_Author = QtGui.QAction(MainWindow)
         self.AC_Author.setObjectName(_fromUtf8("AC_Author"))
-        self.AC_OutLog = QtGui.QAction(MainWindow)
-        self.AC_OutLog.setObjectName(_fromUtf8("AC_OutLog"))
+        self.AC_EditWL = QtGui.QAction(MainWindow)
+        self.AC_EditWL.setObjectName(_fromUtf8("AC_EditWL"))
         self.action_9 = QtGui.QAction(MainWindow)
         self.action_9.setObjectName(_fromUtf8("action_9"))
         self.menu.addAction(self.AC_Check)
         self.menu.addSeparator()
         self.menu.addAction(self.AC_Setting)
-        self.menu_2.addAction(self.AC_Loadcfg)
-        self.menu_2.addAction(self.AC_OutLog)
+        self.menu_2.addAction(self.AC_CheckML)
+        self.menu_2.addAction(self.AC_EditWL)
         self.menu_4.addAction(self.AC_Info)
         self.menu_4.addAction(self.AC_About)
         self.menu_4.addAction(self.AC_Author)
@@ -574,11 +576,11 @@ class Ui_MainWindow(object):
         self.menu_4.setTitle(_translate("MainWindow", "帮助", None))
         self.AC_Check.setText(_translate("MainWindow", "检查配置", None))
         self.AC_Setting.setText(_translate("MainWindow", "软件设置", None))
-        self.AC_Loadcfg.setText(_translate("MainWindow", "读取配置", None))
+        self.AC_CheckML.setText(_translate("MainWindow", "机器学习验证", None))
         self.AC_Info.setText(_translate("MainWindow", "版本信息", None))
         self.AC_About.setText(_translate("MainWindow", "关于软件", None))
         self.AC_Author.setText(_translate("MainWindow", "联系作者", None))
-        self.AC_OutLog.setText(_translate("MainWindow", "导出日志", None))
+        self.AC_EditWL.setText(_translate("MainWindow", "修改白名单", None))
         self.action_9.setText(_translate("MainWindow", "软件设置", None))
 
 

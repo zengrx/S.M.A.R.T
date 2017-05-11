@@ -60,7 +60,7 @@
              <number>1</number>
             </property>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="5,3,3">
+             <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="6,3,3">
               <property name="spacing">
                <number>2</number>
               </property>
@@ -1113,8 +1113,8 @@
     <property name="title">
      <string>文件</string>
     </property>
-    <addaction name="AC_CheckML"/>
-    <addaction name="AC_EditWL"/>
+    <addaction name="AC_Loadcfg"/>
+    <addaction name="AC_OutLog"/>
    </widget>
    <widget class="QMenu" name="menu_4">
     <property name="title">
@@ -1139,9 +1139,9 @@
     <string>软件设置</string>
    </property>
   </action>
-  <action name="AC_CheckML">
+  <action name="AC_Loadcfg">
    <property name="text">
-    <string>机器学习验证</string>
+    <string>读取配置</string>
    </property>
   </action>
   <action name="AC_Info">
@@ -1159,9 +1159,9 @@
     <string>联系作者</string>
    </property>
   </action>
-  <action name="AC_EditWL">
+  <action name="AC_OutLog">
    <property name="text">
-    <string>修改白名单</string>
+    <string>导出日志</string>
    </property>
   </action>
   <action name="action_9">

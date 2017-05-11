@@ -1,8 +1,8 @@
-这是一个测试内容
 this is a test message
-文件路径:
+鏂囦欢璺緞:
 filepath:
 a/b/c
 c:/path
 c://some//path
-E:\收集\IPClient - 副本.exe
+E:\鏀堕泦\IPClient - 鍓湰.exe
+test message

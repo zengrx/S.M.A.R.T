@@ -297,8 +297,8 @@ _translate_signature	../test_cache/clamavinpytest/parse_clamav.py	/^    def _tra
 a	../test_cache/createimg.py	/^a = array.array("B") # uint8 array$/;"	kind:variable	line:6
 addFile2Queue	../src/menuset/uploadfile.py	/^    def addFile2Queue(self, filename):$/;"	kind:member	line:95
 alerts	../src/globalset.py	/^    alerts = {$/;"	kind:variable	line:14
-analysisControl	../src/control.py	/^    def analysisControl(self, index):$/;"	kind:member	line:552
-analyzeSusString	../src/control.py	/^    def analyzeSusString(self, result):$/;"	kind:member	line:451
+analysisControl	../src/control.py	/^    def analysisControl(self, index):$/;"	kind:member	line:554
+analyzeSusString	../src/control.py	/^    def analyzeSusString(self, result):$/;"	kind:member	line:449
 app	../src/UILib/author.py	/^    app = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:65
 app	../src/UILib/detail.py	/^    app = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:109
 app	../src/UILib/main.py	/^    app = QtGui.QApplication(sys.argv)$/;"	kind:variable	line:587
@@ -342,7 +342,7 @@ checkIPAddr	../src/publicfunc/fileanalyze.py	/^    def checkIPAddr(self, strlist
 checkInternet	../src/advanceoperate/uploadthread.py	/^    def checkInternet(self):$/;"	kind:member	line:27
 checkMachine	../src/publicfunc/fileanalyze.py	/^    def checkMachine(self):$/;"	kind:member	line:148
 checkWebsit	../src/publicfunc/fileanalyze.py	/^    def checkWebsit(self, strlist):$/;"	kind:member	line:113
-checkYaraExists	../src/control.py	/^    def checkYaraExists(self):$/;"	kind:member	line:385
+checkYaraExists	../src/control.py	/^    def checkYaraExists(self):$/;"	kind:member	line:383
 check_crypto	../src/publicfunc/yaracheck.py	/^def check_crypto(filename):$/;"	kind:function	line:73
 chooseFileType	../src/control.py	/^    def chooseFileType(self, filename):$/;"	kind:member	line:37
 chooseScanRule	../src/control.py	/^    def chooseScanRule(self, rules):$/;"	kind:member	line:239
@@ -359,7 +359,7 @@ cm	../test_cache/imgtest/crossvalidation.py	/^    cm = []$/;"	kind:variable	line
 cm	../test_cache/imgtest/crossvalidation.py	/^    cm = confusion_matrix(y_test,y_predict)$/;"	kind:variable	line:82
 cnt	../test_cache/imgtest/crossvalidation.py	/^    cnt = cnt + 1$/;"	kind:variable	line:29
 cnt	../test_cache/imgtest/crossvalidation.py	/^cnt=0$/;"	kind:variable	line:26
-collectAnalyzResult	../src/control.py	/^    def collectAnalyzResult(self):$/;"	kind:member	line:545
+collectAnalyzResult	../src/control.py	/^    def collectAnalyzResult(self):$/;"	kind:member	line:547
 combine.py	../test_cache/malwareimgtest/combine.py	1;"	kind:file	line:1
 commonDiv	../src/publicfunc/fileanalyze.py	/^def commonDiv(a, b):$/;"	kind:function	line:24
 concluSignal	../src/advanceoperate/malimgthread.py	/^    concluSignal = QtCore.pyqtSignal(int, list)$/;"	kind:variable	line:33
@@ -709,13 +709,13 @@ re	../test_cache/opcodetest/testsgram.py	/^import re, os$/;"	kind:namespace	line
 readFromDB	../src/main.py	/^    def readFromDB(self, index):$/;"	kind:member	line:392
 readFromDataBase	../src/control.py	/^    def readFromDataBase(self, index):$/;"	kind:member	line:183
 readPEinfoDB	../src/control.py	/^    def readPEinfoDB(self, md5):$/;"	kind:member	line:286
-readYaraResultDB	../src/control.py	/^    def readYaraResultDB(self, md5):$/;"	kind:member	line:428
+readYaraResultDB	../src/control.py	/^    def readYaraResultDB(self, md5):$/;"	kind:member	line:426
 read_hexbytes	../test_cache/malwareimgtest/asmimage.py	/^def read_hexbytes(filename):$/;"	kind:function	line:45
 recvAnalyzeResult	../src/menuset/uploadfile.py	/^    def recvAnalyzeResult(self, index, msg):$/;"	kind:member	line:49
-recvClamResult	../src/control.py	/^    def recvClamResult(self, msg):$/;"	kind:member	line:485
+recvClamResult	../src/control.py	/^    def recvClamResult(self, msg):$/;"	kind:member	line:483
 recvDefaultResult	../src/control.py	/^    def recvDefaultResult(self, msg, md5):$/;"	kind:member	line:300
 recvInitSingal	../src/main.py	/^    def recvInitSingal(self, index, msg):$/;"	kind:member	line:293
-recvYaraResult	../src/control.py	/^    def recvYaraResult(self, msg):$/;"	kind:member	line:441
+recvYaraResult	../src/control.py	/^    def recvYaraResult(self, msg):$/;"	kind:member	line:439
 rem	../test_cache/createimg.py	/^rem = ln % width$/;"	kind:variable	line:5
 retranslateUi	../src/UILib/author.py	/^    def retranslateUi(self, Dialog):$/;"	kind:member	line:56
 retranslateUi	../src/UILib/detail.py	/^    def retranslateUi(self, Dialog):$/;"	kind:member	line:89
@@ -738,7 +738,7 @@ run	../src/advanceoperate/opcodethread.py	/^    def run(self):$/;"	kind:member	l
 run	../src/advanceoperate/uploadthread.py	/^    def run(self):$/;"	kind:member	line:101
 run	../src/advanceoperate/uploadthread.py	/^    def run(self):$/;"	kind:member	line:83
 run	../src/control.py	/^    def run(self):$/;"	kind:member	line:101
-run	../src/control.py	/^    def run(self):$/;"	kind:member	line:575
+run	../src/control.py	/^    def run(self):$/;"	kind:member	line:577
 run	../src/publicfunc/clamav/clamav.py	/^    def run(self):$/;"	kind:member	line:61
 run	../src/publicfunc/fileanalyze.py	/^    def run(self):$/;"	kind:member	line:304
 run	../src/publicfunc/yaracheck.py	/^    def run(self):$/;"	kind:member	line:194
@@ -813,13 +813,13 @@ srf	../test_cache/opcodetest/secondrandomforest.py	/^srf = RF(n_estimators=500, 
 srf	../test_cache/opcodetest/testsgram.py	/^srf = RF(n_estimators=500, n_jobs=-1)$/;"	kind:variable	line:93
 standard	../test_cache/malwareimgtest/opcode_n-gram.py	/^    standard = {}$/;"	kind:variable	line:62
 standard	../test_cache/opcodetest/opcode_n-gram.py	/^    standard = {}$/;"	kind:variable	line:72
-startClamThread	../src/control.py	/^    def startClamThread(self, filename, index):$/;"	kind:member	line:477
-startCrypThread	../src/control.py	/^    def startCrypThread(self, filename, index, md5):$/;"	kind:member	line:500
-startCustThread	../src/control.py	/^    def startCustThread(self, filename, index, md5):$/;"	kind:member	line:512
+startClamThread	../src/control.py	/^    def startClamThread(self, filename, index):$/;"	kind:member	line:475
+startCrypThread	../src/control.py	/^    def startCrypThread(self, filename, index, md5):$/;"	kind:member	line:498
+startCustThread	../src/control.py	/^    def startCustThread(self, filename, index, md5):$/;"	kind:member	line:510
 startDefaultThread	../src/control.py	/^    def startDefaultThread(self, filename, filetype, md5, index):$/;"	kind:member	line:262
-startPackThread	../src/control.py	/^    def startPackThread(self, filename, index, md5):$/;"	kind:member	line:488
+startPackThread	../src/control.py	/^    def startPackThread(self, filename, index, md5):$/;"	kind:member	line:486
 startScan	../src/main.py	/^    def startScan(self):$/;"	kind:member	line:215
-startYaraThread	../src/control.py	/^    def startYaraThread(self, filename, filetype, md5, index):$/;"	kind:member	line:394
+startYaraThread	../src/control.py	/^    def startYaraThread(self, filename, filetype, md5, index):$/;"	kind:member	line:392
 stopScan	../src/main.py	/^    def stopScan(self):$/;"	kind:member	line:262
 store2DataBaseByDate	../src/main.py	/^    def store2DataBaseByDate(self):$/;"	kind:member	line:863
 subtrain	../test_cache/malwareimgtest/asmimage.py	/^subtrain = pd.read_csv('subtrainLabels.csv')$/;"	kind:variable	line:57
@@ -1021,7 +1021,7 @@ y_train	../test_cache/imgtest/crossvalidation.py	/^    y_train = y[train_indices
 yara	../src/publicfunc/clamav/clamav.py	/^import yara$/;"	kind:namespace	line:4
 yara	../src/publicfunc/yaracheck.py	/^import yara$/;"	kind:namespace	line:4
 yara	../test_cache/test.py	/^import yara$/;"	kind:namespace	line:1
-yaraDetectionResult	../src/control.py	/^    def yaraDetectionResult(self, result):$/;"	kind:member	line:522
+yaraDetectionResult	../src/control.py	/^    def yaraDetectionResult(self, result):$/;"	kind:member	line:520
 yaracheck.py	../src/publicfunc/yaracheck.py	1;"	kind:file	line:1
 yararule	../test_cache/test.py	/^    yararule = getRules(rulepath)$/;"	kind:variable	line:25
 zlib	../src/publicfunc/clamav/updateclamav.py	/^import zlib$/;"	kind:namespace	line:7

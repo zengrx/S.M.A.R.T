@@ -13,6 +13,8 @@ import time, sys, os, shutil
 from datetime import datetime
 from control import CheckFolder, ScanFile
 from menuset.setting import Dialog as SetDialog
+from menuset.validation import Dialog as mlvdDialog
+from menuset.editwhitelist import Dialog as WtLDialog
 from menuset.authorinfo import Dialog as AuthorInfo
 from menuset.filedetail import Dialog as DetailDialog
 from menuset.ngramopcode import Dialog as OpcodeDialog
@@ -93,8 +95,8 @@ class MainWindow(QtGui.QMainWindow):
         self.menubardict = {
             self.ui.AC_Check   : 0, # 检查配置 
             self.ui.AC_Setting : 1, # 软件设置
-            self.ui.AC_Loadcfg : 2, # 读取配置
-            self.ui.AC_OutLog  : 3, # 导出日志
+            self.ui.AC_CheckML : 2, # 机器学习
+            self.ui.AC_EditWL  : 3, # 名单设置
             self.ui.AC_Info    : 4, # 版本信息
             self.ui.AC_About   : 5, # 关于软件
             self.ui.AC_Author  : 6  # 联系作者
@@ -106,8 +108,8 @@ class MainWindow(QtGui.QMainWindow):
         #     key.triggered.connect(lambda: self.menuBarOperate(value))
         self.ui.AC_Check.triggered.connect(lambda: self.menuBarOperate(0))
         self.ui.AC_Setting.triggered.connect(lambda: self.menuBarOperate(1))
-        self.ui.AC_Loadcfg.triggered.connect(lambda: self.menuBarOperate(2))
-        self.ui.AC_OutLog.triggered.connect(lambda: self.menuBarOperate(3))
+        self.ui.AC_CheckML.triggered.connect(lambda: self.menuBarOperate(2))
+        self.ui.AC_EditWL.triggered.connect(lambda: self.menuBarOperate(3))
         self.ui.AC_Info.triggered.connect(lambda: self.menuBarOperate(4))
         self.ui.AC_About.triggered.connect(lambda: self.menuBarOperate(5))
         self.ui.AC_Author.triggered.connect(lambda: self.menuBarOperate(6))
@@ -129,6 +131,8 @@ class MainWindow(QtGui.QMainWindow):
 
         # 其他窗口对象实例
         self.setdialog    = SetDialog() # 设置
+        self.mlvddialog   = mlvdDialog()   # 机器学习验证
+        self.wtldialog    = WtLDialog()    # 白名单
         self.authorinfo   = AuthorInfo() # 作者
         self.detailDialog = DetailDialog() # 文件信息
         self.opcodeDialog = OpcodeDialog() # 操作码n元语法分类
@@ -616,6 +620,16 @@ class MainWindow(QtGui.QMainWindow):
             icon = QtGui.QIcon()
             icon.addPixmap(QtGui.QPixmap("./UILib/icons/setting_icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             dialog.setWindowIcon(icon)
+            dialog.show()
+        if 2 == index:
+            dialog = self.mlvddialog
+            dialog.show()
+        if 3 == index:
+            dialog = self.wtldialog
+            dialog.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
+            # icon = QtGui.QIcon()
+            # icon.addPixmap(QtGui.QPixmap(".\\UILib\\icons\\setting_icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            # dialog.setWindowIcon(icon)
             dialog.show()
         if 6 == index:
             dialog = self.authorinfo
