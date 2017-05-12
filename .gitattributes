@@ -1,0 +1,3 @@
+*.p linguist-language=Python
+*.npy linguist-language=Python
+*.csv linguist-language=Python
