@@ -1,14 +1,21 @@
-#MalwareScan
-#恶意文件分析工具
---------
-- MalwareScan是一个静态恶意文件分析工具，目前正在整合SSMA代码
-- 预计完成时包括
-扫描模块，检查模块，分类模块及网络模块        
-具备全盘扫描，快速扫描，pe文件分析，可疑脚本分析，上传可疑文件样本等功能         
-使用clamav和yara进行扫描及样本匹配，样本可上传至viurstotal进行分析
-- 计划使用机器学习对恶意文件进行分类，通过二进制内容转换为灰阶图像进行处理，最终生成样本矩阵
-- 使用对于操作码的n元语对.asm文件进行分析
+S.M.A.R.T. - Static Malware Analysis and Report Tool   
+========
 
+feature
+--------
+- S.M.A.R.T. is a static malicious file analysis tool, is currently integrating MalwareScan project.
+- Expected to include scan module, inspection module, classification module at completion.  
+with folder sacn, multi-file scan, PE file analysis, upload suspicious sample and machine-learn classifier.          
+
+--------
+reference
+--------
+- SSMA : [secrary - Simple Static Malware Analyzer](https://github.com/secrary/SSMA)
+- ToyMalwareClassification : [bindog - Microsoft Malware Classification](https://github.com/bindog/ToyMalwareClassification)
+- malware image : [sarvam project](http://sarvamblog.blogspot.hk/2014/08/supervised-classification-with-k-fold.html)
+
+--------
+_(:3 」∠)/
 --------
 - 在windows中的使用
 因为需要使用magic模块，选择32位python2.7版本     
@@ -26,7 +33,6 @@ python代码里使用Magic时 指明magic信息文件，否则会报错
 
 - 目前已使用sqlite3为工程数据库，也需要注意编码问题
 
---------
 - 发布版本    
 目前使用pyinstaller发布windows64位（PE32+）版本成功
 命令为 pyinstaller -w -p path/to/python27; -i path/to/main_icon.ico main.py
