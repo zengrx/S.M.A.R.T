@@ -143,6 +143,7 @@ class YaraAlert(object):
     # 反调试
     atialerts = {
         'anti_dbg':'debugged',
+        'network_dropper':'download',
         'network_udp_sock':'network',
         'network_tcp_listen':'network',
         'network_http':'network',
@@ -177,6 +178,9 @@ class YaraAlert(object):
         'Big_Numbers3':'crypto',
         'MD5_Constants':'crypto',
         'BASE64_table':'crypto',
+        'RijnDael_AES':'crypto',
+        'RijnDael_AES_CHAR':'crypto',
+        'RijnDael_AES_LONG':'crypto',
         'SHA1_Constants':'crypto',
         'CRC32_table':'crypto',
         'OpenSSL_DSA':'crypto',

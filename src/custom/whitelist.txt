@@ -1,4 +1,3 @@
-this is a test message
 文件路径:
 filepath:
 a/b/c
@@ -6,3 +5,4 @@ c:/path
 c://some//path
 E:\收集\IPClient - 副本.exe
 test message
+/home/amber/code/test/down.py
