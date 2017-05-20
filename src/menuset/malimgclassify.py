@@ -32,6 +32,10 @@ class Dialog(QtGui.QDialog):
         elif 'exe' in ext:
             self.convertBin2Img(self.filename)
             imgname = "./cache/aaaaa.png"
+        else:
+            print "no extension, same as exe"
+            self.convertBin2Img(self.filename)
+            imgname = "./cache/aaaaa.png"
         self.postImageFile(imgname)
         self.malimg = MalwareImageClass(imgname)
         self.malimg.malwarSignal.connect(self.showClassifyResult)
@@ -65,9 +69,9 @@ class Dialog(QtGui.QDialog):
         print "save img"
 
     def showClassifyResult(self, flag, msg):
-        self.ui.label_4.setText(u"图像1")
-        self.ui.label_5.setText(u"图像2")
-        self.ui.label_6.setText(u"图像3")
+        self.ui.label_4.setText(u"图像1未识别")
+        self.ui.label_5.setText(u"图像2未识别")
+        self.ui.label_6.setText(u"图像3未识别")
         print msg
         rootpath = '/home/amber/Documents/smart_image/malimg_dataset/malimg_paper_dataset_imgs/'
         if 1 == flag:
