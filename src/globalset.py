@@ -236,7 +236,7 @@ class YaraDescription(object):
 class StaticValue(object):
 
     goodsection = []
-    typesupport = ['PE32', 'executable', 'Microsoft', 'Document', 'File', 'PDF', 'text', 'script', 'html']
+    typesupport = ['PE32', 'MS-DOS', 'Microsoft', 'Document', 'File', 'PDF', 'text', 'script', 'html']
 
 class FilePath(object):
 

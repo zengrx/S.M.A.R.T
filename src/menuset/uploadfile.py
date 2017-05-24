@@ -16,7 +16,7 @@ class Dialog(QtGui.QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
         self.filename = ""
-        self.apikey = "632d8d808a60dba0ac32496f6c41073fff34e7ec6b33723136c7ca1861cd5ae6"
+        self.apikey = "your apikey"
 
         self.table = self.ui.tableWidget
         

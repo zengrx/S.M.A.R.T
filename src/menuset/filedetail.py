@@ -38,7 +38,7 @@ class Dialog(QtGui.QDialog):
         self.table.clearContents() # 清空table内容保留列名
         self.tree.clear()
         for n in msg:
-            if "PE32" in n or "executable" in n:
+            if "PE32" in n or "MS-DOS" in n:
                 self.peinfo.importSignal.connect(self.showImpImfo) # 连接显示导入表widget
                 self.peinfo.sectionSignal.connect(self.showSetInfo) # 连接显示节信息widget
                 self.peinfo.start()

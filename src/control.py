@@ -41,7 +41,7 @@ class CheckFolder(QtCore.QThread):
         typevalue = [] # 储存文件类型字符串
         if '7' in self.type: # PE文件
             typevalue.append("PE32")
-            typevalue.append("executable")
+            typevalue.append("MS-DOS")
         if '8' in self.type: # office/pdf文档等
             typevalue.append("Microsoft")
             typevalue.append("Document File")
@@ -261,8 +261,8 @@ class ScanFile(QtCore.QThread):
     '''
     def startDefaultThread(self, filename, filetype, md5, index):
         filename = filename#.encode('cp936')
-        typepe = 'executable'
-        if typepe in filetype:
+        # typepe = 'executable'
+        if "PE32" in filetype or "MS-DOS" in filetype:
             sqlcursor = self.readPEinfoDB(md5)
             if sqlcursor:
                 print "pe_info exist"
@@ -392,7 +392,7 @@ class ScanFile(QtCore.QThread):
     def startYaraThread(self, filename, filetype, md5, index):
         # return
         filename = filename#.encode('cp936')
-        typepe   = 'executable' # PE文件
+        # typepe   = 'executable' # PE文件
         typesh   = 'text' # 文本&脚本文件
         # 开始可疑字符检查
         strcheck = GetFileString(filename)
@@ -403,7 +403,7 @@ class ScanFile(QtCore.QThread):
         if sqlcursor:
             print "yara_result exist"
             return
-        if typepe in filetype:
+        if "PE32" in filetype or "MS-DOS" in filetype:
             print "---------PE----------"
             # PE文件检测malware特征,antidbg特征
             self.checkMalwThread = CheckMalware(filename, md5)

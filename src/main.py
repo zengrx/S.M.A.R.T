@@ -699,7 +699,8 @@ class MainWindow(QtGui.QMainWindow):
             # if 'PE32' not in self.table.item(row_num, 3).text() and 'executable' not in self.table.item(row_num, 3).text():
             # 更改为png图片及可执行文件都触发
             ext = os.path.splitext(str(fname))[1]
-            if 'executable' not in self.table.item(row_num, 3).text() and 'png' not in ext:
+            t_type = self.table.item(row_num, 3).text()
+            if 'PE32' not in t_type and 'MS-DOS' not in t_type and 'png' not in ext:
                 item3.setEnabled(False)
             if not str(self.table.item(row_num, 0).text()).endswith('.asm'):
                 item4.setEnabled(False)
