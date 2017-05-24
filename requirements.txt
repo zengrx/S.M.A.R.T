@@ -8,4 +8,6 @@ scikit-learn
 scipy
 ssdeep
 virustotal-api
-yara-python
+yara-python==3.6.0
+pyleargist
+matplotlib
