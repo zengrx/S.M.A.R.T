@@ -72,6 +72,8 @@ class CheckFolder(QtCore.QThread):
         # 全选情况
         if set(self.type) == set(['7', '8', '9', '10', '11', '12']):
             return 1
+        if StaticValue.adextension:
+            typevalue += StaticValue.adextension
         for x in typevalue:
             if x in fmagic or x in extension:
                 flag += 1

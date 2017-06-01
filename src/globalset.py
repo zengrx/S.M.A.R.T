@@ -237,6 +237,7 @@ class StaticValue(object):
 
     goodsection = []
     typesupport = ['PE32', 'MS-DOS', 'Microsoft', 'Document', 'File', 'PDF', 'text', 'script', 'html']
+    adextension = []
 
 class FilePath(object):
 

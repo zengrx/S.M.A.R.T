@@ -20,7 +20,7 @@ from menuset.filedetail import Dialog as DetailDialog
 from menuset.ngramopcode import Dialog as OpcodeDialog
 from menuset.malimgclassify import Dialog as MalimgDialog
 from menuset.uploadfile import Dialog as UploadDialog
-from globalset import FlagSet, FilePath
+from globalset import FlagSet, FilePath, StaticValue
 import sqlite3
 
 reload(sys)
@@ -177,6 +177,8 @@ class MainWindow(QtGui.QMainWindow):
     # 需要实现在功能函数线程中而非UI线程
     '''
     def selectFolder(self):
+        advmsg = "文件扩展名：" + str(StaticValue.adextension)
+        self.ui.lineEditAdvSet.setText(unicode(advmsg))
         if 0 == self.cbbox.currentIndex():
             self.scanflag = 0
             self.folder = QtGui.QFileDialog.getExistingDirectory(self, u"选择文件夹", "e:\\")#QtCore.QDir.currentPath())
