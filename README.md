@@ -3,9 +3,10 @@ S.M.A.R.T. - Static Malware Analysis and Report Tool
 
 feature
 --------
-- S.M.A.R.T. is a static malicious file analysis tool, is currently integrating MalwareScan project.
+- S.M.A.R.T. is a static malicious file analysis tool for Linux, is currently integrating MalwareScan project.
 - Expected to include scan module, inspection module, classification module at completion.  
 with folder sacn, multi-file scan, PE file analysis, upload suspicious sample and machine-learn classifier.          
+- Windows version click [here](http://git.oschina.net/rx_z/mswingui)
 
 --------
 reference
@@ -13,6 +14,16 @@ reference
 - SSMA : [secrary - Simple Static Malware Analyzer](https://github.com/secrary/SSMA)
 - ToyMalwareClassification : [bindog - Microsoft Malware Classification](https://github.com/bindog/ToyMalwareClassification)
 - malware image : [sarvam project](http://sarvamblog.blogspot.hk/2014/08/supervised-classification-with-k-fold.html)
+
+--------
+usage
+--------
+    git clone https://github.com/zengrx/S.M.A.R.T
+    cd S.M.A.R.T
+    pip install -r requirements.txt --user (may meet some troubles)
+    cd ./src
+    python main.py
+    python2 main.py (if python's default version is 3.x)
 
 --------
 GUI - PyQt4
@@ -47,3 +58,5 @@ python代码里使用Magic时 指明magic信息文件，否则会报错
 - 发布版本    
 目前使用pyinstaller发布windows64位（PE32+）版本成功
 命令为 pyinstaller -w -p path/to/python27; -i path/to/main_icon.ico main.py
+
+- gist特征需要使用快速傅里叶变换库fftw3 
