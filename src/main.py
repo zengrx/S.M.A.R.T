@@ -633,6 +633,8 @@ class MainWindow(QtGui.QMainWindow):
             # icon.addPixmap(QtGui.QPixmap(".\\UILib\\icons\\setting_icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             # dialog.setWindowIcon(icon)
             dialog.show()
+        if 4 == index:
+            QtGui.QMessageBox.about(self, u"版本信息", u"软件版本：V0.24\n编译日期：2017年5月24日\nPython版本：2.7.1\n运行平台：ArchLinux 4.10.11\ncommit：270c2cee19e95b792300f7a39249f8b15ea9b421")
         if 6 == index:
             dialog = self.authorinfo
             icon = QtGui.QIcon()

@@ -2,6 +2,7 @@
 
 from PyQt4 import QtCore
 from sklearn.ensemble import RandomForestClassifier as RF
+from sklearn import cross_validation
 from collections import *
 import pandas as pd
 import numpy as np
@@ -11,15 +12,36 @@ import sys
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
-class ValidationResult(QtCore.QThread):
-    finishSignal = QtCore.pyqtSignal(list)
+class CrossValidation(QtCore.QThread):
+    finishSignal = QtCore.pyqtSignal(str)
 
-    def __init__(self, filename, parent=None):
-        super(ValidationResult, self).__init__(parent)
-        self.filename = str(filename)#.encode('cp936')
-    
+    def __init__(self, parent=None):
+        super(CrossValidation, self).__init__(parent)
+        # self.filename = str(filename)#.encode('cp936')
+
+    def getCrossVadLabel(self):
+        subtrainLabel = pd.read_csv("./datafiles/subtrainLabels.csv")
+        subtrainfeature = pd.read_csv("./datafiles/3gramfeature.csv")
+        subtrain = pd.merge(subtrainLabel, subtrainfeature, on='Id')
+        labels = subtrain.Class
+        subtrain.drop(["Class","Id"], axis=1, inplace=True)
+        # print subtrain
+        subtrain = subtrain.as_matrix()
+        print "..."
+        return labels, subtrain
+
+    def calculateCrossVad(self, labels, subtrain):
+        X_train, X_test, y_train, y_test = cross_validation.train_test_split(subtrain,labels,test_size=0.1)
+        # print X_test, y_test
+        srf = RF(n_estimators=500, n_jobs=-1)
+        srf.fit(X_train,y_train)
+        score = srf.score(X_test,y_test)
+        return score
+
     def run(self):
-        pass
+        lab, train = self.getCrossVadLabel()
+        scr = str(self.calculateCrossVad(lab, train))
+        self.finishSignal.emit(scr)
 
 class OpcodeNgram(QtCore.QThread):
     opcodeSignal = QtCore.pyqtSignal(list)

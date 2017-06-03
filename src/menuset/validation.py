@@ -10,6 +10,7 @@ from UILib.machinelearn import Ui_Dialog
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas # matplotlib对PyQt4的支持
 from matplotlib.figure import Figure
 from advanceoperate.malimgthread import ValidationResult
+from advanceoperate.opcodethread import CrossValidation
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -26,16 +27,35 @@ class Dialog(QtGui.QDialog):
         self._createLayouts()
         # self.ui.PB_ConfMatrix.clicked.connect(self.test)
         self.ui.PB_ConfMatrix.clicked.connect(self.test2)
+        self.ui.PB_CrossVad.clicked.connect(self.crossValidation)
+
+    '''
+    交叉验证
+    '''
+    def crossValidation(self):
+        print "start calculate"
+        self.crossvad = CrossValidation()
+        self.crossvad.finishSignal.connect(self.getCrossVad)
+        self.crossvad.start()
+        self.ui.PB_CrossVad.setEnabled(False)
+
+    def getCrossVad(self, msg):
+        print "get cv", msg
+        self.ui.PB_CrossVad.setEnabled(True)
+        self.ui.LB_VadRst.setText(u"交叉验证结果：" + msg)
 
     def test2(self):
+        self.ui.PB_ConfMatrix.setEnabled(False)
         self.vali = ValidationResult()
         self.vali.finishSignal.connect(self.getValidationResult)
         self.vali.start()
 
     def getValidationResult(self, msg):
         self.drawConfusionMatrix(msg[0], msg[1], msg[2])
+        self.ui.PB_ConfMatrix.setEnabled(True)
 
     def drawConfusionMatrix(self, conf_mat, no_imgs, list_fams):
+        self._ax.clear() # 清空现有的内容
         conf_mat = conf_mat.T # since rows and  cols are interchanged
         avg_acc = numpy.trace(conf_mat) / sum(no_imgs)
         conf_mat_norm = conf_mat / no_imgs # Normalizing the confusion matrix
