@@ -29,8 +29,22 @@ class Dialog(QtGui.QDialog):
         self.list.currentRowChanged.connect(self.stack.setCurrentIndex)
         self.stack.currentChanged.connect(self.fadeInWidget)
         self.ui.PB_Yes.clicked.connect(self.saveSetChange)
-        self.ui.PB_Apply.clicked.connect(self.applySetChange)
+        # self.ui.PB_Yes.clicked.connect(self.findTempFile)
+        # self.ui.PB_Apply.clicked.connect(self.applySetChange)
         self.ui.PB_Cancel.clicked.connect(self.close)
+
+        self.findTempFile()
+
+    def findTempFile(self):
+        for root, dirs, files in os.walk('./'):
+            for fi in files:
+                fext = os.path.splitext(fi)[1]
+                if fext == '.pyc':
+                    names = os.path.join(root, fi)
+                    self.ui.listWidget_2.addItem(names)
+                if 'customrulesed' in root:
+                    names = os.path.join(root, fi)
+                    self.ui.listWidget_2.addItem(names)
 
     def fadeInWidget(self, index):
         self.faderWidget = FaderWidget(self.stack.widget(index))

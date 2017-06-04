@@ -367,14 +367,16 @@ class Checkcustom(QtCore.QThread):
 
     def write2YaraDB(self, md5, result):
         try:
-            sqlconn = sqlite3.connect("../db/detected.db")
+            # sqlconn = sqlite3.connect("../db/detected.db")
+            sqlconn = sqlite3.connect("../db/fileinfo.db")
         except sqlite3.Error, e:
             print "sqlite connect failed", "\n", e.args[0]
             return -1
         sqlcursor = sqlconn.cursor()
         try:
-            print "insert to yara crypto"
-            sqlcursor.execute("update yara_result set crypto=? where md5=?", (str(result), self.md5))
+            print "insert to yara custom"
+            # sqlcursor.execute("update yara_result set crypto=? where md5=?", (str(result), self.md5))
+            sqlcursor.execute("update base_info set mark=? where md5=?", (str(result), self.md5))
             sqlconn.commit()
             sqlconn.close()
             return 1
@@ -394,7 +396,8 @@ class Checkcustom(QtCore.QThread):
                 # except:
                 result1.append(str(n))
             result["custom"] = result1
-            # ret = self.write2YaraDB(self.md5, result)
+            ret = self.write2YaraDB(self.md5, result)
+            print "sql returen is: ", ret
         else:
             print "custom no match"
         print result

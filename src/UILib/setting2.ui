@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>421</width>
+    <width>420</width>
     <height>270</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>420</width>
+    <height>270</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>420</width>
+    <height>270</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>软件设置</string>
@@ -20,7 +32,7 @@
       <widget class="QListWidget" name="listWidget">
        <item>
         <property name="text">
-         <string>基本设置</string>
+         <string>文件设置</string>
         </property>
        </item>
        <item>
@@ -44,14 +56,24 @@
         <widget class="QLabel" name="label">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>20</y>
-           <width>61</width>
+           <x>10</x>
+           <y>4</y>
+           <width>141</width>
            <height>16</height>
           </rect>
          </property>
          <property name="text">
-          <string>目录结构</string>
+          <string>临时文件&amp;编译文件</string>
+         </property>
+        </widget>
+        <widget class="QListWidget" name="listWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>24</y>
+           <width>301</width>
+           <height>192</height>
+          </rect>
          </property>
         </widget>
        </widget>
@@ -79,17 +101,17 @@
           </rect>
          </property>
         </widget>
-        <widget class="QLabel" name="label_3">
+        <widget class="QCheckBox" name="checkBox">
          <property name="geometry">
           <rect>
            <x>10</x>
            <y>70</y>
-           <width>71</width>
-           <height>21</height>
+           <width>141</width>
+           <height>24</height>
           </rect>
          </property>
          <property name="text">
-          <string>主网地址：</string>
+          <string>禁止使用网络</string>
          </property>
         </widget>
        </widget>
@@ -185,13 +207,6 @@
         </size>
        </property>
       </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="PB_Apply">
-       <property name="text">
-        <string>应  用</string>
-       </property>
-      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="PB_Yes">
