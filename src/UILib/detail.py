@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'detail.ui'
 #
-# Created by: PyQt4 UI code generator 4.11.4
+# Created by: PyQt4 UI code generator 4.12
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -42,14 +42,26 @@ class Ui_Dialog(object):
         self.tab = QtGui.QWidget()
         self.tab.setObjectName(_fromUtf8("tab"))
         self.horizontalLayout_3 = QtGui.QHBoxLayout(self.tab)
+        self.horizontalLayout_3.setMargin(0)
         self.horizontalLayout_3.setObjectName(_fromUtf8("horizontalLayout_3"))
         self.listWidget = QtGui.QListWidget(self.tab)
         self.listWidget.setObjectName(_fromUtf8("listWidget"))
         self.horizontalLayout_3.addWidget(self.listWidget)
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
+        self.tab_2 = QtGui.QWidget()
+        self.tab_2.setObjectName(_fromUtf8("tab_2"))
+        self.horizontalLayout_2 = QtGui.QHBoxLayout(self.tab_2)
+        self.horizontalLayout_2.setMargin(0)
+        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
+        self.treeWidget_2 = QtGui.QTreeWidget(self.tab_2)
+        self.treeWidget_2.setObjectName(_fromUtf8("treeWidget_2"))
+        self.treeWidget_2.headerItem().setText(0, _fromUtf8("1"))
+        self.horizontalLayout_2.addWidget(self.treeWidget_2)
+        self.tabWidget.addTab(self.tab_2, _fromUtf8(""))
         self.tab_4 = QtGui.QWidget()
         self.tab_4.setObjectName(_fromUtf8("tab_4"))
         self.horizontalLayout_6 = QtGui.QHBoxLayout(self.tab_4)
+        self.horizontalLayout_6.setMargin(0)
         self.horizontalLayout_6.setObjectName(_fromUtf8("horizontalLayout_6"))
         self.treeWidget = QtGui.QTreeWidget(self.tab_4)
         self.treeWidget.setObjectName(_fromUtf8("treeWidget"))
@@ -59,6 +71,7 @@ class Ui_Dialog(object):
         self.tab_3 = QtGui.QWidget()
         self.tab_3.setObjectName(_fromUtf8("tab_3"))
         self.horizontalLayout_5 = QtGui.QHBoxLayout(self.tab_3)
+        self.horizontalLayout_5.setMargin(0)
         self.horizontalLayout_5.setObjectName(_fromUtf8("horizontalLayout_5"))
         self.tableWidget = QtGui.QTableWidget(self.tab_3)
         self.tableWidget.setObjectName(_fromUtf8("tableWidget"))
@@ -90,6 +103,7 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "详细信息", None))
         self.groupBox.setTitle(_translate("Dialog", "文件信息", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "基本信息", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "规则匹配结果", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("Dialog", "导入表信息", None))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("Dialog", "Name", None))

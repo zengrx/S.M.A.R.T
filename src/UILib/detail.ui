@@ -55,6 +55,22 @@
             </item>
            </layout>
           </widget>
+          <widget class="QWidget" name="tab_2">
+           <attribute name="title">
+            <string>规则匹配结果</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QTreeWidget" name="treeWidget_2">
+              <column>
+               <property name="text">
+                <string notr="true">1</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="tab_4">
            <attribute name="title">
             <string>导入表信息</string>
