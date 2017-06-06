@@ -65,10 +65,9 @@ class Dialog(QtGui.QDialog):
         sqlconn.commit()
         sqlcursor = sqlcursor.fetchone()
         print "yara----->", sqlcursor
-        # print sqlcursor[1], sqlcursor[2], sqlcursor[3]
-        if not sqlcursor or sqlcursor[1] == 'null':
+        if not sqlcursor: #or sqlcursor[1] == 'null':
             return
-        if sqlcursor[1]:
+        if sqlcursor[1] != 'null':
             _default = eval(sqlcursor[1])
         else:
             _default = {'':''}
